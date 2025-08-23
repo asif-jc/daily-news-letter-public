@@ -33,7 +33,6 @@ jobs:
         mkdir -p data/loading
         mkdir -p docs
         mkdir -p archive
-        mkdir -p .github/workflows/docs
 
         
     - name: Run newsletter pipeline
