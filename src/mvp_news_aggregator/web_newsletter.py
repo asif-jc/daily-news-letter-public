@@ -392,7 +392,7 @@ class NewsletterGenerator:
         with open("newsletter.html", 'w', encoding='utf-8') as f:
             f.write(html_content)
 
-        with open("docs/index.html", 'w', encoding='utf-8') as f:
+        with open(".github/workflows/docs/index.html", 'w', encoding='utf-8') as f:
             f.write(html_content)
         
         return output_path
