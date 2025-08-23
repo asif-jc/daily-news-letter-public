@@ -1,0 +1,19 @@
+# Virtual environments
+daily_news_letter_venv/
+.venv/
+venv/
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# OS/editor
+.DS_Store
+.vscode/
+.idea/
+
+# Env files
+config.env

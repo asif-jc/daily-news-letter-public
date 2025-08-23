@@ -1,0 +1,53 @@
+name: Generate Daily Newsletter
+
+on:
+  schedule:
+    - cron: '0 20 * * *'  # 20 PM UTC daily
+  workflow_dispatch:    # Manual trigger
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    
+    # ADD PERMISSIONS TO FIX 403 ERROR
+    permissions:
+      contents: write        # Allow writing to repository
+      pages: write          # Allow writing to GitHub Pages
+      id-token: write       # Allow OIDC token for Pages
+      actions: read         # Allow reading actions
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+        
+    - name: Create directories
+      run: |
+        mkdir -p data/loading
+        mkdir -p docs
+        mkdir -p archive
+
+        
+    - name: Run newsletter pipeline
+      env:
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      run: |
+        python src/mvp_news_aggregator/main.py
+        
+    - name: Copy assets and newsletter
+      run: |
+        cp -r assets docs/
+        cp newsletter.html docs/index.html
+        
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs
