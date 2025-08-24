@@ -1,11 +1,18 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, List
 import json
 import os
+import pytz
 
 class NewsletterGenerator:
     def __init__(self):
         pass
+    
+    def get_nz_date(self) -> str:
+        """Get current date in New Zealand timezone"""
+        nz_tz = pytz.timezone('Pacific/Auckland')
+        nz_time = datetime.now(nz_tz)
+        return nz_time.strftime('%Y-%m-%d')
     
     def load_curated_data(self, json_path: str = 'data/loading/newsletter_curated.json') -> Dict:
         """Load curated newsletter data from JSON file"""
@@ -34,7 +41,7 @@ class NewsletterGenerator:
     def generate_html(self, json_path: str = 'data/loading/newsletter_curated.json') -> str:
         """Generate complete HTML newsletter from JSON data"""
         data = self.load_curated_data(json_path)
-        date = datetime.now().strftime('%Y-%m-%d')
+        date = self.get_nz_date()
         
         html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -381,7 +388,7 @@ class NewsletterGenerator:
     def save_newsletter(self, output_path: str = None, json_path: str = 'data/loading/newsletter_curated.json') -> str:
         """Generate and save newsletter HTML file"""
         if not output_path:
-            date = datetime.now().strftime('%Y-%m-%d')
+            date = self.get_nz_date()
             output_path = f"archive/newsletter_{date}.html"
         
         html_content = self.generate_html(json_path)
