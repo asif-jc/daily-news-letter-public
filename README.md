@@ -10,6 +10,7 @@
 - ⚡ **Hourly Critical Coverage** - New priority section for breaking news
 - 🧠 **Advanced NLP Processing** - Enhanced article analysis before LLM curation  
 - 🔄 **Agentic Workflow** - Migration to LangChain or Google AI SDK for improved automation
+- 📰 **Email Subscription** - Email out daily and critical articles to a subset of users
 
 ---
 
