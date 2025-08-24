@@ -11,7 +11,7 @@ import os
 
 # from database import NewsletterDB
 
-if False:
+if True:
     load_dotenv("../env/config.env")
 
 logger = logging.getLogger(__name__)
