@@ -8,9 +8,10 @@
 
 **Upcoming Features:**
 - ⚡ **Hourly Critical Coverage** - New priority section for breaking news
-- 🧠 **Advanced NLP Processing** - Enhanced article analysis before LLM curation  
+- 🧠 **Advanced NLP Processing** - Enhanced article analysis before LLM curation (NLP preprocessing) 
 - 🔄 **Agentic Workflow** - Migration to LangChain or Google AI SDK for improved automation
 - 📰 **Email Subscription** - Email out daily and critical articles to a subset of users
+- 📰 **User Defines Preference** - User can define preference and refresh pipeline on this information (incurs uncertain LLM usage has cost complexity)
 
 ---
 
