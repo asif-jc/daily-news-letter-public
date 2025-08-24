@@ -18,7 +18,7 @@
 
 An intelligent newsletter system that automatically collects, curates, and publishes daily news from multiple RSS sources. Uses Google's Gemini AI to select and summarize the most important stories across Technology, Finance, World News, and New Zealand categories.
 
-**🌐 Live Newsletter:** [View Latest Edition](https://your-username.github.io/daily-news-letter-public/)
+**🌐 Live Newsletter:** [View Latest Edition](https://asif-jc.github.io/daily-news-letter-public/)
 
 ## ✨ Features
 
