@@ -29,7 +29,7 @@ def run_daily_pipeline(use_llm: bool = True):
 if __name__ == "__main__":
     
     RUN_ETL = True
-    USE_LLM = False  # Toggle this to enable/disable LLM processing
+    USE_LLM = True  # Toggle this to enable/disable LLM processing
 
     if RUN_ETL:
         run_daily_pipeline(use_llm=USE_LLM)

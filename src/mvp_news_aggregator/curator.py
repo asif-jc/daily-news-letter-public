@@ -2,6 +2,7 @@ from datetime import datetime, timezone, timedelta
 from typing import Dict, List, Optional
 import logging
 import json
+import re
 import google.generativeai as genai
 from dotenv import load_dotenv
 import requests
@@ -237,7 +238,7 @@ class ArticleCurator:
                 if element:
                     text = element.get_text(separator=' ', strip=True)
                     print(f"Found content with selector '{selector}': {len(text)} chars")
-                    return text[:2000] if text else None
+                    return self.optimize_content_for_llm(text, url) if text else None
             
             # Fallback: all paragraphs
             paragraphs = soup.find_all('p')
@@ -253,16 +254,73 @@ class ArticleCurator:
                     if div.get('class'):
                         print(f"Div {i}: class={div.get('class')}")
             
-            return text[:2000] if text else None
+            return self.optimize_content_for_llm(text, url) if text else None
             
         except Exception as e:
             print(f"Scraping error for {url}: {e}")
             return None
+
+    def optimize_content_for_llm(self, raw_content: str, url: str) -> str:
+        """Clean and optimize scraped content for LLM processing"""
+        original_length = len(raw_content)
+        
+        # Step 1: Remove common junk patterns
+        junk_patterns = [
+            r'subscribe\s+to\s+our\s+newsletter',
+            r'follow\s+us\s+on\s+social\s+media', 
+            r'advertisement\s*:?',
+            r'related\s+articles?:?',
+            r'more\s+from\s+\w+:?',
+            r'read\s+more\s+about',
+            r'sign\s+up\s+for',
+            r'cookies?\s+policy',
+            r'terms\s+of\s+service',
+            r'privacy\s+policy',
+            r'share\s+this\s+article',
+            r'\bshare\b.*\bfacebook\b.*\btwitter\b',
+            r'loading\.\.\.?',
+        ]
+        
+        cleaned = raw_content
+        removed_patterns = []
+        
+        for pattern in junk_patterns:
+            matches = re.findall(pattern, cleaned, flags=re.IGNORECASE)
+            if matches:
+                removed_patterns.extend(matches)
+                cleaned = re.sub(pattern, '', cleaned, flags=re.IGNORECASE)
+        
+        # Step 2: Remove excessive whitespace
+        cleaned = ' '.join(cleaned.split())
+        
+        # Step 3: Smart sentence selection (first 8 complete sentences)
+        sentences = [s.strip() + '.' for s in cleaned.split('.') if len(s.strip()) > 20]
+        optimized = ' '.join(sentences[:8])
+        
+        # Debug output
+        final_length = len(optimized)
+        reduction = ((original_length - final_length) / original_length * 100) if original_length > 0 else 0
+        
+        print(f"\n📝 Content optimization for {url}:")
+        print(f"   Original: {original_length} chars → Optimized: {final_length} chars")
+        print(f"   Reduction: {reduction:.1f}%")
+        
+        if removed_patterns:
+            unique_removed = list(set([p.lower() for p in removed_patterns]))
+            print(f"   Removed junk: {', '.join(unique_removed[:3])}{'...' if len(unique_removed) > 3 else ''}")
+        
+        if len(sentences) > 8:
+            print(f"   Sentences: kept {len(sentences[:8])}/{len(sentences)} best sentences")
+        
+        return optimized
         
     def enhance_summary(self, title: str, content: str, category: str) -> Optional[str]:
         """Create better summary with full content or return None if LLM disabled"""
         if not self.use_llm:
             return None  # Skip enhanced summaries when LLM disabled
+        
+        print(f"\n🤖 LLM Enhancement: {title[:50]}...")
+        print(f"   Input length: {len(content)} chars")
             
         prompt = f"""
         Analyze this {category} article and create a 3 sentence summary for tech professionals with this structure:
@@ -282,8 +340,11 @@ class ArticleCurator:
         
         try:
             response = self.model.generate_content(prompt)
-            return response.text.strip()
-        except:
+            result = response.text.strip()
+            print(f"   LLM output length: {len(result)} chars")
+            return result
+        except Exception as e:
+            print(f"   LLM error: {e}")
             return None
 
     def save_to_json(self, curated_data: Dict, newsletter_date: str = None):
