@@ -332,14 +332,21 @@ class NewsletterGenerator:
         
         css_class = tier_styles.get(tier, "article")
         
-        # Format published date
+        # Format published date - convert to NZT
         try:
             if isinstance(article.get('published'), str):
+                # Parse the UTC datetime
                 pub_date = datetime.fromisoformat(article['published'].replace('Z', '+00:00'))
-                formatted_date = pub_date.strftime('%H:%M')
+                
+                # Convert to New Zealand timezone
+                nz_tz = pytz.timezone('Pacific/Auckland')
+                nz_date = pub_date.astimezone(nz_tz)
+                
+                # Format as full datetime with timezone
+                formatted_date = nz_date.strftime('%d %b %Y, %-I:%M %p %Z')
             else:
                 formatted_date = "Recent"
-        except:
+        except Exception as e:
             formatted_date = "Recent"
         
         html = f'<div class="{css_class}">'
@@ -367,6 +374,7 @@ class NewsletterGenerator:
         
         html += '</div>'
         return html
+    
     
     def generate_footer(self) -> str:
         """Generate newsletter footer"""
@@ -403,6 +411,40 @@ class NewsletterGenerator:
             f.write(html_content)
         
         return output_path
+    
+def regenerate_newsletter_with_nzt(
+    json_path: str = 'data/loading/newsletter_curated.json',
+    output_path: str = None
+) -> str:
+    """
+    Regenerate newsletter HTML from existing JSON with NZT formatting.
+    No ETL - just processes saved data with updated time display.
+    """
+    # Initialize generator
+    generator = NewsletterGenerator()
+    
+    # Generate with updated formatting (your new NZT code)
+    html_content = generator.generate_html(json_path)
+    
+    # Save to multiple locations
+    if not output_path:
+        date = datetime.now().strftime('%Y-%m-%d')
+        output_path = f"archive/newsletter_{date}_nzt.html"
+    
+    # Write to all the usual places
+    with open(output_path, 'w', encoding='utf-8') as f:
+        f.write(html_content)
+    
+    with open("newsletter.html", 'w', encoding='utf-8') as f:
+        f.write(html_content)
+    
+    with open("docs/index.html", 'w', encoding='utf-8') as f:
+        f.write(html_content)
+    
+    print(f"Newsletter regenerated with NZT formatting: {output_path}")
+    return output_path
+
+
 
 # Usage function
 def generate_newsletter():
@@ -411,6 +453,36 @@ def generate_newsletter():
     output_file = generator.save_newsletter()
     print(f"Newsletter generated: {output_file}")
     return output_file
+
+
+
+
+def test_nzt_formatting():
+    """Test the NZT conversion on existing data"""
+    with open('data/loading/newsletter_curated.json', 'r') as f:
+        data = json.load(f)
+    
+    # Test formatting on first article
+    test_article = None
+    for category in data.values():
+        if category.get('top_stories'):
+            test_article = category['top_stories'][0]
+            break
+    
+    if test_article and test_article.get('published'):
+        print("Testing NZT conversion:")
+        print(f"Original: {test_article['published']}")
+        
+        # Test the conversion
+        pub_date = datetime.fromisoformat(test_article['published'].replace('Z', '+00:00'))
+        nz_tz = pytz.timezone('Pacific/Auckland')
+        nz_date = pub_date.astimezone(nz_tz)
+        formatted_date = nz_date.strftime('%d %b %Y, %-I:%M %p %Z')
+        
+        print(f"Converted: {formatted_date}")
+
+
+
 
 # if __name__ == "__main__":
 #     generate_newsletter()

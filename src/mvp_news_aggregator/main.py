@@ -7,8 +7,7 @@ from sources import RSS_FEEDS
 from curator import ArticleCurator
 from db_utils import *
 from scrapper import *
-from web_newsletter import NewsletterGenerator
-from web_newsletter import generate_newsletter
+from web_newsletter import NewsletterGenerator, generate_newsletter, regenerate_newsletter_with_nzt
 
 def run_daily_pipeline(): 
     # 1. Collect articles
@@ -28,6 +27,12 @@ def run_daily_pipeline():
 
 
 if __name__ == "__main__":
-    run_daily_pipeline()
+    
+    RUN_ETL = True
+
+    if RUN_ETL:
+        run_daily_pipeline()
+    else:
+        regenerate_newsletter_with_nzt()
 
 
