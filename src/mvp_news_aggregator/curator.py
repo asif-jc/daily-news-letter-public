@@ -2,6 +2,7 @@ from datetime import datetime, timezone, timedelta
 from typing import Dict, List, Optional
 import logging
 import json
+import re
 import google.generativeai as genai
 from dotenv import load_dotenv
 import requests
@@ -17,45 +18,17 @@ if True:
 logger = logging.getLogger(__name__)
 
 class ArticleCurator:
-    def __init__(self, db_path: str = "data/newsletter.db"):
+    def __init__(self, db_path: str = "data/newsletter.db", use_llm: bool = True):
         # self.db = NewsletterDB(db_path)
-        genai.configure(api_key=os.getenv('GEMINI_API_KEY'))
-        self.model = genai.GenerativeModel('gemini-1.5-flash')
-
-
-    # def create_newsletter_table(self):  # ADD THIS HERE
-    #     """Create table to store final curated newsletter data"""
-    #     with self.db.get_connection() as conn:
-    #         conn.execute("""
-    #             CREATE TABLE IF NOT EXISTS newsletter_curated (
-    #                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-    #                 article_id INTEGER NOT NULL,
-    #                 newsletter_date DATE NOT NULL,
-    #                 category TEXT NOT NULL,
-    #                 tier TEXT NOT NULL,  -- 'top_story' or 'quick_read'
-    #                 title TEXT NOT NULL,
-    #                 url TEXT NOT NULL,
-    #                 source TEXT NOT NULL,
-    #                 published DATETIME NOT NULL,
-                    
-    #                 -- LLM generated content
-    #                 llm_summary TEXT,  -- For top stories
-    #                 llm_reason TEXT,   -- For quick reads
-    #                 importance_score INTEGER,
-                    
-    #                 -- Enhanced content (only for top stories)
-    #                 scraped_content TEXT,
-    #                 enhanced_summary TEXT,
-                    
-    #                 created_at DATETIME NOT NULL,
-    #                 FOREIGN KEY (article_id) REFERENCES articles (id),
-    #                 UNIQUE(article_id, newsletter_date)
-    #             )
-    #         """)
-            
-    #         conn.execute("CREATE INDEX IF NOT EXISTS idx_newsletter_date ON newsletter_curated(newsletter_date)")
-    #         conn.execute("CREATE INDEX IF NOT EXISTS idx_newsletter_category ON newsletter_curated(category)")
-    #         conn.commit()
+        self.use_llm = use_llm
+        
+        if self.use_llm:
+            genai.configure(api_key=os.getenv('GEMINI_API_KEY'))
+            self.model = genai.GenerativeModel('gemini-1.5-flash')
+        else:
+            self.model = None
+            print("🚫 LLM disabled - using simple fallback selection")
+        
 
     def curate_newsletter(self, results, hours: int = 24) -> Dict:
         """Complete curation pipeline using passed article data"""
@@ -163,35 +136,61 @@ class ArticleCurator:
         return result
     
     def curate_one_category(self, articles: List[Dict], category: str) -> Dict:
-        """Curate one category with LLM"""
+        """Curate one category with LLM or simple fallback"""
         if not articles:
             return {"top_stories": [], "quick_reads": []}
+        
+        if not self.use_llm:
+            # Simple fallback: take most recent articles
+            print(f"📰 Simple curation for {category}: taking {min(3, len(articles))} top stories, {min(5, len(articles)-3)} quick reads")
+            return {
+                "top_stories": articles[:5],  # Most recent 3
+                "quick_reads": articles[5:10]   # Next 5
+            }
             
         # Prepare articles for LLM (just id + title)
-        article_list = [{"id": a['id'], "title": a['title']} for a in articles]
+        # article_list = [{"id": a['id'], "title": a['title']} for a in articles]
+        article_list = [{"id": a['id'], "title": a['title'], "desc": a['description'][:200]} for a in articles]
         
-        prompt = f"""
-        You are curating {category} news for informed professionals who need to understand developments that truly matter.
+        # prompt = f"""
+        # You are curating {category} news for informed professionals who need to understand developments that truly matter.
 
-        SELECTION CRITERIA:
-        - Prioritize stories with genuine impact on industries, markets, or society
-        - Focus on developments that signal meaningful change or disruption
-        - Avoid routine announcements, minor updates, or superficial coverage
-        - Look for stories that reveal underlying trends or shifts in power/technology/economics
+        # SELECTION CRITERIA:
+        # - Prioritize stories with genuine impact on industries, markets, or society
+        # - Focus on developments that signal meaningful change or disruption
+        # - Avoid routine announcements, minor updates, or superficial coverage
+        # - Look for stories that reveal underlying trends or shifts in power/technology/economics
 
-        Select exactly:
-        - TOP 3 STORIES: Major developments with broad implications that professionals should understand
-        - QUICK READS 5 STORIES: Noteworthy but secondary developments worth monitoring
+        # Select exactly:
+        # - TOP 3 STORIES: Major developments with broad implications that professionals should understand
+        # - QUICK READS 5 STORIES: Noteworthy but secondary developments worth monitoring
 
-        For TOP stories, explain WHY this matters beyond the immediate headline - what are the broader implications?
-        For QUICK READS, briefly note why this development is worth tracking.
+        # For TOP stories, explain WHY this matters beyond the immediate headline - what are the broader implications?
+        # For QUICK READS, briefly note why this development is worth tracking.
+
+        # Return JSON:
+        # {{"top_stories": [{{"id": 123, "summary": "Brief explanation of why this represents significant change or impact", "score": 8}}], 
+        # "quick_reads": [{{"id": 456, "reason": "Why this development is worth monitoring"}}]}}
+
+        # Articles: {json.dumps(article_list)}
+        # """
+
+        prompt = f"""Select {category} news for NZ business professionals who need actionable intelligence.
+
+        PRIORITIZE stories about:
+        - Policy/regulatory changes affecting business
+        - Major corporate developments (M&A, leadership, earnings surprises)  
+        - Technology shifts with commercial impact
+        - Market disruptions or new opportunities
+        - Discoveries in STEM or related research fields
+
+        AVOID: routine announcements, minor updates, celebrity news, sports
 
         Return JSON:
-        {{"top_stories": [{{"id": 123, "summary": "Brief explanation of why this represents significant change or impact", "score": 8}}], 
-        "quick_reads": [{{"id": 456, "reason": "Why this development is worth monitoring"}}]}}
+        {{"top_stories": [{{"id": "123", "score": 8, "reason": "Policy change affecting all exporters"}}],
+        "quick_reads": [{{"id": "456", "reason": "Worth monitoring trend"}}]}}
 
-        Articles: {json.dumps(article_list)}
-        """
+        Articles: {json.dumps(article_list)}"""
         
         try:
             response = self.model.generate_content(prompt)
@@ -221,22 +220,26 @@ class ArticleCurator:
             logger.error(f"LLM error for {category}: {e}")
             # Fallback: just take first few articles
             return {
-                "top_stories": articles[:3],
-                "quick_reads": articles[3:8]
+                "top_stories": articles[:5],
+                "quick_reads": articles[5:10]
             }
     
     def add_content_to_top_stories(self, curated: Dict):
         """Scrape content for top stories only"""
         for category, data in curated.items():
             for story in data['top_stories']:
-                content = self.scrape_content(story['url'])
-                if content:
-                    # Store scraped content and generate enhanced summary
-                    story['scraped_content'] = content
-                    enhanced = self.enhance_summary(story['title'], content, category)
-                    if enhanced:
-                        story['enhanced_summary'] = enhanced
-                time.sleep(1)  # Be nice to servers
+                if self.use_llm:
+                    # Only scrape if we're going to use LLM for enhancement
+                    content = self.scrape_content(story['url'])
+                    if content:
+                        # Store scraped content and generate enhanced summary
+                        story['scraped_content'] = content
+                        enhanced = self.enhance_summary(story['title'], content, category)
+                        if enhanced:
+                            story['enhanced_summary'] = enhanced
+                    time.sleep(1)  # Be nice to servers
+                else:
+                    print(f"⚡ Skipping content scraping for: {story['title'][:50]}...")
     
     def scrape_content(self, url: str) -> Optional[str]:
         """Simple content scraper with debugging"""
@@ -253,7 +256,7 @@ class ArticleCurator:
                 if element:
                     text = element.get_text(separator=' ', strip=True)
                     print(f"Found content with selector '{selector}': {len(text)} chars")
-                    return text[:2000] if text else None
+                    return self.optimize_content_for_llm(text, url) if text else None
             
             # Fallback: all paragraphs
             paragraphs = soup.find_all('p')
@@ -269,34 +272,93 @@ class ArticleCurator:
                     if div.get('class'):
                         print(f"Div {i}: class={div.get('class')}")
             
-            return text[:2000] if text else None
+            return self.optimize_content_for_llm(text, url) if text else None
             
         except Exception as e:
             print(f"Scraping error for {url}: {e}")
             return None
+
+    def optimize_content_for_llm(self, raw_content: str, url: str) -> str:
+        """Clean and optimize scraped content for LLM processing"""
+        original_length = len(raw_content)
+        
+        # Step 1: Remove common junk patterns
+        junk_patterns = [
+            r'subscribe\s+to\s+our\s+newsletter',
+            r'follow\s+us\s+on\s+social\s+media', 
+            r'advertisement\s*:?',
+            r'related\s+articles?:?',
+            r'more\s+from\s+\w+:?',
+            r'read\s+more\s+about',
+            r'sign\s+up\s+for',
+            r'cookies?\s+policy',
+            r'terms\s+of\s+service',
+            r'privacy\s+policy',
+            r'share\s+this\s+article',
+            r'\bshare\b.*\bfacebook\b.*\btwitter\b',
+            r'loading\.\.\.?',
+        ]
+        
+        cleaned = raw_content
+        removed_patterns = []
+        
+        for pattern in junk_patterns:
+            matches = re.findall(pattern, cleaned, flags=re.IGNORECASE)
+            if matches:
+                removed_patterns.extend(matches)
+                cleaned = re.sub(pattern, '', cleaned, flags=re.IGNORECASE)
+        
+        # Step 2: Remove excessive whitespace
+        cleaned = ' '.join(cleaned.split())
+        
+        # Step 3: Smart sentence selection (first 8 complete sentences)
+        sentences = [s.strip() + '.' for s in cleaned.split('.') if len(s.strip()) > 20]
+        optimized = ' '.join(sentences[:8])
+        
+        # Debug output
+        final_length = len(optimized)
+        reduction = ((original_length - final_length) / original_length * 100) if original_length > 0 else 0
+        
+        print(f"\n📝 Content optimization for {url}:")
+        print(f"   Original: {original_length} chars → Optimized: {final_length} chars")
+        print(f"   Reduction: {reduction:.1f}%")
+        
+        if removed_patterns:
+            unique_removed = list(set([p.lower() for p in removed_patterns]))
+            print(f"   Removed junk: {', '.join(unique_removed[:3])}{'...' if len(unique_removed) > 3 else ''}")
+        
+        if len(sentences) > 8:
+            print(f"   Sentences: kept {len(sentences[:8])}/{len(sentences)} best sentences")
+        
+        return optimized
         
     def enhance_summary(self, title: str, content: str, category: str) -> Optional[str]:
-        """Create better summary with full content"""
-        prompt = f"""
-        Analyze this {category} article and create a 3 sentence summary for tech professionals with this structure:
+        """Create better summary with full content or return None if LLM disabled"""
+        if not self.use_llm:
+            return None  # Skip enhanced summaries when LLM disabled
         
-        1. FIRST SENTENCE: Start with a clear, simple statement of why this matters - the core significance in plain language
-        2. Explain what actually happened (the key facts)
-        3. Analyze the broader implications or consequences
-        4. Connect it to larger industry trends or shifts
-        
-        The opening sentence should immediately convey importance without hyperbole - think "This changes how companies handle X" or "This signals a shift in Y market" rather than generic statements.
-        
+        print(f"\n🤖 LLM Enhancement: {title[:50]}...")
+        print(f"   Input length: {len(content)} chars")
+            
+        prompt = f"""Summarize this {category} article in 2 flowing sentences for business professionals:
+
+        Sentence 1: What happened (key facts and players)
+        Sentence 2: Why this matters strategically (business implications or broader significance)
+
+        Keep it natural and conversational - don't make it sound like bullet points.
+
         Title: {title}
         Content: {content}
-        
-        Summary:
-        """
+
+        Summary:"""
         
         try:
             response = self.model.generate_content(prompt)
-            return response.text.strip()
-        except:
+            result = response.text.strip()
+            print(f"   LLM output length: {len(result)} chars")
+            return result
+        except Exception as e:
+            print(f"   LLM error: {e}")
             return None
 
     def save_to_json(self, curated_data: Dict, newsletter_date: str = None):
