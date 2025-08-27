@@ -144,35 +144,53 @@ class ArticleCurator:
             # Simple fallback: take most recent articles
             print(f"📰 Simple curation for {category}: taking {min(3, len(articles))} top stories, {min(5, len(articles)-3)} quick reads")
             return {
-                "top_stories": articles[:3],  # Most recent 3
-                "quick_reads": articles[3:8]   # Next 5
+                "top_stories": articles[:5],  # Most recent 3
+                "quick_reads": articles[5:10]   # Next 5
             }
             
         # Prepare articles for LLM (just id + title)
-        article_list = [{"id": a['id'], "title": a['title']} for a in articles]
+        # article_list = [{"id": a['id'], "title": a['title']} for a in articles]
+        article_list = [{"id": a['id'], "title": a['title'], "desc": a['description'][:200]} for a in articles]
         
-        prompt = f"""
-        You are curating {category} news for informed professionals who need to understand developments that truly matter.
+        # prompt = f"""
+        # You are curating {category} news for informed professionals who need to understand developments that truly matter.
 
-        SELECTION CRITERIA:
-        - Prioritize stories with genuine impact on industries, markets, or society
-        - Focus on developments that signal meaningful change or disruption
-        - Avoid routine announcements, minor updates, or superficial coverage
-        - Look for stories that reveal underlying trends or shifts in power/technology/economics
+        # SELECTION CRITERIA:
+        # - Prioritize stories with genuine impact on industries, markets, or society
+        # - Focus on developments that signal meaningful change or disruption
+        # - Avoid routine announcements, minor updates, or superficial coverage
+        # - Look for stories that reveal underlying trends or shifts in power/technology/economics
 
-        Select exactly:
-        - TOP 3 STORIES: Major developments with broad implications that professionals should understand
-        - QUICK READS 5 STORIES: Noteworthy but secondary developments worth monitoring
+        # Select exactly:
+        # - TOP 3 STORIES: Major developments with broad implications that professionals should understand
+        # - QUICK READS 5 STORIES: Noteworthy but secondary developments worth monitoring
 
-        For TOP stories, explain WHY this matters beyond the immediate headline - what are the broader implications?
-        For QUICK READS, briefly note why this development is worth tracking.
+        # For TOP stories, explain WHY this matters beyond the immediate headline - what are the broader implications?
+        # For QUICK READS, briefly note why this development is worth tracking.
+
+        # Return JSON:
+        # {{"top_stories": [{{"id": 123, "summary": "Brief explanation of why this represents significant change or impact", "score": 8}}], 
+        # "quick_reads": [{{"id": 456, "reason": "Why this development is worth monitoring"}}]}}
+
+        # Articles: {json.dumps(article_list)}
+        # """
+
+        prompt = f"""Select {category} news for NZ business professionals who need actionable intelligence.
+
+        PRIORITIZE stories about:
+        - Policy/regulatory changes affecting business
+        - Major corporate developments (M&A, leadership, earnings surprises)  
+        - Technology shifts with commercial impact
+        - Market disruptions or new opportunities
+        - Discoveries in STEM or related research fields
+
+        AVOID: routine announcements, minor updates, celebrity news, sports
 
         Return JSON:
-        {{"top_stories": [{{"id": 123, "summary": "Brief explanation of why this represents significant change or impact", "score": 8}}], 
-        "quick_reads": [{{"id": 456, "reason": "Why this development is worth monitoring"}}]}}
+        {{"top_stories": [{{"id": "123", "score": 8, "reason": "Policy change affecting all exporters"}}],
+        "quick_reads": [{{"id": "456", "reason": "Worth monitoring trend"}}]}}
 
-        Articles: {json.dumps(article_list)}
-        """
+        Articles: {json.dumps(article_list)}"""
         
         try:
             response = self.model.generate_content(prompt)
@@ -202,8 +220,8 @@ class ArticleCurator:
             logger.error(f"LLM error for {category}: {e}")
             # Fallback: just take first few articles
             return {
-                "top_stories": articles[:3],
-                "quick_reads": articles[3:8]
+                "top_stories": articles[:5],
+                "quick_reads": articles[5:10]
             }
     
     def add_content_to_top_stories(self, curated: Dict):
@@ -322,21 +340,17 @@ class ArticleCurator:
         print(f"\n🤖 LLM Enhancement: {title[:50]}...")
         print(f"   Input length: {len(content)} chars")
             
-        prompt = f"""
-        Analyze this {category} article and create a 3 sentence summary for tech professionals with this structure:
-        
-        1. FIRST SENTENCE: Start with a clear, simple statement of why this matters - the core significance in plain language
-        2. Explain what actually happened (the key facts)
-        3. Analyze the broader implications or consequences
-        4. Connect it to larger industry trends or shifts
-        
-        The opening sentence should immediately convey importance without hyperbole - think "This changes how companies handle X" or "This signals a shift in Y market" rather than generic statements.
-        
+        prompt = f"""Summarize this {category} article in 2 flowing sentences for business professionals:
+
+        Sentence 1: What happened (key facts and players)
+        Sentence 2: Why this matters strategically (business implications or broader significance)
+
+        Keep it natural and conversational - don't make it sound like bullet points.
+
         Title: {title}
         Content: {content}
-        
-        Summary:
-        """
+
+        Summary:"""
         
         try:
             response = self.model.generate_content(prompt)
