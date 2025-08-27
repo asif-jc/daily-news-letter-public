@@ -28,7 +28,7 @@ def run_daily_pipeline():
 
 if __name__ == "__main__":
     
-    RUN_ETL = False
+    RUN_ETL = True
 
     if RUN_ETL:
         run_daily_pipeline()
