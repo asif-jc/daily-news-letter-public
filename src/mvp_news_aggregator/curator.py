@@ -17,45 +17,17 @@ if True:
 logger = logging.getLogger(__name__)
 
 class ArticleCurator:
-    def __init__(self, db_path: str = "data/newsletter.db"):
+    def __init__(self, db_path: str = "data/newsletter.db", use_llm: bool = True):
         # self.db = NewsletterDB(db_path)
-        genai.configure(api_key=os.getenv('GEMINI_API_KEY'))
-        self.model = genai.GenerativeModel('gemini-1.5-flash')
-
-
-    # def create_newsletter_table(self):  # ADD THIS HERE
-    #     """Create table to store final curated newsletter data"""
-    #     with self.db.get_connection() as conn:
-    #         conn.execute("""
-    #             CREATE TABLE IF NOT EXISTS newsletter_curated (
-    #                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-    #                 article_id INTEGER NOT NULL,
-    #                 newsletter_date DATE NOT NULL,
-    #                 category TEXT NOT NULL,
-    #                 tier TEXT NOT NULL,  -- 'top_story' or 'quick_read'
-    #                 title TEXT NOT NULL,
-    #                 url TEXT NOT NULL,
-    #                 source TEXT NOT NULL,
-    #                 published DATETIME NOT NULL,
-                    
-    #                 -- LLM generated content
-    #                 llm_summary TEXT,  -- For top stories
-    #                 llm_reason TEXT,   -- For quick reads
-    #                 importance_score INTEGER,
-                    
-    #                 -- Enhanced content (only for top stories)
-    #                 scraped_content TEXT,
-    #                 enhanced_summary TEXT,
-                    
-    #                 created_at DATETIME NOT NULL,
-    #                 FOREIGN KEY (article_id) REFERENCES articles (id),
-    #                 UNIQUE(article_id, newsletter_date)
-    #             )
-    #         """)
-            
-    #         conn.execute("CREATE INDEX IF NOT EXISTS idx_newsletter_date ON newsletter_curated(newsletter_date)")
-    #         conn.execute("CREATE INDEX IF NOT EXISTS idx_newsletter_category ON newsletter_curated(category)")
-    #         conn.commit()
+        self.use_llm = use_llm
+        
+        if self.use_llm:
+            genai.configure(api_key=os.getenv('GEMINI_API_KEY'))
+            self.model = genai.GenerativeModel('gemini-1.5-flash')
+        else:
+            self.model = None
+            print("🚫 LLM disabled - using simple fallback selection")
+        
 
     def curate_newsletter(self, results, hours: int = 24) -> Dict:
         """Complete curation pipeline using passed article data"""
@@ -163,9 +135,17 @@ class ArticleCurator:
         return result
     
     def curate_one_category(self, articles: List[Dict], category: str) -> Dict:
-        """Curate one category with LLM"""
+        """Curate one category with LLM or simple fallback"""
         if not articles:
             return {"top_stories": [], "quick_reads": []}
+        
+        if not self.use_llm:
+            # Simple fallback: take most recent articles
+            print(f"📰 Simple curation for {category}: taking {min(3, len(articles))} top stories, {min(5, len(articles)-3)} quick reads")
+            return {
+                "top_stories": articles[:3],  # Most recent 3
+                "quick_reads": articles[3:8]   # Next 5
+            }
             
         # Prepare articles for LLM (just id + title)
         article_list = [{"id": a['id'], "title": a['title']} for a in articles]
@@ -229,14 +209,18 @@ class ArticleCurator:
         """Scrape content for top stories only"""
         for category, data in curated.items():
             for story in data['top_stories']:
-                content = self.scrape_content(story['url'])
-                if content:
-                    # Store scraped content and generate enhanced summary
-                    story['scraped_content'] = content
-                    enhanced = self.enhance_summary(story['title'], content, category)
-                    if enhanced:
-                        story['enhanced_summary'] = enhanced
-                time.sleep(1)  # Be nice to servers
+                if self.use_llm:
+                    # Only scrape if we're going to use LLM for enhancement
+                    content = self.scrape_content(story['url'])
+                    if content:
+                        # Store scraped content and generate enhanced summary
+                        story['scraped_content'] = content
+                        enhanced = self.enhance_summary(story['title'], content, category)
+                        if enhanced:
+                            story['enhanced_summary'] = enhanced
+                    time.sleep(1)  # Be nice to servers
+                else:
+                    print(f"⚡ Skipping content scraping for: {story['title'][:50]}...")
     
     def scrape_content(self, url: str) -> Optional[str]:
         """Simple content scraper with debugging"""
@@ -276,7 +260,10 @@ class ArticleCurator:
             return None
         
     def enhance_summary(self, title: str, content: str, category: str) -> Optional[str]:
-        """Create better summary with full content"""
+        """Create better summary with full content or return None if LLM disabled"""
+        if not self.use_llm:
+            return None  # Skip enhanced summaries when LLM disabled
+            
         prompt = f"""
         Analyze this {category} article and create a 3 sentence summary for tech professionals with this structure:
         
