@@ -7,12 +7,12 @@
 ## 🚀 Version 2 Roadmap
 
 **Upcoming Features:**
-- ⚡ **Hourly Critical Coverage** - New priority section for breaking news
-- 🧠 **Advanced NLP Processing** - Enhanced article analysis before LLM curation (NLP preprocessing) 
-- 🔄 **Agentic Workflow** - Migration to LangChain or Google AI SDK for improved automation
-- 📰 **Email Subscription** - Email out daily and critical articles to a subset of users
-- 📰 **User Defines Preference** - User can define preference and refresh pipeline on this information (incurs uncertain LLM usage has cost complexity)
-
+- **Hourly Critical Coverage** - New priority section for breaking news
+- **Agentic Workflow** - Migration to LangChain or Google AI SDK for improved automation
+- **Email Subscription** - Email out daily and critical articles to a subset of users
+- **User Defines Preference** - User can define preference and refresh pipeline on this information (incurs uncertain LLM usage has cost complexity)
+- **Market and Index Data** - Commodity index prices
+- **Foreign Exchange (FX) Data ** - NZD/USD, NZD/AUD, NZD/INR
 ---
 
 ## 📋 Overview
