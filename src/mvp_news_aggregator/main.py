@@ -22,7 +22,7 @@ def run_daily_pipeline(use_llm: bool = True):
         json.dump(newsletter_data, f, indent=2)
 
     # 3. Pull eggs market data (Feature User: Hasnain Cheena)
-    eggs_data = pull_eggs_data()
+    # eggs_data = pull_eggs_data()
 
     # 4. Generate HTML
     html = generate_newsletter()
@@ -33,7 +33,7 @@ def run_daily_pipeline(use_llm: bool = True):
 if __name__ == "__main__":
     
     RUN_ETL = True
-    USE_LLM = False
+    USE_LLM = True
 
     if RUN_ETL:
         run_daily_pipeline(use_llm=USE_LLM)
