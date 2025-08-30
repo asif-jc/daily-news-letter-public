@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily News Feed - 2025-08-28</title>
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            background-image: url('assets/windows_hills.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .header .date {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .content {
+            padding: 2rem;
+        }
+        
+        .article {
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+        }
+        
+        .article.critical {
+            border-left-color: #dc3545;
+            background: #fff5f5;
+            box-shadow: 0 2px 4px rgba(220,53,69,0.1);
+        }
+        
+        .article.key {
+            border-left-color: #667eea;
+            background: #f8f9fa;
+        }
+        
+        .article.monitoring {
+            border-left-color: #28a745;
+            background: #f8fff9;
+            padding: 1rem;
+        }
+        
+        .article-header {
+            margin-bottom: 0.75rem;
+        }
+        
+        .category-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-badge.tech {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .category-badge.world {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+        
+        .category-badge.finance {
+            background: #e8f5e8;
+            color: #388e3c;
+        }
+        
+        .category-badge.nz {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+        
+        .article-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .article-title a {
+            color: #2c3e50;
+            text-decoration: none;
+        }
+        
+        .article-title a:hover {
+            color: #667eea;
+            text-decoration: underline;
+        }
+        
+        .article-meta {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 0.75rem;
+        }
+        
+        .article-summary {
+            color: #495057;
+            margin-bottom: 0.5rem;
+        }
+        
+        .article-reason {
+            color: #28a745;
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+        
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .footer .mission {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .footer .feedback {
+            margin-bottom: 1.5rem;
+            color: #bdc3c7;
+        }
+        
+        .footer .feedback a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .footer .feedback a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer .branding {
+            font-weight: 600;
+            color: #ecf0f1;
+            font-size: 1rem;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                margin: 0;
+                box-shadow: none;
+            }
+            
+            .header {
+                padding: 1.5rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 1.5rem;
+            }
+            
+            .article {
+                padding: 1rem;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="header">
+            <h1>Daily News Feed</h1>
+            <div class="date">August 28, 2025</div>
+        </div>
+        
+        <div class="content"><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/cj6y42jggdyo?at_medium=RSS&at_campaign=rss" target="_blank">European banks hit by rogue PayPal payments worth 'billions'</a></div></div><div class="article-meta">BBC World News • 28 Aug 2025, 3:38 AM NZST • Priority: 9/10</div><div class="article-summary">Several major European banks experienced a massive wave of unauthorized direct debits originating from compromised PayPal accounts, potentially totaling billions of euros, after a failure in PayPal's fraud detection system. This highlights significant vulnerabilities in payment processing systems and underscores the substantial financial and reputational risks associated with widespread payment platform failures, demanding increased scrutiny of fraud prevention measures and interbank security protocols.</div></div><div class="article critical"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/27/fbi-says-chinas-salt-typhoon-hacked-at-least-200-us-companies/" target="_blank">FBI says China’s Salt Typhoon hacked at least 200 US companies</a></div></div><div class="article-meta">TechCrunch • 28 Aug 2025, 7:39 AM NZST • Priority: 9/10</div><div class="article-summary">The FBI revealed that a Chinese-backed hacking group, known as Salt Typhoon, compromised at least 200 US companies and organizations across 80 countries, including previously disclosed telecommunication giants like AT&T and Verizon, accessing sensitive data like call records of high-ranking officials.  This widespread espionage campaign highlights the significant and growing threat of state-sponsored cyberattacks, demanding increased cybersecurity investment and more robust data protection strategies for businesses operating globally to protect sensitive information and maintain operational resilience.</div></div><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/c5ykznn158qo?at_medium=RSS&at_campaign=rss" target="_blank">Trump's 50% tariff on India kicks in as Modi urges self-reliance</a></div></div><div class="article-meta">BBC World News • 28 Aug 2025, 2:19 AM NZST • Priority: 8/10</div><div class="article-summary">President Trump's administration imposed a 50% tariff on various Indian goods, including a 25% penalty for transactions with Russia, aiming to pressure India to reduce its reliance on Russian oil and weapons.  This escalation significantly impacts US-India trade relations, potentially harming both economies and prompting India to double down on its "self-reliance" strategy, potentially shifting trade alliances and reshaping global supply chains.</div></div><div class="article critical"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/27/maisa-ai-gets-25m-to-fix-enterprise-ais-95-failure-rate/" target="_blank">Maisa AI gets $25M to fix enterprise AI’s 95% failure rate</a></div></div><div class="article-meta">TechCrunch • 28 Aug 2025, 5:00 PM NZST • Priority: 8/10</div><div class="article-summary">Maisa AI, a startup co-founded by former Clibrain employees, just secured $25 million in seed funding from Creandum to launch Maisa Studio, a platform for building and deploying trainable AI agents to address the high failure rate of enterprise AI projects.  This is strategically important because it tackles the pervasive problem of ineffective AI implementation, offering businesses a potentially more reliable and manageable approach to automation through accountable, explainable AI agents rather than opaque black-box systems.</div></div><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/c9qy98gp474o?at_medium=RSS&at_campaign=rss" target="_blank">Nigeria bans export of shea nuts used in beauty creams for six months</a></div></div><div class="article-meta">BBC World News • 28 Aug 2025, 12:45 AM NZST • Priority: 7/10</div><div class="article-summary">Nigeria, the world's largest shea nut producer, recently imposed a six-month export ban on raw shea nuts to boost its domestic shea butter industry and capture a greater share of the lucrative global cosmetics market.  This move signifies a strategic shift for Nigeria to add value to its raw materials, increasing profitability and potentially impacting global supply chains for shea butter and related products.</div></div><div class="article key"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/cyvnlmde7dzo?at_medium=RSS&at_campaign=rss" target="_blank">From boom to ban: The rise and fall of India's betting apps</a></div></div><div class="article-meta">BBC World News • 28 Aug 2025, 11:43 AM NZST • Priority: 7/10</div><div class="article-summary">India recently banned all online gambling apps, impacting millions of users and a burgeoning industry fueled by apps like those Kartik Srinivas used, ultimately costing him significant financial and personal losses.  This ban signals a significant shift in India's regulatory landscape, affecting both the tech sector and the broader economy, highlighting growing concerns about gambling addiction and the need for stricter online gaming oversight.</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/27/nvidia-reports-record-sales-as-the-ai-boom-continues/" target="_blank">Nvidia reports record sales as the AI boom continues</a></div></div><div class="article-meta">TechCrunch • 28 Aug 2025, 9:18 AM NZST • Priority: 7/10</div><div class="article-summary">Nvidia smashed revenue expectations, reporting a staggering $46.7 billion in sales—a 56% year-over-year jump largely driven by booming demand for its AI-powered data center chips.  This highlights the explosive growth of the AI market and underscores Nvidia's dominant position, making it a key player to watch for any business leveraging or investing in AI technologies.</div></div><div class="article key"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/cedvj2d5538o?at_medium=RSS&at_campaign=rss" target="_blank">Does the US president have the power to sack a Federal Reserve governor?</a></div></div><div class="article-meta">BBC World News • 27 Aug 2025, 10:27 PM NZST • Priority: 6/10</div><div class="article-summary">Former President Trump attempted to fire Federal Reserve Governor Lisa Cook, citing unsubstantiated mortgage fraud allegations, a move immediately challenged by Cook and denounced by Democrats as unprecedented political interference.  This highlights the ongoing tension between the executive and independent central bank, raising concerns about political pressure on monetary policy decisions and the potential for further instability in financial markets.</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://arstechnica.com/tech-policy/2025/08/intel-details-everything-that-could-go-wrong-with-us-taking-a-10-stake/" target="_blank">Intel details everything that could go wrong with US taking a 10% stake</a></div></div><div class="article-meta">Ars Technica • 28 Aug 2025, 4:41 AM NZST • Priority: 6/10</div><div class="article-summary">Intel agreed to give the US government a 10% stake after President Trump pressured the CEO, a move that's angered some investors who fear it sets a dangerous precedent for government intervention in private companies.  This raises significant concerns about investor confidence, potential legal challenges, and the blurring of lines between government and private sector interests, impacting future investment decisions and the overall stability of the tech industry.</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/27/with-indias-corporate-banking-lagging-decades-behind-consumer-fintech-transbnk-raises-25m-to-bridge-the-gap/" target="_blank">With India’s corporate banking lagging decades behind consumer fintech, TransBnk raises $25M to bridge the gap</a></div></div><div class="article-meta">TechCrunch • 28 Aug 2025, 12:33 PM NZST • Priority: 6/10</div><div class="article-summary">TransBnk, a three-year-old Indian corporate banking startup, secured $25 million in funding from Bessemer Venture Partners to modernize India's outdated B2B financial infrastructure, which lags significantly behind its advanced consumer fintech sector.  This investment highlights the massive untapped potential in the Indian corporate banking market—projected to reach $20 billion by 2030—and underscores the significant opportunity for businesses offering streamlined, tech-enabled solutions to the country's millions of SMEs.</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/27/here-are-the-33-us-ai-startups-that-have-raised-100m-or-more-in-2025/" target="_blank">Here are the 33 US AI startups that have raised $100M or more in 2025</a></div></div><div class="article-meta">TechCrunch • 28 Aug 2025, 5:01 AM NZST • Priority: 5/10</div><div class="article-summary">Thirty-three US AI startups secured over $100 million in funding in 2025, building on the 49 that achieved this in 2024, indicating continued strong investor confidence and a rapidly expanding AI market. This surge of investment highlights the immense strategic importance of AI across diverse sectors, signifying significant potential for disruption and lucrative returns, driving further competition and innovation.</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/27/openai-co-founder-calls-for-ai-labs-to-safety-test-rival-models/" target="_blank">OpenAI co-founder calls for AI labs to safety-test rival models</a></div></div><div class="article-meta">TechCrunch • 28 Aug 2025, 7:14 AM NZST</div><div class="article-reason">OpenAI's call for AI model safety testing indicates a growing awareness of AI risks and potential for future regulation.</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/27/malaysias-skyechip-unveils-the-countrys-first-edge-ai-processor/" target="_blank">Malaysia’s SkyeChip unveils the country’s first edge AI processor</a></div></div><div class="article-meta">TechCrunch • 28 Aug 2025, 3:01 AM NZST</div><div class="article-reason">Malaysia's development of an edge AI processor shows technological advancements in the Southeast Asia region, a potentially relevant market for NZ businesses.</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/27/google-and-grok-are-catching-up-to-chatgpt-says-a16zs-latest-ai-report/" target="_blank">Google and Grok are catching up to ChatGPT, says a16z’s latest AI report</a></div></div><div class="article-meta">TechCrunch • 28 Aug 2025, 7:27 AM NZST</div><div class="article-reason">Google and Grok catching up to ChatGPT reflects rapid advancements in AI technology; a trend to monitor.</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/videos/cq58x3y4l4zo?at_medium=RSS&at_campaign=rss" target="_blank">How Tokyo is using AI video to prepare for a Mt Fuji eruption</a></div></div><div class="article-meta">BBC World News • 28 Aug 2025, 3:56 PM NZST</div><div class="article-reason">Worth monitoring technological advancements in disaster preparedness (AI video for Mt. Fuji eruption).</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/c5y2emnnn4po?at_medium=RSS&at_campaign=rss" target="_blank">'Punk rock' dinosaur with metre-long spikes discovered</a></div></div><div class="article-meta">BBC World News • 28 Aug 2025, 3:08 AM NZST</div><div class="article-reason">Interesting STEM discovery with potential implications for paleontology and related fields.</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge finance">Markets & Finance</span><div class="article-title"><a href="https://www.cnbc.com/2025/08/27/jll-bid-intensity-index-improves-in-july.html" target="_blank">An indicator of commercial real estate transaction volume just improved for the first time this year</a></div></div><div class="article-meta">CNBC Finance • 28 Aug 2025, 1:30 AM NZST</div><div class="article-reason">Market disruption/opportunity in commercial real estate</div></div></div>
+        
+        <div class="footer">
+            <div class="mission">
+                Inform on global events capturing key and interesting events that influence our lives and delivering that information in an easily consumable format.
+            </div>
+            <div class="feedback">
+                Appreciate feedback on source or content curation, new categories, or general queries. Send to: 
+                <a href="mailto:asif.ajcanalytics@gmail.com">asif.ajcanalytics@gmail.com</a>
+            </div>
+            <div class="branding">
+                AJC Analytics Limited
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

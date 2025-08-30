@@ -1,3 +1,5 @@
+import os
+import sys
 import feedparser
 import requests
 import re
@@ -8,7 +10,9 @@ import logging
 from urllib.parse import urljoin
 import time
 
-from sources import RSS_FEEDS
+sys.path.append(os.getcwd())
+
+from src.mvp_news_aggregator.sources import RSS_FEEDS
 # from database import NewsletterDB  # Removed for JSON migration
 
 # Set up logging

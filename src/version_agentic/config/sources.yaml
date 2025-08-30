@@ -1,0 +1,50 @@
+# RSS Sources Configuration
+# Defines news sources by category with priorities
+
+rss_feeds:
+  world:
+    - name: "BBC World News"
+      url: "http://feeds.bbci.co.uk/news/world/rss.xml"
+      priority: 1
+    - name: "CNN World"
+      url: "http://rss.cnn.com/rss/cnn_world.rss"
+      priority: 2
+  
+  tech:
+    - name: "TechCrunch"
+      url: "https://techcrunch.com/feed/"
+      priority: 1
+    - name: "Ars Technica"
+      url: "http://feeds.arstechnica.com/arstechnica/index"
+      priority: 2
+  
+  finance:
+    - name: "Yahoo Finance"
+      url: "https://finance.yahoo.com/news/rssindex"
+      priority: 1
+    - name: "CNBC Finance"
+      url: "https://cnbc.com/id/10001147/device/rss/rss.html"
+      priority: 2
+    - name: "Investing"
+      url: "https://www.investing.com/rss/news.rss"
+      priority: 3
+  
+  nz:
+    # Add NZ sources when available
+    priority: 1
+
+# Collection settings
+collection:
+  max_articles_per_source: 50
+  request_timeout: 10
+  rate_limit_delay: 1
+  user_agent: "Daily Brief Newsletter/2.0 (Agentic Version)"
+
+# Source discovery settings (for future)
+source_discovery:
+  enabled: false
+  max_new_sources_per_category: 2
+  evaluation_criteria:
+    - "article_frequency"
+    - "content_quality" 
+    - "relevance_score"
