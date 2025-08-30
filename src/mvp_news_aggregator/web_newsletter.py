@@ -87,7 +87,7 @@ class NewsletterGenerator:
         }
         
         .header {
-            background-image: url('assets/mt_kalash.png');
+            background-image: url('assets/mt_kalash_resize.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
