@@ -1,0 +1,1 @@
+# IDEA: Create a quiz with topics that I want to gain general knowledge in. This can be geography or STEM or history
