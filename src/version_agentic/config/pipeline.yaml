@@ -1,0 +1,43 @@
+# Pipeline Configuration
+# Defines stages, execution order, and error handling
+
+stages:
+  - name: "collection"
+    type: "service"
+    service: "collector"
+    retry_count: 3
+    description: "Fetch articles from RSS sources"
+  
+  - name: "curation"
+    type: "agent"
+    agent: "curator"
+    timeout: 300
+    retry_count: 2
+    fallback: "simple_select"
+    description: "AI-powered article selection and prioritization"
+  
+  - name: "enhancement"
+    type: "agent"
+    agent: "enhancer"
+    timeout: 600
+    retry_count: 1
+    fallback: "skip"
+    description: "Content scraping and intelligent summarization"
+  
+  - name: "generation"
+    type: "service"
+    service: "generator"
+    retry_count: 2
+    description: "Generate HTML newsletter"
+  
+  - name: "deployment"
+    type: "service"
+    service: "deployer"
+    retry_count: 3
+    description: "Deploy to GitHub Pages"
+
+global:
+  max_parallel_stages: 1
+  error_recovery: true
+  save_intermediate_results: true
+  debug_mode: false

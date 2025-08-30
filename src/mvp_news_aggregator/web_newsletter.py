@@ -123,6 +123,15 @@ class NewsletterGenerator:
             position: relative;
             z-index: 2;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            margin-bottom: 0.5rem;
+        }
+        
+        .header .last-updated {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            position: relative;
+            z-index: 2;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
         
         .content {
@@ -286,10 +295,17 @@ class NewsletterGenerator:
     def generate_header(self, date: str) -> str:
         """Generate newsletter header"""
         formatted_date = datetime.strptime(date, '%Y-%m-%d').strftime('%B %d, %Y')
+        
+        # Get current NZT time for last updated
+        nz_tz = pytz.timezone('Pacific/Auckland')
+        current_nz_time = datetime.now(nz_tz)
+        last_updated = current_nz_time.strftime('%d %b %Y, %-I:%M %p %Z')
+        
         return f"""
         <div class="header">
             <h1>Daily News Feed</h1>
             <div class="date">{formatted_date}</div>
+            <div class="last-updated">Last Updated: {last_updated}</div>
         </div>
         """
     

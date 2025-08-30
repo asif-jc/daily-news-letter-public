@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily News Feed - 2025-08-30</title>
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            background-image: url('assets/windows_hills.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .header .date {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .content {
+            padding: 2rem;
+        }
+        
+        .article {
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+        }
+        
+        .article.critical {
+            border-left-color: #dc3545;
+            background: #fff5f5;
+            box-shadow: 0 2px 4px rgba(220,53,69,0.1);
+        }
+        
+        .article.key {
+            border-left-color: #667eea;
+            background: #f8f9fa;
+        }
+        
+        .article.monitoring {
+            border-left-color: #28a745;
+            background: #f8fff9;
+            padding: 1rem;
+        }
+        
+        .article-header {
+            margin-bottom: 0.75rem;
+        }
+        
+        .category-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-badge.tech {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .category-badge.world {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+        
+        .category-badge.finance {
+            background: #e8f5e8;
+            color: #388e3c;
+        }
+        
+        .category-badge.nz {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+        
+        .article-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .article-title a {
+            color: #2c3e50;
+            text-decoration: none;
+        }
+        
+        .article-title a:hover {
+            color: #667eea;
+            text-decoration: underline;
+        }
+        
+        .article-meta {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 0.75rem;
+        }
+        
+        .article-summary {
+            color: #495057;
+            margin-bottom: 0.5rem;
+        }
+        
+        .article-reason {
+            color: #28a745;
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+        
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .footer .mission {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .footer .feedback {
+            margin-bottom: 1.5rem;
+            color: #bdc3c7;
+        }
+        
+        .footer .feedback a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .footer .feedback a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer .branding {
+            font-weight: 600;
+            color: #ecf0f1;
+            font-size: 1rem;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                margin: 0;
+                box-shadow: none;
+            }
+            
+            .header {
+                padding: 1.5rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 1.5rem;
+            }
+            
+            .article {
+                padding: 1rem;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="header">
+            <h1>Daily News Feed</h1>
+            <div class="date">August 30, 2025</div>
+        </div>
+        
+        <div class="content"><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/cjw6ep37469o?at_medium=RSS&at_campaign=rss" target="_blank">Prominent Ukrainian politician Andriy Parubiy shot dead in Lviv</a></div></div><div class="article-meta">BBC World News • 30 Aug 2025, 11:04 PM NZST</div></div><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/c4gz1ekdee3o?at_medium=RSS&at_campaign=rss" target="_blank">Barrier being built around besieged Sudan city, satellite images show</a></div></div><div class="article-meta">BBC World News • 30 Aug 2025, 1:02 PM NZST</div></div><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/cjdym32z9v7o?at_medium=RSS&at_campaign=rss" target="_blank">US blocks Palestinian leader from attending UN meeting in New York</a></div></div><div class="article-meta">BBC World News • 30 Aug 2025, 7:22 PM NZST</div></div><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/ckgj7jxkq58o?at_medium=RSS&at_campaign=rss" target="_blank">US court rules many of Trump's global tariffs are illegal</a></div></div><div class="article-meta">BBC World News • 30 Aug 2025, 12:57 PM NZST</div></div><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/sport/football/articles/c2l74klqpkwo?at_medium=RSS&at_campaign=rss" target="_blank">Mussolini's great-grandson makes Serie A debut</a></div></div><div class="article-meta">BBC World News • 30 Aug 2025, 9:19 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/29/cracks-are-forming-in-metas-partnership-with-scale-ai/" target="_blank">Cracks are forming in Meta’s partnership with Scale AI</a></div></div><div class="article-meta">TechCrunch • 30 Aug 2025, 1:34 PM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/29/spotlight-on-ai-at-techcrunch-disrupt-dont-miss-these-sessions-backed-by-jetbrains-and-greenfield/" target="_blank">Spotlight on AI at TechCrunch Disrupt: Don’t miss these sessions backed by JetBrains and Greenfield</a></div></div><div class="article-meta">TechCrunch • 30 Aug 2025, 9:05 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/29/tiktok-now-lets-users-send-voice-notes-and-images-in-dms/" target="_blank">TikTok now lets users send voice notes and images in DMs</a></div></div><div class="article-meta">TechCrunch • 30 Aug 2025, 7:15 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/29/uber-and-lyft-drivers-in-california-win-a-path-to-unionization/" target="_blank">Uber and Lyft drivers in California win a path to unionization</a></div></div><div class="article-meta">TechCrunch • 30 Aug 2025, 6:53 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/29/tesla-challenges-243-million-verdict-in-autopilot-death-trial/" target="_blank">Tesla challenges $243 million verdict in Autopilot death trial</a></div></div><div class="article-meta">TechCrunch • 30 Aug 2025, 6:37 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge finance">Markets & Finance</span><div class="article-title"><a href="https://www.cnbc.com/2025/08/29/spirit-airlines-chapter-11-bankruptcy.html" target="_blank">Spirit Airlines files for Chapter 11 bankruptcy protection for the second time in a year</a></div></div><div class="article-meta">CNBC Finance • 30 Aug 2025, 9:56 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge finance">Markets & Finance</span><div class="article-title"><a href="https://www.cnbc.com/2025/08/29/retail-impact-de-minimis-exemption-ends-globally.html" target="_blank">Retail panic: What the end of the 'de minimis' exemption means for brands across the globe</a></div></div><div class="article-meta">CNBC Finance • 30 Aug 2025, 3:02 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge finance">Markets & Finance</span><div class="article-title"><a href="https://www.cnbc.com/2025/08/29/luxury-real-estate-ranch-montana-wyoming-california.html" target="_blank">Trophy-property ranches hit the market as more heirs choose to sell</a></div></div><div class="article-meta">CNBC Finance • 30 Aug 2025, 5:27 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge finance">Markets & Finance</span><div class="article-title"><a href="https://www.cnbc.com/2025/08/29/inaugural-essence-hbcu-classic-football-game.html" target="_blank">Inaugural Essence HBCU Classic football game to kick off Saturday in Boston</a></div></div><div class="article-meta">CNBC Finance • 30 Aug 2025, 7:25 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge finance">Markets & Finance</span><div class="article-title"><a href="https://www.cnbc.com/2025/08/29/american-sports-betting-2025-nfl-season-football.html" target="_blank">Americans expected to bet record $30 billion on the 2025 NFL season legally</a></div></div><div class="article-meta">CNBC Finance • 30 Aug 2025, 4:10 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/29/whatsapp-fixes-zero-click-bug-used-to-hack-apple-users-with-spyware/" target="_blank">WhatsApp fixes ‘zero-click’ bug used to hack Apple users with spyware</a></div></div><div class="article-meta">TechCrunch • 30 Aug 2025, 6:15 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/29/meta-updates-chatbot-rules-to-avoid-inappropriate-topics-with-teen-users/" target="_blank">Meta updates chatbot rules to avoid inappropriate topics with teen users</a></div></div><div class="article-meta">TechCrunch • 30 Aug 2025, 5:04 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/29/mastodon-says-it-doesnt-have-the-means-to-comply-with-age-verification-laws/" target="_blank">Mastodon says it doesn’t ‘have the means’ to comply with age verification laws</a></div></div><div class="article-meta">TechCrunch • 30 Aug 2025, 3:50 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/29/henrik-fisker-quietly-wound-down-his-nonprofit-after-his-ev-startup-went-bankrupt/" target="_blank">Henrik Fisker quietly wound down his nonprofit after his EV startup went bankrupt</a></div></div><div class="article-meta">TechCrunch • 30 Aug 2025, 3:47 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/29/chatgpt-everything-to-know-about-the-ai-chatbot/" target="_blank">ChatGPT: Everything you need to know about the AI-powered chatbot</a></div></div><div class="article-meta">TechCrunch • 30 Aug 2025, 3:46 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/cjw6el72xd4o?at_medium=RSS&at_campaign=rss" target="_blank">Three dead after protests over death of taxi driver in Indonesia</a></div></div><div class="article-meta">BBC World News • 30 Aug 2025, 5:53 PM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/cdj2v7n0101o?at_medium=RSS&at_campaign=rss" target="_blank">Kim meets families of North Korea soldiers killed fighting for Russia against Ukraine</a></div></div><div class="article-meta">BBC World News • 30 Aug 2025, 10:49 PM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/cedv3gg3x6xo?at_medium=RSS&at_campaign=rss" target="_blank">White House defends Robert F Kennedy Jr amid CDC turmoil</a></div></div><div class="article-meta">BBC World News • 30 Aug 2025, 11:37 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/c04r07n7dqyo?at_medium=RSS&at_campaign=rss" target="_blank">Sexist Italian image-sharing website forced to shut after political outcry</a></div></div><div class="article-meta">BBC World News • 30 Aug 2025, 5:49 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/ceqy3jnl39do?at_medium=RSS&at_campaign=rss" target="_blank">Why has Kamala Harris' security detail been withdrawn?</a></div></div><div class="article-meta">BBC World News • 30 Aug 2025, 6:15 AM NZST</div></div></div>
+        
+        <div class="footer">
+            <div class="mission">
+                Inform on global events capturing key and interesting events that influence our lives and delivering that information in an easily consumable format.
+            </div>
+            <div class="feedback">
+                Appreciate feedback on source or content curation, new categories, or general queries. Send to: 
+                <a href="mailto:asif.ajcanalytics@gmail.com">asif.ajcanalytics@gmail.com</a>
+            </div>
+            <div class="branding">
+                AJC Analytics Limited
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

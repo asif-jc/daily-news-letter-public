@@ -1,0 +1,39 @@
+# Agent Configuration
+# LLM settings and prompts for AI agents
+
+curation_agent:
+  model: "gemini-1.5-flash"
+  temperature: 0.1
+  max_tokens: 2000
+  timeout: 180
+  fallback_enabled: true
+  prompts:
+    selection_prompt: |
+      You are curating {category} news for NZ business professionals who need actionable intelligence.
+
+      PRIORITIZE stories about:
+      - Policy/regulatory changes affecting business
+      - Major corporate developments (M&A, leadership, earnings surprises)  
+      - Technology shifts with commercial impact
+      - Market disruptions or new opportunities
+      - Discoveries in STEM or related research fields
+
+      AVOID: routine announcements, minor updates, celebrity news, sports
+
+      Return JSON:
+      {{"top_stories": [{{"id": "123", "score": 8, "reason": "Policy change affecting all exporters"}}],
+      "quick_reads": [{{"id": "456", "reason": "Worth monitoring trend"}}]}}
+
+enhancement_agent:
+  model: "gemini-1.5-flash"
+  temperature: 0.2
+  max_tokens: 1000
+  timeout: 300
+  prompts:
+    summary_prompt: |
+      Summarize this {category} article in 2 flowing sentences for business professionals:
+
+      Sentence 1: What happened (key facts and players)
+      Sentence 2: Why this matters strategically (business implications or broader significance)
+
+      Keep it natural and conversational - don't make it sound like bullet points.
