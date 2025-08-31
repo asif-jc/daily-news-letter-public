@@ -3,6 +3,7 @@ from typing import Dict, List
 import json
 import os
 import pytz
+from foreign_exchange_data import get_fx_changes_from_daily_data
 
 class NewsletterGenerator:
     def __init__(self):
@@ -56,6 +57,7 @@ class NewsletterGenerator:
 <body>
     <div class="container">
         {self.generate_header(date)}
+        {self.generate_fx_box()}
         {self.generate_content(data)}
         {self.generate_footer()}
     </div>
@@ -268,6 +270,107 @@ class NewsletterGenerator:
             font-size: 1rem;
         }
         
+        .fx-box {
+            margin: 1rem 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #17a2b8;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .fx-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .fx-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 0;
+        }
+        
+        .fx-timestamp {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+        
+        .fx-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.75rem;
+        }
+        
+        .fx-rate {
+            text-align: center;
+            padding: 0.5rem;
+            background: white;
+            border-radius: 4px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .fx-pair {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 0.25rem;
+        }
+        
+        .fx-value {
+            font-size: 0.95rem;
+            color: #17a2b8;
+            font-weight: 500;
+        }
+        
+        .fx-changes {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            gap: 0.5rem;
+        }
+        
+        .fx-change {
+            font-weight: 500;
+        }
+        
+        .fx-change.positive {
+            color: #28a745;
+        }
+        
+        .fx-change.negative {
+            color: #dc3545;
+        }
+        
+        .fx-change.neutral {
+            color: #6c757d;
+        }
+        
+        @media (max-width: 600px) {
+            .fx-box {
+                margin: 1rem;
+                padding: 1rem;
+            }
+            
+            .fx-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: 0.5rem;
+            }
+            
+            .fx-changes {
+                flex-direction: column;
+                gap: 0.25rem;
+                align-items: center;
+            }
+            
+            .fx-change {
+                font-size: 0.75rem;
+            }
+        }
+        
         @media (max-width: 600px) {
             .container {
                 margin: 0;
@@ -291,6 +394,70 @@ class NewsletterGenerator:
             }
         }
         """
+    
+    def generate_fx_box(self) -> str:
+        """Generate foreign exchange rates box with historical changes"""
+        try:
+            fx_data = get_fx_changes_from_daily_data()
+            
+            if fx_data.get('status') != 'success' or not fx_data.get('rates'):
+                return '<div class="fx-box"><p>Foreign exchange data currently unavailable</p></div>'
+            
+            rates_data = fx_data['rates']
+            timestamp = fx_data.get('timestamp', 'Unknown')
+            
+            html = '<div class="fx-box">'
+            html += '<div class="fx-header">'
+            html += '<h3 class="fx-title">Exchange Rates</h3>'
+            html += f'<div class="fx-timestamp">{timestamp}</div>'
+            html += '</div>'
+            
+            html += '<div class="fx-grid">'
+            
+            # Define the order of currency pairs
+            pair_order = ['NZD/USD', 'NZD/AUD', 'NZD/INR', 'NZD/CNY'] # , 'USD/BTC']
+            
+            for pair in pair_order:
+                if pair in rates_data:
+                    rate_info = rates_data[pair]
+                    current_rate = rate_info['current']
+                    changes = rate_info.get('changes', {})
+                    
+                    html += f'<div class="fx-rate">'
+                    html += f'<div class="fx-pair">{pair}</div>'
+                    html += f'<div class="fx-value">{current_rate}</div>'
+                    
+                    # Add percentage changes if available
+                    if changes:
+                        html += '<div class="fx-changes">'
+                        for period in ['24h', '7d', '30d']:
+                            if period in changes:
+                                change_pct = changes[period]
+                                
+                                # Determine color class
+                                if change_pct > 0.1:
+                                    color_class = 'positive'
+                                    sign = '+'
+                                elif change_pct < -0.1:
+                                    color_class = 'negative'
+                                    sign = ''
+                                else:
+                                    color_class = 'neutral'
+                                    sign = '+' if change_pct >= 0 else ''
+                                
+                                html += f'<span class="fx-change {color_class}">{period} {sign}{change_pct:.1f}%</span>'
+                        html += '</div>'
+                    
+                    html += f'</div>'
+            
+            html += '</div>'
+            html += '</div>'
+            
+            return html
+            
+        except Exception as e:
+            print(f"Error generating FX box: {e}")
+            return '<div class="fx-box"><p>Foreign exchange data currently unavailable</p></div>'
     
     def generate_header(self, date: str) -> str:
         """Generate newsletter header"""

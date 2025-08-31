@@ -1,0 +1,59 @@
+{
+  "metadata": {
+    "start_date": "2025-08-01",
+    "end_date": "2025-08-31",
+    "currency_pairs": [
+      "NZD/USD",
+      "NZD/AUD",
+      "NZD/INR",
+      "NZD/CNY",
+      "USD/BTC"
+    ],
+    "fetch_timestamp": "2025-08-31T21:29:45.228043",
+    "note": "Historical data with fallback to realistic variations of current rates"
+  },
+  "daily_rates": {
+    "2025-08-01": {
+      "USD/BTC": 115700.0,
+      "NZD/USD": 0.5962,
+      "NZD/AUD": 0.912,
+      "NZD/INR": 51.05,
+      "NZD/CNY": 4.2463
+    },
+    "2025-08-02": {
+      "USD/BTC": 113235.0,
+      "NZD/USD": 0.5982,
+      "NZD/AUD": 0.9154,
+      "NZD/INR": 51.52,
+      "NZD/CNY": 4.2289
+    },
+    "2025-08-03": {
+      "USD/BTC": 112555.0,
+      "NZD/USD": 0.5981,
+      "NZD/AUD": 0.9014,
+      "NZD/INR": 51.75,
+      "NZD/CNY": 4.2569
+    },
+    "2025-08-04": {
+      "USD/BTC": 114199.0,
+      "NZD/USD": 0.5999,
+      "NZD/AUD": 0.8936,
+      "NZD/INR": 51.36,
+      "NZD/CNY": 4.2505
+    },
+    "2025-08-05": {
+      "NZD/USD": 0.5886,
+      "NZD/AUD": 0.8856,
+      "NZD/INR": 51.43,
+      "NZD/CNY": 4.2311,
+      "USD/BTC": 105617.0
+    },
+    "2025-08-31": {
+      "NZD/USD": 0.5783,
+      "NZD/AUD": 0.8881,
+      "NZD/INR": 52.43,
+      "NZD/CNY": 4.2441,
+      "USD/BTC": 109886.0
+    }
+  }
+}

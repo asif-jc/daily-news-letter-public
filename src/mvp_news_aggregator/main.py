@@ -9,6 +9,7 @@ from db_utils import *
 from scrapper import *
 from web_newsletter import NewsletterGenerator, generate_newsletter, regenerate_newsletter_with_nzt
 from eggs_data import pull_eggs_data
+from foreign_exchange_data import pull_fx_data
 
 def run_daily_pipeline(use_llm: bool = True): 
     # 1. Collect articles
@@ -23,6 +24,10 @@ def run_daily_pipeline(use_llm: bool = True):
 
     # 3. Pull eggs market data (Feature User: Hasnain Cheena)
     # eggs_data = pull_eggs_data()
+    
+    # 3.5. Pull foreign exchange data
+    fx_data = pull_fx_data()
+    print(f"FX data status: {fx_data.get('status')}")
 
     # 4. Generate HTML
     html = generate_newsletter()
@@ -33,7 +38,7 @@ def run_daily_pipeline(use_llm: bool = True):
 if __name__ == "__main__":
     
     RUN_ETL = True
-    USE_LLM = True
+    USE_LLM = False
 
     if RUN_ETL:
         run_daily_pipeline(use_llm=USE_LLM)
