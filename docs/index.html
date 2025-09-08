@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily News Feed - 2025-08-31</title>
+    <title>Daily News Feed - 2025-09-08</title>
     <style>
         
         * {
@@ -309,6 +309,131 @@
             }
         }
         
+        .market-box {
+            margin: 1rem 2rem;
+            padding: 1.5rem;
+            background: #f8fff9;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .market-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .market-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 0;
+        }
+        
+        .market-timestamp {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+        
+        .market-category {
+            margin-bottom: 1rem;
+        }
+        
+        .market-category:last-child {
+            margin-bottom: 0;
+        }
+        
+        .market-category-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 0.25rem;
+        }
+        
+        .market-instrument {
+            display: grid;
+            grid-template-columns: 1fr auto auto auto auto;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f1f3f4;
+            gap: 1rem;
+        }
+        
+        .market-instrument:last-child {
+            border-bottom: none;
+        }
+        
+        .market-symbol {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #2c3e50;
+            text-align: left;
+        }
+        
+        .market-price {
+            font-size: 0.9rem;
+            color: #28a745;
+            font-weight: 500;
+            text-align: right;
+            min-width: 100px;
+        }
+        
+        .market-change {
+            font-weight: 500;
+            font-size: 0.8rem;
+            text-align: center;
+            min-width: 70px;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+        }
+        
+        .market-change.positive {
+            color: #28a745;
+            background: rgba(40, 167, 69, 0.1);
+        }
+        
+        .market-change.negative {
+            color: #dc3545;
+            background: rgba(220, 53, 69, 0.1);
+        }
+        
+        .market-change.neutral {
+            color: #6c757d;
+            background: rgba(108, 117, 125, 0.1);
+        }
+        
+        @media (max-width: 600px) {
+            .market-box {
+                margin: 1rem;
+                padding: 1rem;
+            }
+            
+            .market-instrument {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+                text-align: left;
+            }
+            
+            .market-price {
+                text-align: left;
+                min-width: auto;
+            }
+            
+            .market-change {
+                text-align: left;
+                min-width: auto;
+                display: inline-block;
+                margin-right: 0.5rem;
+                margin-bottom: 0.25rem;
+            }
+        }
+        
         @media (max-width: 600px) {
             .container {
                 margin: 0;
@@ -339,12 +464,13 @@
         
         <div class="header">
             <h1>Daily News Feed</h1>
-            <div class="date">August 31, 2025</div>
-            <div class="last-updated">Last Updated: 31 Aug 2025, 9:57 PM NZST</div>
+            <div class="date">September 08, 2025</div>
+            <div class="last-updated">Last Updated: 08 Sep 2025, 10:27 PM NZST</div>
         </div>
         
-        <div class="fx-box"><div class="fx-header"><h3 class="fx-title">Exchange Rates</h3><div class="fx-timestamp">31 Aug 2025, 09:57 PM</div></div><div class="fx-grid"><div class="fx-rate"><div class="fx-pair">NZD/USD</div><div class="fx-value">0.5783</div><div class="fx-changes"><span class="fx-change negative">24h -1.9%</span><span class="fx-change negative">7d -0.2%</span><span class="fx-change negative">30d -3.0%</span></div></div><div class="fx-rate"><div class="fx-pair">NZD/AUD</div><div class="fx-value">0.8881</div><div class="fx-changes"><span class="fx-change negative">24h -3.2%</span><span class="fx-change negative">7d -3.1%</span><span class="fx-change negative">30d -2.6%</span></div></div><div class="fx-rate"><div class="fx-pair">NZD/INR</div><div class="fx-value">52.43</div><div class="fx-changes"><span class="fx-change negative">24h -0.7%</span><span class="fx-change positive">7d +1.9%</span><span class="fx-change positive">30d +2.7%</span></div></div><div class="fx-rate"><div class="fx-pair">NZD/CNY</div><div class="fx-value">4.2441</div><div class="fx-changes"><span class="fx-change positive">24h +0.9%</span><span class="fx-change positive">7d +2.5%</span><span class="fx-change neutral">30d -0.1%</span></div></div></div></div>
-        <div class="content"><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/clyrwv0egzro?at_medium=RSS&at_campaign=rss" target="_blank">China and India pledge to be 'partners not rivals'</a></div></div><div class="article-meta">BBC World News • 31 Aug 2025, 9:14 PM NZST</div></div><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/c0mlen3grx7o?at_medium=RSS&at_campaign=rss" target="_blank">Reeling from Trump's tariffs, India and China seek a business reboot</a></div></div><div class="article-meta">BBC World News • 31 Aug 2025, 5:02 PM NZST</div></div><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/czjmre371l1o?at_medium=RSS&at_campaign=rss" target="_blank">Thousands attend Australia anti-immigration rallies</a></div></div><div class="article-meta">BBC World News • 31 Aug 2025, 9:29 PM NZST</div></div><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/c620ykrxedwo?at_medium=RSS&at_campaign=rss" target="_blank">Houthis confirm their prime minister killed in Israeli strike</a></div></div><div class="article-meta">BBC World News • 31 Aug 2025, 8:39 AM NZST</div></div><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/cjw6ep37469o?at_medium=RSS&at_campaign=rss" target="_blank">Prominent Ukrainian politician Andriy Parubiy shot dead in Lviv</a></div></div><div class="article-meta">BBC World News • 31 Aug 2025, 4:41 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/30/nvidia-says-two-mystery-customers-accounted-for-39-of-q2-revenue/" target="_blank">Nvidia says two mystery customers accounted for 39% of Q2 revenue</a></div></div><div class="article-meta">TechCrunch • 31 Aug 2025, 9:40 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/30/taco-bell-is-having-second-thoughts-about-relying-on-ai-at-the-drive-through/" target="_blank">Taco Bell is having second thoughts about relying on AI at the drive-through</a></div></div><div class="article-meta">TechCrunch • 31 Aug 2025, 4:50 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/30/the-fall-of-ev-startup-fisker-a-comprehensive-timeline/" target="_blank">The fall of EV startup Fisker: A comprehensive timeline</a></div></div><div class="article-meta">TechCrunch • 31 Aug 2025, 4:34 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/30/im-really-impressed-with-this-400-portable-projector/" target="_blank">I’m really impressed with this $400 portable projector</a></div></div><div class="article-meta">TechCrunch • 31 Aug 2025, 1:00 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://arstechnica.com/science/2025/08/texas-suit-alleging-anti-coal-cartel-of-top-wall-street-firms-could-reshape-esg/" target="_blank">Texas suit alleging anti-coal “cartel” of top Wall Street firms could reshape ESG</a></div></div><div class="article-meta">Ars Technica • 30 Aug 2025, 11:00 PM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge finance">Markets & Finance</span><div class="article-title"><a href="https://www.cnbc.com/2025/08/30/cdc-asks-all-staff-to-return-to-office-sept-15-after-hq-shooting.html" target="_blank">CDC asks all staff to return to office Sept. 15, five weeks after shooting at headquarters</a></div></div><div class="article-meta">CNBC Finance • 31 Aug 2025, 4:36 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge finance">Markets & Finance</span><div class="article-title"><a href="https://www.cnbc.com/2025/08/30/upscale-indian-restaurants-us.html" target="_blank">From ‘cheap food and curry houses’ to upscale dining: The rise of Indian restaurants in the U.S.</a></div></div><div class="article-meta">CNBC Finance • 31 Aug 2025, 12:00 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge finance">Markets & Finance</span><div class="article-title"><a href="https://www.cnbc.com/2025/08/29/retail-impact-de-minimis-exemption-ends-globally.html" target="_blank">Retail panic: What the end of the 'de minimis' exemption means for brands across the globe</a></div></div><div class="article-meta">CNBC Finance • 31 Aug 2025, 12:59 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/cev23vrzx0ro?at_medium=RSS&at_campaign=rss" target="_blank">French voice fears over Bayeux Tapestry move to UK</a></div></div><div class="article-meta">BBC World News • 31 Aug 2025, 12:37 PM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/ckg4rnr720yo?at_medium=RSS&at_campaign=rss" target="_blank">Thousands demonstrate across Mexico for the 130,000 missing</a></div></div><div class="article-meta">BBC World News • 31 Aug 2025, 3:58 PM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/czr6d5jm50do?at_medium=RSS&at_campaign=rss" target="_blank">Chicago mayor signs order to resist potential Trump crackdown</a></div></div><div class="article-meta">BBC World News • 31 Aug 2025, 11:34 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/c4g614x9kqko?at_medium=RSS&at_campaign=rss" target="_blank">Russia launches massive attack on Ukraine, as Kyiv hits oil refineries</a></div></div><div class="article-meta">BBC World News • 31 Aug 2025, 3:37 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/cjw6el72xd4o?at_medium=RSS&at_campaign=rss" target="_blank">Three dead after protests over death of taxi driver in Indonesia</a></div></div><div class="article-meta">BBC World News • 31 Aug 2025, 6:38 AM NZST</div></div></div>
+        <div class="fx-box"><div class="fx-header"><h3 class="fx-title">Exchange Rates</h3><div class="fx-timestamp">08 Sep 2025, 10:27 PM</div></div><div class="fx-grid"><div class="fx-rate"><div class="fx-pair">NZD/USD</div><div class="fx-value">0.5839</div><div class="fx-changes"><span class="fx-change negative">24h -0.8%</span><span class="fx-change positive">7d +1.0%</span><span class="fx-change negative">30d -1.9%</span></div></div><div class="fx-rate"><div class="fx-pair">NZD/AUD</div><div class="fx-value">0.8957</div><div class="fx-changes"><span class="fx-change negative">24h -1.6%</span><span class="fx-change negative">7d -2.0%</span><span class="fx-change negative">30d -0.6%</span></div></div><div class="fx-rate"><div class="fx-pair">NZD/INR</div><div class="fx-value">51.89</div><div class="fx-changes"><span class="fx-change negative">24h -1.2%</span><span class="fx-change negative">7d -0.7%</span><span class="fx-change negative">30d -1.1%</span></div></div><div class="fx-rate"><div class="fx-pair">NZD/CNY</div><div class="fx-value">4.1412</div><div class="fx-changes"><span class="fx-change negative">24h -1.2%</span><span class="fx-change negative">7d -0.2%</span><span class="fx-change negative">30d -0.5%</span></div></div></div></div>
+        <div class="market-box"><div class="market-header"><h3 class="market-title">Market Data</h3><div class="market-timestamp">08 Sep 2025, 10:27 PM</div></div><div class="market-category"><div class="market-category-title">US Indices</div><div class="market-instrument" style="font-weight: 600; color: #6c757d; font-size: 0.8rem; border-bottom: 2px solid #e9ecef; padding: 0.5rem 0;"><div class="market-symbol">Instrument</div><div class="market-price">Price</div><div class="market-change">24h</div><div class="market-change">7d</div><div class="market-change">30d</div></div><div class="market-instrument"><div class="market-symbol">S&P 500</div><div class="market-price">6,460 USD</div><div class="market-change negative">-0.6%</div><div class="market-change positive">+1.0%</div><div class="market-change positive">+1.4%</div></div><div class="market-instrument"><div class="market-symbol">NASDAQ</div><div class="market-price">21,455 USD</div><div class="market-change negative">-1.2%</div><div class="market-change positive">+1.3%</div><div class="market-change positive">+0.3%</div></div><div class="market-instrument"><div class="market-symbol">Dow Jones</div><div class="market-price">45,544 USD</div><div class="market-change negative">-0.2%</div><div class="market-change positive">+1.3%</div><div class="market-change positive">+3.6%</div></div></div><div class="market-category"><div class="market-category-title">International Indices</div><div class="market-instrument" style="font-weight: 600; color: #6c757d; font-size: 0.8rem; border-bottom: 2px solid #e9ecef; padding: 0.5rem 0;"><div class="market-symbol">Instrument</div><div class="market-price">Price</div><div class="market-change">24h</div><div class="market-change">7d</div><div class="market-change">30d</div></div><div class="market-instrument"><div class="market-symbol">Shanghai (SSE)</div><div class="market-price">3,857 CNY</div><div class="market-change positive">+0.4%</div><div class="market-change positive">+2.4%</div><div class="market-change positive">+5.8%</div></div><div class="market-instrument"><div class="market-symbol">ASX 200</div><div class="market-price">8,973 AUD</div><div class="market-change neutral">-0.1%</div><div class="market-change positive">+0.6%</div><div class="market-change positive">+1.5%</div></div><div class="market-instrument"><div class="market-symbol">NSE (India)</div><div class="market-price">24,426 INR</div><div class="market-change negative">-0.3%</div><div class="market-change negative">-2.5%</div><div class="market-change negative">-0.6%</div></div><div class="market-instrument"><div class="market-symbol">NZX 50</div><div class="market-price">12,930 NZD</div><div class="market-change positive">+0.2%</div><div class="market-change negative">-1.1%</div><div class="market-change neutral">+0.1%</div></div></div><div class="market-category"><div class="market-category-title">Commodities</div><div class="market-instrument" style="font-weight: 600; color: #6c757d; font-size: 0.8rem; border-bottom: 2px solid #e9ecef; padding: 0.5rem 0;"><div class="market-symbol">Instrument</div><div class="market-price">Price</div><div class="market-change">24h</div><div class="market-change">7d</div><div class="market-change">30d</div></div><div class="market-instrument"><div class="market-symbol">Gold (GLD)</div><div class="market-price">318 USD</div><div class="market-change positive">+1.0%</div><div class="market-change positive">+3.1%</div><div class="market-change positive">+3.1%</div></div><div class="market-instrument"><div class="market-symbol">Oil (USO)</div><div class="market-price">74 USD</div><div class="market-change negative">-0.5%</div><div class="market-change positive">+1.8%</div><div class="market-change positive">+1.4%</div></div><div class="market-instrument"><div class="market-symbol">Silver (SLV)</div><div class="market-price">36 USD</div><div class="market-change positive">+1.9%</div><div class="market-change positive">+5.1%</div><div class="market-change positive">+5.9%</div></div></div><div class="market-category"><div class="market-category-title">ETFs</div><div class="market-instrument" style="font-weight: 600; color: #6c757d; font-size: 0.8rem; border-bottom: 2px solid #e9ecef; padding: 0.5rem 0;"><div class="market-symbol">Instrument</div><div class="market-price">Price</div><div class="market-change">24h</div><div class="market-change">7d</div><div class="market-change">30d</div></div><div class="market-instrument"><div class="market-symbol">VOO</div><div class="market-price">593 USD</div><div class="market-change negative">-0.6%</div><div class="market-change positive">+1.1%</div><div class="market-change positive">+1.5%</div></div><div class="market-instrument"><div class="market-symbol">VTI</div><div class="market-price">318 USD</div><div class="market-change negative">-0.6%</div><div class="market-change positive">+1.4%</div><div class="market-change positive">+1.9%</div></div><div class="market-instrument"><div class="market-symbol">QQQ</div><div class="market-price">570 USD</div><div class="market-change negative">-1.2%</div><div class="market-change positive">+0.8%</div><div class="market-change negative">-0.4%</div></div></div></div>
+        <div class="content"><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/cr70ny0l7vgo?at_medium=RSS&at_campaign=rss" target="_blank">Five killed in Jerusalem shooting attack, paramedics say</a></div></div><div class="article-meta">BBC World News • 08 Sep 2025, 9:28 PM NZST</div></div><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/c75qlerp2e5o?at_medium=RSS&at_campaign=rss" target="_blank">New Zealand dad shot dead by police after years on the run with children</a></div></div><div class="article-meta">BBC World News • 08 Sep 2025, 9:35 PM NZST</div></div><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/c1jzr1d5xk9o?at_medium=RSS&at_campaign=rss" target="_blank">Australian triple murderer jailed for life over toxic mushroom lunch</a></div></div><div class="article-meta">BBC World News • 08 Sep 2025, 6:25 PM NZST</div></div><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/cwyrx205dj2o?at_medium=RSS&at_campaign=rss" target="_blank">Trump threatens tougher sanctions after Russia's heaviest strikes on Ukraine</a></div></div><div class="article-meta">BBC World News • 08 Sep 2025, 9:29 PM NZST</div></div><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/c5yqg0rln74o?at_medium=RSS&at_campaign=rss" target="_blank">South Korean worker tells BBC of panic during US immigration raid at Hyundai plant</a></div></div><div class="article-meta">BBC World News • 08 Sep 2025, 11:14 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/09/08/indrive-has-big-plans-to-become-a-global-super-app-where-others-have-failed/" target="_blank">InDrive has big plans to become a global ‘super app’ where others have failed</a></div></div><div class="article-meta">TechCrunch • 08 Sep 2025, 8:00 PM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/09/07/uber-and-momenta-to-test-autonomous-vehicles-in-germany-in-2026/" target="_blank">Uber and Momenta to test autonomous vehicles in Germany in 2026</a></div></div><div class="article-meta">TechCrunch • 08 Sep 2025, 6:00 PM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/09/07/microsoft-says-azure-affected-after-cables-cut-in-the-red-sea/" target="_blank">Microsoft says Azure affected after cables cut in the Red Sea</a></div></div><div class="article-meta">TechCrunch • 08 Sep 2025, 9:31 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/09/07/are-bad-incentives-to-blame-for-ai-hallucinations/" target="_blank">Are bad incentives to blame for AI hallucinations?</a></div></div><div class="article-meta">TechCrunch • 08 Sep 2025, 9:23 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/09/07/koah-raises-5m-to-bring-ads-into-ai-apps/" target="_blank">Koah raises $5M to bring ads into AI apps</a></div></div><div class="article-meta">TechCrunch • 08 Sep 2025, 8:48 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/09/07/hyundais-evtol-startup-supernal-pauses-work-following-ceo-and-cto-departures/" target="_blank">Hyundai’s eVTOL startup Supernal pauses work following CEO and CTO departures</a></div></div><div class="article-meta">TechCrunch • 08 Sep 2025, 7:19 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/09/07/what-is-mistral-ai-everything-to-know-about-the-openai-competitor/" target="_blank">What is Mistral AI? Everything to know about the OpenAI competitor</a></div></div><div class="article-meta">TechCrunch • 08 Sep 2025, 2:54 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://arstechnica.com/cars/2025/09/porsches-insanely-clever-hybrid-engine-comes-to-the-911-turbo-s/" target="_blank">Porsche’s insanely clever hybrid engine comes to the 911 Turbo S</a></div></div><div class="article-meta">Ars Technica • 08 Sep 2025, 1:00 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/cm2z8xyz68mo?at_medium=RSS&at_campaign=rss" target="_blank">France is set to vote out another PM. Can anything break its political deadlock?</a></div></div><div class="article-meta">BBC World News • 08 Sep 2025, 11:52 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/cn83jjx9pjvo?at_medium=RSS&at_campaign=rss" target="_blank">'Suitcase murder' trial begins in New Zealand</a></div></div><div class="article-meta">BBC World News • 08 Sep 2025, 5:12 PM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/c1mxlk518vko?at_medium=RSS&at_campaign=rss" target="_blank">Palestinian prisoners not being given adequate food, Israel top court says</a></div></div><div class="article-meta">BBC World News • 08 Sep 2025, 2:53 PM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/c8xre584drdo?at_medium=RSS&at_campaign=rss" target="_blank">Ryan Routh to stand trial for alleged Trump assassination attempt</a></div></div><div class="article-meta">BBC World News • 08 Sep 2025, 12:35 PM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/cewn2nky1w2o?at_medium=RSS&at_campaign=rss" target="_blank">Argentine rights activist Rosa Roisinblit dies aged 106</a></div></div><div class="article-meta">BBC World News • 08 Sep 2025, 4:41 AM NZST</div></div></div>
         
         <div class="footer">
             <div class="mission">

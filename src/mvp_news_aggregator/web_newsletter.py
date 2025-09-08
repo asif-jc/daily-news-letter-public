@@ -4,6 +4,7 @@ import json
 import os
 import pytz
 from foreign_exchange_data import get_fx_changes_from_daily_data
+from market_data import get_market_changes_from_daily_data
 
 class NewsletterGenerator:
     def __init__(self):
@@ -58,6 +59,7 @@ class NewsletterGenerator:
     <div class="container">
         {self.generate_header(date)}
         {self.generate_fx_box()}
+        {self.generate_market_box()}
         {self.generate_content(data)}
         {self.generate_footer()}
     </div>
@@ -284,6 +286,15 @@ class NewsletterGenerator:
             justify-content: space-between;
             align-items: center;
             margin-bottom: 1rem;
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .fx-header:hover {
+            background: rgba(23, 162, 184, 0.05);
+            margin: -0.5rem;
+            padding: 0.5rem;
+            border-radius: 4px;
         }
         
         .fx-title {
@@ -291,6 +302,19 @@ class NewsletterGenerator:
             font-weight: 600;
             color: #2c3e50;
             margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .collapse-icon {
+            font-size: 0.8rem;
+            color: #6c757d;
+            transition: transform 0.3s ease;
+        }
+        
+        .collapse-icon.collapsed {
+            transform: rotate(-90deg);
         }
         
         .fx-timestamp {
@@ -349,6 +373,19 @@ class NewsletterGenerator:
             color: #6c757d;
         }
         
+        .collapsible-content {
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+            overflow: hidden;
+            max-height: 1000px;
+            opacity: 1;
+        }
+        
+        .collapsible-content.collapsed {
+            max-height: 0;
+            opacity: 0;
+            margin-bottom: 0;
+        }
+        
         @media (max-width: 600px) {
             .fx-box {
                 margin: 1rem;
@@ -368,6 +405,143 @@ class NewsletterGenerator:
             
             .fx-change {
                 font-size: 0.75rem;
+            }
+        }
+        
+        .market-box {
+            margin: 1rem 2rem;
+            padding: 1.5rem;
+            background: #f8fff9;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .market-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .market-header:hover {
+            background: rgba(40, 167, 69, 0.05);
+            margin: -0.5rem;
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+        
+        .market-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .market-timestamp {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+        
+        .market-category {
+            margin-bottom: 1rem;
+        }
+        
+        .market-category:last-child {
+            margin-bottom: 0;
+        }
+        
+        .market-category-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 0.25rem;
+        }
+        
+        .market-instrument {
+            display: grid;
+            grid-template-columns: 1fr auto auto auto auto;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f1f3f4;
+            gap: 1rem;
+        }
+        
+        .market-instrument:last-child {
+            border-bottom: none;
+        }
+        
+        .market-symbol {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #2c3e50;
+            text-align: left;
+        }
+        
+        .market-price {
+            font-size: 0.9rem;
+            color: #28a745;
+            font-weight: 500;
+            text-align: right;
+            min-width: 100px;
+        }
+        
+        .market-change {
+            font-weight: 500;
+            font-size: 0.8rem;
+            text-align: center;
+            min-width: 70px;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+        }
+        
+        .market-change.positive {
+            color: #28a745;
+            background: rgba(40, 167, 69, 0.1);
+        }
+        
+        .market-change.negative {
+            color: #dc3545;
+            background: rgba(220, 53, 69, 0.1);
+        }
+        
+        .market-change.neutral {
+            color: #6c757d;
+            background: rgba(108, 117, 125, 0.1);
+        }
+        
+        @media (max-width: 600px) {
+            .market-box {
+                margin: 1rem;
+                padding: 1rem;
+            }
+            
+            .market-instrument {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+                text-align: left;
+            }
+            
+            .market-price {
+                text-align: left;
+                min-width: auto;
+            }
+            
+            .market-change {
+                text-align: left;
+                min-width: auto;
+                display: inline-block;
+                margin-right: 0.5rem;
+                margin-bottom: 0.25rem;
             }
         }
         
@@ -458,6 +632,116 @@ class NewsletterGenerator:
         except Exception as e:
             print(f"Error generating FX box: {e}")
             return '<div class="fx-box"><p>Foreign exchange data currently unavailable</p></div>'
+    
+    def generate_market_box(self) -> str:
+        """Generate market data box with historical changes"""
+        try:
+            market_data = get_market_changes_from_daily_data()
+            
+            print(f"\n=== MARKET BOX DEBUG ===")
+            print(f"Market data status: {market_data.get('status')}")
+            print(f"Market data keys: {list(market_data.keys())}")
+            
+            if market_data.get('status') != 'success':
+                print(f"Market data error: {market_data.get('error')}")
+                return '<div class="market-box"><p>Market data currently unavailable</p></div>'
+            
+            if not market_data.get('prices'):
+                print("No prices data found")
+                return '<div class="market-box"><p>Market data currently unavailable</p></div>'
+            
+            prices_data = market_data['prices']
+            print(f"\nFound {len(prices_data)} instruments in prices_data:")
+            for ticker, data in prices_data.items():
+                print(f"  {ticker}: {data.get('display_symbol', 'NO_SYMBOL')} | Category: {data.get('category', 'NO_CATEGORY')} | Price: {data.get('current', 'NO_PRICE')}")
+            timestamp = market_data.get('timestamp', 'Unknown')
+            
+            html = '<div class="market-box">'
+            html += '<div class="market-header">'
+            html += '<h3 class="market-title">Market Data</h3>'
+            html += f'<div class="market-timestamp">{timestamp}</div>'
+            html += '</div>'
+            
+            # Group instruments by category
+            categories = {
+                'US Indices': [],
+                'International Indices': [],
+                'Commodities': [],
+                'ETFs': []
+            }
+            
+            print(f"\nGrouping {len(prices_data)} instruments by category:")
+            for ticker, data in prices_data.items():
+                category = data['category']
+                print(f"  {ticker}: {data['display_symbol']} -> {category}")
+                if category in categories:
+                    categories[category].append((ticker, data))
+                else:
+                    print(f"  WARNING: Unknown category '{category}' for {ticker}")
+            
+            print(f"\nCategory summary:")
+            for cat_name, instruments in categories.items():
+                print(f"  {cat_name}: {len(instruments)} instruments")
+            
+            # Display each category
+            for category_name, instruments in categories.items():
+                if instruments:  # Only show categories that have data
+                    html += f'<div class="market-category">'
+                    html += f'<div class="market-category-title">{category_name}</div>'
+                    
+                    # Add table headers
+                    html += f'<div class="market-instrument" style="font-weight: 600; color: #6c757d; font-size: 0.8rem; border-bottom: 2px solid #e9ecef; padding: 0.5rem 0;">'
+                    html += f'<div class="market-symbol">Instrument</div>'
+                    html += f'<div class="market-price">Price</div>'
+                    html += f'<div class="market-change">24h</div>'
+                    html += f'<div class="market-change">7d</div>'
+                    html += f'<div class="market-change">30d</div>'
+                    html += f'</div>'
+                    
+                    for ticker, data in instruments:
+                        current_price = data['current']
+                        display_symbol = data['display_symbol']
+                        currency = data['currency']
+                        changes = data.get('changes', {})
+                        
+                        # Format price: remove decimals, add commas
+                        formatted_price = f"{int(current_price):,}"
+                        
+                        html += f'<div class="market-instrument">'
+                        html += f'<div class="market-symbol">{display_symbol}</div>'
+                        html += f'<div class="market-price">{formatted_price} {currency}</div>'
+                        
+                        # Add individual change columns (24h, 7d, 30d)
+                        for period in ['24h', '7d', '30d']:
+                            if period in changes:
+                                change_pct = changes[period]
+                                
+                                # Determine color class
+                                if change_pct > 0.1:
+                                    color_class = 'positive'
+                                    sign = '+'
+                                elif change_pct < -0.1:
+                                    color_class = 'negative'
+                                    sign = ''
+                                else:
+                                    color_class = 'neutral'
+                                    sign = '+' if change_pct >= 0 else ''
+                                
+                                html += f'<div class="market-change {color_class}">{sign}{change_pct:.1f}%</div>'
+                            else:
+                                html += f'<div class="market-change neutral">-</div>'
+                        
+                        html += f'</div>'
+                    
+                    html += f'</div>'
+            
+            html += '</div>'
+            
+            return html
+            
+        except Exception as e:
+            print(f"Error generating market box: {e}")
+            return '<div class="market-box"><p>Market data currently unavailable</p></div>'
     
     def generate_header(self, date: str) -> str:
         """Generate newsletter header"""

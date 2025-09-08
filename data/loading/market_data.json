@@ -1,0 +1,381 @@
+{
+  "daily_prices": {
+    "2025-08-11": {
+      "^GSPC": 6373.45,
+      "^IXIC": 21385.4,
+      "^DJI": 43975.09,
+      "000001.SS": 3647.55,
+      "^AXJO": 8844.8,
+      "^NSEI": 24585.05,
+      "^NZ50": 12911.86,
+      "GLD": 308.55,
+      "USO": 73.8,
+      "SLV": 34.18,
+      "VOO": 584.54,
+      "VTI": 312.31,
+      "QQQ": 572.85
+    },
+    "2025-08-12": {
+      "^GSPC": 6445.76,
+      "^IXIC": 21681.9,
+      "^DJI": 44458.61,
+      "000001.SS": 3665.92,
+      "^AXJO": 8880.8,
+      "^NSEI": 24487.4,
+      "^NZ50": 12759.68,
+      "GLD": 308.27,
+      "USO": 72.95,
+      "SLV": 34.41,
+      "VOO": 590.78,
+      "VTI": 316.13,
+      "QQQ": 580.05
+    },
+    "2025-08-13": {
+      "^GSPC": 6466.58,
+      "^IXIC": 21713.14,
+      "^DJI": 44922.27,
+      "000001.SS": 3683.47,
+      "^AXJO": 8827.1,
+      "^NSEI": 24619.35,
+      "^NZ50": 12766.54,
+      "GLD": 309.21,
+      "USO": 72.46,
+      "SLV": 35.0,
+      "VOO": 592.84,
+      "VTI": 317.66,
+      "QQQ": 580.34
+    },
+    "2025-08-14": {
+      "^GSPC": 6468.54,
+      "^IXIC": 21710.67,
+      "^DJI": 44911.26,
+      "000001.SS": 3666.44,
+      "^AXJO": 8873.8,
+      "^NSEI": 24631.3,
+      "^NZ50": 12834.08,
+      "GLD": 307.25,
+      "USO": 73.74,
+      "SLV": 34.5,
+      "VOO": 592.85,
+      "VTI": 317.19,
+      "QQQ": 579.89
+    },
+    "2025-08-15": {
+      "^GSPC": 6449.8,
+      "^IXIC": 21622.98,
+      "^DJI": 44946.12,
+      "000001.SS": 3696.77,
+      "^AXJO": 8938.6,
+      "^NZ50": 12889.38,
+      "GLD": 307.43,
+      "USO": 72.8,
+      "SLV": 34.5,
+      "VOO": 591.57,
+      "VTI": 316.47,
+      "QQQ": 577.34
+    },
+    "2025-08-18": {
+      "^GSPC": 6449.15,
+      "^IXIC": 21629.77,
+      "^DJI": 44911.82,
+      "000001.SS": 3728.03,
+      "^AXJO": 8959.3,
+      "^NSEI": 24876.95,
+      "^NZ50": 12970.64,
+      "GLD": 306.95,
+      "USO": 73.17,
+      "SLV": 34.55,
+      "VOO": 591.36,
+      "VTI": 316.59,
+      "QQQ": 577.11
+    },
+    "2025-08-19": {
+      "^GSPC": 6411.37,
+      "^IXIC": 21314.95,
+      "^DJI": 44922.27,
+      "000001.SS": 3727.29,
+      "^AXJO": 8896.2,
+      "^NSEI": 24980.65,
+      "^NZ50": 12928.68,
+      "GLD": 305.27,
+      "USO": 72.3,
+      "SLV": 33.87,
+      "VOO": 588.13,
+      "VTI": 314.67,
+      "QQQ": 569.28
+    },
+    "2025-08-20": {
+      "^GSPC": 6395.78,
+      "^IXIC": 21172.86,
+      "^DJI": 44938.31,
+      "000001.SS": 3766.21,
+      "^AXJO": 8918.0,
+      "^NSEI": 25050.55,
+      "^NZ50": 13071.3,
+      "GLD": 308.36,
+      "USO": 73.52,
+      "SLV": 34.43,
+      "VOO": 586.58,
+      "VTI": 313.84,
+      "QQQ": 565.9
+    },
+    "2025-08-21": {
+      "^GSPC": 6370.17,
+      "^IXIC": 21100.31,
+      "^DJI": 44785.5,
+      "000001.SS": 3771.1,
+      "^AXJO": 9019.1,
+      "^NSEI": 25083.75,
+      "^NZ50": 13194.07,
+      "GLD": 307.29,
+      "USO": 74.13,
+      "SLV": 34.61,
+      "VOO": 584.27,
+      "VTI": 312.76,
+      "QQQ": 563.28
+    },
+    "2025-08-22": {
+      "^GSPC": 6466.91,
+      "^IXIC": 21496.54,
+      "^DJI": 45631.74,
+      "000001.SS": 3825.76,
+      "^AXJO": 8967.4,
+      "^NSEI": 24870.1,
+      "^NZ50": 13042.76,
+      "GLD": 310.58,
+      "USO": 74.64,
+      "SLV": 35.34,
+      "VOO": 593.21,
+      "VTI": 318.18,
+      "QQQ": 571.97
+    },
+    "2025-08-25": {
+      "^GSPC": 6439.32,
+      "^IXIC": 21449.29,
+      "^DJI": 45282.47,
+      "000001.SS": 3883.56,
+      "^AXJO": 8972.4,
+      "^NSEI": 24967.75,
+      "^NZ50": 13079.5,
+      "GLD": 309.83,
+      "USO": 75.75,
+      "SLV": 35.02,
+      "VOO": 590.7,
+      "VTI": 316.65,
+      "QQQ": 570.32
+    },
+    "2025-08-26": {
+      "^GSPC": 6465.94,
+      "^IXIC": 21544.27,
+      "^DJI": 45418.07,
+      "000001.SS": 3868.38,
+      "^AXJO": 8935.6,
+      "^NSEI": 24712.05,
+      "^NZ50": 12957.98,
+      "GLD": 312.08,
+      "USO": 74.05,
+      "SLV": 35.02,
+      "VOO": 593.06,
+      "VTI": 318.09,
+      "QQQ": 572.61
+    },
+    "2025-08-27": {
+      "^GSPC": 6481.4,
+      "^IXIC": 21590.14,
+      "^DJI": 45565.23,
+      "000001.SS": 3800.35,
+      "^AXJO": 8960.5,
+      "^NZ50": 12861.84,
+      "GLD": 312.71,
+      "USO": 74.68,
+      "SLV": 34.99,
+      "VOO": 594.42,
+      "VTI": 318.94,
+      "QQQ": 573.49
+    },
+    "2025-08-28": {
+      "^GSPC": 6501.86,
+      "^IXIC": 21705.16,
+      "^DJI": 45636.9,
+      "000001.SS": 3843.6,
+      "^AXJO": 8980.0,
+      "^NSEI": 24500.9,
+      "^NZ50": 12903.08,
+      "GLD": 315.03,
+      "USO": 75.24,
+      "SLV": 35.52,
+      "VOO": 596.52,
+      "VTI": 320.1,
+      "QQQ": 577.08
+    },
+    "2025-08-29": {
+      "^GSPC": 6460.26,
+      "^IXIC": 21455.55,
+      "^DJI": 45544.88,
+      "000001.SS": 3857.93,
+      "^AXJO": 8973.1,
+      "^NSEI": 24426.85,
+      "^NZ50": 12930.73,
+      "GLD": 318.07,
+      "USO": 74.84,
+      "SLV": 36.19,
+      "VOO": 593.08,
+      "VTI": 318.2,
+      "QQQ": 570.4
+    },
+    "2025-09-02": {
+      "^GSPC": 6415.54,
+      "^IXIC": 21279.63,
+      "^DJI": 45295.81,
+      "000001.SS": 3858.13,
+      "^AXJO": 8900.6,
+      "^NSEI": 24579.6,
+      "^NZ50": 13110.82,
+      "GLD": 325.59,
+      "USO": 76.76,
+      "SLV": 37.15,
+      "VOO": 588.71,
+      "VTI": 315.99,
+      "QQQ": 565.62
+    },
+    "2025-09-03": {
+      "^GSPC": 6448.26,
+      "^IXIC": 21497.73,
+      "^DJI": 45271.23,
+      "000001.SS": 3813.56,
+      "^AXJO": 8738.8,
+      "^NSEI": 24715.05,
+      "^NZ50": 13074.81,
+      "GLD": 328.14,
+      "USO": 74.83,
+      "SLV": 37.34,
+      "VOO": 591.72,
+      "VTI": 317.33,
+      "QQQ": 570.07
+    },
+    "2025-09-04": {
+      "^GSPC": 6502.08,
+      "^IXIC": 21707.69,
+      "^DJI": 45621.29,
+      "000001.SS": 3765.88,
+      "^AXJO": 8826.5,
+      "^NSEI": 24734.3,
+      "^NZ50": 13133.2,
+      "GLD": 326.69,
+      "USO": 74.18,
+      "SLV": 36.93,
+      "VOO": 596.59,
+      "VTI": 320.14,
+      "QQQ": 575.23
+    },
+    "2025-09-05": {
+      "^GSPC": 6481.5,
+      "^IXIC": 21700.39,
+      "^DJI": 45400.86,
+      "000001.SS": 3812.51,
+      "^AXJO": 8871.2,
+      "^NSEI": 24741.0,
+      "^NZ50": 13223.53,
+      "GLD": 331.05,
+      "USO": 72.63,
+      "SLV": 37.21,
+      "VOO": 594.96,
+      "VTI": 319.55,
+      "QQQ": 576.06
+    },
+    "2025-09-01": {
+      "000001.SS": 3875.53,
+      "^AXJO": 8927.7,
+      "^NSEI": 24625.05,
+      "^NZ50": 13070.45
+    },
+    "2025-09-08": {
+      "000001.SS": 3826.84,
+      "^AXJO": 8849.6,
+      "^NSEI": 24773.15,
+      "^NZ50": 13281.14
+    }
+  },
+  "instruments": {
+    "^GSPC": {
+      "name": "S&P 500",
+      "category": "US Indices",
+      "currency": "USD",
+      "display_symbol": "S&P 500"
+    },
+    "^IXIC": {
+      "name": "NASDAQ Composite",
+      "category": "US Indices",
+      "currency": "USD",
+      "display_symbol": "NASDAQ"
+    },
+    "^DJI": {
+      "name": "Dow Jones Industrial Average",
+      "category": "US Indices",
+      "currency": "USD",
+      "display_symbol": "Dow Jones"
+    },
+    "000001.SS": {
+      "name": "SSE Composite Index",
+      "category": "International Indices",
+      "currency": "CNY",
+      "display_symbol": "Shanghai (SSE)"
+    },
+    "^AXJO": {
+      "name": "S&P/ASX 200",
+      "category": "International Indices",
+      "currency": "AUD",
+      "display_symbol": "ASX 200"
+    },
+    "^NSEI": {
+      "name": "NIFTY 50",
+      "category": "International Indices",
+      "currency": "INR",
+      "display_symbol": "NSE (India)"
+    },
+    "^NZ50": {
+      "name": "S&P/NZX 50 Index",
+      "category": "International Indices",
+      "currency": "NZD",
+      "display_symbol": "NZX 50"
+    },
+    "GLD": {
+      "name": "SPDR Gold Shares ETF",
+      "category": "Commodities",
+      "currency": "USD",
+      "display_symbol": "Gold (GLD)"
+    },
+    "USO": {
+      "name": "United States Oil Fund",
+      "category": "Commodities",
+      "currency": "USD",
+      "display_symbol": "Oil (USO)"
+    },
+    "SLV": {
+      "name": "iShares Silver Trust",
+      "category": "Commodities",
+      "currency": "USD",
+      "display_symbol": "Silver (SLV)"
+    },
+    "VOO": {
+      "name": "Vanguard S&P 500 ETF",
+      "category": "ETFs",
+      "currency": "USD",
+      "display_symbol": "VOO"
+    },
+    "VTI": {
+      "name": "Vanguard Total Stock Market ETF",
+      "category": "ETFs",
+      "currency": "USD",
+      "display_symbol": "VTI"
+    },
+    "QQQ": {
+      "name": "Invesco QQQ Trust",
+      "category": "ETFs",
+      "currency": "USD",
+      "display_symbol": "QQQ"
+    }
+  },
+  "fetch_timestamp": "2025-09-08T22:27:30.640597",
+  "note": "Market data fetched from Yahoo Finance"
+}
