@@ -26,9 +26,9 @@ def run_daily_pipeline(use_llm: bool = True):
     # 3. Pull eggs market data (Feature User: Hasnain Cheena)
     # eggs_data = pull_eggs_data()
      
-    # # 3.5. Pull foreign exchange data
-    # fx_data = pull_fx_data()
-    # print(f"FX data status: {fx_data.get('status')}")
+    # 3.5. Pull foreign exchange data
+    fx_data = pull_fx_data()
+    print(f"FX data status: {fx_data.get('status')}")
     
     # 3.6. Pull market data (ETF prices)
     market_data = pull_market_data()
@@ -43,7 +43,7 @@ def run_daily_pipeline(use_llm: bool = True):
 if __name__ == "__main__":
     
     RUN_ETL = True
-    USE_LLM = False
+    USE_LLM = True
 
     if RUN_ETL:
         run_daily_pipeline(use_llm=USE_LLM)

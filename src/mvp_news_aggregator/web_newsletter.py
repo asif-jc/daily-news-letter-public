@@ -63,6 +63,22 @@ class NewsletterGenerator:
         {self.generate_content(data)}
         {self.generate_footer()}
     </div>
+    <script>
+        function toggleCollapse(contentId) {{
+            const content = document.getElementById(contentId);
+            const icon = document.getElementById(contentId.replace('-content', '-icon'));
+            
+            content.classList.toggle('collapsed');
+            icon.classList.toggle('collapsed');
+            
+            // Rotate icon
+            if (content.classList.contains('collapsed')) {{
+                icon.innerHTML = '▶';
+            }} else {{
+                icon.innerHTML = '▼';
+            }}
+        }}
+    </script>
 </body>
 </html>"""
         return html
@@ -91,7 +107,7 @@ class NewsletterGenerator:
         }
         
         .header {
-            background-image: url('assets/mt_kalash_resize.png');
+            background-image: url('assets/dunder_park.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -581,10 +597,15 @@ class NewsletterGenerator:
             timestamp = fx_data.get('timestamp', 'Unknown')
             
             html = '<div class="fx-box">'
-            html += '<div class="fx-header">'
-            html += '<h3 class="fx-title">Exchange Rates</h3>'
+            html += '<div class="fx-header" onclick="toggleCollapse(\'fx-content\')">' 
+            html += '<h3 class="fx-title">'
+            html += '<span>Exchange Rates</span>'
+            html += '<span class="collapse-icon" id="fx-icon">▼</span>'
+            html += '</h3>'
             html += f'<div class="fx-timestamp">{timestamp}</div>'
             html += '</div>'
+            
+            html += '<div class="collapsible-content" id="fx-content">'
             
             html += '<div class="fx-grid">'
             
@@ -626,6 +647,8 @@ class NewsletterGenerator:
             
             html += '</div>'
             html += '</div>'
+            html += '</div>'
+            html += '</div>'
             
             return html
             
@@ -638,29 +661,22 @@ class NewsletterGenerator:
         try:
             market_data = get_market_changes_from_daily_data()
             
-            print(f"\n=== MARKET BOX DEBUG ===")
-            print(f"Market data status: {market_data.get('status')}")
-            print(f"Market data keys: {list(market_data.keys())}")
-            
-            if market_data.get('status') != 'success':
-                print(f"Market data error: {market_data.get('error')}")
-                return '<div class="market-box"><p>Market data currently unavailable</p></div>'
-            
-            if not market_data.get('prices'):
-                print("No prices data found")
+            if market_data.get('status') != 'success' or not market_data.get('prices'):
                 return '<div class="market-box"><p>Market data currently unavailable</p></div>'
             
             prices_data = market_data['prices']
-            print(f"\nFound {len(prices_data)} instruments in prices_data:")
-            for ticker, data in prices_data.items():
-                print(f"  {ticker}: {data.get('display_symbol', 'NO_SYMBOL')} | Category: {data.get('category', 'NO_CATEGORY')} | Price: {data.get('current', 'NO_PRICE')}")
             timestamp = market_data.get('timestamp', 'Unknown')
             
             html = '<div class="market-box">'
-            html += '<div class="market-header">'
-            html += '<h3 class="market-title">Market Data</h3>'
+            html += '<div class="market-header" onclick="toggleCollapse(\'market-content\')">' 
+            html += '<h3 class="market-title">'
+            html += '<span>Market Data</span>'
+            html += '<span class="collapse-icon" id="market-icon">▼</span>'
+            html += '</h3>'
             html += f'<div class="market-timestamp">{timestamp}</div>'
             html += '</div>'
+            
+            html += '<div class="collapsible-content" id="market-content">'
             
             # Group instruments by category
             categories = {
