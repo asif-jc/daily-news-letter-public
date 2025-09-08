@@ -2,130 +2,74 @@
   "world": {
     "top_stories": [
       {
-        "id": "30302d797a6d",
-        "title": "Five killed in Jerusalem shooting attack, paramedics say",
-        "url": "https://www.bbc.com/news/articles/cr70ny0l7vgo?at_medium=RSS&at_campaign=rss",
-        "description": "Israeli police say two gunmen were \"neutralised\" after the attack at a bus stop, in which seven other people were seriously wounded.",
+        "id": "59b31f21fe30",
+        "title": "In US town hoping for revival, Trump's tariffs put to test",
+        "url": "https://www.bbc.com/news/articles/c3rvdxz9589o?at_medium=RSS&at_campaign=rss",
+        "description": "The gulf between Trump's rhetoric and the reality on the ground is starting to show.",
         "source": "BBC World News",
-        "published": "2025-09-08T09:28:57+00:00",
-        "fetched_at": "2025-09-08T10:41:35.376257+00:00",
-        "category": "world"
+        "published": "2025-09-07T23:38:33+00:00",
+        "fetched_at": "2025-09-08T10:50:28.214203+00:00",
+        "category": "world",
+        "llm_summary": "",
+        "importance_score": 7,
+        "scraped_content": "In US town hoping for revival, Trump's tariffs put to test 11 hours ago Share Save Natalie Sherman BBC News, Fall River, Massachusetts Share Save BBC Frank Teixeira and his daughter Sue Teixeira, co-owners of Fall River-based Accurate Services In a corner of a cavernous 1890s factory in southern Massachusetts, 15 people are bent over sewing machines, churning out specialty, hospital-grade neonatal gear. They are all that remain of what was once a much bigger manufacturing operation, most of which the Teixeira family shut down in 1990, reinventing their business as a largely warehousing and distribution business. Since US President Donald Trump started rolling out sweeping tariffs, the Teixeiras have been fielding more inquiries from companies newly interested in their US-based sewing services. But they have turned down those offers, deterred by the difficulty of hiring in the midst of an immigration crackdown and doubts that the demand will be sustained. It's just one of the many indications that achieving the manufacturing revival promised by the president is likely to be far more difficult than the White House has claimed. \"It's just not going to happen,\" said Frank Teixeira, who joined the family business in the 1970s and oversaw its dismantling and reinvention as Accurate Services Inc. \"Tariffs are a bad policy and eventually are going to come home to haunt us. \" Trump campaigned for the presidency on the promise of a better economy, engineered in part by tariffs that he said would lower costs and usher in a new golden age.",
+        "enhanced_summary": "In Fall River, Massachusetts, the Teixeira family, owners of Accurate Services, are facing increased demand for their US-based sewing services due to Trump-era tariffs, but are unable to scale up due to hiring challenges stemming from immigration policies and uncertainty about sustained demand.  This highlights the significant difficulties in achieving a promised US manufacturing revival solely through tariffs, showcasing the complex interplay between trade policy, labor markets, and the practical realities of business growth."
       },
       {
-        "id": "90a9547dab40",
-        "title": "New Zealand dad shot dead by police after years on the run with children",
-        "url": "https://www.bbc.com/news/articles/c75qlerp2e5o?at_medium=RSS&at_campaign=rss",
-        "description": "Tom Phillips disappeared with his three children in 2021 after losing a custody battle.",
+        "id": "a3255451fdd3",
+        "title": "Huge drugs bust reveals battles on cocaine 'superhighway'",
+        "url": "https://www.bbc.com/news/articles/c5yvplyrrwno?at_medium=RSS&at_campaign=rss",
+        "description": "An audacious attempt to smuggle tonnes of cocaine was stopped, but pressure from drug cartels remains.",
         "source": "BBC World News",
-        "published": "2025-09-08T09:35:32+00:00",
-        "fetched_at": "2025-09-08T10:41:35.376301+00:00",
-        "category": "world"
-      },
-      {
-        "id": "c8737b82b500",
-        "title": "Australian triple murderer jailed for life over toxic mushroom lunch",
-        "url": "https://www.bbc.com/news/articles/c1jzr1d5xk9o?at_medium=RSS&at_campaign=rss",
-        "description": "She will serve a non-parole period of 33 years for killing three relatives and trying to kill another.",
-        "source": "BBC World News",
-        "published": "2025-09-08T06:25:22+00:00",
-        "fetched_at": "2025-09-08T10:41:35.376338+00:00",
-        "category": "world"
-      },
-      {
-        "id": "c7463c94d586",
-        "title": "Trump threatens tougher sanctions after Russia's heaviest strikes on Ukraine",
-        "url": "https://www.bbc.com/news/articles/cwyrx205dj2o?at_medium=RSS&at_campaign=rss",
-        "description": "Trump's threat of sanctions comes after Russia's heaviest attack of the war.",
-        "source": "BBC World News",
-        "published": "2025-09-08T09:29:55+00:00",
-        "fetched_at": "2025-09-08T10:41:35.376374+00:00",
-        "category": "world"
-      },
-      {
-        "id": "e82fe7f87d5d",
-        "title": "South Korean worker tells BBC of panic during US immigration raid at Hyundai plant",
-        "url": "https://www.bbc.com/news/articles/c5yqg0rln74o?at_medium=RSS&at_campaign=rss",
-        "description": "Some 400 US agents took part in the immigration raid on the Hyundai facility, detaining hundreds of workers, many South Korean nationals.",
-        "source": "BBC World News",
-        "published": "2025-09-07T23:14:55+00:00",
-        "fetched_at": "2025-09-08T10:41:35.376411+00:00",
-        "category": "world"
+        "published": "2025-09-08T05:02:40+00:00",
+        "fetched_at": "2025-09-08T10:50:28.214089+00:00",
+        "category": "world",
+        "llm_summary": "",
+        "importance_score": 6,
+        "scraped_content": "Huge drugs bust reveals battles on cocaine 'superhighway' 6 hours ago Share Save Darragh MacIntyre BBC Panorama & BBC Northern Ireland Spotlight Share Save Watch how drug smugglers panicked as the Irish military closed in on them The text message came from Dubai with a Santa emoji. Really this couldn't be any more straightforward. Just relax and this will all be over soon. \" It was sent to a fisherman from Ukraine and an unemployed man from Teesside who were sailing to the middle of the Irish Sea to collect cocaine from a passing cargo ship, the MV Matthew. As it turned out, they needed plenty of luck and very little was straightforward. The two men were part of an audacious attempt to traffic more than 2. 2 tonnes of cocaine into the UK and Europe. It ended in failure, with a successful strike against the powerful drug cartels by the Irish authorities.",
+        "enhanced_summary": "Irish authorities intercepted a massive 2.2-tonne cocaine shipment destined for the UK and Europe, arresting two men involved in the operation linked to a larger cartel network.  This significant bust highlights the ongoing battle against international drug trafficking and underscores the substantial financial and security risks posed by these powerful cartels to businesses and governments alike."
       }
     ],
     "quick_reads": [
       {
-        "id": "cb4bf59a4b2f",
-        "title": "France is set to vote out another PM. Can anything break its political deadlock?",
-        "url": "https://www.bbc.com/news/articles/cm2z8xyz68mo?at_medium=RSS&at_campaign=rss",
-        "description": "François Bayrou called a vote of confidence in himself after nine relatively ineffectual months in office.",
+        "id": "e32e0fb07739",
+        "title": "Duped of millions in 'digital arrest', Indian woman seeks answers from banks",
+        "url": "https://www.bbc.com/news/articles/clydllln9lgo?at_medium=RSS&at_campaign=rss",
+        "description": "Anjali asks why such huge sums leaving her account didn’t trigger red flags and automatic alerts.",
         "source": "BBC World News",
-        "published": "2025-09-07T23:52:21+00:00",
-        "fetched_at": "2025-09-08T10:41:35.376446+00:00",
-        "category": "world"
+        "published": "2025-09-08T00:45:32+00:00",
+        "fetched_at": "2025-09-08T10:50:28.214167+00:00",
+        "category": "world",
+        "llm_reason": "Worth monitoring for potential impacts on digital security and banking regulations globally, especially given the scale of the fraud."
       },
       {
-        "id": "7fd709bd3a88",
-        "title": "'Suitcase murder' trial begins in New Zealand",
-        "url": "https://www.bbc.com/news/articles/cn83jjx9pjvo?at_medium=RSS&at_campaign=rss",
-        "description": "Hakyung Lee is accused of killing her two young children, whose bodies were found stuffed in suitcases.",
+        "id": "01f2fe96b8a4",
+        "title": "Tight vote in Norway to decide whether to stick with Labour or turn right",
+        "url": "https://www.bbc.com/news/articles/c701382e994o?at_medium=RSS&at_campaign=rss",
+        "description": "Norwegians are going to the polls, with domestic issues expected to be at the forefront of voters' minds.",
         "source": "BBC World News",
-        "published": "2025-09-08T05:12:14+00:00",
-        "fetched_at": "2025-09-08T10:41:35.376481+00:00",
-        "category": "world"
-      },
-      {
-        "id": "e415cacb443b",
-        "title": "Palestinian prisoners not being given adequate food, Israel top court says",
-        "url": "https://www.bbc.com/news/articles/c1mxlk518vko?at_medium=RSS&at_campaign=rss",
-        "description": "The court said the state is legally obligated to provide enough food to ensure \"a basic level of existence.\"",
-        "source": "BBC World News",
-        "published": "2025-09-08T02:53:54+00:00",
-        "fetched_at": "2025-09-08T10:41:35.376521+00:00",
-        "category": "world"
-      },
-      {
-        "id": "31f13785613d",
-        "title": "Ryan Routh to stand trial for alleged Trump assassination attempt",
-        "url": "https://www.bbc.com/news/articles/c8xre584drdo?at_medium=RSS&at_campaign=rss",
-        "description": "A court case for Mr Routh, who has pleaded not guilty, begins on Monday - with the defendant representing himself.",
-        "source": "BBC World News",
-        "published": "2025-09-08T00:35:02+00:00",
-        "fetched_at": "2025-09-08T10:41:35.376555+00:00",
-        "category": "world"
-      },
-      {
-        "id": "2c705bb87e18",
-        "title": "Argentine rights activist Rosa Roisinblit dies aged 106",
-        "url": "https://www.bbc.com/news/articles/cewn2nky1w2o?at_medium=RSS&at_campaign=rss",
-        "description": "A leading member of the Grandmothers of Plaza de Mayo, she helped convict men who abducted hundreds of babies.",
-        "source": "BBC World News",
-        "published": "2025-09-07T16:41:17+00:00",
-        "fetched_at": "2025-09-08T10:41:35.376590+00:00",
-        "category": "world"
+        "published": "2025-09-08T06:47:17+00:00",
+        "fetched_at": "2025-09-08T10:50:28.214018+00:00",
+        "category": "world",
+        "llm_reason": "Political shifts in Norway might indirectly impact business relations and investment climate, though further details are needed."
       }
     ]
   },
   "tech": {
     "top_stories": [
       {
-        "id": "cea62318841e",
-        "title": "InDrive has big plans to become a global ‘super app’ where others have failed",
-        "url": "https://techcrunch.com/2025/09/08/indrive-has-big-plans-to-become-a-global-super-app-where-others-have-failed/",
-        "description": "InDrive plans to expand into multiple verticals over the next 12 months across its top markets, starting with grocery deliveries in Kazakhstan.",
+        "id": "e5b199918ed6",
+        "title": "Koah raises $5M to bring ads into AI apps",
+        "url": "https://techcrunch.com/2025/09/07/koah-raises-5m-to-bring-ads-into-ai-apps/",
+        "description": "One investor says Koah is \"building the essential monetization layer for consumer AI.\"",
         "source": "TechCrunch",
-        "published": "2025-09-08T08:00:00+00:00",
-        "fetched_at": "2025-09-08T10:41:38.474393+00:00",
-        "category": "tech"
-      },
-      {
-        "id": "e4d0477c6a93",
-        "title": "Uber and Momenta to test autonomous vehicles in Germany in 2026",
-        "url": "https://techcrunch.com/2025/09/07/uber-and-momenta-to-test-autonomous-vehicles-in-germany-in-2026/",
-        "description": "Momenta is one of 20 global AV partners that Uber has scooped up across its ridehail, delivery, and freight businesses. Uber says those partnerships have already generated an annualized rate of 1.5 million mobility and delivery.",
-        "source": "TechCrunch",
-        "published": "2025-09-08T06:00:00+00:00",
-        "fetched_at": "2025-09-08T10:41:38.474440+00:00",
-        "category": "tech"
+        "published": "2025-09-07T20:48:42+00:00",
+        "fetched_at": "2025-09-08T10:50:31.124714+00:00",
+        "category": "tech",
+        "llm_summary": "",
+        "importance_score": 7,
+        "scraped_content": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise EVs Fintech Fundraising Gadgets Gaming Google Government & Policy Hardware Instagram Layoffs Media & Entertainment Meta Microsoft Privacy Robotics Security Social Space Startups TikTok Transportation Venture Staff Events Startup Battlefield StrictlyVC Newsletters Podcasts Videos Partner Content TechCrunch Brand Studio Crunchboard Contact Us How can startups and developers actually monetize their AI products? A startup calledKoah, which recently raised $5 million in seed funding, is betting that ads will be a big part of the answer. If you spend any time online, there’s a good chance you’ve seen plenty of ugly, AI-generated ads — but few to none when interacting with AI chatbots themselves. Koah co-founder and CEO Nic Baird argued that will inevitably change. “Once these things get outside San Francisco, there’s only one way to make [them profitable] on a global scale,” Baird told TechCrunch over Zoom. “It’s happened time and time again. ” To be clear, Koah isn’t trying to introduce advertising to ChatGPT. (That’s probablysomething OpenAI will do for itselfone day. ) Instead, it’s focused on the “long tail” of apps that are built on top of the big models, including apps with a user base outside the United States.",
+        "enhanced_summary": "Koah, a startup focused on AI app monetization, just secured $5 million in seed funding to develop an ad platform for AI applications beyond the major players like ChatGPT.  This is strategically important because it addresses the critical challenge of generating revenue from the growing number of AI-powered apps, particularly those targeting global markets, ensuring their long-term viability and profitability."
       },
       {
         "id": "07384eb656d5",
@@ -134,8 +78,12 @@
         "description": "It's not clear who cut the cables or why.",
         "source": "TechCrunch",
         "published": "2025-09-07T21:31:17+00:00",
-        "fetched_at": "2025-09-08T10:41:38.474478+00:00",
-        "category": "tech"
+        "fetched_at": "2025-09-08T10:50:31.124639+00:00",
+        "category": "tech",
+        "llm_summary": "",
+        "importance_score": 6,
+        "scraped_content": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise EVs Fintech Fundraising Gadgets Gaming Google Government & Policy Hardware Instagram Layoffs Media & Entertainment Meta Microsoft Privacy Robotics Security Social Space Startups TikTok Transportation Venture Staff Events Startup Battlefield StrictlyVC Newsletters Podcasts Videos Partner Content TechCrunch Brand Studio Crunchboard Contact Us Posted: Microsoft said Saturday that clients of its Azure cloud platform might experience increased latency after multiple undersea cables were cut in the Red Sea,as reported in Bloomberg. In a status update, the company said traffic going through the Middle East or ending in Asia or Europe had been affected. It did not say who had cut the cables or why. “Undersea fiber cuts can take time to repair, as such we will continuously monitor, rebalance, and optimize routing to reduce customer impact in the meantime,” the status update said. By Saturday evening, Microsoft said it was no longer detecting any Azure issues. But it seems Azure was not the only service affected, withNetBlocks reportingthat “a series of subsea cable outages in the Red Sea has degraded internet connectivity in multiple countries” including India and Pakistan. According to the Associated Press,Yemen’s Houthi rebels had previously deniedattacking cables as part of a Red Sea campaign to pressure Israel. This post has been updated with additional context about affected countries and Houthi denials.",
+        "enhanced_summary": "Microsoft's Azure cloud platform experienced temporary latency issues Saturday due to multiple severed undersea cables in the Red Sea, impacting traffic to Asia and Europe, though service was quickly restored.  This incident highlights the vulnerability of global digital infrastructure to physical attacks and underscores the need for businesses to consider redundancy and resilience in their cloud strategies to mitigate potential disruptions and maintain operational continuity."
       },
       {
         "id": "ddd9d2ef4427",
@@ -144,30 +92,36 @@
         "description": "How can a chatbot be so wrong — and sound so confident in its wrongness?",
         "source": "TechCrunch",
         "published": "2025-09-07T21:23:23+00:00",
-        "fetched_at": "2025-09-08T10:41:38.474518+00:00",
-        "category": "tech"
-      },
-      {
-        "id": "e5b199918ed6",
-        "title": "Koah raises $5M to bring ads into AI apps",
-        "url": "https://techcrunch.com/2025/09/07/koah-raises-5m-to-bring-ads-into-ai-apps/",
-        "description": "One investor says Koah is \"building the essential monetization layer for consumer AI.\"",
-        "source": "TechCrunch",
-        "published": "2025-09-07T20:48:42+00:00",
-        "fetched_at": "2025-09-08T10:41:38.474555+00:00",
-        "category": "tech"
+        "fetched_at": "2025-09-08T10:50:31.124679+00:00",
+        "category": "tech",
+        "llm_summary": "",
+        "importance_score": 5,
+        "scraped_content": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise EVs Fintech Fundraising Gadgets Gaming Google Government & Policy Hardware Instagram Layoffs Media & Entertainment Meta Microsoft Privacy Robotics Security Social Space Startups TikTok Transportation Venture Staff Events Startup Battlefield StrictlyVC Newsletters Podcasts Videos Partner Content TechCrunch Brand Studio Crunchboard Contact Us Anew research paperfrom OpenAI asks why large language models like GPT-5 and chatbots like ChatGPT still hallucinate, and whether anything can be done to reduce those hallucinations. Ina blog post summarizing the paper, OpenAI defines hallucinations as “plausible but false statements generated by language models,” and it acknowledges that despite improvements, hallucinations “remain a fundamental challenge for all large language models” — one that will never be completely eliminated. To illustrate the point, researchers say that when they asked “a widely used chatbot” about the title of Adam Tauman Kalai’s Ph. dissertation, they got three different answers, all of them wrong. (Kalai is one of the paper’s authors. ) They then asked about his birthday and received three different dates. Once again, all of them were wrong. How can a chatbot be so wrong — and sound so confident in its wrongness? The researchers suggest that hallucinations arise, in part, because of a pretraining process that focuses on getting models to correctly predict the next word, without true or false labels attached to the training statements: “The model sees only positive examples of fluent language and must approximate the overall distribution.",
+        "enhanced_summary": "OpenAI's new research reveals that the persistent \"hallucinations\" (false statements) in large language models like ChatGPT stem from training methods that prioritize fluent language generation over factual accuracy.  This highlights a critical strategic challenge for businesses deploying AI:  inaccurate information, even when presented confidently, can damage brand reputation, erode trust, and ultimately undermine the value proposition of AI-powered products and services."
       }
     ],
     "quick_reads": [
       {
-        "id": "1ad52891dc03",
-        "title": "Hyundai’s eVTOL startup Supernal pauses work following CEO and CTO departures",
-        "url": "https://techcrunch.com/2025/09/07/hyundais-evtol-startup-supernal-pauses-work-following-ceo-and-cto-departures/",
-        "description": "The shakeup comes as the startup was still struggling to get its test vehicle off the ground -- literally. The first flight was only in March.",
+        "id": "cea62318841e",
+        "title": "InDrive has big plans to become a global ‘super app’ where others have failed",
+        "url": "https://techcrunch.com/2025/09/08/indrive-has-big-plans-to-become-a-global-super-app-where-others-have-failed/",
+        "description": "InDrive plans to expand into multiple verticals over the next 12 months across its top markets, starting with grocery deliveries in Kazakhstan.",
         "source": "TechCrunch",
-        "published": "2025-09-07T19:19:08+00:00",
-        "fetched_at": "2025-09-08T10:41:38.474594+00:00",
-        "category": "tech"
+        "published": "2025-09-08T08:00:00+00:00",
+        "fetched_at": "2025-09-08T10:50:31.124546+00:00",
+        "category": "tech",
+        "llm_reason": "Market disruption or new opportunity (potential competitor to existing ride-sharing and delivery services)."
+      },
+      {
+        "id": "e4d0477c6a93",
+        "title": "Uber and Momenta to test autonomous vehicles in Germany in 2026",
+        "url": "https://techcrunch.com/2025/09/07/uber-and-momenta-to-test-autonomous-vehicles-in-germany-in-2026/",
+        "description": "Momenta is one of 20 global AV partners that Uber has scooped up across its ridehail, delivery, and freight businesses. Uber says those partnerships have already generated an annualized rate of 1.5 million mobility and delivery.",
+        "source": "TechCrunch",
+        "published": "2025-09-08T06:00:00+00:00",
+        "fetched_at": "2025-09-08T10:50:31.124590+00:00",
+        "category": "tech",
+        "llm_reason": "Worth monitoring trend (Autonomous vehicle development and its potential impact on logistics and transportation)."
       },
       {
         "id": "55d31b855154",
@@ -176,18 +130,20 @@
         "description": "Mistral AI, the French company behind AI assistant Le Chat and several foundational models, is officially regarded as one of France’s most promising tech startups and is arguably the only European company that could compete with OpenAI. It is reportedly in the process of raising another round that would value it at $14 billion, up [&#8230;]",
         "source": "TechCrunch",
         "published": "2025-09-07T14:54:03+00:00",
-        "fetched_at": "2025-09-08T10:41:38.474635+00:00",
-        "category": "tech"
+        "fetched_at": "2025-09-08T10:50:31.124795+00:00",
+        "category": "tech",
+        "llm_reason": "Worth monitoring trend (Emergence of a European competitor in the AI space)."
       },
       {
-        "id": "3fd9e96fe67b",
-        "title": "Porsche’s insanely clever hybrid engine comes to the 911 Turbo S",
-        "url": "https://arstechnica.com/cars/2025/09/porsches-insanely-clever-hybrid-engine-comes-to-the-911-turbo-s/",
-        "description": "The new 911 variant is 14 seconds quicker around the Nürburgring Nordschleife.",
-        "source": "Ars Technica",
-        "published": "2025-09-07T13:00:58+00:00",
-        "fetched_at": "2025-09-08T10:41:39.655524+00:00",
-        "category": "tech"
+        "id": "e5b199918ed6",
+        "title": "Koah raises $5M to bring ads into AI apps",
+        "url": "https://techcrunch.com/2025/09/07/koah-raises-5m-to-bring-ads-into-ai-apps/",
+        "description": "One investor says Koah is \"building the essential monetization layer for consumer AI.\"",
+        "source": "TechCrunch",
+        "published": "2025-09-07T20:48:42+00:00",
+        "fetched_at": "2025-09-08T10:50:31.124714+00:00",
+        "category": "tech",
+        "llm_reason": "Worth monitoring trend (Impact of leadership changes on future development of eVTOL technology)."
       }
     ]
   }
