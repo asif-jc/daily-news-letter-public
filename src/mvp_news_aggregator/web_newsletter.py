@@ -63,22 +63,6 @@ class NewsletterGenerator:
         {self.generate_content(data)}
         {self.generate_footer()}
     </div>
-    <script>
-        function toggleCollapse(contentId) {{
-            const content = document.getElementById(contentId);
-            const icon = document.getElementById(contentId.replace('-content', '-icon'));
-            
-            content.classList.toggle('collapsed');
-            icon.classList.toggle('collapsed');
-            
-            // Rotate icon
-            if (content.classList.contains('collapsed')) {{
-                icon.innerHTML = '▶';
-            }} else {{
-                icon.innerHTML = '▼';
-            }}
-        }}
-    </script>
 </body>
 </html>"""
         return html
@@ -302,15 +286,6 @@ class NewsletterGenerator:
             justify-content: space-between;
             align-items: center;
             margin-bottom: 1rem;
-            cursor: pointer;
-            user-select: none;
-        }
-        
-        .fx-header:hover {
-            background: rgba(23, 162, 184, 0.05);
-            margin: -0.5rem;
-            padding: 0.5rem;
-            border-radius: 4px;
         }
         
         .fx-title {
@@ -318,19 +293,6 @@ class NewsletterGenerator:
             font-weight: 600;
             color: #2c3e50;
             margin: 0;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .collapse-icon {
-            font-size: 0.8rem;
-            color: #6c757d;
-            transition: transform 0.3s ease;
-        }
-        
-        .collapse-icon.collapsed {
-            transform: rotate(-90deg);
         }
         
         .fx-timestamp {
@@ -389,19 +351,6 @@ class NewsletterGenerator:
             color: #6c757d;
         }
         
-        .collapsible-content {
-            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
-            overflow: hidden;
-            max-height: 1000px;
-            opacity: 1;
-        }
-        
-        .collapsible-content.collapsed {
-            max-height: 0;
-            opacity: 0;
-            margin-bottom: 0;
-        }
-        
         @media (max-width: 600px) {
             .fx-box {
                 margin: 1rem;
@@ -438,15 +387,6 @@ class NewsletterGenerator:
             justify-content: space-between;
             align-items: center;
             margin-bottom: 1rem;
-            cursor: pointer;
-            user-select: none;
-        }
-        
-        .market-header:hover {
-            background: rgba(40, 167, 69, 0.05);
-            margin: -0.5rem;
-            padding: 0.5rem;
-            border-radius: 4px;
         }
         
         .market-title {
@@ -454,9 +394,6 @@ class NewsletterGenerator:
             font-weight: 600;
             color: #2c3e50;
             margin: 0;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
         
         .market-timestamp {
@@ -597,15 +534,10 @@ class NewsletterGenerator:
             timestamp = fx_data.get('timestamp', 'Unknown')
             
             html = '<div class="fx-box">'
-            html += '<div class="fx-header" onclick="toggleCollapse(\'fx-content\')">' 
-            html += '<h3 class="fx-title">'
-            html += '<span>Exchange Rates</span>'
-            html += '<span class="collapse-icon" id="fx-icon">▼</span>'
-            html += '</h3>'
+            html += '<div class="fx-header">'
+            html += '<h3 class="fx-title">Exchange Rates</h3>'
             html += f'<div class="fx-timestamp">{timestamp}</div>'
             html += '</div>'
-            
-            html += '<div class="collapsible-content" id="fx-content">'
             
             html += '<div class="fx-grid">'
             
@@ -647,8 +579,6 @@ class NewsletterGenerator:
             
             html += '</div>'
             html += '</div>'
-            html += '</div>'
-            html += '</div>'
             
             return html
             
@@ -668,15 +598,10 @@ class NewsletterGenerator:
             timestamp = market_data.get('timestamp', 'Unknown')
             
             html = '<div class="market-box">'
-            html += '<div class="market-header" onclick="toggleCollapse(\'market-content\')">' 
-            html += '<h3 class="market-title">'
-            html += '<span>Market Data</span>'
-            html += '<span class="collapse-icon" id="market-icon">▼</span>'
-            html += '</h3>'
+            html += '<div class="market-header">'
+            html += '<h3 class="market-title">Market Data</h3>'
             html += f'<div class="market-timestamp">{timestamp}</div>'
             html += '</div>'
-            
-            html += '<div class="collapsible-content" id="market-content">'
             
             # Group instruments by category
             categories = {
