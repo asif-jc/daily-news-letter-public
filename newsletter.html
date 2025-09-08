@@ -309,6 +309,7 @@
             }
         }
         
+        /* Improved Market Data Styles */
         .market-box {
             margin: 1rem 2rem;
             padding: 1.5rem;
@@ -345,52 +346,112 @@
             margin-bottom: 0;
         }
         
+        .market-category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 0.75rem 0;
+            border-bottom: 2px solid #e9ecef;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .market-category-header:hover {
+            background-color: rgba(40, 167, 69, 0.05);
+            margin: 0 -0.5rem;
+            padding: 0.75rem 0.5rem;
+            border-radius: 4px;
+        }
+        
         .market-category-title {
             font-size: 0.9rem;
             font-weight: 600;
             color: #495057;
-            margin-bottom: 0.5rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            border-bottom: 1px solid #e9ecef;
-            padding-bottom: 0.25rem;
-        }
-        
-        .market-instrument {
-            display: grid;
-            grid-template-columns: 1fr auto auto auto auto;
+            display: flex;
             align-items: center;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid #f1f3f4;
-            gap: 1rem;
+            gap: 0.5rem;
         }
         
-        .market-instrument:last-child {
-            border-bottom: none;
+        .toggle-icon {
+            font-size: 1.1rem;
+            color: #28a745;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+        
+        .market-category.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+        
+        .category-count {
+            font-size: 0.8rem;
+            color: #6c757d;
+            font-weight: normal;
+            margin-left: 0.25rem;
+        }
+        
+        .market-instruments {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .market-category.collapsed .market-instruments {
+            height: 0;
+            opacity: 0;
+            margin: 0;
+        }
+        
+        .market-instruments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+        
+        .market-instrument-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+            transition: all 0.2s ease;
+        }
+        
+        .market-instrument-card:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transform: translateY(-1px);
         }
         
         .market-symbol {
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: 600;
             color: #2c3e50;
-            text-align: left;
+            margin-bottom: 0.5rem;
         }
         
         .market-price {
-            font-size: 0.9rem;
+            font-size: 1.1rem;
             color: #28a745;
-            font-weight: 500;
-            text-align: right;
-            min-width: 100px;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        
+        .market-changes {
+            display: flex;
+            justify-content: space-between;
+            gap: 0.5rem;
         }
         
         .market-change {
             font-weight: 500;
             font-size: 0.8rem;
             text-align: center;
-            min-width: 70px;
-            padding: 0.2rem 0.4rem;
-            border-radius: 3px;
+            padding: 0.3rem 0.5rem;
+            border-radius: 4px;
+            flex: 1;
+            min-width: 0;
         }
         
         .market-change.positive {
@@ -406,32 +467,6 @@
         .market-change.neutral {
             color: #6c757d;
             background: rgba(108, 117, 125, 0.1);
-        }
-        
-        @media (max-width: 600px) {
-            .market-box {
-                margin: 1rem;
-                padding: 1rem;
-            }
-            
-            .market-instrument {
-                grid-template-columns: 1fr;
-                gap: 0.5rem;
-                text-align: left;
-            }
-            
-            .market-price {
-                text-align: left;
-                min-width: auto;
-            }
-            
-            .market-change {
-                text-align: left;
-                min-width: auto;
-                display: inline-block;
-                margin-right: 0.5rem;
-                margin-bottom: 0.25rem;
-            }
         }
         
         @media (max-width: 600px) {
@@ -455,6 +490,40 @@
             .article {
                 padding: 1rem;
             }
+            
+            .fx-box, .market-box {
+                margin: 1rem;
+                padding: 1rem;
+            }
+            
+            .market-instruments-grid {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            
+            .market-changes {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+            
+            .market-change {
+                text-align: left;
+            }
+            
+            /* Auto-collapse on mobile */
+            .market-category {
+                margin-bottom: 0.5rem;
+            }
+            
+            .market-category:not(.expanded) .market-instruments {
+                height: 0;
+                opacity: 0;
+                margin: 0;
+            }
+            
+            .market-category:not(.expanded) .toggle-icon {
+                transform: rotate(-90deg);
+            }
         }
         
     </style>
@@ -465,12 +534,12 @@
         <div class="header">
             <h1>Daily News Feed</h1>
             <div class="date">September 08, 2025</div>
-            <div class="last-updated">Last Updated: 08 Sep 2025, 10:51 PM NZST</div>
+            <div class="last-updated">Last Updated: 08 Sep 2025, 11:32 PM NZST</div>
         </div>
         
-        <div class="fx-box"><div class="fx-header"><h3 class="fx-title">Exchange Rates</h3><div class="fx-timestamp">08 Sep 2025, 10:51 PM</div></div><div class="fx-grid"><div class="fx-rate"><div class="fx-pair">NZD/USD</div><div class="fx-value">0.5839</div><div class="fx-changes"><span class="fx-change negative">24h -0.8%</span><span class="fx-change positive">7d +1.0%</span><span class="fx-change negative">30d -1.9%</span></div></div><div class="fx-rate"><div class="fx-pair">NZD/AUD</div><div class="fx-value">0.8957</div><div class="fx-changes"><span class="fx-change negative">24h -1.6%</span><span class="fx-change negative">7d -2.0%</span><span class="fx-change negative">30d -0.6%</span></div></div><div class="fx-rate"><div class="fx-pair">NZD/INR</div><div class="fx-value">51.89</div><div class="fx-changes"><span class="fx-change negative">24h -1.2%</span><span class="fx-change negative">7d -0.7%</span><span class="fx-change negative">30d -1.1%</span></div></div><div class="fx-rate"><div class="fx-pair">NZD/CNY</div><div class="fx-value">4.1412</div><div class="fx-changes"><span class="fx-change negative">24h -1.2%</span><span class="fx-change negative">7d -0.2%</span><span class="fx-change negative">30d -0.5%</span></div></div></div></div>
-        <div class="market-box"><div class="market-header"><h3 class="market-title">Market Data</h3><div class="market-timestamp">08 Sep 2025, 10:51 PM</div></div><div class="market-category"><div class="market-category-title">US Indices</div><div class="market-instrument" style="font-weight: 600; color: #6c757d; font-size: 0.8rem; border-bottom: 2px solid #e9ecef; padding: 0.5rem 0;"><div class="market-symbol">Instrument</div><div class="market-price">Price</div><div class="market-change">24h</div><div class="market-change">7d</div><div class="market-change">30d</div></div><div class="market-instrument"><div class="market-symbol">S&P 500</div><div class="market-price">6,460 USD</div><div class="market-change negative">-0.6%</div><div class="market-change positive">+1.0%</div><div class="market-change positive">+1.4%</div></div><div class="market-instrument"><div class="market-symbol">NASDAQ</div><div class="market-price">21,455 USD</div><div class="market-change negative">-1.2%</div><div class="market-change positive">+1.3%</div><div class="market-change positive">+0.3%</div></div><div class="market-instrument"><div class="market-symbol">Dow Jones</div><div class="market-price">45,544 USD</div><div class="market-change negative">-0.2%</div><div class="market-change positive">+1.3%</div><div class="market-change positive">+3.6%</div></div></div><div class="market-category"><div class="market-category-title">International Indices</div><div class="market-instrument" style="font-weight: 600; color: #6c757d; font-size: 0.8rem; border-bottom: 2px solid #e9ecef; padding: 0.5rem 0;"><div class="market-symbol">Instrument</div><div class="market-price">Price</div><div class="market-change">24h</div><div class="market-change">7d</div><div class="market-change">30d</div></div><div class="market-instrument"><div class="market-symbol">Shanghai (SSE)</div><div class="market-price">3,857 CNY</div><div class="market-change positive">+0.4%</div><div class="market-change positive">+2.4%</div><div class="market-change positive">+5.8%</div></div><div class="market-instrument"><div class="market-symbol">ASX 200</div><div class="market-price">8,973 AUD</div><div class="market-change neutral">-0.1%</div><div class="market-change positive">+0.6%</div><div class="market-change positive">+1.5%</div></div><div class="market-instrument"><div class="market-symbol">NSE (India)</div><div class="market-price">24,426 INR</div><div class="market-change negative">-0.3%</div><div class="market-change negative">-2.5%</div><div class="market-change negative">-0.6%</div></div><div class="market-instrument"><div class="market-symbol">NZX 50</div><div class="market-price">12,930 NZD</div><div class="market-change positive">+0.2%</div><div class="market-change negative">-1.1%</div><div class="market-change neutral">+0.1%</div></div></div><div class="market-category"><div class="market-category-title">Commodities</div><div class="market-instrument" style="font-weight: 600; color: #6c757d; font-size: 0.8rem; border-bottom: 2px solid #e9ecef; padding: 0.5rem 0;"><div class="market-symbol">Instrument</div><div class="market-price">Price</div><div class="market-change">24h</div><div class="market-change">7d</div><div class="market-change">30d</div></div><div class="market-instrument"><div class="market-symbol">Gold (GLD)</div><div class="market-price">318 USD</div><div class="market-change positive">+1.0%</div><div class="market-change positive">+3.1%</div><div class="market-change positive">+3.1%</div></div><div class="market-instrument"><div class="market-symbol">Oil (USO)</div><div class="market-price">74 USD</div><div class="market-change negative">-0.5%</div><div class="market-change positive">+1.8%</div><div class="market-change positive">+1.4%</div></div><div class="market-instrument"><div class="market-symbol">Silver (SLV)</div><div class="market-price">36 USD</div><div class="market-change positive">+1.9%</div><div class="market-change positive">+5.1%</div><div class="market-change positive">+5.9%</div></div></div><div class="market-category"><div class="market-category-title">ETFs</div><div class="market-instrument" style="font-weight: 600; color: #6c757d; font-size: 0.8rem; border-bottom: 2px solid #e9ecef; padding: 0.5rem 0;"><div class="market-symbol">Instrument</div><div class="market-price">Price</div><div class="market-change">24h</div><div class="market-change">7d</div><div class="market-change">30d</div></div><div class="market-instrument"><div class="market-symbol">VOO</div><div class="market-price">593 USD</div><div class="market-change negative">-0.6%</div><div class="market-change positive">+1.1%</div><div class="market-change positive">+1.5%</div></div><div class="market-instrument"><div class="market-symbol">VTI</div><div class="market-price">318 USD</div><div class="market-change negative">-0.6%</div><div class="market-change positive">+1.4%</div><div class="market-change positive">+1.9%</div></div><div class="market-instrument"><div class="market-symbol">QQQ</div><div class="market-price">570 USD</div><div class="market-change negative">-1.2%</div><div class="market-change positive">+0.8%</div><div class="market-change negative">-0.4%</div></div></div></div>
-        <div class="content"><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/c3rvdxz9589o?at_medium=RSS&at_campaign=rss" target="_blank">In US town hoping for revival, Trump's tariffs put to test</a></div></div><div class="article-meta">BBC World News • 08 Sep 2025, 11:38 AM NZST • Priority: 7/10</div><div class="article-summary">In Fall River, Massachusetts, the Teixeira family, owners of Accurate Services, are facing increased demand for their US-based sewing services due to Trump-era tariffs, but are unable to scale up due to hiring challenges stemming from immigration policies and uncertainty about sustained demand.  This highlights the significant difficulties in achieving a promised US manufacturing revival solely through tariffs, showcasing the complex interplay between trade policy, labor markets, and the practical realities of business growth.</div></div><div class="article critical"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/09/07/koah-raises-5m-to-bring-ads-into-ai-apps/" target="_blank">Koah raises $5M to bring ads into AI apps</a></div></div><div class="article-meta">TechCrunch • 08 Sep 2025, 8:48 AM NZST • Priority: 7/10</div><div class="article-summary">Koah, a startup focused on AI app monetization, just secured $5 million in seed funding to develop an ad platform for AI applications beyond the major players like ChatGPT.  This is strategically important because it addresses the critical challenge of generating revenue from the growing number of AI-powered apps, particularly those targeting global markets, ensuring their long-term viability and profitability.</div></div><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/c5yvplyrrwno?at_medium=RSS&at_campaign=rss" target="_blank">Huge drugs bust reveals battles on cocaine 'superhighway'</a></div></div><div class="article-meta">BBC World News • 08 Sep 2025, 5:02 PM NZST • Priority: 6/10</div><div class="article-summary">Irish authorities intercepted a massive 2.2-tonne cocaine shipment destined for the UK and Europe, arresting two men involved in the operation linked to a larger cartel network.  This significant bust highlights the ongoing battle against international drug trafficking and underscores the substantial financial and security risks posed by these powerful cartels to businesses and governments alike.</div></div><div class="article critical"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/09/07/microsoft-says-azure-affected-after-cables-cut-in-the-red-sea/" target="_blank">Microsoft says Azure affected after cables cut in the Red Sea</a></div></div><div class="article-meta">TechCrunch • 08 Sep 2025, 9:31 AM NZST • Priority: 6/10</div><div class="article-summary">Microsoft's Azure cloud platform experienced temporary latency issues Saturday due to multiple severed undersea cables in the Red Sea, impacting traffic to Asia and Europe, though service was quickly restored.  This incident highlights the vulnerability of global digital infrastructure to physical attacks and underscores the need for businesses to consider redundancy and resilience in their cloud strategies to mitigate potential disruptions and maintain operational continuity.</div></div><div class="article critical"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/09/07/are-bad-incentives-to-blame-for-ai-hallucinations/" target="_blank">Are bad incentives to blame for AI hallucinations?</a></div></div><div class="article-meta">TechCrunch • 08 Sep 2025, 9:23 AM NZST • Priority: 5/10</div><div class="article-summary">OpenAI's new research reveals that the persistent "hallucinations" (false statements) in large language models like ChatGPT stem from training methods that prioritize fluent language generation over factual accuracy.  This highlights a critical strategic challenge for businesses deploying AI:  inaccurate information, even when presented confidently, can damage brand reputation, erode trust, and ultimately undermine the value proposition of AI-powered products and services.</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/09/08/indrive-has-big-plans-to-become-a-global-super-app-where-others-have-failed/" target="_blank">InDrive has big plans to become a global ‘super app’ where others have failed</a></div></div><div class="article-meta">TechCrunch • 08 Sep 2025, 8:00 PM NZST</div><div class="article-reason">Market disruption or new opportunity (potential competitor to existing ride-sharing and delivery services).</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/09/07/uber-and-momenta-to-test-autonomous-vehicles-in-germany-in-2026/" target="_blank">Uber and Momenta to test autonomous vehicles in Germany in 2026</a></div></div><div class="article-meta">TechCrunch • 08 Sep 2025, 6:00 PM NZST</div><div class="article-reason">Worth monitoring trend (Autonomous vehicle development and its potential impact on logistics and transportation).</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/09/07/what-is-mistral-ai-everything-to-know-about-the-openai-competitor/" target="_blank">What is Mistral AI? Everything to know about the OpenAI competitor</a></div></div><div class="article-meta">TechCrunch • 08 Sep 2025, 2:54 AM NZST</div><div class="article-reason">Worth monitoring trend (Emergence of a European competitor in the AI space).</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/09/07/koah-raises-5m-to-bring-ads-into-ai-apps/" target="_blank">Koah raises $5M to bring ads into AI apps</a></div></div><div class="article-meta">TechCrunch • 08 Sep 2025, 8:48 AM NZST</div><div class="article-reason">Worth monitoring trend (Impact of leadership changes on future development of eVTOL technology).</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/clydllln9lgo?at_medium=RSS&at_campaign=rss" target="_blank">Duped of millions in 'digital arrest', Indian woman seeks answers from banks</a></div></div><div class="article-meta">BBC World News • 08 Sep 2025, 12:45 PM NZST</div><div class="article-reason">Worth monitoring for potential impacts on digital security and banking regulations globally, especially given the scale of the fraud.</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/c701382e994o?at_medium=RSS&at_campaign=rss" target="_blank">Tight vote in Norway to decide whether to stick with Labour or turn right</a></div></div><div class="article-meta">BBC World News • 08 Sep 2025, 6:47 PM NZST</div><div class="article-reason">Political shifts in Norway might indirectly impact business relations and investment climate, though further details are needed.</div></div></div>
+        <div class="fx-box"><div class="fx-header"><h3 class="fx-title">Exchange Rates</h3><div class="fx-timestamp">08 Sep 2025, 11:32 PM</div></div><div class="fx-grid"><div class="fx-rate"><div class="fx-pair">NZD/USD</div><div class="fx-value">0.5839</div><div class="fx-changes"><span class="fx-change negative">24h -0.8%</span><span class="fx-change positive">7d +1.0%</span><span class="fx-change negative">30d -1.9%</span></div></div><div class="fx-rate"><div class="fx-pair">NZD/AUD</div><div class="fx-value">0.8957</div><div class="fx-changes"><span class="fx-change negative">24h -1.6%</span><span class="fx-change negative">7d -2.0%</span><span class="fx-change negative">30d -0.6%</span></div></div><div class="fx-rate"><div class="fx-pair">NZD/INR</div><div class="fx-value">51.89</div><div class="fx-changes"><span class="fx-change negative">24h -1.2%</span><span class="fx-change negative">7d -0.7%</span><span class="fx-change negative">30d -1.1%</span></div></div><div class="fx-rate"><div class="fx-pair">NZD/CNY</div><div class="fx-value">4.1412</div><div class="fx-changes"><span class="fx-change negative">24h -1.2%</span><span class="fx-change negative">7d -0.2%</span><span class="fx-change negative">30d -0.5%</span></div></div></div></div>
+        <div class="market-box"><div class="market-header"><h3 class="market-title">Market Data</h3><div class="market-timestamp">08 Sep 2025, 11:32 PM</div></div><div class="market-category expanded" data-category="us-indices"><div class="market-category-header" onclick="toggleCategory('us-indices')"><div class="market-category-title"><span class="toggle-icon">−</span>US Indices<span class="category-count">(3)</span></div></div><div class="market-instruments"><div class="market-instruments-grid"><div class="market-instrument-card"><div class="market-symbol">S&P 500</div><div class="market-price">6,460 USD</div><div class="market-changes"><div class="market-change negative">24h -0.6%</div><div class="market-change positive">7d +1.0%</div><div class="market-change positive">30d +1.4%</div></div></div><div class="market-instrument-card"><div class="market-symbol">NASDAQ</div><div class="market-price">21,455 USD</div><div class="market-changes"><div class="market-change negative">24h -1.2%</div><div class="market-change positive">7d +1.3%</div><div class="market-change positive">30d +0.3%</div></div></div><div class="market-instrument-card"><div class="market-symbol">Dow Jones</div><div class="market-price">45,544 USD</div><div class="market-changes"><div class="market-change negative">24h -0.2%</div><div class="market-change positive">7d +1.3%</div><div class="market-change positive">30d +3.6%</div></div></div></div></div></div><div class="market-category expanded" data-category="international"><div class="market-category-header" onclick="toggleCategory('international')"><div class="market-category-title"><span class="toggle-icon">−</span>International Indices<span class="category-count">(4)</span></div></div><div class="market-instruments"><div class="market-instruments-grid"><div class="market-instrument-card"><div class="market-symbol">Shanghai (SSE)</div><div class="market-price">3,857 CNY</div><div class="market-changes"><div class="market-change positive">24h +0.4%</div><div class="market-change positive">7d +2.4%</div><div class="market-change positive">30d +5.8%</div></div></div><div class="market-instrument-card"><div class="market-symbol">ASX 200</div><div class="market-price">8,973 AUD</div><div class="market-changes"><div class="market-change neutral">24h -0.1%</div><div class="market-change positive">7d +0.6%</div><div class="market-change positive">30d +1.5%</div></div></div><div class="market-instrument-card"><div class="market-symbol">NSE (India)</div><div class="market-price">24,426 INR</div><div class="market-changes"><div class="market-change negative">24h -0.3%</div><div class="market-change negative">7d -2.5%</div><div class="market-change negative">30d -0.6%</div></div></div><div class="market-instrument-card"><div class="market-symbol">NZX 50</div><div class="market-price">12,930 NZD</div><div class="market-changes"><div class="market-change positive">24h +0.2%</div><div class="market-change negative">7d -1.1%</div><div class="market-change neutral">30d +0.1%</div></div></div></div></div></div><div class="market-category expanded" data-category="commodities"><div class="market-category-header" onclick="toggleCategory('commodities')"><div class="market-category-title"><span class="toggle-icon">−</span>Commodities<span class="category-count">(3)</span></div></div><div class="market-instruments"><div class="market-instruments-grid"><div class="market-instrument-card"><div class="market-symbol">Gold (GLD)</div><div class="market-price">318 USD</div><div class="market-changes"><div class="market-change positive">24h +1.0%</div><div class="market-change positive">7d +3.1%</div><div class="market-change positive">30d +3.1%</div></div></div><div class="market-instrument-card"><div class="market-symbol">Oil (USO)</div><div class="market-price">74 USD</div><div class="market-changes"><div class="market-change negative">24h -0.5%</div><div class="market-change positive">7d +1.8%</div><div class="market-change positive">30d +1.4%</div></div></div><div class="market-instrument-card"><div class="market-symbol">Silver (SLV)</div><div class="market-price">36 USD</div><div class="market-changes"><div class="market-change positive">24h +1.9%</div><div class="market-change positive">7d +5.1%</div><div class="market-change positive">30d +5.9%</div></div></div></div></div></div><div class="market-category expanded" data-category="etfs"><div class="market-category-header" onclick="toggleCategory('etfs')"><div class="market-category-title"><span class="toggle-icon">−</span>ETFs<span class="category-count">(3)</span></div></div><div class="market-instruments"><div class="market-instruments-grid"><div class="market-instrument-card"><div class="market-symbol">VOO</div><div class="market-price">593 USD</div><div class="market-changes"><div class="market-change negative">24h -0.6%</div><div class="market-change positive">7d +1.1%</div><div class="market-change positive">30d +1.5%</div></div></div><div class="market-instrument-card"><div class="market-symbol">VTI</div><div class="market-price">318 USD</div><div class="market-changes"><div class="market-change negative">24h -0.6%</div><div class="market-change positive">7d +1.4%</div><div class="market-change positive">30d +1.9%</div></div></div><div class="market-instrument-card"><div class="market-symbol">QQQ</div><div class="market-price">570 USD</div><div class="market-changes"><div class="market-change negative">24h -1.2%</div><div class="market-change positive">7d +0.8%</div><div class="market-change negative">30d -0.4%</div></div></div></div></div></div></div>
+        <div class="content"><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/cr70ny0l7vgo?at_medium=RSS&at_campaign=rss" target="_blank">Five killed in Jerusalem shooting attack, paramedics say</a></div></div><div class="article-meta">BBC World News • 08 Sep 2025, 9:28 PM NZST</div></div><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/c75qlerp2e5o?at_medium=RSS&at_campaign=rss" target="_blank">New Zealand dad shot dead by police after years on the run with children</a></div></div><div class="article-meta">BBC World News • 08 Sep 2025, 9:35 PM NZST</div></div><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/c78nd2zy9jgo?at_medium=RSS&at_campaign=rss" target="_blank">At least 13 dead after protests against Nepal social media ban</a></div></div><div class="article-meta">BBC World News • 08 Sep 2025, 11:17 PM NZST</div></div><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/c1jzr1d5xk9o?at_medium=RSS&at_campaign=rss" target="_blank">Australian triple murderer jailed for life over toxic mushroom lunch</a></div></div><div class="article-meta">BBC World News • 08 Sep 2025, 6:25 PM NZST</div></div><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/cwyrx205dj2o?at_medium=RSS&at_campaign=rss" target="_blank">Trump threatens tougher sanctions after Russia's heaviest strikes on Ukraine</a></div></div><div class="article-meta">BBC World News • 08 Sep 2025, 9:29 PM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/09/08/more-than-10-european-startups-became-unicorns-this-year/" target="_blank">More than 10 European startups became unicorns this year</a></div></div><div class="article-meta">TechCrunch • 08 Sep 2025, 10:55 PM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/09/08/indrive-has-big-plans-to-become-a-global-super-app-where-others-have-failed/" target="_blank">InDrive has big plans to become a global ‘super app’ where others have failed</a></div></div><div class="article-meta">TechCrunch • 08 Sep 2025, 8:00 PM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/09/07/uber-and-momenta-to-test-autonomous-vehicles-in-germany-in-2026/" target="_blank">Uber and Momenta to test autonomous vehicles in Germany in 2026</a></div></div><div class="article-meta">TechCrunch • 08 Sep 2025, 6:00 PM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/09/07/microsoft-says-azure-affected-after-cables-cut-in-the-red-sea/" target="_blank">Microsoft says Azure affected after cables cut in the Red Sea</a></div></div><div class="article-meta">TechCrunch • 08 Sep 2025, 9:31 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/09/07/are-bad-incentives-to-blame-for-ai-hallucinations/" target="_blank">Are bad incentives to blame for AI hallucinations?</a></div></div><div class="article-meta">TechCrunch • 08 Sep 2025, 9:23 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/09/07/koah-raises-5m-to-bring-ads-into-ai-apps/" target="_blank">Koah raises $5M to bring ads into AI apps</a></div></div><div class="article-meta">TechCrunch • 08 Sep 2025, 8:48 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/09/07/hyundais-evtol-startup-supernal-pauses-work-following-ceo-and-cto-departures/" target="_blank">Hyundai’s eVTOL startup Supernal pauses work following CEO and CTO departures</a></div></div><div class="article-meta">TechCrunch • 08 Sep 2025, 7:19 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/09/07/what-is-mistral-ai-everything-to-know-about-the-openai-competitor/" target="_blank">What is Mistral AI? Everything to know about the OpenAI competitor</a></div></div><div class="article-meta">TechCrunch • 08 Sep 2025, 2:54 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://arstechnica.com/cars/2025/09/porsches-insanely-clever-hybrid-engine-comes-to-the-911-turbo-s/" target="_blank">Porsche’s insanely clever hybrid engine comes to the 911 Turbo S</a></div></div><div class="article-meta">Ars Technica • 08 Sep 2025, 1:00 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/c5yqg0rln74o?at_medium=RSS&at_campaign=rss" target="_blank">South Korean worker tells BBC of panic during US immigration raid at Hyundai plant</a></div></div><div class="article-meta">BBC World News • 08 Sep 2025, 11:14 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/cm2z8xyz68mo?at_medium=RSS&at_campaign=rss" target="_blank">France is set to vote out another PM. Can anything break its political deadlock?</a></div></div><div class="article-meta">BBC World News • 08 Sep 2025, 11:52 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/cn83jjx9pjvo?at_medium=RSS&at_campaign=rss" target="_blank">'Suitcase murder' trial begins in New Zealand</a></div></div><div class="article-meta">BBC World News • 08 Sep 2025, 5:12 PM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/c1mxlk518vko?at_medium=RSS&at_campaign=rss" target="_blank">Palestinian prisoners not being given adequate food, Israel top court says</a></div></div><div class="article-meta">BBC World News • 08 Sep 2025, 2:53 PM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/c8xre584drdo?at_medium=RSS&at_campaign=rss" target="_blank">Ryan Routh to stand trial for alleged Trump assassination attempt</a></div></div><div class="article-meta">BBC World News • 08 Sep 2025, 12:35 PM NZST</div></div></div>
         
         <div class="footer">
             <div class="mission">
@@ -486,5 +555,41 @@
         </div>
         
     </div>
+    
+    <script>
+        function toggleCategory(categoryId) {
+            const category = document.querySelector(`[data-category="${categoryId}"]`);
+            const icon = category.querySelector('.toggle-icon');
+            
+            if (category.classList.contains('collapsed')) {
+                category.classList.remove('collapsed');
+                category.classList.add('expanded');
+                icon.textContent = '−';
+            } else {
+                category.classList.remove('expanded');
+                category.classList.add('collapsed');
+                icon.textContent = '+';
+            }
+        }
+        
+        // Auto-collapse categories on mobile load
+        function handleResponsiveCollapse() {
+            if (window.innerWidth <= 600) {
+                const categories = document.querySelectorAll('.market-category');
+                categories.forEach(category => {
+                    if (!category.classList.contains('collapsed')) {
+                        category.classList.remove('expanded');
+                        category.classList.add('collapsed');
+                        const icon = category.querySelector('.toggle-icon');
+                        if (icon) icon.textContent = '+';
+                    }
+                });
+            }
+        }
+        
+        // Run on load and resize
+        window.addEventListener('load', handleResponsiveCollapse);
+        window.addEventListener('resize', handleResponsiveCollapse);
+    </script>
 </body>
 </html>
