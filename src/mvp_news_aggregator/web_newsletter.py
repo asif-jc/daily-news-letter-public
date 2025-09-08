@@ -79,25 +79,6 @@ class NewsletterGenerator:
                 icon.textContent = '+';
             }}
         }}
-        
-        // Auto-collapse categories on mobile load
-        function handleResponsiveCollapse() {{
-            if (window.innerWidth <= 600) {{
-                const categories = document.querySelectorAll('.market-category');
-                categories.forEach(category => {{
-                    if (!category.classList.contains('collapsed')) {{
-                        category.classList.remove('expanded');
-                        category.classList.add('collapsed');
-                        const icon = category.querySelector('.toggle-icon');
-                        if (icon) icon.textContent = '+';
-                    }}
-                }});
-            }}
-        }}
-        
-        // Run on load and resize
-        window.addEventListener('load', handleResponsiveCollapse);
-        window.addEventListener('resize', handleResponsiveCollapse);
     </script>
 </body>
 </html>"""
@@ -413,9 +394,9 @@ class NewsletterGenerator:
         .market-box {
             margin: 1rem 2rem;
             padding: 1.5rem;
-            background: #f8fff9;
+            background: #f8f9fa;
             border-radius: 8px;
-            border-left: 4px solid #28a745;
+            border-left: 4px solid #667eea;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
         
@@ -458,7 +439,7 @@ class NewsletterGenerator:
         }
         
         .market-category-header:hover {
-            background-color: rgba(40, 167, 69, 0.05);
+            background-color: rgba(102, 126, 234, 0.05);
             margin: 0 -0.5rem;
             padding: 0.75rem 0.5rem;
             border-radius: 4px;
@@ -477,7 +458,7 @@ class NewsletterGenerator:
         
         .toggle-icon {
             font-size: 1.1rem;
-            color: #28a745;
+            color: #667eea;
             font-weight: bold;
             transition: transform 0.3s ease;
         }
@@ -533,7 +514,7 @@ class NewsletterGenerator:
         
         .market-price {
             font-size: 1.1rem;
-            color: #28a745;
+            color: #667eea;
             font-weight: 600;
             margin-bottom: 0.75rem;
         }
@@ -608,21 +589,6 @@ class NewsletterGenerator:
             
             .market-change {
                 text-align: left;
-            }
-            
-            /* Auto-collapse on mobile */
-            .market-category {
-                margin-bottom: 0.5rem;
-            }
-            
-            .market-category:not(.expanded) .market-instruments {
-                height: 0;
-                opacity: 0;
-                margin: 0;
-            }
-            
-            .market-category:not(.expanded) .toggle-icon {
-                transform: rotate(-90deg);
             }
         }
         """
@@ -743,10 +709,10 @@ class NewsletterGenerator:
                     category_id = category_ids.get(category_name, category_name.lower().replace(' ', '-'))
                     count = len(instruments)
                     
-                    html += f'<div class="market-category expanded" data-category="{category_id}">'
+                    html += f'<div class="market-category collapsed" data-category="{category_id}">'
                     html += f'<div class="market-category-header" onclick="toggleCategory(\'{category_id}\')">' 
                     html += f'<div class="market-category-title">'
-                    html += f'<span class="toggle-icon">−</span>'
+                    html += f'<span class="toggle-icon">+</span>'
                     html += f'{category_name}'
                     html += f'<span class="category-count">({count})</span>'
                     html += f'</div>'
