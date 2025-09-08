@@ -63,6 +63,42 @@ class NewsletterGenerator:
         {self.generate_content(data)}
         {self.generate_footer()}
     </div>
+    
+    <script>
+        function toggleCategory(categoryId) {{
+            const category = document.querySelector(`[data-category="${{categoryId}}"]`);
+            const icon = category.querySelector('.toggle-icon');
+            
+            if (category.classList.contains('collapsed')) {{
+                category.classList.remove('collapsed');
+                category.classList.add('expanded');
+                icon.textContent = '\u2212';
+            }} else {{
+                category.classList.remove('expanded');
+                category.classList.add('collapsed');
+                icon.textContent = '+';
+            }}
+        }}
+        
+        // Auto-collapse categories on mobile load
+        function handleResponsiveCollapse() {{
+            if (window.innerWidth <= 600) {{
+                const categories = document.querySelectorAll('.market-category');
+                categories.forEach(category => {{
+                    if (!category.classList.contains('collapsed')) {{
+                        category.classList.remove('expanded');
+                        category.classList.add('collapsed');
+                        const icon = category.querySelector('.toggle-icon');
+                        if (icon) icon.textContent = '+';
+                    }}
+                }});
+            }}
+        }}
+        
+        // Run on load and resize
+        window.addEventListener('load', handleResponsiveCollapse);
+        window.addEventListener('resize', handleResponsiveCollapse);
+    </script>
 </body>
 </html>"""
         return html
@@ -373,6 +409,7 @@ class NewsletterGenerator:
             }
         }
         
+        /* Improved Market Data Styles */
         .market-box {
             margin: 1rem 2rem;
             padding: 1.5rem;
@@ -409,52 +446,112 @@ class NewsletterGenerator:
             margin-bottom: 0;
         }
         
+        .market-category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 0.75rem 0;
+            border-bottom: 2px solid #e9ecef;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .market-category-header:hover {
+            background-color: rgba(40, 167, 69, 0.05);
+            margin: 0 -0.5rem;
+            padding: 0.75rem 0.5rem;
+            border-radius: 4px;
+        }
+        
         .market-category-title {
             font-size: 0.9rem;
             font-weight: 600;
             color: #495057;
-            margin-bottom: 0.5rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            border-bottom: 1px solid #e9ecef;
-            padding-bottom: 0.25rem;
-        }
-        
-        .market-instrument {
-            display: grid;
-            grid-template-columns: 1fr auto auto auto auto;
+            display: flex;
             align-items: center;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid #f1f3f4;
-            gap: 1rem;
+            gap: 0.5rem;
         }
         
-        .market-instrument:last-child {
-            border-bottom: none;
+        .toggle-icon {
+            font-size: 1.1rem;
+            color: #28a745;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+        
+        .market-category.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+        
+        .category-count {
+            font-size: 0.8rem;
+            color: #6c757d;
+            font-weight: normal;
+            margin-left: 0.25rem;
+        }
+        
+        .market-instruments {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .market-category.collapsed .market-instruments {
+            height: 0;
+            opacity: 0;
+            margin: 0;
+        }
+        
+        .market-instruments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+        
+        .market-instrument-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+            transition: all 0.2s ease;
+        }
+        
+        .market-instrument-card:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transform: translateY(-1px);
         }
         
         .market-symbol {
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: 600;
             color: #2c3e50;
-            text-align: left;
+            margin-bottom: 0.5rem;
         }
         
         .market-price {
-            font-size: 0.9rem;
+            font-size: 1.1rem;
             color: #28a745;
-            font-weight: 500;
-            text-align: right;
-            min-width: 100px;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        
+        .market-changes {
+            display: flex;
+            justify-content: space-between;
+            gap: 0.5rem;
         }
         
         .market-change {
             font-weight: 500;
             font-size: 0.8rem;
             text-align: center;
-            min-width: 70px;
-            padding: 0.2rem 0.4rem;
-            border-radius: 3px;
+            padding: 0.3rem 0.5rem;
+            border-radius: 4px;
+            flex: 1;
+            min-width: 0;
         }
         
         .market-change.positive {
@@ -470,32 +567,6 @@ class NewsletterGenerator:
         .market-change.neutral {
             color: #6c757d;
             background: rgba(108, 117, 125, 0.1);
-        }
-        
-        @media (max-width: 600px) {
-            .market-box {
-                margin: 1rem;
-                padding: 1rem;
-            }
-            
-            .market-instrument {
-                grid-template-columns: 1fr;
-                gap: 0.5rem;
-                text-align: left;
-            }
-            
-            .market-price {
-                text-align: left;
-                min-width: auto;
-            }
-            
-            .market-change {
-                text-align: left;
-                min-width: auto;
-                display: inline-block;
-                margin-right: 0.5rem;
-                margin-bottom: 0.25rem;
-            }
         }
         
         @media (max-width: 600px) {
@@ -518,6 +589,40 @@ class NewsletterGenerator:
             
             .article {
                 padding: 1rem;
+            }
+            
+            .fx-box, .market-box {
+                margin: 1rem;
+                padding: 1rem;
+            }
+            
+            .market-instruments-grid {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            
+            .market-changes {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+            
+            .market-change {
+                text-align: left;
+            }
+            
+            /* Auto-collapse on mobile */
+            .market-category {
+                margin-bottom: 0.5rem;
+            }
+            
+            .market-category:not(.expanded) .market-instruments {
+                height: 0;
+                opacity: 0;
+                margin: 0;
+            }
+            
+            .market-category:not(.expanded) .toggle-icon {
+                transform: rotate(-90deg);
             }
         }
         """
@@ -587,7 +692,7 @@ class NewsletterGenerator:
             return '<div class="fx-box"><p>Foreign exchange data currently unavailable</p></div>'
     
     def generate_market_box(self) -> str:
-        """Generate market data box with historical changes"""
+        """Generate market data box with collapsible categories and card layout"""
         try:
             market_data = get_market_changes_from_daily_data()
             
@@ -624,20 +729,31 @@ class NewsletterGenerator:
             for cat_name, instruments in categories.items():
                 print(f"  {cat_name}: {len(instruments)} instruments")
             
-            # Display each category
+            # Category ID mapping for JavaScript
+            category_ids = {
+                'US Indices': 'us-indices',
+                'International Indices': 'international',
+                'Commodities': 'commodities',
+                'ETFs': 'etfs'
+            }
+            
+            # Display each category with collapsible design
             for category_name, instruments in categories.items():
                 if instruments:  # Only show categories that have data
-                    html += f'<div class="market-category">'
-                    html += f'<div class="market-category-title">{category_name}</div>'
+                    category_id = category_ids.get(category_name, category_name.lower().replace(' ', '-'))
+                    count = len(instruments)
                     
-                    # Add table headers
-                    html += f'<div class="market-instrument" style="font-weight: 600; color: #6c757d; font-size: 0.8rem; border-bottom: 2px solid #e9ecef; padding: 0.5rem 0;">'
-                    html += f'<div class="market-symbol">Instrument</div>'
-                    html += f'<div class="market-price">Price</div>'
-                    html += f'<div class="market-change">24h</div>'
-                    html += f'<div class="market-change">7d</div>'
-                    html += f'<div class="market-change">30d</div>'
+                    html += f'<div class="market-category expanded" data-category="{category_id}">'
+                    html += f'<div class="market-category-header" onclick="toggleCategory(\'{category_id}\')">' 
+                    html += f'<div class="market-category-title">'
+                    html += f'<span class="toggle-icon">−</span>'
+                    html += f'{category_name}'
+                    html += f'<span class="category-count">({count})</span>'
                     html += f'</div>'
+                    html += f'</div>'
+                    
+                    html += f'<div class="market-instruments">'
+                    html += f'<div class="market-instruments-grid">'
                     
                     for ticker, data in instruments:
                         current_price = data['current']
@@ -648,11 +764,12 @@ class NewsletterGenerator:
                         # Format price: remove decimals, add commas
                         formatted_price = f"{int(current_price):,}"
                         
-                        html += f'<div class="market-instrument">'
+                        html += f'<div class="market-instrument-card">'
                         html += f'<div class="market-symbol">{display_symbol}</div>'
                         html += f'<div class="market-price">{formatted_price} {currency}</div>'
+                        html += f'<div class="market-changes">'
                         
-                        # Add individual change columns (24h, 7d, 30d)
+                        # Add individual change periods (24h, 7d, 30d)
                         for period in ['24h', '7d', '30d']:
                             if period in changes:
                                 change_pct = changes[period]
@@ -668,15 +785,18 @@ class NewsletterGenerator:
                                     color_class = 'neutral'
                                     sign = '+' if change_pct >= 0 else ''
                                 
-                                html += f'<div class="market-change {color_class}">{sign}{change_pct:.1f}%</div>'
+                                html += f'<div class="market-change {color_class}">{period} {sign}{change_pct:.1f}%</div>'
                             else:
-                                html += f'<div class="market-change neutral">-</div>'
+                                html += f'<div class="market-change neutral">{period} -</div>'
                         
-                        html += f'</div>'
+                        html += f'</div>'  # market-changes
+                        html += f'</div>'  # market-instrument-card
                     
-                    html += f'</div>'
+                    html += f'</div>'  # market-instruments-grid
+                    html += f'</div>'  # market-instruments
+                    html += f'</div>'  # market-category
             
-            html += '</div>'
+            html += '</div>'  # market-box
             
             return html
             
