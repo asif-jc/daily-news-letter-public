@@ -43,7 +43,7 @@ def run_daily_pipeline(use_llm: bool = True):
 if __name__ == "__main__":
     
     RUN_ETL = True
-    USE_LLM = True
+    USE_LLM = False
 
     if RUN_ETL:
         run_daily_pipeline(use_llm=USE_LLM)
