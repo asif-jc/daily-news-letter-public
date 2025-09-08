@@ -2,105 +2,105 @@
   "world": {
     "top_stories": [
       {
+        "id": "70197179459a",
+        "title": "China and India pledge to be 'partners not rivals'",
+        "url": "https://www.bbc.com/news/articles/clyrwv0egzro?at_medium=RSS&at_campaign=rss",
+        "description": "Xi Jinping and Narendra Modi met on the sidelines of a summit which Russia's Vladimir Putin is also attending.",
+        "source": "BBC World News",
+        "published": "2025-08-31T09:14:19+00:00",
+        "fetched_at": "2025-08-31T10:11:25.093116+00:00",
+        "category": "world"
+      },
+      {
+        "id": "9785560bdab1",
+        "title": "Reeling from Trump's tariffs, India and China seek a business reboot",
+        "url": "https://www.bbc.com/news/articles/c0mlen3grx7o?at_medium=RSS&at_campaign=rss",
+        "description": "India's prime minister hopes to draw nearer to some of the world’s largest economies.",
+        "source": "BBC World News",
+        "published": "2025-08-31T05:02:48+00:00",
+        "fetched_at": "2025-08-31T10:11:25.093162+00:00",
+        "category": "world"
+      },
+      {
+        "id": "960bdca8e821",
+        "title": "Thousands attend Australia anti-immigration rallies",
+        "url": "https://www.bbc.com/news/articles/czjmre371l1o?at_medium=RSS&at_campaign=rss",
+        "description": "March for Australia rallies were condemned by the centre-left government as \"spreading hate\".",
+        "source": "BBC World News",
+        "published": "2025-08-31T09:29:39+00:00",
+        "fetched_at": "2025-08-31T10:11:25.093192+00:00",
+        "category": "world"
+      },
+      {
+        "id": "00d2c7d93f8f",
+        "title": "Houthis confirm their prime minister killed in Israeli strike",
+        "url": "https://www.bbc.com/news/articles/c620ykrxedwo?at_medium=RSS&at_campaign=rss",
+        "description": "Ahmed Ghaleb Nasser al-Rahawi and several other Houthi officials were killed in the attack, the Iran-backed movement says.",
+        "source": "BBC World News",
+        "published": "2025-08-30T20:39:24+00:00",
+        "fetched_at": "2025-08-31T10:11:25.093221+00:00",
+        "category": "world"
+      },
+      {
         "id": "8d49133a7a78",
         "title": "Prominent Ukrainian politician Andriy Parubiy shot dead in Lviv",
         "url": "https://www.bbc.com/news/articles/cjw6ep37469o?at_medium=RSS&at_campaign=rss",
-        "description": "President Zelensky said the killing of Parubiy was an \"terrible murder\" and promised an investigation.",
+        "description": "President Zelensky said the killing of Parubiy was a \"terrible murder\" - with a manhunt under way.",
         "source": "BBC World News",
-        "published": "2025-08-30T11:34:36+00:00",
-        "fetched_at": "2025-08-30T12:16:25.913413+00:00",
-        "category": "world"
-      },
-      {
-        "id": "7da4464e1e91",
-        "title": "Barrier being built around besieged Sudan city, satellite images show",
-        "url": "https://www.bbc.com/news/articles/c4gz1ekdee3o?at_medium=RSS&at_campaign=rss",
-        "description": "The earthen berm is intended to trap people inside el-Fasher, Yale University research shows.",
-        "source": "BBC World News",
-        "published": "2025-08-30T01:02:45+00:00",
-        "fetched_at": "2025-08-30T12:16:25.913450+00:00",
-        "category": "world"
-      },
-      {
-        "id": "5e60cf0c4010",
-        "title": "US blocks Palestinian leader from attending UN meeting in New York",
-        "url": "https://www.bbc.com/news/articles/cjdym32z9v7o?at_medium=RSS&at_campaign=rss",
-        "description": "The decision comes as France leads international efforts to recognise a Palestinian state at the UN meeting next month.",
-        "source": "BBC World News",
-        "published": "2025-08-30T07:22:55+00:00",
-        "fetched_at": "2025-08-30T12:16:25.913479+00:00",
-        "category": "world"
-      },
-      {
-        "id": "098ccabcc141",
-        "title": "US court rules many of Trump's global tariffs are illegal",
-        "url": "https://www.bbc.com/news/articles/ckgj7jxkq58o?at_medium=RSS&at_campaign=rss",
-        "description": "The tariffs can remain in place until mid-October to allow the Trump administration time to request the Supreme Court take up the case.",
-        "source": "BBC World News",
-        "published": "2025-08-30T00:57:07+00:00",
-        "fetched_at": "2025-08-30T12:16:25.913508+00:00",
-        "category": "world"
-      },
-      {
-        "id": "e40379aed2c9",
-        "title": "Mussolini's great-grandson makes Serie A debut",
-        "url": "https://www.bbc.com/sport/football/articles/c2l74klqpkwo?at_medium=RSS&at_campaign=rss",
-        "description": "Romano Floriani Mussolini, the great-grandson of Italian dictator Benito Mussolini, comes off the bench to help Cremonese defeat Sassuolo 3-2 in his Serie A debut on Friday.",
-        "source": "BBC World News",
-        "published": "2025-08-29T21:19:25+00:00",
-        "fetched_at": "2025-08-30T12:16:25.913536+00:00",
+        "published": "2025-08-30T16:41:58+00:00",
+        "fetched_at": "2025-08-31T10:11:25.093248+00:00",
         "category": "world"
       }
     ],
     "quick_reads": [
+      {
+        "id": "5f495c186fd8",
+        "title": "French voice fears over Bayeux Tapestry move to UK",
+        "url": "https://www.bbc.com/news/articles/cev23vrzx0ro?at_medium=RSS&at_campaign=rss",
+        "description": "The precious medieval work is to be displayed in London next year - but the French art world is strongly opposed.",
+        "source": "BBC World News",
+        "published": "2025-08-31T00:37:28+00:00",
+        "fetched_at": "2025-08-31T10:11:25.093283+00:00",
+        "category": "world"
+      },
+      {
+        "id": "bf91183ec5bb",
+        "title": "Thousands demonstrate across Mexico for the 130,000 missing",
+        "url": "https://www.bbc.com/news/articles/ckg4rnr720yo?at_medium=RSS&at_campaign=rss",
+        "description": "Thousands march through Mexico's cities urging more government action against enforced disappearances - a problem often linked to drug cartels.",
+        "source": "BBC World News",
+        "published": "2025-08-31T03:58:48+00:00",
+        "fetched_at": "2025-08-31T10:11:25.093348+00:00",
+        "category": "world"
+      },
+      {
+        "id": "1eccd177d076",
+        "title": "Chicago mayor signs order to resist potential Trump crackdown",
+        "url": "https://www.bbc.com/news/articles/czr6d5jm50do?at_medium=RSS&at_campaign=rss",
+        "description": "The order is the latest chapter in an escalating feud between the White House and Illinois state officials over violent crime and immigration.",
+        "source": "BBC World News",
+        "published": "2025-08-30T23:34:44+00:00",
+        "fetched_at": "2025-08-31T10:11:25.093376+00:00",
+        "category": "world"
+      },
+      {
+        "id": "0f4ca09888b1",
+        "title": "Russia launches massive attack on Ukraine, as Kyiv hits oil refineries",
+        "url": "https://www.bbc.com/news/articles/c4g614x9kqko?at_medium=RSS&at_campaign=rss",
+        "description": "Russia hits 14 Ukrainian regions, Kyiv says, with at least one person reported killed and 30 injured.",
+        "source": "BBC World News",
+        "published": "2025-08-30T15:37:54+00:00",
+        "fetched_at": "2025-08-31T10:11:25.093409+00:00",
+        "category": "world"
+      },
       {
         "id": "8ba23f758045",
         "title": "Three dead after protests over death of taxi driver in Indonesia",
         "url": "https://www.bbc.com/news/articles/cjw6el72xd4o?at_medium=RSS&at_campaign=rss",
         "description": "The demonstrations - which also focus on cost-of-living and politicians expenses - are seen as a key test for President Prabowo Subianto.",
         "source": "BBC World News",
-        "published": "2025-08-30T05:53:43+00:00",
-        "fetched_at": "2025-08-30T12:16:25.913563+00:00",
-        "category": "world"
-      },
-      {
-        "id": "ce95c71d66b3",
-        "title": "Kim meets families of North Korea soldiers killed fighting for Russia against Ukraine",
-        "url": "https://www.bbc.com/news/articles/cdj2v7n0101o?at_medium=RSS&at_campaign=rss",
-        "description": "Kim Jong Un met the families of North Korean soldiers killed fighting for Russia against Ukraine.",
-        "source": "BBC World News",
-        "published": "2025-08-30T10:49:04+00:00",
-        "fetched_at": "2025-08-30T12:16:25.913591+00:00",
-        "category": "world"
-      },
-      {
-        "id": "461cd313dcee",
-        "title": "White House defends Robert F Kennedy Jr amid CDC turmoil",
-        "url": "https://www.bbc.com/news/articles/cedv3gg3x6xo?at_medium=RSS&at_campaign=rss",
-        "description": "The Centers for Disease Control had several top officials depart recently, leading to calls for the health secretary's resignation.",
-        "source": "BBC World News",
-        "published": "2025-08-29T23:37:32+00:00",
-        "fetched_at": "2025-08-30T12:16:25.913624+00:00",
-        "category": "world"
-      },
-      {
-        "id": "71a9e0c4278a",
-        "title": "Sexist Italian image-sharing website forced to shut after political outcry",
-        "url": "https://www.bbc.com/news/articles/c04r07n7dqyo?at_medium=RSS&at_campaign=rss",
-        "description": "Leading Italian politicians spoke out against the site, which blamed the \"toxic\" behaviour of its users.",
-        "source": "BBC World News",
-        "published": "2025-08-29T17:49:51+00:00",
-        "fetched_at": "2025-08-30T12:16:25.913651+00:00",
-        "category": "world"
-      },
-      {
-        "id": "fee486164d47",
-        "title": "Why has Kamala Harris' security detail been withdrawn?",
-        "url": "https://www.bbc.com/news/articles/ceqy3jnl39do?at_medium=RSS&at_campaign=rss",
-        "description": "The overstretched Secret Service is required to provide 6 months of protection to former vice-presidents.",
-        "source": "BBC World News",
-        "published": "2025-08-29T18:15:21+00:00",
-        "fetched_at": "2025-08-30T12:16:25.913678+00:00",
+        "published": "2025-08-30T18:38:46+00:00",
+        "fetched_at": "2025-08-31T10:11:25.093437+00:00",
         "category": "world"
       }
     ]
@@ -108,111 +108,70 @@
   "tech": {
     "top_stories": [
       {
-        "id": "2584484d0a38",
-        "title": "Cracks are forming in Meta’s partnership with Scale AI",
-        "url": "https://techcrunch.com/2025/08/29/cracks-are-forming-in-metas-partnership-with-scale-ai/",
-        "description": "Two months after making a $14.3B investment in Scale AI, Meta is relying heavily on its competitors to train next generation AI models.",
+        "id": "3f3d1fdd2199",
+        "title": "Nvidia says two mystery customers accounted for 39% of Q2 revenue",
+        "url": "https://techcrunch.com/2025/08/30/nvidia-says-two-mystery-customers-accounted-for-39-of-q2-revenue/",
+        "description": "Nearly 40% of Nvidia’s second quarter revenue came from just two companies, identified in a filing as \"Customer A\" and \"Customer B.\"",
         "source": "TechCrunch",
-        "published": "2025-08-30T01:34:05+00:00",
-        "fetched_at": "2025-08-30T12:16:28.750476+00:00",
+        "published": "2025-08-30T21:40:49+00:00",
+        "fetched_at": "2025-08-31T10:11:27.757634+00:00",
         "category": "tech"
       },
       {
-        "id": "45dcf9bf5864",
-        "title": "Spotlight on AI at TechCrunch Disrupt: Don’t miss these sessions backed by JetBrains and Greenfield",
-        "url": "https://techcrunch.com/2025/08/29/spotlight-on-ai-at-techcrunch-disrupt-dont-miss-these-sessions-backed-by-jetbrains-and-greenfield/",
-        "description": "TechCrunch Disrupt isn’t just about showcasing the startups of tomorrow — it’s also about surfacing the boldest ideas shaping technology today.",
+        "id": "d08f2822c649",
+        "title": "Taco Bell is having second thoughts about relying on AI at the drive-through",
+        "url": "https://techcrunch.com/2025/08/30/taco-bell-is-having-second-thoughts-about-relying-on-ai-at-the-drive-through/",
+        "description": "Taco Bell has apparently rolled out voice AI-powered ordering at more than 500 drive-throughs, leading to unflattering viral moments like someone ordering 18,000 water cups in order to “bypass” the AI and get connected to a human server.",
         "source": "TechCrunch",
-        "published": "2025-08-29T21:05:00+00:00",
-        "fetched_at": "2025-08-30T12:16:28.750517+00:00",
+        "published": "2025-08-30T16:50:00+00:00",
+        "fetched_at": "2025-08-31T10:11:27.757675+00:00",
         "category": "tech"
       },
       {
-        "id": "9f6d67d63eb1",
-        "title": "TikTok now lets users send voice notes and images in DMs",
-        "url": "https://techcrunch.com/2025/08/29/tiktok-now-lets-users-send-voice-notes-and-images-in-dms/",
-        "description": "The new capabilities bring TikTok’s messaging experience more in line with that of other popular social apps and services.",
+        "id": "2b609d97c6dc",
+        "title": "The fall of EV startup Fisker: A comprehensive timeline",
+        "url": "https://techcrunch.com/2025/08/30/the-fall-of-ev-startup-fisker-a-comprehensive-timeline/",
+        "description": "Here is a timeline of the events that led fledgling automaker Fisker to file for bankruptcy.",
         "source": "TechCrunch",
-        "published": "2025-08-29T19:15:08+00:00",
-        "fetched_at": "2025-08-30T12:16:28.750549+00:00",
+        "published": "2025-08-30T16:34:12+00:00",
+        "fetched_at": "2025-08-31T10:11:27.757705+00:00",
         "category": "tech"
       },
       {
-        "id": "9b1cea6d59d8",
-        "title": "Uber and Lyft drivers in California win a path to unionization",
-        "url": "https://techcrunch.com/2025/08/29/uber-and-lyft-drivers-in-california-win-a-path-to-unionization/",
-        "description": "The agreement creates a model for drivers to be able to organize for increased pay, job protections, and other benefits. In exchange, California regulators say they’ll support legislation to reduce expensive insurance coverage mandates that ride-hailing companies have to pay.",
+        "id": "d2627cf476f7",
+        "title": "I’m really impressed with this $400 portable projector",
+        "url": "https://techcrunch.com/2025/08/30/im-really-impressed-with-this-400-portable-projector/",
+        "description": "Projectors have come a long way and this portable one from Lumi offers impressive features, like Google TV and an obstacle avoidance function.",
         "source": "TechCrunch",
-        "published": "2025-08-29T18:53:54+00:00",
-        "fetched_at": "2025-08-30T12:16:28.750581+00:00",
+        "published": "2025-08-30T13:00:00+00:00",
+        "fetched_at": "2025-08-31T10:11:27.757737+00:00",
         "category": "tech"
       },
       {
-        "id": "992e7a266033",
-        "title": "Tesla challenges $243 million verdict in Autopilot death trial",
-        "url": "https://techcrunch.com/2025/08/29/tesla-challenges-243-million-verdict-in-autopilot-death-trial/",
-        "description": "The company's lawyers blame the driver (who settled with the victims separately) for the crash, and the plaintiffs' lawyers for \"overwhelming\" the jury with \"irrelevant evidence.\"",
-        "source": "TechCrunch",
-        "published": "2025-08-29T18:37:03+00:00",
-        "fetched_at": "2025-08-30T12:16:28.750609+00:00",
+        "id": "a6bb13842b0c",
+        "title": "Texas suit alleging anti-coal “cartel” of top Wall Street firms could reshape ESG",
+        "url": "https://arstechnica.com/science/2025/08/texas-suit-alleging-anti-coal-cartel-of-top-wall-street-firms-could-reshape-esg/",
+        "description": "It’s a closely watched test of whether corporate alliances on climate efforts violate antitrust laws.",
+        "source": "Ars Technica",
+        "published": "2025-08-30T11:00:52+00:00",
+        "fetched_at": "2025-08-31T10:11:30.107517+00:00",
         "category": "tech"
       }
     ],
-    "quick_reads": [
-      {
-        "id": "77b54a50edc2",
-        "title": "WhatsApp fixes ‘zero-click’ bug used to hack Apple users with spyware",
-        "url": "https://techcrunch.com/2025/08/29/whatsapp-fixes-zero-click-bug-used-to-hack-apple-users-with-spyware/",
-        "description": "A spyware vendor was behind a recent campaign that abused a vulnerability in WhatsApp to deliver an exploit capable of hacking into iPhones and Macs.",
-        "source": "TechCrunch",
-        "published": "2025-08-29T18:15:55+00:00",
-        "fetched_at": "2025-08-30T12:16:28.750639+00:00",
-        "category": "tech"
-      },
-      {
-        "id": "7dc8a8680dd9",
-        "title": "Meta updates chatbot rules to avoid inappropriate topics with teen users",
-        "url": "https://techcrunch.com/2025/08/29/meta-updates-chatbot-rules-to-avoid-inappropriate-topics-with-teen-users/",
-        "description": "After a bombshell report on Meta allowing its AI chatbots to have sensual chats with minors, the company is updating its policies.",
-        "source": "TechCrunch",
-        "published": "2025-08-29T17:04:17+00:00",
-        "fetched_at": "2025-08-30T12:16:28.750667+00:00",
-        "category": "tech"
-      },
-      {
-        "id": "dee630378652",
-        "title": "Mastodon says it doesn’t ‘have the means’ to comply with age verification laws",
-        "url": "https://techcrunch.com/2025/08/29/mastodon-says-it-doesnt-have-the-means-to-comply-with-age-verification-laws/",
-        "description": "Decentralized social network Mastodon says it cannot comply with age verification laws, like in Mississippi and elsewhere, and says it's up to individual server owners to decide.",
-        "source": "TechCrunch",
-        "published": "2025-08-29T15:50:11+00:00",
-        "fetched_at": "2025-08-30T12:16:28.750697+00:00",
-        "category": "tech"
-      },
-      {
-        "id": "49fcd7c47f99",
-        "title": "Henrik Fisker quietly wound down his nonprofit after his EV startup went bankrupt",
-        "url": "https://techcrunch.com/2025/08/29/henrik-fisker-quietly-wound-down-his-nonprofit-after-his-ev-startup-went-bankrupt/",
-        "description": "The brief existence of the Fiskers' foundation is another example of how the boom of electric vehicle startups in the 2020s helped fuel a rush of wide-eyed optimism.",
-        "source": "TechCrunch",
-        "published": "2025-08-29T15:47:01+00:00",
-        "fetched_at": "2025-08-30T12:16:28.750726+00:00",
-        "category": "tech"
-      },
-      {
-        "id": "bd336e2d1510",
-        "title": "ChatGPT: Everything you need to know about the AI-powered chatbot",
-        "url": "https://techcrunch.com/2025/08/29/chatgpt-everything-to-know-about-the-ai-chatbot/",
-        "description": "A timeline of ChatGPT product updates and releases, starting with the latest, which we’ve been updating throughout the year.",
-        "source": "TechCrunch",
-        "published": "2025-08-29T15:46:27+00:00",
-        "fetched_at": "2025-08-30T12:16:28.750754+00:00",
-        "category": "tech"
-      }
-    ]
+    "quick_reads": []
   },
   "finance": {
     "top_stories": [
+      {
+        "id": "46ef28aef341",
+        "title": "CDC asks all staff to return to office Sept. 15, five weeks after shooting at headquarters",
+        "url": "https://www.cnbc.com/2025/08/30/cdc-asks-all-staff-to-return-to-office-sept-15-after-hq-shooting.html",
+        "description": "The internal announcement comes at a tumultuous time for the CDC and its workforce, which is still reeling from the shooting on Aug. 8.",
+        "source": "CNBC Finance",
+        "published": "2025-08-30T16:36:05+00:00",
+        "fetched_at": "2025-08-31T10:11:33.707502+00:00",
+        "category": "finance"
+      },
       {
         "id": "e0b31ec41eb3",
         "title": "From ‘cheap food and curry houses’ to upscale dining: The rise of Indian restaurants in the U.S.",
@@ -220,17 +179,7 @@
         "description": "Upscale Indian dining in the U.S. has seen a recent boom with restaurants like Semma and Bungalow riding the wave of increased interest in global cuisine.",
         "source": "CNBC Finance",
         "published": "2025-08-30T12:00:01+00:00",
-        "fetched_at": "2025-08-30T12:16:34.582421+00:00",
-        "category": "finance"
-      },
-      {
-        "id": "8857f8e98a6f",
-        "title": "Spirit Airlines files for Chapter 11 bankruptcy protection for the second time in a year",
-        "url": "https://www.cnbc.com/2025/08/29/spirit-airlines-chapter-11-bankruptcy.html",
-        "description": "Spirit Airlines filed for bankruptcy protection again, just months after the budget carrier came out of Chapter 11 protection earlier this year.",
-        "source": "CNBC Finance",
-        "published": "2025-08-29T21:56:21+00:00",
-        "fetched_at": "2025-08-30T12:16:34.582458+00:00",
+        "fetched_at": "2025-08-31T10:11:33.707541+00:00",
         "category": "finance"
       },
       {
@@ -239,42 +188,11 @@
         "url": "https://www.cnbc.com/2025/08/29/retail-impact-de-minimis-exemption-ends-globally.html",
         "description": "The de minimis exemption, an obscure trade law provision, came to an end globally on Friday, setting off a panic across the retail industry.",
         "source": "CNBC Finance",
-        "published": "2025-08-29T15:02:37+00:00",
-        "fetched_at": "2025-08-30T12:16:34.582488+00:00",
-        "category": "finance"
-      },
-      {
-        "id": "a78c072b6bec",
-        "title": "Trophy-property ranches hit the market as more heirs choose to sell",
-        "url": "https://www.cnbc.com/2025/08/29/luxury-real-estate-ranch-montana-wyoming-california.html",
-        "description": "Massive ranches are commanding eight-figure price tags after hitting the market for the first time in decades or generations.",
-        "source": "CNBC Finance",
-        "published": "2025-08-29T17:27:53+00:00",
-        "fetched_at": "2025-08-30T12:16:34.582517+00:00",
-        "category": "finance"
-      },
-      {
-        "id": "a590134b4dc3",
-        "title": "Inaugural Essence HBCU Classic football game to kick off Saturday in Boston",
-        "url": "https://www.cnbc.com/2025/08/29/inaugural-essence-hbcu-classic-football-game.html",
-        "description": "The inaugural match-up is between with the Morehouse College Maroon Tigers and the Johnson C. Smith University Golden Bulls at Harvard Stadium on Saturday.",
-        "source": "CNBC Finance",
-        "published": "2025-08-29T19:25:41+00:00",
-        "fetched_at": "2025-08-30T12:16:34.582546+00:00",
+        "published": "2025-08-30T12:59:27+00:00",
+        "fetched_at": "2025-08-31T10:11:33.707599+00:00",
         "category": "finance"
       }
     ],
-    "quick_reads": [
-      {
-        "id": "b57871a516a9",
-        "title": "Americans expected to bet record $30 billion on the 2025 NFL season legally",
-        "url": "https://www.cnbc.com/2025/08/29/american-sports-betting-2025-nfl-season-football.html",
-        "description": "The record legal gambling comes as prosecutors are starting to crack down on unlicensed sportsbooks.",
-        "source": "CNBC Finance",
-        "published": "2025-08-29T16:10:24+00:00",
-        "fetched_at": "2025-08-30T12:16:34.582576+00:00",
-        "category": "finance"
-      }
-    ]
+    "quick_reads": []
   }
 }

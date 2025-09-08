@@ -27,7 +27,7 @@
         }
         
         .header {
-            background-image: url('assets/mt_kalash.png');
+            background-image: url('assets/mt_kalash_resize.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -208,6 +208,107 @@
             font-size: 1rem;
         }
         
+        .fx-box {
+            margin: 1rem 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #17a2b8;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .fx-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .fx-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 0;
+        }
+        
+        .fx-timestamp {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+        
+        .fx-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.75rem;
+        }
+        
+        .fx-rate {
+            text-align: center;
+            padding: 0.5rem;
+            background: white;
+            border-radius: 4px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .fx-pair {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 0.25rem;
+        }
+        
+        .fx-value {
+            font-size: 0.95rem;
+            color: #17a2b8;
+            font-weight: 500;
+        }
+        
+        .fx-changes {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            gap: 0.5rem;
+        }
+        
+        .fx-change {
+            font-weight: 500;
+        }
+        
+        .fx-change.positive {
+            color: #28a745;
+        }
+        
+        .fx-change.negative {
+            color: #dc3545;
+        }
+        
+        .fx-change.neutral {
+            color: #6c757d;
+        }
+        
+        @media (max-width: 600px) {
+            .fx-box {
+                margin: 1rem;
+                padding: 1rem;
+            }
+            
+            .fx-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: 0.5rem;
+            }
+            
+            .fx-changes {
+                flex-direction: column;
+                gap: 0.25rem;
+                align-items: center;
+            }
+            
+            .fx-change {
+                font-size: 0.75rem;
+            }
+        }
+        
         @media (max-width: 600px) {
             .container {
                 margin: 0;
@@ -239,10 +340,11 @@
         <div class="header">
             <h1>Daily News Feed</h1>
             <div class="date">August 31, 2025</div>
-            <div class="last-updated">Last Updated: 31 Aug 2025, 12:16 AM NZST</div>
+            <div class="last-updated">Last Updated: 31 Aug 2025, 10:12 PM NZST</div>
         </div>
         
-        <div class="content"><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/cjw6ep37469o?at_medium=RSS&at_campaign=rss" target="_blank">Prominent Ukrainian politician Andriy Parubiy shot dead in Lviv</a></div></div><div class="article-meta">BBC World News • 30 Aug 2025, 11:34 PM NZST</div></div><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/c4gz1ekdee3o?at_medium=RSS&at_campaign=rss" target="_blank">Barrier being built around besieged Sudan city, satellite images show</a></div></div><div class="article-meta">BBC World News • 30 Aug 2025, 1:02 PM NZST</div></div><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/cjdym32z9v7o?at_medium=RSS&at_campaign=rss" target="_blank">US blocks Palestinian leader from attending UN meeting in New York</a></div></div><div class="article-meta">BBC World News • 30 Aug 2025, 7:22 PM NZST</div></div><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/ckgj7jxkq58o?at_medium=RSS&at_campaign=rss" target="_blank">US court rules many of Trump's global tariffs are illegal</a></div></div><div class="article-meta">BBC World News • 30 Aug 2025, 12:57 PM NZST</div></div><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/sport/football/articles/c2l74klqpkwo?at_medium=RSS&at_campaign=rss" target="_blank">Mussolini's great-grandson makes Serie A debut</a></div></div><div class="article-meta">BBC World News • 30 Aug 2025, 9:19 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/29/cracks-are-forming-in-metas-partnership-with-scale-ai/" target="_blank">Cracks are forming in Meta’s partnership with Scale AI</a></div></div><div class="article-meta">TechCrunch • 30 Aug 2025, 1:34 PM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/29/spotlight-on-ai-at-techcrunch-disrupt-dont-miss-these-sessions-backed-by-jetbrains-and-greenfield/" target="_blank">Spotlight on AI at TechCrunch Disrupt: Don’t miss these sessions backed by JetBrains and Greenfield</a></div></div><div class="article-meta">TechCrunch • 30 Aug 2025, 9:05 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/29/tiktok-now-lets-users-send-voice-notes-and-images-in-dms/" target="_blank">TikTok now lets users send voice notes and images in DMs</a></div></div><div class="article-meta">TechCrunch • 30 Aug 2025, 7:15 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/29/uber-and-lyft-drivers-in-california-win-a-path-to-unionization/" target="_blank">Uber and Lyft drivers in California win a path to unionization</a></div></div><div class="article-meta">TechCrunch • 30 Aug 2025, 6:53 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/29/tesla-challenges-243-million-verdict-in-autopilot-death-trial/" target="_blank">Tesla challenges $243 million verdict in Autopilot death trial</a></div></div><div class="article-meta">TechCrunch • 30 Aug 2025, 6:37 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge finance">Markets & Finance</span><div class="article-title"><a href="https://www.cnbc.com/2025/08/30/upscale-indian-restaurants-us.html" target="_blank">From ‘cheap food and curry houses’ to upscale dining: The rise of Indian restaurants in the U.S.</a></div></div><div class="article-meta">CNBC Finance • 31 Aug 2025, 12:00 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge finance">Markets & Finance</span><div class="article-title"><a href="https://www.cnbc.com/2025/08/29/spirit-airlines-chapter-11-bankruptcy.html" target="_blank">Spirit Airlines files for Chapter 11 bankruptcy protection for the second time in a year</a></div></div><div class="article-meta">CNBC Finance • 30 Aug 2025, 9:56 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge finance">Markets & Finance</span><div class="article-title"><a href="https://www.cnbc.com/2025/08/29/retail-impact-de-minimis-exemption-ends-globally.html" target="_blank">Retail panic: What the end of the 'de minimis' exemption means for brands across the globe</a></div></div><div class="article-meta">CNBC Finance • 30 Aug 2025, 3:02 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge finance">Markets & Finance</span><div class="article-title"><a href="https://www.cnbc.com/2025/08/29/luxury-real-estate-ranch-montana-wyoming-california.html" target="_blank">Trophy-property ranches hit the market as more heirs choose to sell</a></div></div><div class="article-meta">CNBC Finance • 30 Aug 2025, 5:27 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge finance">Markets & Finance</span><div class="article-title"><a href="https://www.cnbc.com/2025/08/29/inaugural-essence-hbcu-classic-football-game.html" target="_blank">Inaugural Essence HBCU Classic football game to kick off Saturday in Boston</a></div></div><div class="article-meta">CNBC Finance • 30 Aug 2025, 7:25 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/29/whatsapp-fixes-zero-click-bug-used-to-hack-apple-users-with-spyware/" target="_blank">WhatsApp fixes ‘zero-click’ bug used to hack Apple users with spyware</a></div></div><div class="article-meta">TechCrunch • 30 Aug 2025, 6:15 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/29/meta-updates-chatbot-rules-to-avoid-inappropriate-topics-with-teen-users/" target="_blank">Meta updates chatbot rules to avoid inappropriate topics with teen users</a></div></div><div class="article-meta">TechCrunch • 30 Aug 2025, 5:04 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/29/mastodon-says-it-doesnt-have-the-means-to-comply-with-age-verification-laws/" target="_blank">Mastodon says it doesn’t ‘have the means’ to comply with age verification laws</a></div></div><div class="article-meta">TechCrunch • 30 Aug 2025, 3:50 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/29/henrik-fisker-quietly-wound-down-his-nonprofit-after-his-ev-startup-went-bankrupt/" target="_blank">Henrik Fisker quietly wound down his nonprofit after his EV startup went bankrupt</a></div></div><div class="article-meta">TechCrunch • 30 Aug 2025, 3:47 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/29/chatgpt-everything-to-know-about-the-ai-chatbot/" target="_blank">ChatGPT: Everything you need to know about the AI-powered chatbot</a></div></div><div class="article-meta">TechCrunch • 30 Aug 2025, 3:46 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/cjw6el72xd4o?at_medium=RSS&at_campaign=rss" target="_blank">Three dead after protests over death of taxi driver in Indonesia</a></div></div><div class="article-meta">BBC World News • 30 Aug 2025, 5:53 PM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/cdj2v7n0101o?at_medium=RSS&at_campaign=rss" target="_blank">Kim meets families of North Korea soldiers killed fighting for Russia against Ukraine</a></div></div><div class="article-meta">BBC World News • 30 Aug 2025, 10:49 PM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/cedv3gg3x6xo?at_medium=RSS&at_campaign=rss" target="_blank">White House defends Robert F Kennedy Jr amid CDC turmoil</a></div></div><div class="article-meta">BBC World News • 30 Aug 2025, 11:37 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/c04r07n7dqyo?at_medium=RSS&at_campaign=rss" target="_blank">Sexist Italian image-sharing website forced to shut after political outcry</a></div></div><div class="article-meta">BBC World News • 30 Aug 2025, 5:49 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/ceqy3jnl39do?at_medium=RSS&at_campaign=rss" target="_blank">Why has Kamala Harris' security detail been withdrawn?</a></div></div><div class="article-meta">BBC World News • 30 Aug 2025, 6:15 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge finance">Markets & Finance</span><div class="article-title"><a href="https://www.cnbc.com/2025/08/29/american-sports-betting-2025-nfl-season-football.html" target="_blank">Americans expected to bet record $30 billion on the 2025 NFL season legally</a></div></div><div class="article-meta">CNBC Finance • 30 Aug 2025, 4:10 AM NZST</div></div></div>
+        <div class="fx-box"><div class="fx-header"><h3 class="fx-title">Exchange Rates</h3><div class="fx-timestamp">31 Aug 2025, 10:12 PM</div></div><div class="fx-grid"><div class="fx-rate"><div class="fx-pair">NZD/USD</div><div class="fx-value">0.5783</div><div class="fx-changes"><span class="fx-change negative">24h -1.9%</span><span class="fx-change negative">7d -0.2%</span><span class="fx-change negative">30d -3.0%</span></div></div><div class="fx-rate"><div class="fx-pair">NZD/AUD</div><div class="fx-value">0.8881</div><div class="fx-changes"><span class="fx-change negative">24h -3.2%</span><span class="fx-change negative">7d -3.1%</span><span class="fx-change negative">30d -2.6%</span></div></div><div class="fx-rate"><div class="fx-pair">NZD/INR</div><div class="fx-value">52.43</div><div class="fx-changes"><span class="fx-change negative">24h -0.7%</span><span class="fx-change positive">7d +1.9%</span><span class="fx-change positive">30d +2.7%</span></div></div><div class="fx-rate"><div class="fx-pair">NZD/CNY</div><div class="fx-value">4.2441</div><div class="fx-changes"><span class="fx-change positive">24h +0.9%</span><span class="fx-change positive">7d +2.5%</span><span class="fx-change neutral">30d -0.1%</span></div></div></div></div>
+        <div class="content"><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/clyrwv0egzro?at_medium=RSS&at_campaign=rss" target="_blank">China and India pledge to be 'partners not rivals'</a></div></div><div class="article-meta">BBC World News • 31 Aug 2025, 9:14 PM NZST</div></div><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/c0mlen3grx7o?at_medium=RSS&at_campaign=rss" target="_blank">Reeling from Trump's tariffs, India and China seek a business reboot</a></div></div><div class="article-meta">BBC World News • 31 Aug 2025, 5:02 PM NZST</div></div><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/czjmre371l1o?at_medium=RSS&at_campaign=rss" target="_blank">Thousands attend Australia anti-immigration rallies</a></div></div><div class="article-meta">BBC World News • 31 Aug 2025, 9:29 PM NZST</div></div><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/c620ykrxedwo?at_medium=RSS&at_campaign=rss" target="_blank">Houthis confirm their prime minister killed in Israeli strike</a></div></div><div class="article-meta">BBC World News • 31 Aug 2025, 8:39 AM NZST</div></div><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/cjw6ep37469o?at_medium=RSS&at_campaign=rss" target="_blank">Prominent Ukrainian politician Andriy Parubiy shot dead in Lviv</a></div></div><div class="article-meta">BBC World News • 31 Aug 2025, 4:41 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/30/nvidia-says-two-mystery-customers-accounted-for-39-of-q2-revenue/" target="_blank">Nvidia says two mystery customers accounted for 39% of Q2 revenue</a></div></div><div class="article-meta">TechCrunch • 31 Aug 2025, 9:40 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/30/taco-bell-is-having-second-thoughts-about-relying-on-ai-at-the-drive-through/" target="_blank">Taco Bell is having second thoughts about relying on AI at the drive-through</a></div></div><div class="article-meta">TechCrunch • 31 Aug 2025, 4:50 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/30/the-fall-of-ev-startup-fisker-a-comprehensive-timeline/" target="_blank">The fall of EV startup Fisker: A comprehensive timeline</a></div></div><div class="article-meta">TechCrunch • 31 Aug 2025, 4:34 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/08/30/im-really-impressed-with-this-400-portable-projector/" target="_blank">I’m really impressed with this $400 portable projector</a></div></div><div class="article-meta">TechCrunch • 31 Aug 2025, 1:00 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://arstechnica.com/science/2025/08/texas-suit-alleging-anti-coal-cartel-of-top-wall-street-firms-could-reshape-esg/" target="_blank">Texas suit alleging anti-coal “cartel” of top Wall Street firms could reshape ESG</a></div></div><div class="article-meta">Ars Technica • 30 Aug 2025, 11:00 PM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge finance">Markets & Finance</span><div class="article-title"><a href="https://www.cnbc.com/2025/08/30/cdc-asks-all-staff-to-return-to-office-sept-15-after-hq-shooting.html" target="_blank">CDC asks all staff to return to office Sept. 15, five weeks after shooting at headquarters</a></div></div><div class="article-meta">CNBC Finance • 31 Aug 2025, 4:36 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge finance">Markets & Finance</span><div class="article-title"><a href="https://www.cnbc.com/2025/08/30/upscale-indian-restaurants-us.html" target="_blank">From ‘cheap food and curry houses’ to upscale dining: The rise of Indian restaurants in the U.S.</a></div></div><div class="article-meta">CNBC Finance • 31 Aug 2025, 12:00 AM NZST</div></div><div class="article key"><div class="article-header"><span class="category-badge finance">Markets & Finance</span><div class="article-title"><a href="https://www.cnbc.com/2025/08/29/retail-impact-de-minimis-exemption-ends-globally.html" target="_blank">Retail panic: What the end of the 'de minimis' exemption means for brands across the globe</a></div></div><div class="article-meta">CNBC Finance • 31 Aug 2025, 12:59 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/cev23vrzx0ro?at_medium=RSS&at_campaign=rss" target="_blank">French voice fears over Bayeux Tapestry move to UK</a></div></div><div class="article-meta">BBC World News • 31 Aug 2025, 12:37 PM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/ckg4rnr720yo?at_medium=RSS&at_campaign=rss" target="_blank">Thousands demonstrate across Mexico for the 130,000 missing</a></div></div><div class="article-meta">BBC World News • 31 Aug 2025, 3:58 PM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/czr6d5jm50do?at_medium=RSS&at_campaign=rss" target="_blank">Chicago mayor signs order to resist potential Trump crackdown</a></div></div><div class="article-meta">BBC World News • 31 Aug 2025, 11:34 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/c4g614x9kqko?at_medium=RSS&at_campaign=rss" target="_blank">Russia launches massive attack on Ukraine, as Kyiv hits oil refineries</a></div></div><div class="article-meta">BBC World News • 31 Aug 2025, 3:37 AM NZST</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/cjw6el72xd4o?at_medium=RSS&at_campaign=rss" target="_blank">Three dead after protests over death of taxi driver in Indonesia</a></div></div><div class="article-meta">BBC World News • 31 Aug 2025, 6:38 AM NZST</div></div></div>
         
         <div class="footer">
             <div class="mission">
