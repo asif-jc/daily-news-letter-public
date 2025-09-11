@@ -16,6 +16,133 @@ class NewsletterGenerator:
         nz_time = datetime.now(nz_tz)
         return nz_time.strftime('%Y-%m-%d')
     
+    def load_quiz_data(self, quiz_path: str = 'data/loading/quiz_today.json') -> Dict:
+        """
+        Load quiz data from JSON file.
+        Returns empty dict if file not found or invalid.
+        """
+        try:
+            if not os.path.exists(quiz_path):
+                print(f"Quiz data not found at {quiz_path}")
+                return {}
+            
+            with open(quiz_path, 'r', encoding='utf-8') as f:
+                quiz_data = json.load(f)
+            
+            print(f"Loaded quiz data: {len(quiz_data.get('questions', []))} questions")
+            return quiz_data
+        except Exception as e:
+            print(f"Error loading quiz data: {e}")
+            return {}
+    
+    def generate_quiz_section(self, quiz_data: Dict) -> str:
+        """
+        Generate daily quiz section with inline answers for bottom of newsletter.
+        Returns empty string if no quiz data available.
+        """
+        if not quiz_data or not quiz_data.get('questions'):
+            print("No quiz data available for newsletter")
+            return ''
+        
+        questions = quiz_data['questions']
+        metadata = quiz_data.get('metadata', {})
+        
+        # Create quiz header with metadata
+        html = '<div class="quiz-box">'
+        html += '<div class="quiz-header">'
+        html += '<h3 class="quiz-title">Daily Knowledge Quiz</h3>'
+        html += '<div class="quiz-meta">'
+        
+        if metadata.get('generated_with_llm'):
+            html += 'AI Generated • '
+        html += f"{len(questions)} Questions • {metadata.get('difficulty', 'medium').title()} Level"
+        html += '</div>'
+        html += '</div>'
+        
+        # Add intro note
+        html += '<p style="margin-bottom: 1.5rem; color: #6c757d; font-size: 0.9rem;">'
+        html += 'Test your knowledge across geography, STEM, history, and general topics. '
+        html += 'Click "Show Answer" to reveal the solution with explanation.'
+        html += '</p>'
+        
+        # Generate ALL questions with inline answers
+        for i, question in enumerate(questions, 1):
+            html += '<div class="quiz-question">'
+            
+            # Question header with number and category
+            html += '<div class="quiz-question-header">'
+            html += f'<span class="quiz-question-number">{i}</span>'
+            html += f'<span class="quiz-category">{question.get("category", "General")}</span>'
+            html += '</div>'
+            
+            # Question text
+            html += f'<div class="quiz-question-text">{question.get("question", "Question not available")}</div>'
+            
+            # Options
+            html += '<div class="quiz-options">'
+            for option in question.get('options', []):
+                html += f'<div class="quiz-option">{option}</div>'
+            html += '</div>'
+            
+            # Reveal answer button
+            html += f'<button class="quiz-reveal-button" id="reveal-{i}" onclick="revealAnswer({i})">Show Answer</button>'
+            
+            # Hidden answer section
+            html += f'<div class="quiz-answer-section" id="answer-{i}">'
+            html += f'<div class="quiz-correct-answer">Answer: {question.get("correct_answer", "Not available")}</div>'
+            if question.get('explanation'):
+                html += f'<div class="quiz-explanation">{question["explanation"]}</div>'
+            html += '</div>'
+            
+            html += '</div>'  # quiz-question
+        
+        html += '</div>'  # quiz-box
+        
+        return html
+    
+    def generate_content_overview(self, data: Dict, quiz_data: Dict) -> str:
+        """
+        Generate overview of newsletter contents at the top.
+        """
+        # Count content items
+        total_top_stories = sum(len(cat.get('top_stories', [])) for cat in data.values())
+        total_quick_reads = sum(len(cat.get('quick_reads', [])) for cat in data.values())
+        quiz_questions = len(quiz_data.get('questions', []))
+        
+        html = '<div class="content-overview">'
+        html += '<div class="overview-title">Today\'s Newsletter</div>'
+        html += '<div class="overview-grid">'
+        
+        # Top stories
+        html += '<div class="overview-item">'
+        html += f'<span class="overview-count">{total_top_stories}</span> '
+        html += '<span class="overview-type">Priority Stories</span>'
+        html += '</div>'
+        
+        # Quick reads
+        html += '<div class="overview-item">'
+        html += f'<span class="overview-count">{total_quick_reads}</span> '
+        html += '<span class="overview-type">Quick Updates</span>'
+        html += '</div>'
+        
+        # Market data
+        html += '<div class="overview-item">'
+        html += '<span class="overview-count">FX & Markets</span> '
+        html += '<span class="overview-type">Live Data</span>'
+        html += '</div>'
+        
+        # Quiz
+        if quiz_questions > 0:
+            html += '<div class="overview-item">'
+            html += f'<span class="overview-count">{quiz_questions}</span> '
+            html += '<span class="overview-type">Knowledge Quiz</span>'
+            html += '</div>'
+        
+        html += '</div>'
+        html += '</div>'
+        
+        return html
+    
     def load_curated_data(self, json_path: str = 'data/loading/newsletter_curated.json') -> Dict:
         """Load curated newsletter data from JSON file"""
         with open(json_path, 'r', encoding='utf-8') as f:
@@ -43,6 +170,7 @@ class NewsletterGenerator:
     def generate_html(self, json_path: str = 'data/loading/newsletter_curated.json') -> str:
         """Generate complete HTML newsletter from JSON data"""
         data = self.load_curated_data(json_path)
+        quiz_data = self.load_quiz_data()
         date = self.get_nz_date()
         
         html = f"""<!DOCTYPE html>
@@ -58,9 +186,11 @@ class NewsletterGenerator:
 <body>
     <div class="container">
         {self.generate_header(date)}
+        {self.generate_content_overview(data, quiz_data)}
         {self.generate_fx_box()}
         {self.generate_market_box()}
         {self.generate_content(data)}
+        {self.generate_quiz_section(quiz_data)}
         {self.generate_footer()}
     </div>
     
@@ -78,6 +208,14 @@ class NewsletterGenerator:
                 category.classList.add('collapsed');
                 icon.textContent = '+';
             }}
+        }}
+        
+        function revealAnswer(questionId) {{
+            const answerDiv = document.getElementById(`answer-${{questionId}}`);
+            const button = document.getElementById(`reveal-${{questionId}}`);
+            
+            answerDiv.style.display = 'block';
+            button.style.display = 'none';
         }}
     </script>
 </body>
@@ -550,6 +688,175 @@ class NewsletterGenerator:
             background: rgba(108, 117, 125, 0.1);
         }
         
+        /* Content Overview Styles */
+        .content-overview {
+            margin: 1rem 2rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #6c757d;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .overview-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.75rem;
+        }
+        
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.75rem;
+        }
+        
+        .overview-item {
+            padding: 0.5rem 0.75rem;
+            background: white;
+            border-radius: 4px;
+            border: 1px solid #e9ecef;
+            font-size: 0.9rem;
+        }
+        
+        .overview-count {
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        .overview-type {
+            color: #6c757d;
+        }
+        
+        /* Updated Quiz Section Styles */
+        .quiz-box {
+            margin: 1rem 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #fd7e14;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .quiz-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 0;
+        }
+        
+        .quiz-meta {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+        
+        .quiz-question {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .quiz-question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+        
+        .quiz-question-number {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #fd7e14;
+            background: rgba(253, 126, 20, 0.1);
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            min-width: 2rem;
+            text-align: center;
+        }
+        
+        .quiz-category {
+            font-size: 0.75rem;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .quiz-question-text {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #2c3e50;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+        
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.5rem;
+        }
+        
+        .quiz-option {
+            padding: 0.5rem 0.75rem;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .quiz-option:hover {
+            background: #e9ecef;
+            border-color: #fd7e14;
+        }
+        
+        .quiz-reveal-button {
+            margin-top: 0.75rem;
+            padding: 0.5rem 1rem;
+            background: #fd7e14;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        
+        .quiz-reveal-button:hover {
+            background: #e66b02;
+        }
+        
+        .quiz-answer-section {
+            margin-top: 0.75rem;
+            padding: 0.75rem;
+            background: #fff5f0;
+            border-radius: 4px;
+            border: 1px solid #fd7e14;
+            display: none;
+        }
+        
+        .quiz-correct-answer {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 0.5rem;
+        }
+        
+        .quiz-explanation {
+            font-size: 0.9rem;
+            color: #6c757d;
+            line-height: 1.4;
+        }
+        
         @media (max-width: 600px) {
             .container {
                 margin: 0;
@@ -589,6 +896,26 @@ class NewsletterGenerator:
             
             .market-change {
                 text-align: left;
+            }
+            
+            .quiz-box {
+                margin: 1rem;
+                padding: 1rem;
+            }
+            
+            .quiz-options {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            
+            .content-overview {
+                margin: 1rem;
+                padding: 1rem;
+            }
+            
+            .overview-grid {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
             }
         }
         """

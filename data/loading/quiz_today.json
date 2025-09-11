@@ -1,0 +1,342 @@
+{
+  "date": "2025-09-11",
+  "metadata": {
+    "topics": [
+      "geography",
+      "STEM",
+      "history",
+      "general_knowledge"
+    ],
+    "difficulty": "hard",
+    "question_count": 25,
+    "generated_with_llm": true,
+    "generation_timestamp": "2025-09-11T07:59:22.846766+00:00"
+  },
+  "questions": [
+    {
+      "id": 1,
+      "question": "Which city served as the capital of the Byzantine Empire?",
+      "options": [
+        "Rome",
+        "Constantinople",
+        "Alexandria",
+        "Athens"
+      ],
+      "correct_answer": "Constantinople",
+      "category": "history",
+      "explanation": "Constantinople, now Istanbul, was the capital of the Byzantine Empire for over 1000 years."
+    },
+    {
+      "id": 2,
+      "question": "What is the name of the longest mountain range in the world?",
+      "options": [
+        "Himalayas",
+        "Andes",
+        "Rocky Mountains",
+        "Alps"
+      ],
+      "correct_answer": "Andes",
+      "category": "geography",
+      "explanation": "The Andes Mountains stretch over 7,000 km along the western coast of South America."
+    },
+    {
+      "id": 3,
+      "question": "What is the primary function of a mitochondrion in a cell?",
+      "options": [
+        "Protein synthesis",
+        "Waste disposal",
+        "Cellular respiration",
+        "DNA replication"
+      ],
+      "correct_answer": "Cellular respiration",
+      "category": "biology",
+      "explanation": "Mitochondria are the powerhouses of the cell, generating ATP through cellular respiration."
+    },
+    {
+      "id": 4,
+      "question": "Who wrote 'One Hundred Years of Solitude'?",
+      "options": [
+        "Gabriel Garcia Marquez",
+        "Pablo Neruda",
+        "Jorge Luis Borges",
+        "Mario Vargas Llosa"
+      ],
+      "correct_answer": "Gabriel Garcia Marquez",
+      "category": "literature",
+      "explanation": "Gabriel Garcia Marquez is a Nobel Prize-winning author known for his magical realism."
+    },
+    {
+      "id": 5,
+      "question": "Which planet in our solar system is known for its Great Red Spot?",
+      "options": [
+        "Mars",
+        "Jupiter",
+        "Saturn",
+        "Neptune"
+      ],
+      "correct_answer": "Jupiter",
+      "category": "astronomy",
+      "explanation": "The Great Red Spot is a giant anticyclonic storm on Jupiter."
+    },
+    {
+      "id": 6,
+      "question": "What is the name of the phenomenon where the Earth's magnetic poles reverse?",
+      "options": [
+        "Geomagnetic Reversal",
+        "Magnetic Declination",
+        "Magnetic Inclination",
+        "Polar Shift"
+      ],
+      "correct_answer": "Geomagnetic Reversal",
+      "category": "geology",
+      "explanation": "Geomagnetic reversals have occurred many times throughout Earth's history."
+    },
+    {
+      "id": 7,
+      "question": "What significant event occurred in 1989 that marked the end of the Cold War?",
+      "options": [
+        "The Cuban Missile Crisis",
+        "The Berlin Blockade",
+        "The Fall of the Berlin Wall",
+        "The Korean War"
+      ],
+      "correct_answer": "The Fall of the Berlin Wall",
+      "category": "history",
+      "explanation": "The fall of the Berlin Wall symbolized the end of the division of Germany and a major turning point in the Cold War."
+    },
+    {
+      "id": 8,
+      "question": "Which country is home to the world's largest rainforest?",
+      "options": [
+        "Brazil",
+        "Indonesia",
+        "Democratic Republic of Congo",
+        "Peru"
+      ],
+      "correct_answer": "Brazil",
+      "category": "geography",
+      "explanation": "The Amazon rainforest is primarily located in Brazil."
+    },
+    {
+      "id": 9,
+      "question": "What is the chemical formula for table salt?",
+      "options": [
+        "H₂O",
+        "NaCl",
+        "CO₂",
+        "NaOH"
+      ],
+      "correct_answer": "NaCl",
+      "category": "chemistry",
+      "explanation": "NaCl stands for sodium chloride."
+    },
+    {
+      "id": 10,
+      "question": "Who developed the theory of relativity?",
+      "options": [
+        "Isaac Newton",
+        "Albert Einstein",
+        "Galileo Galilei",
+        "Niels Bohr"
+      ],
+      "correct_answer": "Albert Einstein",
+      "category": "physics",
+      "explanation": "Einstein's theory of relativity revolutionized our understanding of space, time, gravity, and the universe."
+    },
+    {
+      "id": 11,
+      "question": "What is the name of the longest river in Africa?",
+      "options": [
+        "Nile",
+        "Congo",
+        "Niger",
+        "Zambezi"
+      ],
+      "correct_answer": "Nile",
+      "category": "geography",
+      "explanation": "The Nile River is the longest river in the world, and flows through 11 African countries."
+    },
+    {
+      "id": 12,
+      "question": "What is the name of the process by which plants convert light energy into chemical energy?",
+      "options": [
+        "Respiration",
+        "Fermentation",
+        "Photosynthesis",
+        "Transpiration"
+      ],
+      "correct_answer": "Photosynthesis",
+      "category": "biology",
+      "explanation": "Photosynthesis is essential for plant growth and oxygen production."
+    },
+    {
+      "id": 13,
+      "question": "In what year did World War II begin?",
+      "options": [
+        "1914",
+        "1939",
+        "1945",
+        "1918"
+      ],
+      "correct_answer": "1939",
+      "category": "history",
+      "explanation": "World War II began with the German invasion of Poland."
+    },
+    {
+      "id": 14,
+      "question": "What is the name of the famous ancient Greek philosopher who tutored Alexander the Great?",
+      "options": [
+        "Socrates",
+        "Plato",
+        "Aristotle",
+        "Pythagoras"
+      ],
+      "correct_answer": "Aristotle",
+      "category": "history",
+      "explanation": "Aristotle was a highly influential philosopher and scientist."
+    },
+    {
+      "id": 15,
+      "question": "Which element is the most abundant in the Earth's crust?",
+      "options": [
+        "Oxygen",
+        "Silicon",
+        "Iron",
+        "Aluminum"
+      ],
+      "correct_answer": "Oxygen",
+      "category": "geology",
+      "explanation": "Oxygen makes up about 46.6% of the Earth's crust by mass."
+    },
+    {
+      "id": 16,
+      "question": "What is the capital of Australia?",
+      "options": [
+        "Sydney",
+        "Melbourne",
+        "Canberra",
+        "Brisbane"
+      ],
+      "correct_answer": "Canberra",
+      "category": "geography",
+      "explanation": "Canberra is a planned city specifically designed to be the capital."
+    },
+    {
+      "id": 17,
+      "question": "Which famous scientist formulated the laws of motion and universal gravitation?",
+      "options": [
+        "Albert Einstein",
+        "Galileo Galilei",
+        "Isaac Newton",
+        "Nikola Tesla"
+      ],
+      "correct_answer": "Isaac Newton",
+      "category": "physics",
+      "explanation": "Newton's laws of motion and universal gravitation were groundbreaking discoveries in classical mechanics."
+    },
+    {
+      "id": 18,
+      "question": "What is the name of the largest desert in the world?",
+      "options": [
+        "Sahara Desert",
+        "Arabian Desert",
+        "Gobi Desert",
+        "Antarctic Polar Desert"
+      ],
+      "correct_answer": "Antarctic Polar Desert",
+      "category": "geography",
+      "explanation": "The Antarctic Polar Desert covers a vast area of Antarctica."
+    },
+    {
+      "id": 19,
+      "question": "What is the smallest prime number?",
+      "options": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "correct_answer": "2",
+      "category": "mathematics",
+      "explanation": "2 is the only even prime number."
+    },
+    {
+      "id": 20,
+      "question": "Who painted the Mona Lisa?",
+      "options": [
+        "Michelangelo",
+        "Raphael",
+        "Leonardo da Vinci",
+        "Donatello"
+      ],
+      "correct_answer": "Leonardo da Vinci",
+      "category": "art",
+      "explanation": "Leonardo da Vinci is renowned for his masterpiece, the Mona Lisa."
+    },
+    {
+      "id": 21,
+      "question": "What is the name of the process that converts seawater into freshwater?",
+      "options": [
+        "Filtration",
+        "Distillation",
+        "Osmosis",
+        "Desalination"
+      ],
+      "correct_answer": "Desalination",
+      "category": "engineering",
+      "explanation": "Desalination plants use various methods to remove salt from seawater."
+    },
+    {
+      "id": 22,
+      "question": "Which famous novel features the character Elizabeth Bennet?",
+      "options": [
+        "Pride and Prejudice",
+        "Sense and Sensibility",
+        "Jane Eyre",
+        "Wuthering Heights"
+      ],
+      "correct_answer": "Pride and Prejudice",
+      "category": "literature",
+      "explanation": "Pride and Prejudice, by Jane Austen, is a classic of English literature."
+    },
+    {
+      "id": 23,
+      "question": "What is the name of the phenomenon where the Moon appears to completely cover the Sun?",
+      "options": [
+        "Lunar Eclipse",
+        "Solar Eclipse",
+        "Perihelion",
+        "Aphelion"
+      ],
+      "correct_answer": "Solar Eclipse",
+      "category": "astronomy",
+      "explanation": "A solar eclipse occurs when the Moon passes between the Sun and Earth."
+    },
+    {
+      "id": 24,
+      "question": "What is the largest organ in the human body?",
+      "options": [
+        "Brain",
+        "Heart",
+        "Liver",
+        "Skin"
+      ],
+      "correct_answer": "Skin",
+      "category": "biology",
+      "explanation": "The skin is the largest organ by surface area."
+    },
+    {
+      "id": 25,
+      "question": "Which country is known as the 'Land of the Rising Sun'?",
+      "options": [
+        "China",
+        "South Korea",
+        "Japan",
+        "India"
+      ],
+      "correct_answer": "Japan",
+      "category": "geography",
+      "explanation": "Japan is located in the East and the sun rises over it relatively earlier compared to other parts of the world."
+    }
+  ]
+}
