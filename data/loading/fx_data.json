@@ -8,7 +8,7 @@
       "NZD/INR",
       "NZD/CNY"
     ],
-    "fetch_timestamp": "2025-09-11T19:59:23.346611",
+    "fetch_timestamp": "2025-09-11T20:16:38.443502",
     "note": "Historical data with fallback to realistic variations of current rates"
   },
   "daily_rates": {

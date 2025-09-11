@@ -2,18 +2,24 @@
   "world": {
     "top_stories": [
       {
-        "id": "a1827ae5bae5",
-        "title": "Firms will hesitate to invest in US after raid - S Korea president",
-        "url": "https://www.bbc.com/news/articles/cly0e4k750go?at_medium=RSS&at_campaign=rss",
-        "description": "More than 300 South Koreans who were arrested in the raid are due to return home on Friday.",
+        "id": "358d7a1c6cb1",
+        "title": "Killing of Trump ally lays bare America's bloody and broken politics",
+        "url": "https://www.bbc.com/news/articles/cm2z9z4m22ro?at_medium=RSS&at_campaign=rss",
+        "description": "Charlie Kirk's killing is another episode of gun violence in America and the latest in a line of recent political violence.",
         "source": "BBC World News",
-        "published": "2025-09-11T04:32:01+00:00",
-        "fetched_at": "2025-09-11T07:58:00.512279+00:00",
-        "category": "world",
-        "llm_summary": "",
-        "importance_score": 8,
-        "scraped_content": "Firms will hesitate to invest in US after raid - S Korea president 3 hours ago Share Save Kelly Ng Singapore and Hosu Lee Seoul Share Save How the massive immigration raid on a Georgia car plant unfolded South Korean companies will be \"very hesitant\" about investing in the US following a massive immigration raid at a Hyundai plant in the state of Georgia last week, President Lee Jae Myung has said. More than 300 South Koreans who were arrested in the raid have now been released from detention and are due to return home on Friday after having their release delayed by more than a day. Their departure was delayed because of an instruction from the White House, Lee added. President Donald Trump ordered the pause to check whether the workers were willing to remain in the US to continue working and training Americans, according to a South Korean foreign ministry official. Lee, who was speaking at a news conference to mark the first 100 days of his presidency, said \"the situation is extremely bewildering,\" while noting it is common practice for Korean firms to send workers to help set up overseas factories. \"If that's no longer allowed, establishing manufacturing facilities in the US will only become more difficult. making companies question whether it's worth doing at all,\" he added. Seoul is negotiating with Washington on visa options for South Korean workers \"whether that means securing [higher] quotas or creating new visa categories\", Lee said.",
-        "enhanced_summary": "Following a large-scale immigration raid at a Georgia Hyundai plant that detained over 300 South Korean workers, South Korean President Lee Jae Myung says businesses will be wary of future US investments.  This incident raises serious concerns about the US investment climate, potentially deterring significant foreign direct investment and impacting US manufacturing competitiveness, particularly as South Korea seeks to negotiate new visa options for its workers."
+        "published": "2025-09-11T05:40:57+00:00",
+        "fetched_at": "2025-09-11T08:16:23.448152+00:00",
+        "category": "world"
+      },
+      {
+        "id": "eeaa613bd3f8",
+        "title": "Manhunt intensifies for suspect who killed Charlie Kirk",
+        "url": "https://www.bbc.com/news/articles/c0r0q1x74qqo?at_medium=RSS&at_campaign=rss",
+        "description": "Police are searching door-to-door in the hunt for the suspect who shot the conservative activist and influential Trump ally at a Utah campus.",
+        "source": "BBC World News",
+        "published": "2025-09-11T03:04:03+00:00",
+        "fetched_at": "2025-09-11T08:16:23.448196+00:00",
+        "category": "world"
       },
       {
         "id": "645b442cec31",
@@ -22,26 +28,50 @@
         "description": "Whether the drone incursion was deliberate or accidental, Moscow will be watching Nato's response to it closely.",
         "source": "BBC World News",
         "published": "2025-09-10T18:56:48+00:00",
-        "fetched_at": "2025-09-11T07:58:00.512207+00:00",
-        "category": "world",
-        "llm_summary": "",
-        "importance_score": 7,
-        "scraped_content": "Accidental or deliberate? Russia's drone incursion into Poland is a test for Nato 13 hours ago Share Save Laura Gozzi BBC News Share Save Poland closest to open conflict since World War Two, warns PM Wednesday morning's incursion of Russian drones into Polish airspace led to jets being scrambled, an emergency government meeting being called - and concerns that Europe and Nato's resolve against Moscow may not be up to the test. Poland's Prime Minister Donald Tusk said Polish airspace was violated 19 times and at least three drones were shot down by Warsaw's jets, aided by Dutch F-35s and an Italian early warning aircraft. Russia has pushed back against accusations that the incursion was deliberate \u2013 though it also stopped short of denying its drones had trespassed sovereign Polish airspace. \"No objects on Polish territory were planned to be targeted,\" Moscow said. But European officials have forcefully batted off suggestions the act may have been unintentional. \"There is no evidence whatsoever that this amount of drones flew over this route over. Polish territory by accident,\" Germany's Defence Minister Boris Pistorius said, while his Italian counterpart Guido Crosetto called the overnight events in Poland a \"deliberate attack\" with the double aim of \"provoking and testing\". Reuters One of the drones appeared to damage a home in the Wyryki municipality in eastern Poland Although Poland has experienced several violations of its airspace since neighbouring Ukraine was attacked by Russia in February 2022, this latest incursion - sizeable, and deep into Polish territory - sparked real nervousness in Warsaw.",
-        "enhanced_summary": "Russian drones violated Polish airspace, prompting a scrambled military response and an emergency government meeting;  the incident, whether accidental or deliberate, tests NATO's resolve and highlights the escalating risks of further escalation in the Ukraine conflict, potentially impacting European stability and the broader global security landscape."
+        "fetched_at": "2025-09-11T08:16:23.448234+00:00",
+        "category": "world"
       },
       {
-        "id": "9fa6054ca647",
-        "title": "Poland says it shot down Russian drones after airspace violation",
-        "url": "https://www.bbc.com/news/articles/c147065pzdzo?at_medium=RSS&at_campaign=rss",
-        "description": "Nato jets were deployed to respond to drones that entered Polish airspace during Russian strikes on Ukraine.",
+        "id": "8e4bffd30325",
+        "title": "Harry's tea with Charles could be small but significant step to reconciliation",
+        "url": "https://www.bbc.com/news/articles/cly0e0e7p0jo?at_medium=RSS&at_campaign=rss",
+        "description": "The king and his son have met in person for the first time since February 2024 - but the clues a reunion was nearing have been there, writes senior royal correspondent Daniela Relph.",
         "source": "BBC World News",
-        "published": "2025-09-10T18:15:03+00:00",
-        "fetched_at": "2025-09-11T07:58:00.512532+00:00",
-        "category": "world",
-        "llm_summary": "",
-        "importance_score": 6,
-        "scraped_content": "Poland says it shot down Russian drones after airspace violation 14 hours ago Share Save Adam Easton in Warsaw and Jaroslav Lukiv Share Save Poland closest to open conflict since World War Two, warns PM At least three Russian drones were shot down by Polish and other Nato aircraft in Poland's airspace during overnight attacks on Ukraine, the Polish prime minister has said. Donald Tusk said Poland had recorded 19 drone incursions, with some flying deep enough to temporarily close four airports, including Warsaw's main hub Chopin. \"This situation brings us the closest we have been to open conflict since World War Two,\" he said. This is the first time Russian drones have been downed over Nato territory since Moscow's full-scale invasion of Ukraine in 2022. Russia's defence ministry said there had been \"no plans\" to target facilities on Polish soil. \"The maximum range of the Russian drones that allegedly crossed into Poland does not exceed 700km (435 miles)\", the ministry said in a statement, adding that it was \"ready\" to hold consultations with the Polish defence ministry. Russia's temporary charge d'affaires in Poland said Warsaw had not provided evidence that the drones were of Russian origin. Belarus, a close Russian ally, claimed the drones entered Polish airspace accidentally after their navigation systems were jammed.",
-        "enhanced_summary": "Polish authorities shot down at least three Russian drones that violated their airspace overnight, prompting Prime Minister Tusk to warn of the closest approach to open conflict since World War II.  This incident, the first involving downed Russian drones on NATO territory since the Ukraine invasion, raises serious security concerns for the alliance and underscores the escalating risks of accidental escalation in the region, potentially impacting trade, investment, and geopolitical stability."
+        "published": "2025-09-11T03:37:02+00:00",
+        "fetched_at": "2025-09-11T08:16:23.448275+00:00",
+        "category": "world"
+      },
+      {
+        "id": "a1827ae5bae5",
+        "title": "Firms will hesitate to invest in US after raid - S Korea president",
+        "url": "https://www.bbc.com/news/articles/cly0e4k750go?at_medium=RSS&at_campaign=rss",
+        "description": "More than 300 South Koreans who were arrested in the raid are due to return home on Friday.",
+        "source": "BBC World News",
+        "published": "2025-09-11T04:32:01+00:00",
+        "fetched_at": "2025-09-11T08:16:23.448311+00:00",
+        "category": "world"
+      }
+    ],
+    "quick_reads": [
+      {
+        "id": "17a92e74fbcb",
+        "title": "Mothers and staff tell of global charity's role in child disappearances under Assad regime",
+        "url": "https://www.bbc.com/news/articles/c4g53e4zdjpo?at_medium=RSS&at_campaign=rss",
+        "description": "The Assad regime used an international charity to hide children of detainees from their families.",
+        "source": "BBC World News",
+        "published": "2025-09-10T23:15:51+00:00",
+        "fetched_at": "2025-09-11T08:16:23.448348+00:00",
+        "category": "world"
+      },
+      {
+        "id": "52a893726899",
+        "title": "'Netanyahu, we're not leaving': Defiance in Gaza City as Israel shows aid sites planned for evacuees",
+        "url": "https://www.bbc.com/news/articles/c0lkz0l4x51o?at_medium=RSS&at_campaign=rss",
+        "description": "As Israel insists the whole population of Gaza City must leave, the BBC visits new aid sites the army claims will help them.",
+        "source": "BBC World News",
+        "published": "2025-09-10T19:05:25+00:00",
+        "fetched_at": "2025-09-11T08:16:23.448382+00:00",
+        "category": "world"
       },
       {
         "id": "f350c11c95cd",
@@ -50,29 +80,19 @@
         "description": "Any instability in the country is a cause of concern for India because of Nepal's strategic location.",
         "source": "BBC World News",
         "published": "2025-09-11T00:06:00+00:00",
-        "fetched_at": "2025-09-11T07:58:00.512389+00:00",
-        "category": "world",
-        "llm_summary": "",
-        "importance_score": 5,
-        "scraped_content": "Nepal turmoil adds to India's woes in South Asia 8 hours ago Share Save Anbarasan Ethirajan Global Affairs Reporter Share Save Getty Images India and Nepal share historically shared strong ties Nepal has become the third country in India's immediate neighbourhood to see a violent uprising topple its government in recent years. Prime Minister KP Sharma Oli resigned after more than 20 people died in clashes with police during anti-government demonstrations triggered by a social media ban. A nationwide curfew is in place and the army is attempting to bring the situation under control after protesters stormed parliament and set fire to the homes of several politicians. For many, the scenes in Kathmandu were reminiscent of the turmoil that gripped Bangladesh last year, and Sri Lanka in 2022. Though Bangladesh and Sri Lanka are also India's close neighbours in South Asia, Delhi's relationship with Kathmandu is special because of historic people-to-people, economic and strategic ties. Nepal shares a largely open border of more than 1,750km (466 miles) with five Indian states; Uttarakhand, Uttar Pradesh, Sikkim, Bihar and West Bengal. Delhi is keenly watching developments across the border, with Indian Prime Minister Narendra Modi swiftly reacting to the unfolding events. \"The violence in Nepal is heart-rending.",
-        "enhanced_summary": "Political unrest in Nepal, marked by violent protests, a social media ban, and the resignation of Prime Minister KP Sharma Oli, mirrors similar recent instability in neighboring Bangladesh and Sri Lanka.  This escalating instability in Nepal, a country with significant historical, economic, and strategic ties to India, poses a serious challenge to India's regional influence and stability, particularly given their extensive shared border and interconnected economies."
+        "fetched_at": "2025-09-11T08:16:23.448423+00:00",
+        "category": "world"
       },
       {
-        "id": "a418bd9585b1",
-        "title": "Mystery of dancing spiders' DNA could explain how they develop into new species",
-        "url": "https://www.bbc.com/news/articles/c4gzl2zj72jo?at_medium=RSS&at_campaign=rss",
-        "description": "There are many more species of peacock spider than other animals, scientists think they may know why.",
+        "id": "9fa6054ca647",
+        "title": "Poland says it shot down Russian drones after airspace violation",
+        "url": "https://www.bbc.com/news/articles/c147065pzdzo?at_medium=RSS&at_campaign=rss",
+        "description": "Nato jets were deployed to respond to drones that entered Polish airspace during Russian strikes on Ukraine.",
         "source": "BBC World News",
-        "published": "2025-09-10T23:00:20+00:00",
-        "fetched_at": "2025-09-11T07:58:00.512773+00:00",
-        "category": "world",
-        "llm_summary": "",
-        "importance_score": 4,
-        "scraped_content": "Mystery of dancing spiders' DNA could explain how they develop into new species 9 hours ago Share Save Pallab Ghosh Science Correspondent Share Save Watch: Dazzling dancing spiders strut their stuff. What's behind their extraodinary diversity? It's not just the dazzling colours and slick moves of Australia's dancing spiders that make them special. There are more than 100 different species of the peacock spider, whereas most animals have only five or ten. Researchers believe that's partly down to the spider's 'dark DNA' - a mysterious part of the animal's genetic code, and they are studying it to find out more. They think that this dark DNA might enable it to adapt rapidly to changing environmental circumstances by developing into new species. What the scientists find out, they say, might help to explain why there is so much variation in the natural world. \"We are interested in how the spiders evolve to become that diverse,\" Jonah Walker, of the Sanger Institute told BBC News. \"When you go outside you see so much variation in species of plants and animals,\" he said.",
-        "enhanced_summary": "Researchers at the Sanger Institute are studying the \"dark DNA\" of Australia's remarkably diverse peacock spiders (over 100 species) to understand their rapid speciation.  This research could unlock key insights into how species adapt and diversify, offering valuable knowledge for fields like conservation biology and potentially even informing our understanding of genetic adaptation in other organisms, including those of commercial interest."
-      }
-    ],
-    "quick_reads": [
+        "published": "2025-09-10T18:15:03+00:00",
+        "fetched_at": "2025-09-11T08:16:23.448457+00:00",
+        "category": "world"
+      },
       {
         "id": "911aacad07c8",
         "title": "Weleda launches inquiry into Nazi camp skin test claims",
@@ -80,114 +100,23 @@
         "description": "A new study alleges the skincare brand's product was used for human experiments by a Nazi doctor.",
         "source": "BBC World News",
         "published": "2025-09-10T15:28:52+00:00",
-        "fetched_at": "2025-09-11T07:58:00.512634+00:00",
-        "category": "world",
-        "llm_reason": "Reputational risk and potential legal ramifications for businesses involved in similar practices."
+        "fetched_at": "2025-09-11T08:16:23.448525+00:00",
+        "category": "world"
       }
     ]
   },
   "tech": {
     "top_stories": [
       {
-        "id": "0195ac25e75d",
-        "title": "Microsoft ends OpenAI exclusivity in Office, adds rival Anthropic",
-        "url": "https://arstechnica.com/ai/2025/09/report-microsoft-taps-rival-anthropics-ai-for-office-after-it-beats-openai-at-some-tasks/",
-        "description": "Microsoft will end OpenAI's exclusive hold on its productivity suite, adding second AI supplier.",
-        "source": "Ars Technica",
-        "published": "2025-09-10T15:41:42+00:00",
-        "fetched_at": "2025-09-11T07:58:05.839932+00:00",
-        "category": "tech",
-        "llm_summary": "",
-        "importance_score": 9,
-        "scraped_content": "Prompting change Microsoft ends OpenAI exclusivity in Office, adds rival Anthropic Microsoft will end OpenAI's exclusive hold on its productivity suite, adding second AI supplier. Benj Edwards \u2013 Sep 10, 2025 11:41 am | 29 Credit: Microsoft Credit: Microsoft Text settings Story text Size Small Standard Large Width * Standard Wide Links Standard Orange * Subscribers only Learn more Minimize to nav Microsoft's Office 365 suite will soon incorporate AI models from Anthropic alongside existing OpenAI technology, The Information reported , ending years of exclusive reliance on OpenAI for generative AI features across Word, Excel, PowerPoint, and Outlook. The shift reportedly follows internal testing that revealed Anthropic's Claude Sonnet 4 model excels at specific Office tasks where OpenAI's models fall short, particularly in visual design and spreadsheet automation, according to sources familiar with the project cited by The Information, who stressed the move is not a negotiating tactic. Anthropic did not immediately respond to Ars Technica's request for comment. In an unusual arrangement showing the tangled alliances of the AI industry, Microsoft will reportedly purchase access to Anthropic's models through Amazon Web Services\u2014both a cloud computing rival and one of Anthropic's major investors. The integration is expected to be announced within weeks, with subscription pricing for Office's AI tools remaining unchanged, the report says. Microsoft maintains that its OpenAI relationship remains intact. \"As we've said, OpenAI will continue to be our partner on frontier models and we remain committed to our long-term partnership,\" a Microsoft spokesperson told Reuters following the report.",
-        "enhanced_summary": "Microsoft is diversifying its AI partners for its Office 365 suite, adding Anthropic's Claude Sonnet 4 model alongside existing OpenAI technology to improve performance in areas like visual design and spreadsheet automation. This strategic move enhances Microsoft's product offerings by leveraging competitive AI models and reduces its reliance on a single provider, potentially improving its services and negotiating power in the rapidly evolving AI landscape."
-      },
-      {
-        "id": "35593059536b",
-        "title": "Senator blasts Microsoft for making default Windows vulnerable to \u201cKerberoasting\u201d",
-        "url": "https://arstechnica.com/security/2025/09/senator-blasts-microsoft-for-making-default-windows-vulnerable-to-kerberoasting/",
-        "description": "Wyden says default use of RC4 cipher led to last year's breach of health giant Ascension.",
-        "source": "Ars Technica",
-        "published": "2025-09-10T19:38:13+00:00",
-        "fetched_at": "2025-09-11T07:58:05.839758+00:00",
-        "category": "tech",
-        "llm_summary": "",
-        "importance_score": 8,
-        "scraped_content": "Kerberos isn't the only thing getting roasted Senator blasts Microsoft for making default Windows vulnerable to \u201cKerberoasting\u201d Wyden says default use of RC4 cipher led to last year's breach of health giant Ascension. Dan Goodin \u2013 Sep 10, 2025 3:38 pm | 60 The Microsoft logo. Credit: Getty Images The Microsoft logo. Credit: Getty Images Text settings Story text Size Small Standard Large Width * Standard Wide Links Standard Orange * Subscribers only Learn more Minimize to nav A prominent US senator has called on the Federal Trade Commission to investigate Microsoft for \u201cgross cybersecurity negligence,\u201d citing the company\u2019s continued use of an obsolete and vulnerable form of encryption that Windows uses by default. In a letter to FTC Chairman Andrew Ferguson, Sen. ) said an investigation his office conducted into the 2024 ransomware breach of the health care giant Ascension found that the default use of the RC4 encryption cipher was a direct cause. The breach led to the theft of medical records of 5. It's the second time in as many years that Wyden has used the word \u201cnegligence\u201d to describe Microsoft's security practices.",
-        "enhanced_summary": "Senator Ron Wyden is urging the FTC to investigate Microsoft for allegedly causing a major data breach at Ascension Health by leaving the vulnerable RC4 encryption enabled by default in Windows. This highlights the significant financial and reputational risks associated with inadequate cybersecurity practices, particularly for companies like Microsoft that hold vast amounts of sensitive user data."
-      },
-      {
-        "id": "51e23de0ebf0",
-        "title": "While US stalls, Australia and Anduril move to put XL undersea vehicle into service",
-        "url": "https://techcrunch.com/2025/09/10/while-u-s-stalls-australia-and-anduril-move-to-put-xl-undersea-vehicle-into-service/",
-        "description": "Anduril has landed a lucrative contract and is bringing its uncrewed undersea vehicle Ghost Shark to Australian waters next year.",
+        "id": "c512ca138301",
+        "title": "A California bill that would regulate AI companion chatbots is close to becoming law",
+        "url": "https://techcrunch.com/2025/09/10/a-california-bill-that-would-regulate-ai-companion-chatbots-is-close-to-becoming-law/",
+        "description": "If SB 243 is enacted, California would become the first state to require operators to implement safety protocols for AI companions and hold companies legally accountable if their chatbots fail to meet those standards.",
         "source": "TechCrunch",
-        "published": "2025-09-10T19:12:11+00:00",
-        "fetched_at": "2025-09-11T07:58:03.391709+00:00",
-        "category": "tech",
-        "llm_summary": "",
-        "importance_score": 7,
-        "scraped_content": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise EVs Fintech Fundraising Gadgets Gaming Google Government & Policy Hardware Instagram Layoffs Media & Entertainment Meta Microsoft Privacy Robotics Security Social Space Startups TikTok Transportation Venture Staff Events Startup Battlefield StrictlyVC Newsletters Podcasts Videos Partner Content TechCrunch Brand Studio Crunchboard Contact Us With Anduril\u2019s help, Australia has done what the U. Navy has struggled to accomplish: transition an extra-large undersea drone from white board to under contract in just three years. Anduril announced Tuesday that a fleet of its XL uncrewed undersea vehicle (XLUUV) \u201cGhost Shark\u201d will begin operations in Australian waters next year under a massive AUS$1. The five-year award structure is the defense-startup holy grail; it\u2019s a program of record that essentially locks in recurring revenue by becoming a line item in the country\u2019s defense budget. The contract for the platform, which provides long-range, stealthy surveillance and strike operations, covers delivery, maintenance, and continued development. It also reflects political urgency in Australia to field new capabilities in the Indo-Pacific to deter the rising threat from China. \u201cAt the end of the day, this comes down to having seriousness, having imagination, and having will to conceive a new idea and bring it to fruition. And that\u2019s what the Australian government has done,\u201d Anduril President Chris Brose said in an interview.",
-        "enhanced_summary": "Australia, with Anduril's assistance, rapidly deployed a fleet of extra-large undersea drones, achieving what the US Navy has yet to accomplish, securing a substantial five-year contract.  This showcases Australia's proactive approach to bolstering its defense capabilities in the Indo-Pacific region, highlighting the strategic importance of agile defense partnerships and the growing market for advanced autonomous systems."
+        "published": "2025-09-11T05:10:51+00:00",
+        "fetched_at": "2025-09-11T08:16:26.531461+00:00",
+        "category": "tech"
       },
-      {
-        "id": "e6b4147d49ef",
-        "title": "OpenAI and Oracle reportedly ink historic cloud computing deal",
-        "url": "https://techcrunch.com/2025/09/10/openai-and-oracle-reportedly-ink-historic-cloud-computing-deal/",
-        "description": "OpenAI and Oracle reportedly signed a deal that includes OpenAI buying $300 billion of compute over a five-year span.",
-        "source": "TechCrunch",
-        "published": "2025-09-10T19:00:34+00:00",
-        "fetched_at": "2025-09-11T07:58:03.391783+00:00",
-        "category": "tech",
-        "llm_summary": "",
-        "importance_score": 7,
-        "scraped_content": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise EVs Fintech Fundraising Gadgets Gaming Google Government & Policy Hardware Instagram Layoffs Media & Entertainment Meta Microsoft Privacy Robotics Security Social Space Startups TikTok Transportation Venture Staff Events Startup Battlefield StrictlyVC Newsletters Podcasts Videos Partner Content TechCrunch Brand Studio Crunchboard Contact Us Posted: Oraclesent its sharessoaring after markets closed yesterdayafter reportingthat it signed multiple multi-billion-dollar contracts with several customers. Now, we have an idea of who those customers might be. Oracle signed a deal with OpenAI for the AI company to purchase $300 billion worth of compute power over a span of about five years, according toreporting from the Wall Street Journal. OpenAI would start purchasing this compute in 2027. If the WSJ\u2019s reporting is correct, this would be one of the largest cloud contracts ever signed. Oracle declined to comment. OpenAI did not respond to a request for confirmation or comment. Oracle is no stranger to working with OpenAI.",
-        "enhanced_summary": "Oracle and OpenAI reportedly signed a massive, five-year, $300 billion cloud computing deal,  with OpenAI committing to purchasing significant compute power starting in 2027.  This unprecedented agreement positions Oracle as a dominant player in the rapidly expanding AI infrastructure market, securing a long-term, high-value customer and signaling its commitment to the future of artificial intelligence."
-      },
-      {
-        "id": "97a4645b26ed",
-        "title": "Klarna\u2019s IPO pops, raising $1.4B, with Sequoia as the biggest winner",
-        "url": "https://techcrunch.com/2025/09/10/klarnas-ipo-pops-raising-1-4b-with-sequoia-as-the-biggest-winner/",
-        "description": "Of the 34.3 million shares Klarna sold, only 5 million were sold by the company, it said. The rest were sold by existing investors.",
-        "source": "TechCrunch",
-        "published": "2025-09-10T19:11:44+00:00",
-        "fetched_at": "2025-09-11T07:58:03.391748+00:00",
-        "category": "tech",
-        "llm_summary": "",
-        "importance_score": 6,
-        "scraped_content": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise EVs Fintech Fundraising Gadgets Gaming Google Government & Policy Hardware Instagram Layoffs Media & Entertainment Meta Microsoft Privacy Robotics Security Social Space Startups TikTok Transportation Venture Staff Events Startup Battlefield StrictlyVC Newsletters Podcasts Videos Partner Content TechCrunch Brand Studio Crunchboard Contact Us It\u2019s been a long road for the 20-year-old fintech Klarnato make it to an IPO. But on Wednesday, the company successfully landed on the New York Stock Exchange, havingraised $1. 4 billion, largely for its existing investors, rather than itself. The fintech giant sold shares at $40, above its announced range of $35 to $37, and came out of the gate with a $15 billion valuation. Shares popped, opening at $52, though quickly settling down to around $46 mid-day. 3 million shares Klarna sold, only 5 million were sold by the company,it said. The rest were sold by existing investors like the company\u2019s largest shareholder Sequoia Capital. Entities controlled by Dutch billionaire Anders Holch Povlsen, Silver Lake, BlackRock, and many others sold as well.",
-        "enhanced_summary": "Klarna, the 20-year-old fintech company, successfully completed its IPO on the New York Stock Exchange, raising $1.4 billion, primarily benefiting existing investors like Sequoia Capital rather than directly boosting Klarna's coffers.  This successful IPO, despite a slightly cooled market, underscores the continued investor appetite for well-established fintech players and highlights the significant returns enjoyed by early-stage venture capitalists."
-      },
-      {
-        "id": "aa1a0bf1630c",
-        "title": "Replit hits $3B valuation on $150M annualized revenue",
-        "url": "https://techcrunch.com/2025/09/10/replit-hits-3b-valuation-on-150m-annualized-revenue/",
-        "description": "Unlike other fast-growing vibe coders, Replit has not been running to VCs every few months, though we'll see if that changes.",
-        "source": "TechCrunch",
-        "published": "2025-09-10T16:54:48+00:00",
-        "fetched_at": "2025-09-11T07:58:03.392137+00:00",
-        "category": "tech",
-        "llm_summary": "",
-        "importance_score": 6,
-        "scraped_content": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise EVs Fintech Fundraising Gadgets Gaming Google Government & Policy Hardware Instagram Layoffs Media & Entertainment Meta Microsoft Privacy Robotics Security Social Space Startups TikTok Transportation Venture Staff Events Startup Battlefield StrictlyVC Newsletters Podcasts Videos Partner Content TechCrunch Brand Studio Crunchboard Contact Us Posted: Replit has raised a $250 million round, valuing the company at $3 billion. Unlike other fast-growing vibe coders, Replit has not been running to VCs every few months, though we\u2019ll see if that changes. Its last raise was in 2023 when it raised about $100 million thatvalued the company at $1. 16 billion post-money. Replit has now raised a total of about $478 million, PitchBook estimates. The company, founded in 2016 by programmers Amjad Masad (pictured), Faris Masad, and designer Haya Odeh, says it\u2019s been growing rapidly as of late. Annualized revenue has skyrocketed from $2. 8 million to $150 million in less than a year, it said.",
-        "enhanced_summary": "Replit, a coding platform founded by Amjad and Faris Masad and Haya Odeh, just secured $250 million in funding, boosting its valuation to $3 billion\u2014a massive jump from its $1.16 billion valuation last year, driven by a dramatic increase in annualized revenue from $2.8 million to $150 million.  This rapid growth and substantial valuation highlight the increasing importance of online collaborative coding environments and the lucrative potential of developer-focused platforms in the rapidly expanding software market."
-      },
-      {
-        "id": "353c848f052c",
-        "title": "Court rejects Verizon claim that selling location data without consent is legal",
-        "url": "https://arstechnica.com/tech-policy/2025/09/court-rejects-verizon-claim-that-selling-location-data-without-consent-is-legal/",
-        "description": "Verizon and T-Mobile lost but AT&#038;T beat the FCC. SCOTUS may have to step in.",
-        "source": "Ars Technica",
-        "published": "2025-09-10T21:28:43+00:00",
-        "fetched_at": "2025-09-11T07:58:05.839610+00:00",
-        "category": "tech",
-        "llm_summary": "",
-        "importance_score": 6,
-        "scraped_content": "Circuit split Court rejects Verizon claim that selling location data without consent is legal Verizon and T-Mobile lost but AT&T beat the FCC. SCOTUS may have to step in. Jon Brodkin \u2013 Sep 10, 2025 5:28 pm | 23 Credit: Getty Images | Kevin Carter Credit: Getty Images | Kevin Carter Text settings Story text Size Small Standard Large Width * Standard Wide Links Standard Orange * Subscribers only Learn more Minimize to nav Verizon lost an attempt to overturn a $46. 9 million fine for selling customer location data without its users' consent. The US Court of Appeals for the 2nd Circuit rejected Verizon's challenge in a ruling issued today. The Federal Communications Commission fined the three major carriers last year for violations revealed in 2018. The companies sued the FCC in three different courts, with varying results. AT&T beat the FCC in the reliably conservative US Court of Appeals for the 5th Circuit, while T-Mobile lost in the District of Columbia Circuit.",
-        "enhanced_summary": "A US appeals court upheld a $46.9 million fine against Verizon for selling customer location data without consent, rejecting their legal challenge and creating a circuit split after similar cases involving AT&T and T-Mobile yielded different outcomes.  This highlights the significant legal and reputational risks associated with handling user data without explicit consent, forcing companies to re-evaluate data privacy practices and potentially leading to further legal battles or regulatory changes impacting the entire telecom industry."
-      }
-    ],
-    "quick_reads": [
       {
         "id": "56aaf9bfb88b",
         "title": "Perplexity reportedly raised $200M at $20B valuation",
@@ -195,9 +124,8 @@
         "description": "The AI-powered search startup's valuation jumped from $18 billion two months earlier.",
         "source": "TechCrunch",
         "published": "2025-09-11T03:59:10+00:00",
-        "fetched_at": "2025-09-11T07:58:03.391601+00:00",
-        "category": "tech",
-        "llm_reason": "Major corporate development (Perplexity's valuation jump is a notable development in the AI search market.)"
+        "fetched_at": "2025-09-11T08:16:26.531503+00:00",
+        "category": "tech"
       },
       {
         "id": "ca3ee06b3515",
@@ -206,42 +134,70 @@
         "description": "In a blog post shared Wednesday, Mira Murati's startup offered a rare glimpse into some of work its doing to improve AI models.",
         "source": "TechCrunch",
         "published": "2025-09-10T21:30:11+00:00",
-        "fetched_at": "2025-09-11T07:58:03.391638+00:00",
-        "category": "tech",
-        "llm_reason": "Technology shift with commercial impact (Work on improving AI model consistency is important for the future of AI.)"
+        "fetched_at": "2025-09-11T08:16:26.531541+00:00",
+        "category": "tech"
       },
       {
-        "id": "628bd3f601a7",
-        "title": "Has Perseverance found a biosignature on Mars?",
-        "url": "https://arstechnica.com/science/2025/09/has-perseverance-found-a-biosignature-on-mars/",
-        "description": "Interpreting the data is tricky because other non-biological processes could account for the findings.",
-        "source": "Ars Technica",
-        "published": "2025-09-10T15:00:44+00:00",
-        "fetched_at": "2025-09-11T07:58:05.840000+00:00",
-        "category": "tech",
-        "llm_reason": "Discoveries in STEM (Potential biosignature discovery on Mars is a significant scientific development.)"
+        "id": "6b60cae72a32",
+        "title": "How to turn off autoplay on your social media feeds",
+        "url": "https://techcrunch.com/2025/09/10/how-to-turn-off-autoplay-on-your-social-media-feeds/",
+        "description": "Here's how you can turn off autoplaying videos and GIFs on Facebook, Instagram, X, Twitter, and Threads.",
+        "source": "TechCrunch",
+        "published": "2025-09-10T21:02:52+00:00",
+        "fetched_at": "2025-09-11T08:16:26.531577+00:00",
+        "category": "tech"
       },
       {
-        "id": "bd65641114bf",
-        "title": "Pentagon begins deploying new satellite network to link sensors with shooters",
-        "url": "https://arstechnica.com/space/2025/09/pentagon-begins-deploying-new-satellite-network-to-link-sensors-with-shooters/",
-        "description": "\"This is the first time we'll have a space layer fully integrated into our warfighting operations.\"",
-        "source": "Ars Technica",
-        "published": "2025-09-11T02:01:11+00:00",
-        "fetched_at": "2025-09-11T07:58:05.839568+00:00",
-        "category": "tech",
-        "llm_reason": "Technology shift with commercial impact (Pentagon's new satellite network deployment is significant for defense and related industries.)"
+        "id": "51e23de0ebf0",
+        "title": "While US stalls, Australia and Anduril move to put XL undersea vehicle into service",
+        "url": "https://techcrunch.com/2025/09/10/while-u-s-stalls-australia-and-anduril-move-to-put-xl-undersea-vehicle-into-service/",
+        "description": "Anduril has landed a lucrative contract and is bringing its uncrewed undersea vehicle Ghost Shark to Australian waters next year.",
+        "source": "TechCrunch",
+        "published": "2025-09-10T19:12:11+00:00",
+        "fetched_at": "2025-09-11T08:16:26.531613+00:00",
+        "category": "tech"
+      }
+    ],
+    "quick_reads": [
+      {
+        "id": "97a4645b26ed",
+        "title": "Klarna\u2019s IPO pops, raising $1.4B, with Sequoia as the biggest winner",
+        "url": "https://techcrunch.com/2025/09/10/klarnas-ipo-pops-raising-1-4b-with-sequoia-as-the-biggest-winner/",
+        "description": "Of the 34.3 million shares Klarna sold, only 5 million were sold by the company, it said. The rest were sold by existing investors.",
+        "source": "TechCrunch",
+        "published": "2025-09-10T19:11:44+00:00",
+        "fetched_at": "2025-09-11T08:16:26.531654+00:00",
+        "category": "tech"
       },
       {
-        "id": "70aa43fcd558",
-        "title": "After Ukrainian testing, drone detection radar doubles range with simple software patch",
-        "url": "https://arstechnica.com/culture/2025/09/after-ukrainian-testing-drone-detection-radar-doubles-range-with-simple-software-patch/",
-        "description": "Even mobile radars are now software upgradeable.",
-        "source": "Ars Technica",
-        "published": "2025-09-10T21:16:51+00:00",
-        "fetched_at": "2025-09-11T07:58:05.839648+00:00",
-        "category": "tech",
-        "llm_reason": "Technology shift with commercial impact (Improved drone detection radar technology has implications for defense and security.)"
+        "id": "e6b4147d49ef",
+        "title": "OpenAI and Oracle reportedly ink historic cloud computing deal",
+        "url": "https://techcrunch.com/2025/09/10/openai-and-oracle-reportedly-ink-historic-cloud-computing-deal/",
+        "description": "OpenAI and Oracle reportedly signed a deal that includes OpenAI buying $300 billion of compute over a five-year span.",
+        "source": "TechCrunch",
+        "published": "2025-09-10T19:00:34+00:00",
+        "fetched_at": "2025-09-11T08:16:26.531690+00:00",
+        "category": "tech"
+      },
+      {
+        "id": "d93507648f3b",
+        "title": "YouTube\u2019s multi-language audio feature for dubbing videos rolls out to all creators",
+        "url": "https://techcrunch.com/2025/09/10/youtubes-multi-language-audio-feature-for-dubbing-videos-rolls-out-to-all-creators/",
+        "description": "YouTube's multi-language audio feature is rolling out to millions of creators, helping them reach a wider global audience.",
+        "source": "TechCrunch",
+        "published": "2025-09-10T17:58:32+00:00",
+        "fetched_at": "2025-09-11T08:16:26.531738+00:00",
+        "category": "tech"
+      },
+      {
+        "id": "8214e40f90ed",
+        "title": "TechCrunch Disrupt 2025: Full agenda reveal for the brand-new Going Public Stage",
+        "url": "https://techcrunch.com/2025/09/10/techcrunch-disrupt-2025-first-full-agenda-reveal-for-the-brand-new-going-public-stage/",
+        "description": "We recently unveiled the Going Public Stage at TechCrunch Disrupt 2025 \u2014 a new destination for founders navigating the complexities of company building, from early traction to IPO and beyond.",
+        "source": "TechCrunch",
+        "published": "2025-09-10T17:45:35+00:00",
+        "fetched_at": "2025-09-11T08:16:26.531783+00:00",
+        "category": "tech"
       },
       {
         "id": "848b805092f5",
@@ -250,55 +206,43 @@
         "description": "Arc's boats have so far been all-electric, and the company's ambitious mission is to electrify all watercraft. The new tugs will largely operate on electric propulsion, with the motors putting out over 4,000 horsepower drawn from a massive 6 MWh battery onboard.",
         "source": "TechCrunch",
         "published": "2025-09-10T17:43:09+00:00",
-        "fetched_at": "2025-09-11T07:58:03.391927+00:00",
-        "category": "tech",
-        "llm_reason": "Market disruption or new opportunity (Large order for electric tugboats points to a growing market for sustainable transportation.)"
-      },
-      {
-        "id": "279d1e9b9fd3",
-        "title": "Pay-per-output? AI firms blindsided by beefed up robots.txt instructions.",
-        "url": "https://arstechnica.com/tech-policy/2025/09/pay-per-output-ai-firms-blindsided-by-beefed-up-robots-txt-instructions/",
-        "description": "\"Really Simple Licensing\" makes it easier for creators to get paid for AI scraping.",
-        "source": "Ars Technica",
-        "published": "2025-09-10T13:00:03+00:00",
-        "fetched_at": "2025-09-11T07:58:05.840071+00:00",
-        "category": "tech",
-        "llm_reason": "Market disruption or new opportunity (Changes to robots.txt impact AI development and data usage.)"
+        "fetched_at": "2025-09-11T08:16:26.531820+00:00",
+        "category": "tech"
       }
     ]
   },
   "finance": {
     "top_stories": [
       {
-        "id": "7e394e4a9d2d",
-        "title": "Potbelly acquired by convenience store operator RaceTrac for $566 million",
-        "url": "https://www.cnbc.com/2025/09/10/potbelly-acquired-racetrac-566-million.html",
-        "description": "Potbelly announced it is being acquired by convenience store operator RaceTrac in a $566 million deal.",
+        "id": "763f987e9eba",
+        "title": "Boeing reaches tentative labor deal with striking defense workers",
+        "url": "https://www.cnbc.com/2025/09/10/iam-union-boeing-agreement-strike.html",
+        "description": "The IAM Union said Wednesday that it reached a tentative five-year agreement with Boeing for better wages.",
         "source": "CNBC Finance",
-        "published": "2025-09-10T17:48:09+00:00",
-        "fetched_at": "2025-09-11T07:58:09.179398+00:00",
-        "category": "finance",
-        "llm_summary": "",
-        "importance_score": 7,
-        "scraped_content": "In this article Sandwich shop chainPotbellywill beacquired by convenience store operator RaceTrac in a $566 million all-cash deal, Potbelly announced Wednesday. The deal is expected to close in the fourth quarter of the year. Shares of Potbelly shot up more than 30% following the announcement. The Chicago-basedPotbelly has more than 445 stores in the U. , including franchised locations,with a goal of reaching 2,000, according to the company. RaceTrac, a family owned company headquartered in Atlanta, operates more than 800 convenience stores across 14 states. \"RaceTrac's strategic vision including their commitment to quality align perfectly with our mission to delight customers with great food and good vibes,\" Potbelly CEO Bob Wright said in a statement. \"We have positioned Potbelly for accelerated franchise-led growth in recent years, and this transaction fortifies our path while delivering certain and immediate value to our shareholders.",
-        "enhanced_summary": "Convenience store giant RaceTrac is acquiring sandwich chain Potbelly for $566 million in an all-cash deal, sending Potbelly's stock soaring.  This acquisition positions RaceTrac to expand its food offerings and potentially leverage Potbelly's existing footprint and brand recognition for accelerated growth in a competitive food service market."
+        "published": "2025-09-10T19:49:08+00:00",
+        "fetched_at": "2025-09-11T08:16:35.663184+00:00",
+        "category": "finance"
       },
       {
-        "id": "c73fe1594745",
-        "title": "Doing business in China? Factor in deflation",
-        "url": "https://www.cnbc.com/2025/09/09/china-business-economy-deflation.html",
-        "description": "Chinese consumers have been hunting for value as prices are falling across the country's economy.",
+        "id": "4120357ca33a",
+        "title": "Air India CEO says carrier embracing 'new normal' of safety focus after deadly crash",
+        "url": "https://www.cnbc.com/2025/09/10/air-india-ceo-deadly-crash.html",
+        "description": "The crash occurred just as Air India was in the middle of modernizing its fleets with new seats and amenities as it seeks to compete with larger airlines.",
         "source": "CNBC Finance",
-        "published": "2025-09-10T17:42:24+00:00",
-        "fetched_at": "2025-09-11T07:58:09.179699+00:00",
-        "category": "finance",
-        "llm_summary": "",
-        "importance_score": 6,
-        "scraped_content": "companies battleinflation, those in China are up against something very different: deflation. The high-end Beijing hotel Beiyuan Grand has been setting up stalls in the evenings to serve dishes to passers-by \u2014 as Chinese consumers and companies cut back on travel, banquets, and events. Chef Wang cooks up his specialty fried pigeon there, not in the hotel's restaurant but out on the sidewalk. \"When we sold fried pigeons inside the hotel restaurant, we used to sell only 60 to 70 a day,\" Wang said. \"Now we sell around 200. \" But those sales come at cut prices. Before, each fried pigeon cost $8. Today, they go for $5.",
-        "enhanced_summary": "Chinese businesses, like the Beiyuan Grand Hotel, are grappling with deflation, forcing them to slash prices and seek creative sales strategies, such as street food stalls, to maintain volume.  This highlights the significant risk of decreased consumer spending and profit margins in China, impacting global companies with operations there and potentially signaling broader economic slowdown."
-      }
-    ],
-    "quick_reads": [
+        "published": "2025-09-10T19:58:10+00:00",
+        "fetched_at": "2025-09-11T08:16:35.663230+00:00",
+        "category": "finance"
+      },
+      {
+        "id": "5ec8aff47bed",
+        "title": "Former Milwaukee Bucks owner Marc Lasry says he doesn't believe L.A. Clippers owner Steve Ballmer circumvented salary cap",
+        "url": "https://www.cnbc.com/2025/09/10/marc-lasry-discusses-steve-ballmer-kawhi-leonard-payment.html",
+        "description": "Former Milwaukee Bucks owner Marc Lasry told CNBC he doesn't believe L.A. Clippers owner Steve Ballmer would knowingly break NBA rules around the salary cap.",
+        "source": "CNBC Finance",
+        "published": "2025-09-10T18:33:55+00:00",
+        "fetched_at": "2025-09-11T08:16:35.663268+00:00",
+        "category": "finance"
+      },
       {
         "id": "ecbd6a236a4a",
         "title": "Uber partners with fintech firm Pipe to offer capital to small businesses",
@@ -306,9 +250,50 @@
         "description": "Uber is partnering with fintech firm Pipe to incorporate embedded technology in the Uber Eats Manager for small businesses to access capital.",
         "source": "CNBC Finance",
         "published": "2025-09-10T13:55:07+00:00",
-        "fetched_at": "2025-09-11T07:58:09.179287+00:00",
-        "category": "finance",
-        "llm_reason": "Technology shift (embedded finance) creating new opportunities for small businesses"
+        "fetched_at": "2025-09-11T08:16:35.663305+00:00",
+        "category": "finance"
+      },
+      {
+        "id": "d77896dd5e54",
+        "title": "Brazil's Embraer lands first U.S. order for E2 jets with Avelo Airlines buying 50 planes",
+        "url": "https://www.cnbc.com/2025/09/10/embraer-e2-jets-avelo-airlines.html",
+        "description": "U.S. upstart airline Avelo said it placed a firm order for 50 Embraer E195\u2011E2 jets, a win for the Brazilian manufacturer.",
+        "source": "CNBC Finance",
+        "published": "2025-09-10T15:38:38+00:00",
+        "fetched_at": "2025-09-11T08:16:35.663344+00:00",
+        "category": "finance"
+      }
+    ],
+    "quick_reads": [
+      {
+        "id": "b20061981f4f",
+        "title": "Wells Fargo CEO sees 'more downside' to U.S. economy as lower-income consumers struggle",
+        "url": "https://www.cnbc.com/2025/09/10/wells-fargo-ceo-charles-scharf-sees-downside-to-us-economy.html",
+        "description": "Wells Fargo CEO Charles Scharf commented on the state of the economy the day after JPMorgan Chase CEO Jamie Dimon said jobs data shows the economy is weakening.",
+        "source": "CNBC Finance",
+        "published": "2025-09-10T13:41:09+00:00",
+        "fetched_at": "2025-09-11T08:16:35.663382+00:00",
+        "category": "finance"
+      },
+      {
+        "id": "7e394e4a9d2d",
+        "title": "Potbelly acquired by convenience store operator RaceTrac for $566 million",
+        "url": "https://www.cnbc.com/2025/09/10/potbelly-acquired-racetrac-566-million.html",
+        "description": "Potbelly announced it is being acquired by convenience store operator RaceTrac in a $566 million deal.",
+        "source": "CNBC Finance",
+        "published": "2025-09-10T17:48:09+00:00",
+        "fetched_at": "2025-09-11T08:16:35.663418+00:00",
+        "category": "finance"
+      },
+      {
+        "id": "bc359bad5567",
+        "title": "ESPN inks deal with EverPass Media to bring ESPN+ to bars, restaurants",
+        "url": "https://www.cnbc.com/2025/09/10/espn-everpass-media-streaming-bars-restaurants-.html",
+        "description": "EverPass Media, the joint venture backed by RedBird, the NFL and TKO, reached a deal to stream ESPN+ content to commercial businesses like bars and restaurants.",
+        "source": "CNBC Finance",
+        "published": "2025-09-10T12:30:01+00:00",
+        "fetched_at": "2025-09-11T08:16:35.663454+00:00",
+        "category": "finance"
       },
       {
         "id": "708abe10abdb",
@@ -317,20 +302,18 @@
         "description": "Labor Department data showing the U.S. added fewer jobs than thought confirm the world's biggest economy is slowing down says JPMorgan Chase CEO Jamie Dimon.",
         "source": "CNBC Finance",
         "published": "2025-09-10T12:01:07+00:00",
-        "fetched_at": "2025-09-11T07:58:09.179541+00:00",
-        "category": "finance",
-        "llm_reason": "Worth monitoring economic trend impacting business decisions"
+        "fetched_at": "2025-09-11T08:16:35.663557+00:00",
+        "category": "finance"
       },
       {
-        "id": "b20061981f4f",
-        "title": "Wells Fargo CEO sees 'more downside' to U.S. economy as lower-income consumers struggle",
-        "url": "https://www.cnbc.com/2025/09/10/wells-fargo-ceo-charles-scharf-sees-downside-to-us-economy.html",
-        "description": "Wells Fargo CEO Charles Scharf commented on the state of the economy the day after JPMorgan Chase CEO Jamie Dimon said jobs data shows the economy is weakening.",
+        "id": "c73fe1594745",
+        "title": "Doing business in China? Factor in deflation",
+        "url": "https://www.cnbc.com/2025/09/09/china-business-economy-deflation.html",
+        "description": "Chinese consumers have been hunting for value as prices are falling across the country's economy.",
         "source": "CNBC Finance",
-        "published": "2025-09-10T13:41:09+00:00",
-        "fetched_at": "2025-09-11T07:58:09.179363+00:00",
-        "category": "finance",
-        "llm_reason": "Worth monitoring economic trend impacting business decisions"
+        "published": "2025-09-10T17:42:24+00:00",
+        "fetched_at": "2025-09-11T08:16:35.663700+00:00",
+        "category": "finance"
       }
     ]
   }
