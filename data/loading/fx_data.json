@@ -1,202 +1,202 @@
 {
   "metadata": {
-    "start_date": "2025-08-09",
-    "end_date": "2025-09-08",
+    "start_date": "2025-08-12",
+    "end_date": "2025-09-11",
     "currency_pairs": [
       "NZD/USD",
       "NZD/AUD",
       "NZD/INR",
       "NZD/CNY"
     ],
-    "fetch_timestamp": "2025-09-08T23:41:03.942007",
+    "fetch_timestamp": "2025-09-11T20:16:38.443502",
     "note": "Historical data with fallback to realistic variations of current rates"
   },
   "daily_rates": {
-    "2025-08-09": {
-      "NZD/USD": 0.5953,
-      "NZD/AUD": 0.9008,
-      "NZD/INR": 52.48,
-      "NZD/CNY": 4.1616
-    },
-    "2025-08-10": {
-      "NZD/USD": 0.5949,
-      "NZD/AUD": 0.9029,
-      "NZD/INR": 51.65,
-      "NZD/CNY": 4.2736
-    },
-    "2025-08-11": {
-      "NZD/USD": 0.5899,
-      "NZD/AUD": 0.8864,
-      "NZD/INR": 51.38,
-      "NZD/CNY": 4.1337
-    },
     "2025-08-12": {
-      "NZD/USD": 0.585,
+      "NZD/USD": 0.5899,
       "NZD/AUD": 0.8825,
-      "NZD/INR": 51.21,
-      "NZD/CNY": 4.1458
+      "NZD/INR": 51.64,
+      "NZD/CNY": 4.1754
     },
     "2025-08-13": {
-      "NZD/USD": 0.5839,
+      "NZD/USD": 0.5889,
       "NZD/AUD": 0.9159,
-      "NZD/INR": 52.3,
-      "NZD/CNY": 4.245
+      "NZD/INR": 52.74,
+      "NZD/CNY": 4.2753
     },
     "2025-08-14": {
-      "NZD/USD": 0.5855,
+      "NZD/USD": 0.5905,
       "NZD/AUD": 0.8856,
-      "NZD/INR": 52.88,
-      "NZD/CNY": 4.1367
+      "NZD/INR": 53.33,
+      "NZD/CNY": 4.1663
     },
     "2025-08-15": {
-      "NZD/USD": 0.5912,
+      "NZD/USD": 0.5962,
       "NZD/AUD": 0.901,
-      "NZD/INR": 51.27,
-      "NZD/CNY": 4.1822
+      "NZD/INR": 51.71,
+      "NZD/CNY": 4.2121
     },
     "2025-08-16": {
-      "NZD/USD": 0.5895,
+      "NZD/USD": 0.5945,
       "NZD/AUD": 0.8989,
-      "NZD/INR": 52.59,
-      "NZD/CNY": 4.147
+      "NZD/INR": 53.03,
+      "NZD/CNY": 4.1766
     },
     "2025-08-17": {
-      "NZD/USD": 0.5879,
+      "NZD/USD": 0.5929,
       "NZD/AUD": 0.8848,
-      "NZD/INR": 51.1,
-      "NZD/CNY": 4.1869
+      "NZD/INR": 51.53,
+      "NZD/CNY": 4.2168
     },
     "2025-08-18": {
-      "NZD/USD": 0.596,
+      "NZD/USD": 0.6011,
       "NZD/AUD": 0.8948,
-      "NZD/INR": 51.61,
-      "NZD/CNY": 4.1949
+      "NZD/INR": 52.05,
+      "NZD/CNY": 4.2249
     },
     "2025-08-19": {
-      "NZD/USD": 0.5993,
+      "NZD/USD": 0.6044,
       "NZD/AUD": 0.8981,
-      "NZD/INR": 52.46,
-      "NZD/CNY": 4.2031
+      "NZD/INR": 52.9,
+      "NZD/CNY": 4.2331
     },
     "2025-08-20": {
-      "NZD/USD": 0.5903,
+      "NZD/USD": 0.5953,
       "NZD/AUD": 0.8836,
-      "NZD/INR": 52.75,
-      "NZD/CNY": 4.1291
+      "NZD/INR": 53.2,
+      "NZD/CNY": 4.1586
     },
     "2025-08-21": {
-      "NZD/USD": 0.5822,
+      "NZD/USD": 0.5871,
       "NZD/AUD": 0.8854,
-      "NZD/INR": 51.8,
-      "NZD/CNY": 4.2194
+      "NZD/INR": 52.24,
+      "NZD/CNY": 4.2495
     },
     "2025-08-22": {
-      "NZD/USD": 0.5865,
+      "NZD/USD": 0.5915,
       "NZD/AUD": 0.9026,
-      "NZD/INR": 52.82,
-      "NZD/CNY": 4.2351
+      "NZD/INR": 53.27,
+      "NZD/CNY": 4.2653
     },
     "2025-08-23": {
-      "NZD/USD": 0.5855,
+      "NZD/USD": 0.5905,
       "NZD/AUD": 0.9158,
-      "NZD/INR": 51.51,
-      "NZD/CNY": 4.1417
+      "NZD/INR": 51.95,
+      "NZD/CNY": 4.1713
     },
     "2025-08-24": {
-      "NZD/USD": 0.5795,
+      "NZD/USD": 0.5844,
       "NZD/AUD": 0.9148,
-      "NZD/INR": 51.49,
-      "NZD/CNY": 4.1399
+      "NZD/INR": 51.93,
+      "NZD/CNY": 4.1694
     },
     "2025-08-25": {
-      "NZD/USD": 0.5812,
+      "NZD/USD": 0.5861,
       "NZD/AUD": 0.9078,
-      "NZD/INR": 51.93,
-      "NZD/CNY": 4.2045
+      "NZD/INR": 52.37,
+      "NZD/CNY": 4.2346
     },
     "2025-08-26": {
-      "NZD/USD": 0.5814,
+      "NZD/USD": 0.5864,
       "NZD/AUD": 0.8996,
-      "NZD/INR": 51.29,
-      "NZD/CNY": 4.1708
+      "NZD/INR": 51.72,
+      "NZD/CNY": 4.2006
     },
     "2025-08-27": {
-      "NZD/USD": 0.597,
+      "NZD/USD": 0.6021,
       "NZD/AUD": 0.9015,
-      "NZD/INR": 51.23,
-      "NZD/CNY": 4.2322
+      "NZD/INR": 51.66,
+      "NZD/CNY": 4.2624
     },
     "2025-08-28": {
-      "NZD/USD": 0.5979,
+      "NZD/USD": 0.603,
       "NZD/AUD": 0.8839,
-      "NZD/INR": 52.68,
-      "NZD/CNY": 4.1851
+      "NZD/INR": 53.12,
+      "NZD/CNY": 4.215
     },
     "2025-08-29": {
-      "NZD/USD": 0.5834,
+      "NZD/USD": 0.5884,
       "NZD/AUD": 0.9019,
-      "NZD/INR": 50.93,
-      "NZD/CNY": 4.1654
+      "NZD/INR": 51.36,
+      "NZD/CNY": 4.1952
     },
     "2025-08-30": {
-      "NZD/USD": 0.5897,
+      "NZD/USD": 0.5947,
       "NZD/AUD": 0.9154,
-      "NZD/INR": 52.82,
-      "NZD/CNY": 4.2043
+      "NZD/INR": 53.27,
+      "NZD/CNY": 4.2343
     },
     "2025-08-31": {
-      "NZD/USD": 0.5783,
+      "NZD/USD": 0.5832,
       "NZD/AUD": 0.8862,
-      "NZD/INR": 52.47,
-      "NZD/CNY": 4.2441
+      "NZD/INR": 52.92,
+      "NZD/CNY": 4.2744
     },
     "2025-09-01": {
-      "NZD/USD": 0.5779,
+      "NZD/USD": 0.5828,
       "NZD/AUD": 0.9138,
-      "NZD/INR": 52.25,
-      "NZD/CNY": 4.1482
+      "NZD/INR": 52.69,
+      "NZD/CNY": 4.1778
     },
     "2025-09-02": {
-      "NZD/USD": 0.5967,
+      "NZD/USD": 0.6018,
       "NZD/AUD": 0.9151,
-      "NZD/INR": 51.61,
-      "NZD/CNY": 4.2725
+      "NZD/INR": 52.05,
+      "NZD/CNY": 4.3031
     },
     "2025-09-03": {
-      "NZD/USD": 0.5999,
+      "NZD/USD": 0.605,
       "NZD/AUD": 0.9001,
-      "NZD/INR": 51.93,
-      "NZD/CNY": 4.16
+      "NZD/INR": 52.37,
+      "NZD/CNY": 4.1897
     },
     "2025-09-04": {
-      "NZD/USD": 0.5964,
+      "NZD/USD": 0.6015,
       "NZD/AUD": 0.885,
-      "NZD/INR": 51.67,
-      "NZD/CNY": 4.278
+      "NZD/INR": 52.11,
+      "NZD/CNY": 4.3086
     },
     "2025-09-05": {
-      "NZD/USD": 0.5959,
+      "NZD/USD": 0.601,
       "NZD/AUD": 0.8859,
-      "NZD/INR": 51.49,
-      "NZD/CNY": 4.2059
+      "NZD/INR": 51.93,
+      "NZD/CNY": 4.236
     },
     "2025-09-06": {
-      "NZD/USD": 0.5985,
+      "NZD/USD": 0.6035,
       "NZD/AUD": 0.9169,
-      "NZD/INR": 51.98,
-      "NZD/CNY": 4.2708
+      "NZD/INR": 52.42,
+      "NZD/CNY": 4.3013
     },
     "2025-09-07": {
-      "NZD/USD": 0.5889,
+      "NZD/USD": 0.5939,
       "NZD/AUD": 0.9105,
-      "NZD/INR": 52.52,
-      "NZD/CNY": 4.1904
+      "NZD/INR": 52.96,
+      "NZD/CNY": 4.2203
     },
     "2025-09-08": {
-      "NZD/USD": 0.5839,
+      "NZD/USD": 0.5888,
       "NZD/AUD": 0.8957,
-      "NZD/INR": 51.89,
-      "NZD/CNY": 4.1412
+      "NZD/INR": 52.33,
+      "NZD/CNY": 4.1708
+    },
+    "2025-09-09": {
+      "NZD/USD": 0.6024,
+      "NZD/AUD": 0.8815,
+      "NZD/INR": 53.29,
+      "NZD/CNY": 4.2739
+    },
+    "2025-09-10": {
+      "NZD/USD": 0.5885,
+      "NZD/AUD": 0.8949,
+      "NZD/INR": 51.39,
+      "NZD/CNY": 4.1571
+    },
+    "2025-09-11": {
+      "NZD/USD": 0.5854,
+      "NZD/AUD": 0.9098,
+      "NZD/INR": 51.61,
+      "NZD/CNY": 4.2263
     }
   }
 }

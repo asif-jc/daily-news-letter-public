@@ -8,7 +8,7 @@ from curator import ArticleCurator
 from db_utils import *
 from scrapper import *
 from web_newsletter import NewsletterGenerator, generate_newsletter, regenerate_newsletter_with_nzt
-from eggs_data import pull_eggs_data
+from quiz_data import pull_quiz_data
 from foreign_exchange_data import pull_fx_data
 from market_data import pull_market_data
 
@@ -23,9 +23,10 @@ def run_daily_pipeline(use_llm: bool = True):
     with open('data/loading/newsletter_curated.json', 'w') as f:
         json.dump(newsletter_data, f, indent=2)
 
-    # 3. Pull eggs market data (Feature User: Hasnain Cheena)
-    # eggs_data = pull_eggs_data()
-     
+    # 3. Pull quiz data
+    quiz_data = pull_quiz_data(use_llm=use_llm)
+    print(f"Quiz data status: {quiz_data.get('status')}")
+    
     # 3.5. Pull foreign exchange data
     fx_data = pull_fx_data()
     print(f"FX data status: {fx_data.get('status')}")
@@ -43,7 +44,7 @@ def run_daily_pipeline(use_llm: bool = True):
 if __name__ == "__main__":
     
     RUN_ETL = True
-    USE_LLM = True
+    USE_LLM = False
 
     if RUN_ETL:
         run_daily_pipeline(use_llm=USE_LLM)

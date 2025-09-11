@@ -16,6 +16,265 @@ class NewsletterGenerator:
         nz_time = datetime.now(nz_tz)
         return nz_time.strftime('%Y-%m-%d')
     
+    def load_quiz_data(self, quiz_path: str = 'data/loading/quiz_today.json') -> Dict:
+        """
+        Load quiz data from JSON file.
+        Returns empty dict if file not found or invalid.
+        """
+        try:
+            if not os.path.exists(quiz_path):
+                print(f"Quiz data not found at {quiz_path}")
+                return {}
+            
+            with open(quiz_path, 'r', encoding='utf-8') as f:
+                quiz_data = json.load(f)
+            
+            print(f"Loaded quiz data: {len(quiz_data.get('questions', []))} questions")
+            return quiz_data
+        except Exception as e:
+            print(f"Error loading quiz data: {e}")
+            return {}
+    
+    def generate_quiz_section(self, quiz_data: Dict) -> str:
+        """
+        Generate daily quiz section with inline answers for bottom of newsletter.
+        Returns empty string if no quiz data available.
+        """
+        if not quiz_data or not quiz_data.get('questions'):
+            print("No quiz data available for newsletter")
+            return ''
+        
+        questions = quiz_data['questions']
+        metadata = quiz_data.get('metadata', {})
+        
+        # Create quiz header with metadata
+        html = '<div class="quiz-box">'
+        html += '<div class="quiz-header">'
+        html += '<h3 class="quiz-title">Daily Knowledge Quiz</h3>'
+        html += '<div class="quiz-meta">'
+        
+        if metadata.get('generated_with_llm'):
+            html += 'AI Generated • '
+        html += f"{len(questions)} Questions • {metadata.get('difficulty', 'medium').title()} Level"
+        html += '</div>'
+        html += '</div>'
+        
+        # Add intro note
+        html += '<p style="margin-bottom: 1.5rem; color: #6c757d; font-size: 0.9rem;">'
+        html += 'Test your knowledge across geography, STEM, history, and general topics. '
+        html += 'Click "Show Answer" to reveal the solution with explanation.'
+        html += '</p>'
+        
+        # Generate ALL questions with inline answers
+        for i, question in enumerate(questions, 1):
+            html += '<div class="quiz-question">'
+            
+            # Question header with number and category
+            html += '<div class="quiz-question-header">'
+            html += f'<span class="quiz-question-number">{i}</span>'
+            html += f'<span class="quiz-category">{question.get("category", "General")}</span>'
+            html += '</div>'
+            
+            # Question text
+            html += f'<div class="quiz-question-text">{question.get("question", "Question not available")}</div>'
+            
+            # Options
+            html += '<div class="quiz-options">'
+            for option in question.get('options', []):
+                html += f'<div class="quiz-option">{option}</div>'
+            html += '</div>'
+            
+            # Reveal answer button
+            html += f'<button class="quiz-reveal-button" id="reveal-{i}" onclick="revealAnswer({i})">Show Answer</button>'
+            
+            # Hidden answer section
+            html += f'<div class="quiz-answer-section" id="answer-{i}">'
+            html += f'<div class="quiz-correct-answer">Answer: {question.get("correct_answer", "Not available")}</div>'
+            if question.get('explanation'):
+                html += f'<div class="quiz-explanation">{question["explanation"]}</div>'
+            html += '</div>'
+            
+            html += '</div>'  # quiz-question
+        
+        html += '</div>'  # quiz-box
+        
+        return html
+    
+    def generate_content_overview(self, data: Dict, quiz_data: Dict) -> str:
+        """
+        Generate enhanced overview showcasing most important content.
+        """
+        html = '<div class="content-overview">'
+        html += '<div class="overview-title">Today\'s Essential Updates</div>'
+        
+        # Breaking News - Coming Soon (moved to top)
+        html += '<div class="overview-section">'
+        html += '<h4 class="overview-section-title">Breaking News</h4>'
+        html += '<div class="coming-soon">Real-time alerts coming soon</div>'
+        html += '</div>'
+        
+        # Priority Stories - Show top 5 with highest scores
+        top_stories = self._get_top_priority_stories(data, limit=5)
+        if top_stories:
+            total_stories = sum(len(cat.get('top_stories', [])) + len(cat.get('quick_reads', [])) for cat in data.values())
+            remaining = total_stories - 5
+            
+            html += '<div class="overview-section">'
+            html += '<h4 class="overview-section-title">Priority Stories</h4>'
+            for story in top_stories:
+                time_ago = self._format_time_ago(story.get('published'))
+                html += f'<div class="overview-story">'
+                html += f'<div class="story-headline">{story.get("title", "Untitled")}</div>'
+                html += f'<div class="story-time">{time_ago}</div>'
+                html += '</div>'
+            
+            if remaining > 0:
+                html += f'<div class="overview-more">+ {remaining} more updates available</div>'
+            html += '</div>'
+        
+        # FX & Markets
+        html += '<div class="overview-section">'
+        html += '<h4 class="overview-section-title">Markets Snapshot</h4>'
+        html += '<div class="market-snapshot">'
+        
+        # Get market data
+        fx_data = self._get_fx_snapshot()
+        market_data = self._get_market_snapshot()
+        
+        if fx_data.get('NZD/USD'):
+            html += f'<div class="snapshot-item">NZD/USD: <span class="value">{fx_data["NZD/USD"]}</span></div>'
+        
+        if market_data.get('VOO'):
+            html += f'<div class="snapshot-item">VOO: <span class="value">${market_data["VOO"]}</span></div>'
+            
+        if market_data.get('GLD'):
+            gold_price = int(float(market_data['GLD']) * 10)
+            html += f'<div class="snapshot-item">Gold: <span class="value">{gold_price} USD per Troy ounce</span></div>'
+        
+        html += '</div>'
+        html += '</div>'
+        
+        # Quiz
+        if quiz_data and quiz_data.get('questions'):
+            questions = quiz_data['questions']
+            metadata = quiz_data.get('metadata', {})
+            topics = metadata.get('topics', [])
+            
+            # Clean up topic names
+            topic_display = []
+            for topic in topics:
+                if topic.lower() == 'stem':
+                    topic_display.append('STEM')
+                elif topic.lower() == 'general_knowledge':
+                    topic_display.append('General Knowledge')
+                else:
+                    topic_display.append(topic.title())
+            
+            html += '<div class="overview-section">'
+            html += '<h4 class="overview-section-title">Knowledge Quiz</h4>'
+            html += f'<div class="quiz-preview">'
+            html += f'{len(questions)} questions • {metadata.get("difficulty", "medium").title()} level<br>'
+            html += f"Topics: {', '.join(topic_display[:3])}"
+            html += '</div>'
+            html += '</div>'
+        
+        html += '</div>'
+        return html
+    
+    def _get_top_priority_stories(self, data: Dict, limit: int = 5) -> List[Dict]:
+        """Get top priority stories across all categories sorted by importance score."""
+        all_stories = []
+        
+        for category, articles in data.items():
+            for story in articles.get('top_stories', []):
+                story['category_name'] = category
+                all_stories.append(story)
+        
+        # Sort by importance score (highest first)
+        all_stories.sort(key=lambda x: x.get('importance_score', 0), reverse=True)
+        
+        return all_stories[:limit]
+    
+    def _format_time_ago(self, published_str: str) -> str:
+        """Format publication time in a smart, readable way."""
+        if not published_str:
+            return 'Recent'
+        
+        try:
+            from datetime import datetime, timezone
+            import pytz
+            
+            # Parse the published time
+            if isinstance(published_str, str):
+                pub_time = datetime.fromisoformat(published_str.replace('Z', '+00:00'))
+            else:
+                return 'Recent'
+            
+            # Get current NZ time
+            nz_tz = pytz.timezone('Pacific/Auckland')
+            now = datetime.now(nz_tz)
+            pub_time_nz = pub_time.astimezone(nz_tz)
+            
+            # Calculate time difference
+            diff = now - pub_time_nz
+            hours = diff.total_seconds() / 3600
+            
+            if hours < 1:
+                minutes = int(diff.total_seconds() / 60)
+                return f'{minutes}m ago'
+            elif hours < 6:
+                return f'{int(hours)}h ago'
+            elif pub_time_nz.date() == now.date():
+                if pub_time_nz.hour < 12:
+                    return 'This morning'
+                else:
+                    return 'This afternoon'
+            elif (now.date() - pub_time_nz.date()).days == 1:
+                return 'Yesterday'
+            else:
+                days = (now.date() - pub_time_nz.date()).days
+                return f'{days} days ago'
+                
+        except Exception:
+            return 'Recent'
+    
+    def _get_fx_snapshot(self) -> Dict:
+        """Get current FX rates for overview."""
+        try:
+            from foreign_exchange_data import get_fx_changes_from_daily_data
+            fx_data = get_fx_changes_from_daily_data()
+            
+            if fx_data.get('status') == 'success' and fx_data.get('rates'):
+                rates = fx_data['rates']
+                if 'NZD/USD' in rates:
+                    return {'NZD/USD': rates['NZD/USD']['current']}
+            return {}
+        except Exception:
+            return {}
+    
+    def _get_market_snapshot(self) -> Dict:
+        """Get current market data for overview."""
+        try:
+            from market_data import get_market_changes_from_daily_data
+            market_data = get_market_changes_from_daily_data()
+            
+            if market_data.get('status') == 'success' and market_data.get('prices'):
+                prices = market_data['prices']
+                result = {}
+                
+                # Get VOO price
+                if 'VOO' in prices:
+                    result['VOO'] = f"{int(prices['VOO']['current']):,}"
+                
+                # Get GLD price for gold calculation
+                if 'GLD' in prices:
+                    result['GLD'] = prices['GLD']['current']
+                
+                return result
+            return {}
+        except Exception:
+            return {}
+    
     def load_curated_data(self, json_path: str = 'data/loading/newsletter_curated.json') -> Dict:
         """Load curated newsletter data from JSON file"""
         with open(json_path, 'r', encoding='utf-8') as f:
@@ -43,6 +302,7 @@ class NewsletterGenerator:
     def generate_html(self, json_path: str = 'data/loading/newsletter_curated.json') -> str:
         """Generate complete HTML newsletter from JSON data"""
         data = self.load_curated_data(json_path)
+        quiz_data = self.load_quiz_data()
         date = self.get_nz_date()
         
         html = f"""<!DOCTYPE html>
@@ -58,9 +318,11 @@ class NewsletterGenerator:
 <body>
     <div class="container">
         {self.generate_header(date)}
+        {self.generate_content_overview(data, quiz_data)}
         {self.generate_fx_box()}
         {self.generate_market_box()}
         {self.generate_content(data)}
+        {self.generate_quiz_section(quiz_data)}
         {self.generate_footer()}
     </div>
     
@@ -78,6 +340,14 @@ class NewsletterGenerator:
                 category.classList.add('collapsed');
                 icon.textContent = '+';
             }}
+        }}
+        
+        function revealAnswer(questionId) {{
+            const answerDiv = document.getElementById(`answer-${{questionId}}`);
+            const button = document.getElementById(`reveal-${{questionId}}`);
+            
+            answerDiv.style.display = 'block';
+            button.style.display = 'none';
         }}
     </script>
 </body>
@@ -550,6 +820,243 @@ class NewsletterGenerator:
             background: rgba(108, 117, 125, 0.1);
         }
         
+        /* Content Overview Styles */
+        .content-overview {
+            margin: 1rem 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #6c757d;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .overview-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .overview-section {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .overview-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .overview-section-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 0.75rem;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 0.5rem;
+        }
+        
+        .overview-story {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #f8f9fa;
+        }
+        
+        .overview-story:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .story-headline {
+            font-size: 0.9rem;
+            color: #2c3e50;
+            flex: 1;
+            margin-right: 1rem;
+            line-height: 1.3;
+        }
+        
+        .story-time {
+            font-size: 0.8rem;
+            color: #6c757d;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+        
+        .overview-more {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6c757d;
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+        
+        .coming-soon {
+            font-size: 0.9rem;
+            color: #6c757d;
+            font-style: italic;
+            text-align: center;
+            padding: 0.5rem;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+        
+        .market-snapshot {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.75rem;
+        }
+        
+        .snapshot-item {
+            font-size: 0.9rem;
+            color: #495057;
+        }
+        
+        .snapshot-item .value {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .quiz-preview {
+            font-size: 0.9rem;
+            color: #495057;
+            line-height: 1.4;
+        }
+        
+        /* Updated Quiz Section Styles */
+        .quiz-box {
+            margin: 1rem 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #fd7e14;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .quiz-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 0;
+        }
+        
+        .quiz-meta {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+        
+        .quiz-question {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .quiz-question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+        
+        .quiz-question-number {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #fd7e14;
+            background: rgba(253, 126, 20, 0.1);
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            min-width: 2rem;
+            text-align: center;
+        }
+        
+        .quiz-category {
+            font-size: 0.75rem;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .quiz-question-text {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #2c3e50;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+        
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.5rem;
+        }
+        
+        .quiz-option {
+            padding: 0.5rem 0.75rem;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .quiz-option:hover {
+            background: #e9ecef;
+            border-color: #fd7e14;
+        }
+        
+        .quiz-reveal-button {
+            margin-top: 0.75rem;
+            padding: 0.5rem 1rem;
+            background: #fd7e14;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        
+        .quiz-reveal-button:hover {
+            background: #e66b02;
+        }
+        
+        .quiz-answer-section {
+            margin-top: 0.75rem;
+            padding: 0.75rem;
+            background: #fff5f0;
+            border-radius: 4px;
+            border: 1px solid #fd7e14;
+            display: none;
+        }
+        
+        .quiz-correct-answer {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 0.5rem;
+        }
+        
+        .quiz-explanation {
+            font-size: 0.9rem;
+            color: #6c757d;
+            line-height: 1.4;
+        }
+        
         @media (max-width: 600px) {
             .container {
                 margin: 0;
@@ -589,6 +1096,36 @@ class NewsletterGenerator:
             
             .market-change {
                 text-align: left;
+            }
+            
+            .quiz-box {
+                margin: 1rem;
+                padding: 1rem;
+            }
+            
+            .quiz-options {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            
+            .content-overview {
+                margin: 1rem;
+                padding: 1rem;
+            }
+            
+            .overview-story {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.25rem;
+            }
+            
+            .story-headline {
+                margin-right: 0;
+            }
+            
+            .market-snapshot {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
             }
         }
         """
