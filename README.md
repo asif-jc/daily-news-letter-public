@@ -1,6 +1,7 @@
 # 📰 Daily Newsletter Generator
 
 **Webletter URL** - https://asif-jc.github.io/daily-news-letter-public/
+
 **Version 1.5** - Automated AI-curated newsletter system with GitHub Pages deployment
 
 ---
