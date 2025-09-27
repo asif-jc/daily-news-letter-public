@@ -8,153 +8,335 @@
       "general_knowledge"
     ],
     "difficulty": "hard",
-    "question_count": 11,
+    "question_count": 25,
     "generated_with_llm": true,
-    "generation_timestamp": "2025-09-27T01:53:11.212952+00:00"
+    "generation_timestamp": "2025-09-27T02:06:25.686257+00:00"
   },
   "questions": [
     {
       "id": 1,
-      "question": "Which ocean surrounds New Zealand?",
+      "question": "Which of the following topological spaces is NOT Hausdorff?",
       "options": [
-        "Pacific Ocean",
-        "Atlantic Ocean",
-        "Indian Ocean",
-        "Arctic Ocean"
+        "The real line with the standard topology",
+        "A discrete space",
+        "An indiscrete space with more than one point",
+        "A metric space"
       ],
-      "correct_answer": "Pacific Ocean",
-      "category": "geography",
-      "explanation": "New Zealand is located in the South Pacific Ocean."
+      "correct_answer": "An indiscrete space with more than one point",
+      "category": "STEM",
+      "explanation": "In an indiscrete space, every non-empty open set contains all points.  Therefore, it's impossible to find disjoint open sets for distinct points, violating the Hausdorff condition."
     },
     {
       "id": 2,
-      "question": "What is the speed of light in a vacuum?",
+      "question": "The Battle of Cannae (216 BC), a major defeat for the Roman Republic, involved what Carthaginian general?",
       "options": [
-        "299,792,458 m/s",
-        "300,000,000 m/s",
-        "299,792,458 km/s",
-        "300,000,000 km/s"
+        "Hannibal Barca",
+        "Hasdrubal Barca",
+        "Hamilcar Barca",
+        "Mago Barca"
       ],
-      "correct_answer": "299,792,458 m/s",
-      "category": "physics",
-      "explanation": "The speed of light in a vacuum is exactly 299,792,458 meters per second."
+      "correct_answer": "Hannibal Barca",
+      "category": "history",
+      "explanation": "Hannibal Barca orchestrated the brilliant tactical victory at Cannae, encircling and decimating the Roman army."
     },
     {
       "id": 3,
-      "question": "Who was the first Prime Minister of New Zealand?",
+      "question": "What is the approximate ratio of the Earth's circumference to its diameter?",
       "options": [
-        "John Ballance",
-        "Henry Sewell",
-        "Julius Vogel",
-        "Richard Seddon"
+        "2.71",
+        "3.14",
+        "4.00",
+        "1.62"
       ],
-      "correct_answer": "Henry Sewell",
-      "category": "history",
-      "explanation": "Henry Sewell served as New Zealand's first Premier (later called Prime Minister) in 1856."
+      "correct_answer": "3.14",
+      "category": "STEM",
+      "explanation": "The ratio of a circle's circumference to its diameter is defined as π (pi), which is approximately 3.14."
     },
     {
       "id": 4,
-      "question": "Which planet is known as the Red Planet?",
+      "question": "Which river is traditionally considered the boundary between Europe and Asia in Russia?",
       "options": [
-        "Venus",
-        "Mars",
-        "Jupiter",
-        "Saturn"
+        "Volga River",
+        "Don River",
+        "Ural River",
+        "Yenisei River"
       ],
-      "correct_answer": "Mars",
-      "category": "astronomy",
-      "explanation": "Mars appears red due to iron oxide (rust) on its surface."
+      "correct_answer": "Ural River",
+      "category": "geography",
+      "explanation": "The Ural River, along with the Ural Mountains, is widely recognized as the conventional geographical boundary between Europe and Asia in Russia."
     },
     {
       "id": 5,
-      "question": "What is the capital of New Zealand?",
+      "question": "What is the name of the phenomenon where a substance has multiple crystalline forms?",
       "options": [
-        "Auckland",
-        "Wellington",
-        "Christchurch",
-        "Hamilton"
+        "Isomerism",
+        "Allotropy",
+        "Polymorphism",
+        "Metamerism"
       ],
-      "correct_answer": "Wellington",
-      "category": "geography",
-      "explanation": "Wellington has been New Zealand's capital since 1865."
+      "correct_answer": "Polymorphism",
+      "category": "STEM",
+      "explanation": "Polymorphism refers to the ability of a solid material to exist in more than one crystal structure."
     },
     {
       "id": 6,
-      "question": "What is the largest mammal in the world?",
+      "question": "Which country was ruled by Emperor Haile Selassie until 1974?",
       "options": [
-        "African Elephant",
-        "Blue Whale",
-        "Giraffe",
-        "Hippopotamus"
+        "Kenya",
+        "Ethiopia",
+        "Somalia",
+        "Sudan"
       ],
-      "correct_answer": "Blue Whale",
-      "category": "biology",
-      "explanation": "Blue whales can grow up to 30 meters long and weigh up to 200 tonnes."
+      "correct_answer": "Ethiopia",
+      "category": "history",
+      "explanation": "Haile Selassie ruled Ethiopia as Emperor from 1930 until he was overthrown in a military coup in 1974."
     },
     {
       "id": 7,
-      "question": "In which year did World War II end?",
+      "question": "Which of the following describes the Coriolis effect?",
       "options": [
-        "1944",
-        "1945",
-        "1946",
-        "1947"
+        "The apparent deflection of moving objects when viewed from a rotating reference frame",
+        "The bending of light around massive objects",
+        "The increase in temperature with altitude",
+        "The decrease in atmospheric pressure with altitude"
       ],
-      "correct_answer": "1945",
-      "category": "history",
-      "explanation": "World War II ended in 1945 with Japan's surrender in September."
+      "correct_answer": "The apparent deflection of moving objects when viewed from a rotating reference frame",
+      "category": "STEM",
+      "explanation": "The Coriolis effect is an inertial force that appears to deflect moving objects on Earth due to the planet's rotation. It's most notable in large-scale phenomena like wind patterns and ocean currents."
     },
     {
       "id": 8,
-      "question": "How many bones are in an adult human body?",
+      "question": "What is the capital of Burkina Faso?",
       "options": [
-        "186",
-        "206",
-        "226",
-        "246"
+        "Bamako",
+        "Niamey",
+        "Ouagadougou",
+        "Accra"
       ],
-      "correct_answer": "206",
-      "category": "biology",
-      "explanation": "An adult human skeleton has 206 bones, though babies are born with about 270."
+      "correct_answer": "Ouagadougou",
+      "category": "geography",
+      "explanation": "Ouagadougou is the capital and largest city of Burkina Faso."
     },
     {
       "id": 9,
-      "question": "What is the chemical symbol for gold?",
+      "question": "Who proposed the concept of punctuated equilibrium in evolutionary biology?",
       "options": [
-        "Au",
-        "Ag",
-        "Al",
-        "Ar"
+        "Charles Darwin",
+        "Stephen Jay Gould and Niles Eldredge",
+        "Richard Dawkins",
+        "Ernst Mayr"
       ],
-      "correct_answer": "Au",
-      "category": "chemistry",
-      "explanation": "Au comes from the Latin word 'aurum' meaning gold."
+      "correct_answer": "Stephen Jay Gould and Niles Eldredge",
+      "category": "STEM",
+      "explanation": "Stephen Jay Gould and Niles Eldredge jointly proposed the theory of punctuated equilibrium, which suggests that evolution is characterized by long periods of relative stasis punctuated by short periods of rapid change."
     },
     {
       "id": 10,
-      "question": "What is the largest desert in the world?",
+      "question": "The Zimmermann Telegram, a key factor in the US entering World War I, was sent from Germany to which country?",
       "options": [
-        "Sahara",
-        "Gobi",
-        "Antarctica",
-        "Arabian"
+        "Canada",
+        "Mexico",
+        "Spain",
+        "Brazil"
       ],
-      "correct_answer": "Antarctica",
-      "category": "geography",
-      "explanation": "Antarctica is technically the world's largest desert as it receives very little precipitation."
+      "correct_answer": "Mexico",
+      "category": "history",
+      "explanation": "The Zimmermann Telegram proposed a military alliance between Germany and Mexico if the United States entered World War I against Germany."
     },
     {
       "id": 11,
-      "question": "Which ancient wonder of the world was located in Alexandria?",
+      "question": "What is the SI unit of luminous intensity?",
       "options": [
-        "Colossus of Rhodes",
-        "Lighthouse of Alexandria",
-        "Hanging Gardens",
-        "Temple of Artemis"
+        "Watt",
+        "Lumen",
+        "Lux",
+        "Candela"
       ],
-      "correct_answer": "Lighthouse of Alexandria",
+      "correct_answer": "Candela",
+      "category": "STEM",
+      "explanation": "The candela (cd) is the SI base unit of luminous intensity, measuring the power emitted by a light source in a particular direction."
+    },
+    {
+      "id": 12,
+      "question": "What is the highest mountain peak in North America?",
+      "options": [
+        "Mount Logan",
+        "Mount Whitney",
+        "Pico de Orizaba",
+        "Denali (Mount McKinley)"
+      ],
+      "correct_answer": "Denali (Mount McKinley)",
+      "category": "geography",
+      "explanation": "Denali, also known as Mount McKinley, located in Alaska, is the highest peak in North America."
+    },
+    {
+      "id": 13,
+      "question": "In computer science, what does the acronym ACID stand for in the context of database transactions?",
+      "options": [
+        "Atomicity, Consistency, Isolation, Durability",
+        "Accuracy, Concurrency, Integrity, Definition",
+        "Availability, Coherency, Integrity, Distribution",
+        "Abstraction, Concurrency, Inheritance, Design"
+      ],
+      "correct_answer": "Atomicity, Consistency, Isolation, Durability",
+      "category": "STEM",
+      "explanation": "ACID is a set of properties that guarantee database transactions are processed reliably.  Atomicity means all operations in a transaction succeed or none do; Consistency ensures the database remains in a valid state; Isolation prevents interference between concurrent transactions; Durability ensures that once a transaction is committed, it remains committed even in the event of a system failure."
+    },
+    {
+      "id": 14,
+      "question": "Who was the leader of the Bolshevik Revolution?",
+      "options": [
+        "Leon Trotsky",
+        "Vladimir Lenin",
+        "Joseph Stalin",
+        "Georgy Plekhanov"
+      ],
+      "correct_answer": "Vladimir Lenin",
       "category": "history",
-      "explanation": "The Lighthouse of Alexandria was one of the Seven Wonders of the Ancient World."
+      "explanation": "Vladimir Lenin was the principal leader of the Bolshevik Revolution in Russia in 1917."
+    },
+    {
+      "id": 15,
+      "question": "Which gas is most abundant in Earth's atmosphere?",
+      "options": [
+        "Oxygen",
+        "Carbon Dioxide",
+        "Nitrogen",
+        "Argon"
+      ],
+      "correct_answer": "Nitrogen",
+      "category": "STEM",
+      "explanation": "Nitrogen constitutes approximately 78% of Earth's atmosphere."
+    },
+    {
+      "id": 16,
+      "question": "What is the name of the strait that separates mainland Spain from Africa?",
+      "options": [
+        "Strait of Messina",
+        "Strait of Gibraltar",
+        "Bosporus Strait",
+        "Dardanelles Strait"
+      ],
+      "correct_answer": "Strait of Gibraltar",
+      "category": "geography",
+      "explanation": "The Strait of Gibraltar connects the Atlantic Ocean to the Mediterranean Sea and separates Spain from Morocco."
+    },
+    {
+      "id": 17,
+      "question": "What is the function of a reverse transcriptase enzyme?",
+      "options": [
+        "To replicate DNA",
+        "To synthesize DNA from an RNA template",
+        "To synthesize RNA from a DNA template",
+        "To break down proteins"
+      ],
+      "correct_answer": "To synthesize DNA from an RNA template",
+      "category": "STEM",
+      "explanation": "Reverse transcriptase is an enzyme used by retroviruses (like HIV) to create DNA from an RNA template, which is the reverse of normal transcription."
+    },
+    {
+      "id": 18,
+      "question": "The Warsaw Pact was primarily formed in response to which organization?",
+      "options": [
+        "The United Nations",
+        "The European Union",
+        "NATO",
+        "The League of Nations"
+      ],
+      "correct_answer": "NATO",
+      "category": "history",
+      "explanation": "The Warsaw Pact was a collective defense treaty established by the Soviet Union and seven other Soviet satellite states in Central and Eastern Europe in May 1955. It was formed in response to the integration of West Germany into NATO."
+    },
+    {
+      "id": 19,
+      "question": "What is the name for the lowest point in the ocean?",
+      "options": [
+        "Abyssal Plain",
+        "Mariana Trench",
+        "Puerto Rico Trench",
+        "Challenger Deep"
+      ],
+      "correct_answer": "Challenger Deep",
+      "category": "geography",
+      "explanation": "The Challenger Deep, located in the Mariana Trench, is the deepest known point in the world's oceans."
+    },
+    {
+      "id": 20,
+      "question": "What is the primary function of the Golgi apparatus in a eukaryotic cell?",
+      "options": [
+        "Protein synthesis",
+        "Energy production",
+        "Lipid synthesis",
+        "Protein modification and packaging"
+      ],
+      "correct_answer": "Protein modification and packaging",
+      "category": "STEM",
+      "explanation": "The Golgi apparatus processes and packages proteins after they have been synthesized by ribosomes, preparing them for transport to their final destinations."
+    },
+    {
+      "id": 21,
+      "question": "Who painted 'The Starry Night'?",
+      "options": [
+        "Claude Monet",
+        "Vincent van Gogh",
+        "Pablo Picasso",
+        "Leonardo da Vinci"
+      ],
+      "correct_answer": "Vincent van Gogh",
+      "category": "general_knowledge",
+      "explanation": "Vincent van Gogh painted 'The Starry Night' in 1889."
+    },
+    {
+      "id": 22,
+      "question": "In graph theory, what is a Hamiltonian path?",
+      "options": [
+        "A path that visits every edge exactly once",
+        "A path that visits every vertex exactly once",
+        "A cycle that visits every edge exactly once",
+        "A cycle that visits every vertex exactly once"
+      ],
+      "correct_answer": "A path that visits every vertex exactly once",
+      "category": "STEM",
+      "explanation": "A Hamiltonian path is a path in a graph that visits each vertex exactly once. A Hamiltonian cycle is a Hamiltonian path that is also a cycle."
+    },
+    {
+      "id": 23,
+      "question": "What was the Ems Dispatch, a key event leading to the Franco-Prussian War (1870-71)?",
+      "options": [
+        "A letter from Napoleon III to Kaiser Wilhelm I",
+        "A telegram summarizing a conversation between Kaiser Wilhelm I and the French ambassador",
+        "A treaty between Prussia and Austria",
+        "A declaration of war by France against Prussia"
+      ],
+      "correct_answer": "A telegram summarizing a conversation between Kaiser Wilhelm I and the French ambassador",
+      "category": "history",
+      "explanation": "The Ems Dispatch was a telegram edited by Otto von Bismarck to appear more inflammatory, leading France to declare war on Prussia."
+    },
+    {
+      "id": 24,
+      "question": "Which country is the world's largest producer of bauxite?",
+      "options": [
+        "Australia",
+        "Guinea",
+        "China",
+        "Brazil"
+      ],
+      "correct_answer": "Australia",
+      "category": "geography",
+      "explanation": "Australia is currently the world's leading producer of bauxite, the primary ore for aluminum."
+    },
+    {
+      "id": 25,
+      "question": "What is the central dogma of molecular biology?",
+      "options": [
+        "Protein -> RNA -> DNA",
+        "DNA -> RNA -> Protein",
+        "RNA -> DNA -> Protein",
+        "Protein -> DNA -> RNA"
+      ],
+      "correct_answer": "DNA -> RNA -> Protein",
+      "category": "STEM",
+      "explanation": "The central dogma of molecular biology describes the flow of genetic information: DNA is transcribed into RNA, and RNA is translated into protein."
     }
   ]
 }

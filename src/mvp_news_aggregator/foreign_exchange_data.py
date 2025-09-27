@@ -37,6 +37,8 @@ def _fetch_current_rates() -> Dict:
                     rates['NZD/INR'] = round(data['rates']['INR'], 2)
                 if 'CNY' in data['rates']:
                     rates['NZD/CNY'] = round(data['rates']['CNY'], 4)
+                if 'THB' in data['rates']:
+                    rates['NZD/THB'] = round(data['rates']['THB'], 2)
     except Exception as e:
         print(f"Error fetching current traditional rates: {e}")
     
@@ -62,7 +64,7 @@ def _fetch_historical_rates_fixer(date) -> Dict:
         params = {
             'access_key': 'your_api_key_here',  # Would need API key
             'base': 'NZD',
-            'symbols': 'USD,AUD,INR,CNY'
+            'symbols': 'USD,AUD,INR,CNY,THB'
         }
         response = requests.get(url, params=params, timeout=10)
         # This will fail without API key, moving to alternative
@@ -92,7 +94,7 @@ def _fetch_historical_rates_alternative(date, current_rates) -> Dict:
             # Traditional FX is less volatile
             variation = random.uniform(-0.02, 0.02)  # ±2%
             varied_rate = current_rate * (1 + variation)
-            if pair == 'NZD/INR':
+            if pair in ['NZD/INR', 'NZD/THB']:
                 rates[pair] = round(varied_rate, 2)
             else:
                 rates[pair] = round(varied_rate, 4)
@@ -119,6 +121,8 @@ def _try_exchangerate_api(date) -> Dict:
                     rates['NZD/INR'] = round(data['rates']['INR'], 2)
                 if 'CNY' in data['rates']:
                     rates['NZD/CNY'] = round(data['rates']['CNY'], 4)
+                if 'THB' in data['rates']:
+                    rates['NZD/THB'] = round(data['rates']['THB'], 2)
             
             return rates
     except:
@@ -160,7 +164,7 @@ def fetch_daily_fx_data_past_month() -> Dict:
         'metadata': {
             'start_date': start_date.isoformat(),
             'end_date': end_date.isoformat(),
-            'currency_pairs': ['NZD/USD', 'NZD/AUD', 'NZD/INR', 'NZD/CNY'], # , 'USD/BTC'],
+            'currency_pairs': ['NZD/USD', 'NZD/AUD', 'NZD/INR', 'NZD/CNY', 'NZD/THB'], # , 'USD/BTC'],
             'fetch_timestamp': datetime.now().isoformat(),
             'note': 'Historical data with fallback to realistic variations of current rates'
         },
@@ -191,9 +195,9 @@ def fetch_daily_fx_data_past_month() -> Dict:
         # If we got some but not all data, fill in with variations
         if not daily_rates and current_rates:
             daily_rates = _fetch_historical_rates_alternative(current_date, current_rates)
-        elif len(daily_rates) < 4 and current_rates:  # Fill missing pairs (4 traditional FX pairs)
+        elif len(daily_rates) < 5 and current_rates:  # Fill missing pairs (5 traditional FX pairs)
             alternative_data = _fetch_historical_rates_alternative(current_date, current_rates)
-            for pair in ['NZD/USD', 'NZD/AUD', 'NZD/INR', 'NZD/CNY']: # , 'USD/BTC']:
+            for pair in ['NZD/USD', 'NZD/AUD', 'NZD/INR', 'NZD/CNY', 'NZD/THB']: # , 'USD/BTC']:
                 if pair not in daily_rates and pair in alternative_data:
                     daily_rates[pair] = alternative_data[pair]
         
@@ -250,7 +254,7 @@ def get_fx_changes_from_daily_data() -> Dict:
             'status': 'success'
         }
         
-        for pair in ['NZD/USD', 'NZD/AUD', 'NZD/INR', 'NZD/CNY']: # , 'USD/BTC']:
+        for pair in ['NZD/USD', 'NZD/AUD', 'NZD/INR', 'NZD/CNY', 'NZD/THB']: # , 'USD/BTC']:
             if pair in current_rates:
                 current = current_rates[pair]
                 

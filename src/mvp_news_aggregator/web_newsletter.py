@@ -589,7 +589,20 @@ class NewsletterGenerator:
         
         .fx-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+        }
+        
+        .fx-dxy-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .fx-currencies-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 0.75rem;
         }
         
@@ -644,8 +657,8 @@ class NewsletterGenerator:
                 padding: 1rem;
             }
             
-            .fx-grid {
-                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            .fx-currencies-grid {
+                grid-template-columns: repeat(3, 1fr);
                 gap: 0.5rem;
             }
             
@@ -1147,10 +1160,26 @@ class NewsletterGenerator:
             html += f'<div class="fx-timestamp">{timestamp}</div>'
             html += '</div>'
             
-            html += '<div class="fx-grid">'
+            html += '<div class="fx-grid">'            
+            
+            # DXY row (placeholder for now)
+            html += '<div class="fx-dxy-row">'            
+            html += '<div class="fx-rate">'            
+            html += '<div class="fx-pair">DXY</div>'            
+            html += '<div class="fx-value">0.00</div>'            
+            html += '<div class="fx-changes">'            
+            html += '<span class="fx-change neutral">24h +0.0%</span>'            
+            html += '<span class="fx-change neutral">7d +0.0%</span>'            
+            html += '<span class="fx-change neutral">30d +0.0%</span>'            
+            html += '</div>'            
+            html += '</div>'            
+            html += '</div>'            
+            
+            # Currency pairs in rows of 3
+            html += '<div class="fx-currencies-grid">'
             
             # Define the order of currency pairs
-            pair_order = ['NZD/USD', 'NZD/AUD', 'NZD/INR', 'NZD/CNY'] # , 'USD/BTC']
+            pair_order = ['NZD/USD', 'NZD/AUD', 'NZD/INR', 'NZD/CNY', 'NZD/THB'] # , 'USD/BTC']
             
             for pair in pair_order:
                 if pair in rates_data:
@@ -1185,7 +1214,8 @@ class NewsletterGenerator:
                     
                     html += f'</div>'
             
-            html += '</div>'
+            html += '</div>'  # fx-currencies-grid
+            html += '</div>'  # fx-grid
             html += '</div>'
             
             return html
