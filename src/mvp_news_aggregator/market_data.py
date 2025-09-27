@@ -44,6 +44,14 @@ def get_market_instruments():
             'display_symbol': 'Dow Jones'
         },
         
+        # Currency Indices
+        'DX=F': {
+            'name': 'US Dollar Index',
+            'category': 'Currency Indices',
+            'currency': 'USD',
+            'display_symbol': 'DXY'
+        },
+        
         # International Indices
         '000001.SS': {
             'name': 'SSE Composite Index',
@@ -229,26 +237,28 @@ def get_market_changes_from_daily_data() -> Dict:
             print("ERROR: No daily price data available")
             return {'status': 'error', 'error': 'No daily price data available'}
         
-        # Get dates for comparison - find the most recent date with the most data
+        # Get dates for comparison - use most recent date with reasonable data
         dates = sorted(daily_prices.keys())
         if not dates:
             print("ERROR: No price dates available")
             return {'status': 'error', 'error': 'No price dates available'}
         
-        # Find the date with the most instruments (likely the most complete trading day)
-        best_date = None
-        max_instruments = 0
-        
-        for date in dates[-7:]:  # Check last 7 dates
+        # Find the most recent date with reasonable amount of data (at least 8 instruments)
+        today = None
+        for date in reversed(dates):
             instrument_count = len(daily_prices[date])
             print(f"Date {date}: {instrument_count} instruments")
-            if instrument_count > max_instruments:
-                max_instruments = instrument_count
-                best_date = date
+            if instrument_count >= 8:  # Reasonable threshold for good data
+                today = date
+                print(f"Using {today} as base date with {instrument_count} instruments")
+                break
         
-        today = best_date
+        if not today:
+            # Fallback to most recent date even if incomplete
+            today = dates[-1]
+            print(f"Fallback: Using {today} as base date")
+        
         today_idx = dates.index(today)
-        print(f"Using {today} as base date with {max_instruments} instruments")
         day_1_idx = max(0, today_idx - 1)
         day_7_idx = max(0, today_idx - 7)
         day_30_idx = max(0, today_idx - 30)

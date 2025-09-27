@@ -589,7 +589,20 @@ class NewsletterGenerator:
         
         .fx-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+        }
+        
+        .fx-dxy-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .fx-currencies-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 0.75rem;
         }
         
@@ -644,8 +657,8 @@ class NewsletterGenerator:
                 padding: 1rem;
             }
             
-            .fx-grid {
-                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            .fx-currencies-grid {
+                grid-template-columns: repeat(3, 1fr);
                 gap: 0.5rem;
             }
             
@@ -1143,14 +1156,56 @@ class NewsletterGenerator:
             
             html = '<div class="fx-box">'
             html += '<div class="fx-header">'
-            html += '<h3 class="fx-title">Exchange Rates</h3>'
+            html += '<h3 class="fx-title">Foreign Exchange Rates</h3>'
             html += f'<div class="fx-timestamp">{timestamp}</div>'
             html += '</div>'
             
-            html += '<div class="fx-grid">'
+            html += '<div class="fx-grid">'            
+            
+            # DXY row with real data
+            html += '<div class="fx-dxy-row">'            
+            
+            # Get DXY data
+            try:
+                from foreign_exchange_data import get_dxy_from_market_data
+                dxy_data = get_dxy_from_market_data()
+                dxy_current = dxy_data['current']
+                dxy_changes = dxy_data.get('changes', {})
+            except Exception:
+                dxy_current = 0.00
+                dxy_changes = {}
+            
+            html += '<div class="fx-rate">'            
+            html += '<div class="fx-pair">DXY (US Dollar Index)</div>'            
+            html += f'<div class="fx-value">{dxy_current}</div>'            
+            html += '<div class="fx-changes">'            
+            
+            # Add real percentage changes or defaults
+            for period in ['24h', '7d', '30d']:
+                if period in dxy_changes:
+                    change_pct = dxy_changes[period]
+                    if change_pct > 0.1:
+                        color_class = 'positive'
+                        sign = '+'
+                    elif change_pct < -0.1:
+                        color_class = 'negative'
+                        sign = ''
+                    else:
+                        color_class = 'neutral'
+                        sign = '+' if change_pct >= 0 else ''
+                    html += f'<span class="fx-change {color_class}">{period} {sign}{change_pct:.1f}%</span>'
+                else:
+                    html += f'<span class="fx-change neutral">{period} +0.0%</span>'
+            
+            html += '</div>'            
+            html += '</div>'            
+            html += '</div>'            
+            
+            # Currency pairs in rows of 3
+            html += '<div class="fx-currencies-grid">'
             
             # Define the order of currency pairs
-            pair_order = ['NZD/USD', 'NZD/AUD', 'NZD/INR', 'NZD/CNY'] # , 'USD/BTC']
+            pair_order = ['NZD/USD', 'NZD/AUD', 'NZD/INR', 'NZD/CNY', 'NZD/THB'] # , 'USD/BTC']
             
             for pair in pair_order:
                 if pair in rates_data:
@@ -1185,7 +1240,8 @@ class NewsletterGenerator:
                     
                     html += f'</div>'
             
-            html += '</div>'
+            html += '</div>'  # fx-currencies-grid
+            html += '</div>'  # fx-grid
             html += '</div>'
             
             return html
@@ -1214,6 +1270,7 @@ class NewsletterGenerator:
             # Group instruments by category
             categories = {
                 'US Indices': [],
+                'Currency Indices': [],
                 'International Indices': [],
                 'Commodities': [],
                 'ETFs': []
@@ -1235,6 +1292,7 @@ class NewsletterGenerator:
             # Category ID mapping for JavaScript
             category_ids = {
                 'US Indices': 'us-indices',
+                'Currency Indices': 'currency-indices',
                 'International Indices': 'international',
                 'Commodities': 'commodities',
                 'ETFs': 'etfs'

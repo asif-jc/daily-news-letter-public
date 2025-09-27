@@ -31,14 +31,14 @@ class QuizGenerator:
         if self.use_llm:
             # Initialize Gemini LLM using same configuration as curator
             genai.configure(api_key=os.getenv('GEMINI_API_KEY'))
-            self.model = genai.GenerativeModel('gemini-1.5-flash')
+            self.model = genai.GenerativeModel('gemini-2.0-flash-001')
         else:
             self.model = None
             print("LLM disabled - using fallback question bank for quiz generation")
 
     def generate_daily_quiz(self, 
-                           topics: List[str] = ['geography', 'physics', 'chemistry', 'math', 'statistics', 'astronomy', 'history', 'machine learning/AI', 'general_knowledge'], 
-                           difficulty: str = "hard",
+                           topics: List[str] = ['geography', 'physics', 'chemistry', 'math', 'statistics', 'astronomy', 'history', 'machine learning/AI', 'general_knowledge', 'animals/nature'], 
+                           difficulty: str = "medium",
                            question_count: int = 25) -> Dict:
         """
         Generate complete daily quiz with metadata.
@@ -110,6 +110,7 @@ REQUIREMENTS:
 - Ensure variety across the specified topics
 - Make questions engaging and educational
 - Make questions slightly unique to avoid overlap with indepedently made repeated prompts (don't priortize this)
+- Ensure the questions are important in nature opposed to highly complex questions in a certain field
 
 DIFFICULTY GUIDELINES:
 - Easy: Basic facts and common knowledge
