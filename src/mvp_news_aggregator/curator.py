@@ -43,6 +43,9 @@ class ArticleCurator:
         clean_articles = self.basic_filter(articles)
         print(f"Found {len(clean_articles)} articles after basic filtering")
         
+        clean_articles = self.deduplicate_articles(clean_articles)
+        print(f"Found {len(clean_articles)} articles after deduplication")
+        
         curated = self.llm_curate(clean_articles)
         print(f"LLM curated articles for categories: {list(curated.keys())}")
         
@@ -117,6 +120,44 @@ class ArticleCurator:
                 filtered.append(article)
         logger.info(f"Filtered {len(articles)} → {len(filtered)} articles")
         return filtered
+    
+    def deduplicate_articles(self, articles: List[Dict]) -> List[Dict]:
+        """Remove duplicate articles using LLM"""
+        if len(articles) <= 1 or not self.use_llm:
+            return articles
+        
+        # Extract titles for comparison
+        titles = [article.get('title', '') for article in articles]
+        
+        prompt = f"""Find duplicate news stories from these titles:
+
+{chr(10).join([f"{i+1}. {title}" for i, title in enumerate(titles)])}
+
+Return JSON: {{"duplicates": [[1,3], [5,7]]}}
+Only group titles about the same specific event/announcement."""
+
+        try:
+            # Use your existing Gemini model
+            response = self.model.generate_content(prompt)
+            result = json.loads(response.text.strip().replace('```json', '').replace('```', ''))
+            
+            # Remove duplicates (keep first from each group)
+            to_remove = set()
+            for group in result.get('duplicates', []):
+                for story_num in group[1:]:  # Skip first, remove rest
+                    to_remove.add(story_num - 1)  # Convert to 0-based
+            
+            # Filter out duplicates
+            unique_articles = [article for i, article in enumerate(articles) if i not in to_remove]
+            
+            if len(to_remove) > 0:
+                logger.info(f"Removed {len(to_remove)} duplicate articles")
+            
+            return unique_articles
+            
+        except Exception as e:
+            logger.warning(f"Deduplication failed: {e}, returning original articles")
+            return articles
     
     def llm_curate(self, articles: List[Dict]) -> Dict:
         """LLM curation for all categories"""
@@ -236,7 +277,8 @@ class ArticleCurator:
                         story['scraped_content'] = content
                         enhanced = self.enhance_summary(story['title'], content, category)
                         if enhanced:
-                            story['enhanced_summary'] = enhanced
+                            story['enhanced_summary'] = enhanced['summary']
+                            story['why_matters'] = enhanced['why_matters']
                     time.sleep(1)  # Be nice to servers
                 else:
                     print(f"⚡ Skipping content scraping for: {story['title'][:50]}...")
@@ -332,31 +374,52 @@ class ArticleCurator:
         
         return optimized
         
-    def enhance_summary(self, title: str, content: str, category: str) -> Optional[str]:
-        """Create better summary with full content or return None if LLM disabled"""
+    def enhance_summary(self, title: str, content: str, category: str) -> Optional[Dict]:
+        """Create better summary with 'Why This Matters' analysis"""
         if not self.use_llm:
             return None  # Skip enhanced summaries when LLM disabled
         
         print(f"\n🤖 LLM Enhancement: {title[:50]}...")
         print(f"   Input length: {len(content)} chars")
             
-        prompt = f"""Summarize this {category} article in 2 flowing sentences for business professionals:
+        prompt = f"""Analyze this {category} article for business professionals:
 
-        Sentence 1: What happened (key facts and players)
-        Sentence 2: Why this matters strategically (business implications or broader significance)
+Title: {title}
+Content: {content}
 
-        Keep it natural and conversational - don't make it sound like bullet points.
+Provide:
+1. SUMMARY (2 sentences): What happened + key players involved
+2. WHY IT MATTERS (2-3 sentences): Broader implications, why readers should care, what this signals about trends or changes
 
-        Title: {title}
-        Content: {content}
+Keep both sections natural and conversational - avoid bullet point format.
 
-        Summary:"""
+Format your response as:
+Summary: [your summary here]
+Why it matters: [your analysis here]"""
         
         try:
             response = self.model.generate_content(prompt)
             result = response.text.strip()
             print(f"   LLM output length: {len(result)} chars")
-            return result
+            
+            # Parse the response into summary and analysis
+            lines = result.split('\n')
+            summary = ""
+            why_matters = ""
+            
+            for line in lines:
+                if line.strip().lower().startswith('summary:'):
+                    summary = line.split(':', 1)[1].strip()
+                elif line.strip().lower().startswith('why it matters:'):
+                    why_matters = line.split(':', 1)[1].strip()
+            
+            # Return structured data
+            return {
+                'summary': summary,
+                'why_matters': why_matters,
+                'full_text': result  # Keep full text as backup
+            }
+            
         except Exception as e:
             print(f"   LLM error: {e}")
             return None

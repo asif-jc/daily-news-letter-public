@@ -516,6 +516,23 @@ class NewsletterGenerator:
             margin-bottom: 0.5rem;
         }
         
+        .why-matters {
+            margin-top: 0.75rem;
+            padding: 0.75rem;
+            background-color: #f0f8ff;
+            border-left: 3px solid #007bff;
+            font-style: italic;
+            font-size: 0.95em;
+            color: #495057;
+            border-radius: 4px;
+        }
+        
+        .why-matters strong {
+            color: #007bff;
+            font-weight: 600;
+            font-style: normal;
+        }
+        
         .article-reason {
             color: #28a745;
             font-style: italic;
@@ -1456,6 +1473,8 @@ class NewsletterGenerator:
         if tier == "critical" or tier == "key":
             if article.get('enhanced_summary'):
                 html += f'<div class="article-summary">{article["enhanced_summary"]}</div>'
+                if article.get('why_matters'):
+                    html += f'<div class="why-matters"><strong>Why this matters:</strong> {article["why_matters"]}</div>'
             elif article.get('llm_summary'):
                 html += f'<div class="article-summary">{article["llm_summary"]}</div>'
         elif tier == "monitoring" and article.get('llm_reason'):

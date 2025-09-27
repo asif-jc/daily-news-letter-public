@@ -2,131 +2,129 @@
   "world": {
     "top_stories": [
       {
-        "id": "1713e483bae9",
-        "title": "Netanyahu attacks Palestinian recognition as dozens walk out of UN speech",
-        "url": "https://www.bbc.com/news/articles/cderxxylpzdo?at_medium=RSS&at_campaign=rss",
-        "description": "Officials and diplomats left the auditorium in protest as the Israeli leader took the stage, leaving large parts of the hall empty.",
+        "id": "81080ae794b7",
+        "title": "UN sanctions against Iran to resume over banned nuclear activity",
+        "url": "https://www.bbc.com/news/articles/c39rpgpvwy1o?at_medium=RSS&at_campaign=rss",
+        "description": "Sanctions lifted in 2015 look set to be snapped back after Tehran was accused of failing to fulfil its commitments.",
         "source": "BBC World News",
-        "published": "2025-09-26T16:41:44+00:00",
-        "fetched_at": "2025-09-27T02:53:00.434995+00:00",
-        "category": "world"
+        "published": "2025-09-27T05:28:36+00:00",
+        "fetched_at": "2025-09-27T06:33:29.192680+00:00",
+        "category": "world",
+        "llm_summary": "",
+        "importance_score": 8,
+        "scraped_content": "UN sanctions against Iran to resume over banned nuclear activity 59 minutes ago Share Save Lyse Doucet Chief international correspondent, New York and Raffi Berg Share Save EPA Iranian President Masoud Pezeshkian spoke at the UN General Assembly The United Nations' sweeping economic and military sanctions look set to be reimposed on Iran a decade after they were lifted in a landmark international deal over its nuclear programme. It comes after the UK, France and Germany wrote to the UN Security Council last month, accusing Iran of failing to fulfil its commitments. That triggered a mechanism giving Iran 30 days to find a diplomatic solution to avert renewed sanctions. Iran's President Masoud Pezeshkian condemned the re-imposition of international sanctions as \"unfair, unjust, and illegal\". A last-minute resolution, led by China and Russia, to delay the move by six months only received four votes in the 15-member council. The sanctions are set to come into force at 00:00 GMT on Sunday. Iran stepped up banned nuclear activity after the US quit the deal in 2016. Donald Trump pulled the US out in his first term as US president, criticising the deal - the Joint Comprehensive Plan of Action (JCPOA) - negotiated under his predecessor Barack Obama as flawed.",
+        "enhanced_summary": "UN sanctions are poised to be reimposed on Iran after the UK, France, and Germany accused Iran of violating its nuclear commitments, a decade after sanctions were lifted in a landmark nuclear deal. Despite condemnation from Iran's President and attempts by China and Russia to delay the move, the sanctions are expected to be reinstated, triggered by Iran stepping up its banned nuclear activity after the US withdrew from the JCPOA in 2016.",
+        "why_matters": "This development signals a potential escalation of geopolitical tensions in the Middle East, impacting global trade and energy markets. Businesses should be aware of renewed economic restrictions impacting Iranian markets and trade partnerships, potentially leading to supply chain disruptions and increased risk for investments in the region. This also reflects a shift in international diplomacy, highlighting the fragility of international agreements and the challenges of nuclear non-proliferation efforts."
       },
       {
-        "id": "e251aa751d32",
-        "title": "Elon Musk and Prince Andrew named in new Epstein files",
-        "url": "https://www.bbc.com/news/articles/cwyl8j1we0lo?at_medium=RSS&at_campaign=rss",
-        "description": "The documents by the estate of convicted paedophile financier Jeffrey Epstein were released by Congressional Democrats.",
+        "id": "d00e0cdadd90",
+        "title": "Canada's postal workers strike, bring mail deliveries to a halt",
+        "url": "https://www.bbc.com/news/articles/c2dn7zl9dp1o?at_medium=RSS&at_campaign=rss",
+        "description": "The strikes comes after proposals by the government that would shutter some post offices and end home delivery of parcels.",
         "source": "BBC World News",
-        "published": "2025-09-26T21:15:39+00:00",
-        "fetched_at": "2025-09-27T02:53:00.435041+00:00",
-        "category": "world"
+        "published": "2025-09-26T15:58:48+00:00",
+        "fetched_at": "2025-09-27T06:33:29.192750+00:00",
+        "category": "world",
+        "llm_summary": "",
+        "importance_score": 7,
+        "scraped_content": "Canada's postal workers strike, bring mail deliveries to a halt 14 hours ago Share Save Kwasi Gyamfi Asiedu Share Save NurPhoto via Getty Images Canada Post workers have begun a nationwide strike after the federal government authorised widespread reforms that would shut some post offices and end certain types of deliveries. The Canadian Union of Postal Workers (CUPW) called the proposals an \"attack on our postal service and workers\" as it announced the industrial action. The strike by the union's 55,000 members comes amid an ongoing dispute over postal worker's pay and benefits that resulted in a weeks-long walkout late last year. Canada Post said operations will shut down during the strike, leaving mail and parcels undelivered for millions, adding that this would compound the corporation's already dire financial woes. The sweeping changes announced by the federal government follows years of financial losses sustained by the postal service, which faces reduced demand and stiff competition from private parcel delivery services. Procurement minister Jo\u00ebl Lightbound said on Thursday that Canada Post lost C$1bn ($717; \u00a3535m) last year and is on track to lose C$1. \"Canada Post is effectively insolvent, and repeated bailouts are not a long-term solution,\" he said in a statement. The proposed changes would see the closure of several post offices in areas that were once rural and give the service more flexibility to raise prices.",
+        "enhanced_summary": "Canadian postal workers have initiated a nationwide strike in response to government-authorized reforms that include post office closures and delivery changes. This action, led by the Canadian Union of Postal Workers (CUPW) with its 55,000 members, halts mail and parcel deliveries across the country.",
+        "why_matters": "This strike highlights the tension between public services struggling with financial viability and the need to modernize in the face of changing consumer demands and private sector competition. It signals potential disruptions to Canadian businesses and consumers reliant on postal services and could indicate a broader trend of governments seeking to restructure or cut back on traditionally guaranteed public services. This will also influence companies and consumers to seek alternative, non-unionized solutions for shipping and deliveries."
       },
       {
-        "id": "22cdd001e6d7",
-        "title": "Dubai sex-trade ring boss held by police after BBC investigation",
-        "url": "https://www.bbc.com/news/articles/ce84ezl461po?at_medium=RSS&at_campaign=rss",
-        "description": "Charles Mwesigwa led a degrading network exploiting vulnerable women in glamorous parts of Dubai.",
+        "id": "aca0be2a32b7",
+        "title": "Is the US-China TikTok deal done? Here's what you need to know",
+        "url": "https://www.bbc.com/news/videos/cg5ege645reo?at_medium=RSS&at_campaign=rss",
+        "description": "Donald Trump says a deal on the future of TikTok in the US has been made, but it\u2019s not been confirmed by China or the app\u2019s owner ByteDance.",
         "source": "BBC World News",
-        "published": "2025-09-26T15:52:35+00:00",
-        "fetched_at": "2025-09-27T02:53:00.435079+00:00",
-        "category": "world"
-      },
-      {
-        "id": "8c0de1d853b2",
-        "title": "What to know about James Comey's indictment and what happens next",
-        "url": "https://www.bbc.com/news/articles/cj07ndrnr34o?at_medium=RSS&at_campaign=rss",
-        "description": "The news puts the ex-FBI boss back in the spotlight nearly a decade after the drama of the 2016 election.",
-        "source": "BBC World News",
-        "published": "2025-09-26T17:23:04+00:00",
-        "fetched_at": "2025-09-27T02:53:00.435118+00:00",
-        "category": "world"
-      },
-      {
-        "id": "0b6dae276343",
-        "title": "Slovakia passes law to recognise only two sexes and restrict adoption",
-        "url": "https://www.bbc.com/news/articles/c0m4kpg2nmmo?at_medium=RSS&at_campaign=rss",
-        "description": "Critics are warning the change would make life more difficult for LGBT people.",
-        "source": "BBC World News",
-        "published": "2025-09-26T15:29:23+00:00",
-        "fetched_at": "2025-09-27T02:53:00.435153+00:00",
-        "category": "world"
+        "published": "2025-09-26T10:02:14+00:00",
+        "fetched_at": "2025-09-27T06:33:29.193391+00:00",
+        "category": "world",
+        "llm_summary": "",
+        "importance_score": 7,
+        "scraped_content": "President Donald Trump has signed an executive order, approving a proposal that would allow TikTok to continue operating in the US under American ownership. But details of the deal have not been confirmed by China, or the app's Chinese owner ByteDance. The BBC's Suranjana Tewari explains everything we know so far about how the deal might work. Vietnam was among 23 countries competing in a glitzy Russian song contest, revived three years after Russia was banned from Eurovision. President Claudia Sheinbaum and Prime Minister Mark Carney's meeting is meant to kickstart a new economic bilateral relationship. Authorities started the controlled avalanche to reduce the risk for drivers to the popular tourist destination Milford Sound. Nearly 500 workers - most of them South Korean nationals - were seized in an immigration raid on a large Korean car plant in the US state of Georgia. The airline confirmed that all 164 passengers and crew aboard flight 2276 were safely evacuated.",
+        "enhanced_summary": "The US has conditionally approved a deal allowing TikTok to operate in the US under American ownership, spearheaded by an executive order from then-President Donald Trump. However, crucial details are still pending confirmation from both China and TikTok's parent company, ByteDance.",
+        "why_matters": "This deal, even in its uncertain state, highlights the growing tension and complexities surrounding international tech ownership and data security, particularly between the US and China. Businesses should pay attention because it sets a precedent for how governments might intervene in cross-border tech deals, potentially impacting future investments and global market access. The outcome also significantly impacts the future of social media and its role in international relations."
       }
     ],
     "quick_reads": [
       {
-        "id": "bbba102df2b6",
-        "title": "Assata Shakur, black liberation activist exiled in Cuba dies at 78",
-        "url": "https://www.bbc.com/news/articles/cm28yrz6502o?at_medium=RSS&at_campaign=rss",
-        "description": "She fled to Cuba after being convicted in the killing of a police officer but she denied shooting the officer.",
+        "id": "2d42069b7537",
+        "title": "Two Dutch teenagers arrested in spying case linked to Russia",
+        "url": "https://www.bbc.com/news/articles/cgj1wy3eexyo?at_medium=RSS&at_campaign=rss",
+        "description": "The pair were allegedly recruited by pro-Russian hackers and used a \"wi-fi sniffer\" on the Europol headquarters.",
         "source": "BBC World News",
-        "published": "2025-09-26T20:27:23+00:00",
-        "fetched_at": "2025-09-27T02:53:00.435190+00:00",
-        "category": "world"
-      },
-      {
-        "id": "942a61328287",
-        "title": "Sinclair and Nexstar to reinstate Kimmel on ABC stations",
-        "url": "https://www.bbc.com/news/articles/cy7pm1jz0dlo?at_medium=RSS&at_campaign=rss",
-        "description": "Viewers in Washington, DC, St Louis and Seattle will be able to watch the late night comedian's show again.",
-        "source": "BBC World News",
-        "published": "2025-09-26T21:54:51+00:00",
-        "fetched_at": "2025-09-27T02:53:00.435225+00:00",
-        "category": "world"
-      },
-      {
-        "id": "3ad9adda3bef",
-        "title": "ICE officer disciplined after shoving woman to ground in courthouse",
-        "url": "https://www.bbc.com/news/articles/cn4w23yjzj1o?at_medium=RSS&at_campaign=rss",
-        "description": "The Department of Homeland Security said the officer's behaviour was \"unacceptable\" and placed him on leave.",
-        "source": "BBC World News",
-        "published": "2025-09-26T20:16:26+00:00",
-        "fetched_at": "2025-09-27T02:53:00.435265+00:00",
-        "category": "world"
-      },
-      {
-        "id": "d4f1bb79d7bc",
-        "title": "Turkey abandons bid to force doner kebab rules on Europe",
-        "url": "https://www.bbc.com/news/articles/cly9g9g7j36o?at_medium=RSS&at_campaign=rss",
-        "description": "The case had alarmed Germany's kebab industry in particular, who make doners very differently.",
-        "source": "BBC World News",
-        "published": "2025-09-26T12:35:36+00:00",
-        "fetched_at": "2025-09-27T02:53:00.435299+00:00",
-        "category": "world"
-      },
-      {
-        "id": "b5d54073c9bf",
-        "title": "New York office gunman had low-level CTE, medical examiner finds",
-        "url": "https://www.bbc.com/news/articles/cj07nv4l7m5o?at_medium=RSS&at_campaign=rss",
-        "description": "Shane Tamura killed four while targeting NFL offices in July",
-        "source": "BBC World News",
-        "published": "2025-09-26T19:05:39+00:00",
-        "fetched_at": "2025-09-27T02:53:00.435333+00:00",
-        "category": "world"
+        "published": "2025-09-26T10:20:31+00:00",
+        "fetched_at": "2025-09-27T06:33:29.192865+00:00",
+        "category": "world",
+        "llm_reason": "Increased cyber espionage activities are a growing risk. Businesses need to enhance security measures."
       }
     ]
   },
   "tech": {
     "top_stories": [
       {
-        "id": "b6f40db74040",
-        "title": "Vibe coding: Hype or new reality? Only at TechCrunch Disrupt 2025",
-        "url": "https://techcrunch.com/2025/09/26/discover-how-developer-tools-are-shifting-fast-with-lauri-moore-and-david-cramer-at-techcrunch-disrupt-2025/",
-        "description": "Lauri Moore (Bessemer), David Cramer (Sentry), and Zach Lloyd (Warp) join the Builders Stage at TechCrunch Disrupt 2025 to debate what founders really need from their first engineering hires \u2014 and how AI tooling fits into the equation.",
+        "id": "9b07f8e9d2d6",
+        "title": "IPO-bound Flipkart gains key approvals to relocate to India",
+        "url": "https://techcrunch.com/2025/09/26/ipo-bound-flipkart-gains-key-approvals-to-relocate-to-india/",
+        "description": "Flipkart is set to become the most valuable startup to shift its headquarters back to India ahead of a planned IPO.",
         "source": "TechCrunch",
-        "published": "2025-09-26T20:00:00+00:00",
-        "fetched_at": "2025-09-27T02:53:03.726583+00:00",
-        "category": "tech"
+        "published": "2025-09-26T15:11:05+00:00",
+        "fetched_at": "2025-09-27T06:33:32.509613+00:00",
+        "category": "tech",
+        "llm_summary": "",
+        "importance_score": 9,
+        "scraped_content": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise EVs Fintech Fundraising Gadgets Gaming Google Government & Policy Hardware Instagram Layoffs Media & Entertainment Meta Microsoft Privacy Robotics Security Social Space Startups TikTok Transportation Venture Staff Events Startup Battlefield StrictlyVC Newsletters Podcasts Videos Partner Content TechCrunch Brand Studio Crunchboard Contact Us Flipkart is in the advanced stages of securing regulatory approvals to shift its headquarters from Singapore to India, with the transition targeted for later this year, TechCrunch has learned, as the Walmart-owned e-commerce giant prepares for an Indian IPO next year. The redomiciling process has received in-principle approvals from a Singapore court, while several hearings have already taken place at India\u2019s National Company Law Appellate Tribunal (NCLAT), people familiar with the matter told TechCrunch. Flipkart is working toward completing the transition within the next couple of months, aligning with India\u2019s festive season \u2014 a critical sales period \u2014 and laying the groundwork for a public listing expected as early as 2026. Relocating their base back home helps companies align with evolving local regulations and meet requirements for domestic stock listings. It also makes sense to tap India\u2019s public markets, given the expanding retail investor base and rising appetite for IPOs. The trend reflects the growing maturity and attractiveness of India\u2019s capital markets compared to overseas alternatives. Flipkart initiated the process in India and Singapore simultaneously over two and a half months ago, following the board\u2019sapproval for the relocation of its headquartersin April, the people said. In 2022, Walmart-backed PhonePe, which had split from Flipkart in late 2022,relocated its headquartersfrom Singapore to India.",
+        "enhanced_summary": "Flipkart, the Walmart-owned e-commerce giant, is nearing completion of its move to relocate its headquarters from Singapore to India, with key regulatory approvals secured. This strategic shift is happening in preparation for a potential Indian IPO as early as 2026.",
+        "why_matters": "This move signals growing confidence in the Indian market and regulatory landscape. It demonstrates that India is becoming an increasingly attractive location for companies seeking public listings and to tap into a large and enthusiastic investor base. We might see more large, previously off-shore, companies looking to redomicile in India."
       },
       {
-        "id": "d1ecd7135d48",
-        "title": "What\u2019s behind the massive AI data center headlines?",
-        "url": "https://techcrunch.com/2025/09/26/whats-behind-the-massive-ai-data-center-headlines/",
-        "description": "This week on Equity, Anthony Ha and Max Zeff go beyond the headlines to break down what's really going on in these AI infrastructure deals.",
+        "id": "b88668e4bd73",
+        "title": "The Trump administration\u00a0is\u00a0going\u00a0after semiconductor imports",
+        "url": "https://techcrunch.com/2025/09/26/the-trump-administration-is-going-after-semiconductor-imports/",
+        "description": "The Trump administration wants the industry to reach a 1:1 ratio of domestically produced and imported chips.",
         "source": "TechCrunch",
-        "published": "2025-09-26T19:40:24+00:00",
-        "fetched_at": "2025-09-27T02:53:03.726632+00:00",
-        "category": "tech"
+        "published": "2025-09-26T14:40:33+00:00",
+        "fetched_at": "2025-09-27T06:33:32.509648+00:00",
+        "category": "tech",
+        "llm_summary": "",
+        "importance_score": 8,
+        "scraped_content": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise EVs Fintech Fundraising Gadgets Gaming Google Government & Policy Hardware Instagram Layoffs Media & Entertainment Meta Microsoft Privacy Robotics Security Social Space Startups TikTok Transportation Venture Staff Events Startup Battlefield StrictlyVC Newsletters Podcasts Videos Partner Content TechCrunch Brand Studio Crunchboard Contact Us In its latest bid to boost semiconductor production in the U. , the Trump administration is reportedly considering a ratio-based approach that would penalize domestic manufacturers with tariffs if they don\u2019t produce enough chips. The administration is weighing a policy that would mandate U. semiconductor companies to manufacture the same number of chips in the U. as their customers import from overseas manufacturers,The Wall Street Journalreported, citing anonymous sources. Companies that don\u2019t comply with this 1:1 ratio will be subject to tariffs, the report said, though the timeline to achieve this ratio isn\u2019t clear. President Donald Trump has been talking aboutimposing tariffs on the semiconductor industrysince the beginning of August. Such a ratio-based approach would be unusual if the administration wants to achieve its goal of bringing semiconductor manufacturing back stateside.",
+        "enhanced_summary": "The Trump administration is considering imposing tariffs on US semiconductor companies that don't manufacture a chip in the US for every chip their customers import, aiming to boost domestic production. This potential policy, reported by the Wall Street Journal, would penalize non-compliant companies with tariffs if they don't meet this 1:1 production ratio.",
+        "why_matters": "This move signals a continued push towards onshoring manufacturing, even through potentially unconventional methods like ratio-based penalties. It highlights the government's growing focus on semiconductor independence and could drastically reshape the global chip supply chain, forcing US companies to re-evaluate their manufacturing strategies and potentially increasing costs for consumers."
       },
+      {
+        "id": "29aef70aa555",
+        "title": "Reports: EA set to be sold to private investors for up to $50 billion",
+        "url": "https://arstechnica.com/gaming/2025/09/reports-ea-set-to-be-sold-to-private-investors-for-up-to-50-billion/",
+        "description": "Saudi investment fund, Jared Kushner are reportedly among the interested buyers",
+        "source": "Ars Technica",
+        "published": "2025-09-26T21:23:02+00:00",
+        "fetched_at": "2025-09-27T06:33:33.638121+00:00",
+        "category": "tech",
+        "llm_summary": "",
+        "importance_score": 7,
+        "scraped_content": "It's in the game, but not on the NASDAQ Reports: EA set to be sold to private investors for up to $50 billion Saudi investment fund, Jared Kushner are reportedly among the interested buyers Kyle Orland \u2013 Sep 26, 2025 5:23 pm | 80 Reports of the deal have made lines on all sorts of charts bounce up and down Credit: Getty Images Reports of the deal have made lines on all sorts of charts bounce up and down Credit: Getty Images Text settings Story text Size Small Standard Large Width * Standard Wide Links Standard Orange * Subscribers only Learn more Minimize to nav Video game mega-publisher Electronic Arts is planning to take the company private in a deal that could be worth as much as $50 billion, according to reports from The Wall Street Journal , Reuters , and Financial Times. All three outlets cite anonymous sources in reporting that the deal could be announced next week, with Silver Lake, Saudi Arabia's Public Investment Fund (PIF), and Jared Kushner's Affinity Partners reportedly interested in investing. The Wall Street Journal says the move \"would likely be the largest leveraged buyout ever. \" The Saudi PIF already had a roughly 9 percent stake in EA as of a year ago , making it one of the largest shareholders in the company. That fund also has significant investments in gaming giants such as Nintendo, Take-Two, Activision Blizzard, Capcom, Nexon, and Koei Tecmo managed through the Savvy Games Group. EA's stock price immediately jumped roughly 15 percent on Friday afternoon, following a month in which its stock price had remained relatively flat. EA went public with an IPO on the NASDAQ stock exchange in 1990, and by 1996 its market cap had risen to $1. Before today's stock price bump, the company's valuation was hovering around $43 billion, driven by franchises such as Madden NFL , EA FC ( formerly FIFA ), The Sims , and Battlefield.",
+        "enhanced_summary": "Electronic Arts (EA), the video game mega-publisher, is reportedly planning to go private in a leveraged buyout deal potentially worth $50 billion. Major players rumored to be interested in investing include Silver Lake, Saudi Arabia's Public Investment Fund (PIF), and Jared Kushner's Affinity Partners.",
+        "why_matters": "This potential buyout signals a significant shift in the gaming industry, potentially removing a major player from the public market and consolidating power in the hands of private investors, particularly those with deep pockets like sovereign wealth funds. The deal highlights the increasing attractiveness of the gaming sector to private equity and the potential for major shifts in company strategy and focus if EA were to be taken private."
+      },
+      {
+        "id": "78ce1b6bc4c2",
+        "title": "NASA drops ISS cargo guarantee, forcing Sierra Space to pivot",
+        "url": "https://techcrunch.com/2025/09/26/sierra-spaces-spaceplane-faces-a-reinvention-after-nasa-contract-change/",
+        "description": "Sierra Space's Dream Chaser spaceplane is facing an identity crisis after NASA changed contract terms to remove its guarantee to buy cargo flights to the ISS.",
+        "source": "TechCrunch",
+        "published": "2025-09-26T12:13:15+00:00",
+        "fetched_at": "2025-09-27T06:33:32.509795+00:00",
+        "category": "tech",
+        "llm_summary": "",
+        "importance_score": 6,
+        "scraped_content": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise EVs Fintech Fundraising Gadgets Gaming Google Government & Policy Hardware Instagram Layoffs Media & Entertainment Meta Microsoft Privacy Robotics Security Social Space Startups TikTok Transportation Venture Staff Events Startup Battlefield StrictlyVC Newsletters Podcasts Videos Partner Content TechCrunch Brand Studio Crunchboard Contact Us When Sierra Space won a contract to deliver cargo to the International Space Station nearly a decade ago, the company promised a first for the commercial space market: a privately built, rapid reuse and cargo return spaceplane capable of landing on commercial runways. That dream has changed. In a modification to the contract announced earlier this week, NASA and Sierra Space agreed to remove the agency\u2019s guarantee to purchase cargo flights to the ISS. Instead, the Dream Chaser spaceplane will debut in a free-flying demonstration in late 2026, and will not dock with the station. NASA said it will provide \u201cminimal support\u201d for that test, and only afterward decide whether to order ISS resupply missions at all. The contract change is a blow to the Dream Chaser program. Typically, such programs rely heavily, if not entirely, on government support, as the upfront development costs for a crewed or cargo spacecraft are so high that commercial customers are rarely able to provide enough demand to close the business case. SpaceX, for example, received billions from NASA through the Commercial Orbital Transportation Services and Commercial Crew programs to develop its Dragon capsule and Falcon 9 rocket.",
+        "enhanced_summary": "Sierra Space's initial contract with NASA to deliver cargo to the International Space Station using their Dream Chaser spaceplane has been significantly altered, with NASA removing its guarantee to purchase cargo flights. This decision forces Sierra Space to rethink its business model and focus on a free-flying demonstration mission before NASA decides whether to commit to future resupply missions.",
+        "why_matters": "This situation highlights the dependence of commercial space companies on government funding for development, particularly for high-cost projects like spacecraft. The reduced commitment from NASA could signal a more cautious approach to funding commercial space ventures or a shifting strategy for ISS resupply, potentially impacting the growth and viability of private space transportation businesses. It's a reminder that even with innovative technology, securing long-term government contracts is crucial for success in the space industry."
+      }
+    ],
+    "quick_reads": [
       {
         "id": "05dfd5d24c66",
         "title": "Checkout.com\u2019s\u00a0new $12B valuation is a glass half-full situation",
@@ -134,115 +132,36 @@
         "description": "Checkout.com is boosting its valuation as part of an employee stock buy-back program, and now says it's profitable.",
         "source": "TechCrunch",
         "published": "2025-09-26T19:30:52+00:00",
-        "fetched_at": "2025-09-27T02:53:03.726671+00:00",
-        "category": "tech"
+        "fetched_at": "2025-09-27T06:33:32.509250+00:00",
+        "category": "tech",
+        "llm_reason": "Checkout.com boosting its valuation and claiming profitability is worth monitoring as it reflects payment processing trends, potentially affecting e-commerce businesses in NZ."
       },
       {
-        "id": "77f4321d6f9d",
-        "title": "Electronic Arts will reportedly be acquired for $50B",
-        "url": "https://techcrunch.com/2025/09/26/electronic-arts-will-reportedly-be-acquired-for-50b/",
-        "description": "The rumored buyers of EA include investors like Silver Lake and Saudi Arabia's Public Investment Fund.",
+        "id": "2c31a1efef66",
+        "title": "Thousands of Indian bank transfer records found spilling online after security lapse",
+        "url": "https://techcrunch.com/2025/09/26/thousands-of-indian-bank-transfer-records-found-online/",
+        "description": "Security researchers found the exposed Indian bank transfer records, and the data was eventually secured. Indian fintech company NuPay took responsibility for the \"configuration\" error.",
         "source": "TechCrunch",
-        "published": "2025-09-26T19:25:52+00:00",
-        "fetched_at": "2025-09-27T02:53:03.726709+00:00",
-        "category": "tech"
+        "published": "2025-09-26T15:50:00+00:00",
+        "fetched_at": "2025-09-27T06:33:32.509543+00:00",
+        "category": "tech",
+        "llm_reason": "Data security lapse exposing Indian bank transfer records highlights the ongoing threat of data breaches and need for robust security measures, relevant to any NZ business handling sensitive data."
       },
       {
-        "id": "e33ebc6db13c",
-        "title": "\u2018The Social Network\u2019 sequel will focus on Haugen leaks, with Jeremy Strong as Mark Zuckerberg",
-        "url": "https://techcrunch.com/2025/09/26/the-social-network-sequel-will-focus-on-haugen-leaks-with-jeremy-strong-as-mark-zuckerberg/",
-        "description": "Fifteen years after \"The Social Network,\" director Aaron Sorkin is making a sequel film about Facebook called \"The Social Reckoning.\"",
+        "id": "c53da203e807",
+        "title": "How developers are using Apple\u2019s local AI models with iOS 26",
+        "url": "https://techcrunch.com/2025/09/26/how-developers-are-using-apples-local-ai-models-with-ios-26/",
+        "description": "As iOS 26 is rolling out to all users, developers have been updating their apps to include features powered by Apple's local AI models.",
         "source": "TechCrunch",
-        "published": "2025-09-26T19:25:48+00:00",
-        "fetched_at": "2025-09-27T02:53:03.726749+00:00",
-        "category": "tech"
-      }
-    ],
-    "quick_reads": [
-      {
-        "id": "828d358007a9",
-        "title": "YouTube Music tests AI hosts that share trivia and commentary",
-        "url": "https://techcrunch.com/2025/09/26/youtube-music-tests-ai-hosts-that-share-trivia-and-commentary/",
-        "description": "YouTube Music's new AI hosts are currently being tested through YouTube Labs, the platform's new hub for AI experiments.",
-        "source": "TechCrunch",
-        "published": "2025-09-26T19:02:02+00:00",
-        "fetched_at": "2025-09-27T02:53:03.726785+00:00",
-        "category": "tech"
-      },
-      {
-        "id": "cb292282a067",
-        "title": "As people look for ways to make new friends, here are the apps promising to help",
-        "url": "https://techcrunch.com/2025/09/26/as-people-look-for-ways-to-make-new-friends-here-are-the-apps-promising-to-help/",
-        "description": "We've compiled a list of friendship apps, from friend discovery platforms like BFF to event-focused ones like Timeleft.",
-        "source": "TechCrunch",
-        "published": "2025-09-26T18:02:03+00:00",
-        "fetched_at": "2025-09-27T02:53:03.726820+00:00",
-        "category": "tech"
-      },
-      {
-        "id": "a63f1f5add7d",
-        "title": "More executives depart Hyundai\u2019s air taxi startup Supernal",
-        "url": "https://techcrunch.com/2025/09/26/more-executives-depart-hyundais-air-taxi-startup-supernal/",
-        "description": "A wider leadership shake-up at Hyundai's electric air taxi startup Supernal is underway just a few weeks after it paused work on its vehicle program and its CEO and CTO left.",
-        "source": "TechCrunch",
-        "published": "2025-09-26T17:45:00+00:00",
-        "fetched_at": "2025-09-27T02:53:03.726857+00:00",
-        "category": "tech"
-      },
-      {
-        "id": "67c51f266b47",
-        "title": "Everyone\u2019s still throwing billions at AI data centers",
-        "url": "https://techcrunch.com/video/everyones-still-throwing-billions-at-ai-data-centers/",
-        "description": "From $100 billion OpenAI commitments to $100,000 visa fees, this week showed just how much the tech landscape is shifting. On the latest episode of Equity, Anthony Ha and Max Zeff unpack the AI infrastructure gold rush and tech&#8217;s talent shuffle. Watch the full episode for more about:&#160;&#160; Equity is TechCrunch\u2019s flagship podcast, produced by [&#8230;]",
-        "source": "TechCrunch",
-        "published": "2025-09-26T17:30:00+00:00",
-        "fetched_at": "2025-09-27T02:53:03.726898+00:00",
-        "category": "tech"
-      },
-      {
-        "id": "048d92c2895d",
-        "title": "TruSources to show off its on-device identity-checking tech at TechCrunch Disrupt 2025",
-        "url": "https://techcrunch.com/2025/09/26/trusources-to-show-off-its-on-device-identity-checking-tech-at-techcrunch-disrupt-2025/",
-        "description": "Age-verification laws are a privacy and security nightmare. This startup performs age checks on-device, without users having to upload their IDs to the internet.",
-        "source": "TechCrunch",
-        "published": "2025-09-26T16:09:41+00:00",
-        "fetched_at": "2025-09-27T02:53:03.726933+00:00",
-        "category": "tech"
+        "published": "2025-09-26T12:00:00+00:00",
+        "fetched_at": "2025-09-27T06:33:32.509838+00:00",
+        "category": "tech",
+        "llm_reason": "Apple iOS 26 and local AI models could give iOS app developers additional advantages that could further cement Apple's lead in the app space. Could affect the iOS app market for developers."
       }
     ]
   },
   "finance": {
     "top_stories": [
-      {
-        "id": "7d9cee69ae41",
-        "title": "Spirit Airlines is halting 40 routes, hires ex-Amazon network planning exec",
-        "url": "https://www.cnbc.com/2025/09/26/spirit-airlines-routes-network-planning.html",
-        "description": "Spirit said it is halting 40 routes to focus on stronger markets.",
-        "source": "CNBC Finance",
-        "published": "2025-09-26T20:12:51+00:00",
-        "fetched_at": "2025-09-27T02:53:08.768135+00:00",
-        "category": "finance"
-      },
-      {
-        "id": "fb3112bc0647",
-        "title": "Sinclair, Nexstar will bring 'Jimmy Kimmel Live' back to owned ABC stations on Friday",
-        "url": "https://www.cnbc.com/2025/09/26/sinclair-abc-jimmy-kimmel.html",
-        "description": "Broadcast station owners Sinclair and Nexstar will begin airing \"Jimmy Kimmel Live!\" after three days of preempting the program since its return.",
-        "source": "CNBC Finance",
-        "published": "2025-09-26T21:07:19+00:00",
-        "fetched_at": "2025-09-27T02:53:08.768183+00:00",
-        "category": "finance"
-      },
-      {
-        "id": "82a3deefa755",
-        "title": "CDC takes down more than a dozen webpages on sexual and gender identity, health equity",
-        "url": "https://www.cnbc.com/2025/09/26/cdc-webpages-on-sexual-gender-identity-health-equity-removed.html",
-        "description": "Some health equity advocates say removing such resources could create gaps in access to critical health information, especially for marginalized groups.",
-        "source": "CNBC Finance",
-        "published": "2025-09-26T17:05:10+00:00",
-        "fetched_at": "2025-09-27T02:53:08.768222+00:00",
-        "category": "finance"
-      },
       {
         "id": "20ae0f69e673",
         "title": "FAA to let Boeing sign off on 737 Maxes, 787s after years of restrictions",
@@ -250,30 +169,13 @@
         "description": "Boeing can sign off on some of its 737 Max and 787 Dreamliner planes before they're handed over to customers, the FAA said Friday.",
         "source": "CNBC Finance",
         "published": "2025-09-26T18:07:58+00:00",
-        "fetched_at": "2025-09-27T02:53:08.768260+00:00",
-        "category": "finance"
-      },
-      {
-        "id": "2a5b19068642",
-        "title": "'A broken business': The company behind the makeover of bankrupt retailer Claire's",
-        "url": "https://www.cnbc.com/2025/09/26/ames-watson-tween-retailer-claires-rebuild.html",
-        "description": "Pulled out of bankruptcy, Claire's is on track for a major makeover by private holding company Ames Watson.",
-        "source": "CNBC Finance",
-        "published": "2025-09-26T11:00:01+00:00",
-        "fetched_at": "2025-09-27T02:53:08.768295+00:00",
-        "category": "finance"
-      }
-    ],
-    "quick_reads": [
-      {
-        "id": "bd5dfbdc992f",
-        "title": "The global wealthy are lining up for Trump's $1 million Gold Card after price cut",
-        "url": "https://www.cnbc.com/2025/09/26/trump-gold-card-visa-wealthy.html",
-        "description": "Advisors to the ultra-wealthy said their clients are keen to access the U.S. education system, health care system, banking system and financial markets.",
-        "source": "CNBC Finance",
-        "published": "2025-09-26T16:47:15+00:00",
-        "fetched_at": "2025-09-27T02:53:08.768331+00:00",
-        "category": "finance"
+        "fetched_at": "2025-09-27T06:33:36.960095+00:00",
+        "category": "finance",
+        "llm_summary": "",
+        "importance_score": 7,
+        "scraped_content": "In this article Boeingcan sign off on some of its 737 Max and 787 Dreamliner planes before they're handed over to customers, the Federal Aviation Administration said Friday, the latest sign the manufacturer is regaining confidence from its regulator after years of safety crises. The FAA stopped allowing Boeing to issue its own airworthiness certificates for 737 Max airplanes in 2019 after two fatal crashes. It made a similar decision for Boeing 787s in 2022 because of production defects. Since the second Max crash, in March 2019, the FAA solely issued airworthiness certificates, which certify planes as safe to fly, for the Maxes. The FAA said that it and Boeing will issue the certificates on alternating weeks. \"Safety drives everything we do, and the FAA will only allow this step forward because we are confident it can be done safely,\" the FAA said in a statement. \"This decision follows a thorough review of Boeing's ongoing production quality and will allow our inspectors to focus additional surveillance in the production process. \" Boeing didn't immediately comment.",
+        "enhanced_summary": "The FAA is easing restrictions on Boeing, now allowing them to self-certify some 737 Max and 787 Dreamliner aircraft again after suspending that privilege due to safety concerns following the 737 Max crashes and 787 production defects. This decision reflects improving trust between the FAA and Boeing, with both agencies issuing airworthiness certificates on alternating weeks.",
+        "why_matters": "This signals a potential turning point for Boeing, suggesting they're regaining credibility with regulators after years of scrutiny. For business professionals, this could indicate a period of recovery and growth for Boeing, impacting investor confidence and potentially influencing the broader aerospace industry. The market's reaction to this news will be crucial to watch."
       },
       {
         "id": "ab89cf41edd7",
@@ -282,18 +184,37 @@
         "description": "Family offices were more likely to report investing in companies that use AI for productivity and efficiency or in other beneficiaries such as energy providers.",
         "source": "CNBC Finance",
         "published": "2025-09-26T11:30:01+00:00",
-        "fetched_at": "2025-09-27T02:53:08.768368+00:00",
-        "category": "finance"
+        "fetched_at": "2025-09-27T06:33:36.960204+00:00",
+        "category": "finance",
+        "llm_summary": "",
+        "importance_score": 6,
+        "scraped_content": "the newInside Alts newsletter A version of this article first appeared in CNBC's Inside Wealth newsletter with Robert Frank, a weekly guide to the high-net-worth investor and consumer. Sign upto receive future editions, straight to your inbox. Investment firms of the ultra-wealthy, such as the family office of Jeff Bezos, are making headlines with massive fundraises for artificial intelligence startups. Late last month,Bezos Expeditionsco-led a $405 million round for robotics startup Field AI with backers including Laurene Powell Jobs' Emerson Collective. In the past six months alone,Hillspire, the family office of Google billionaire Eric Schmidt, has backed at least six AI startups, per data provided exclusively to CNBC by Fintrx, a private wealth intelligence platform. But while tech unicorns get most of the buzz, family offices prefer to invest in the AI boom via public equities, according to a recent poll by Goldman Sachs. The bank's survey of 245 worldwide family offices found that 52% are exposed to AI through primary public equities or ETFs, while only a quarter reported investing directly in AI startups. Goldman Sachs' Meena Flynn told Inside Wealth that family offices likely have even greater exposure through stocks than they realize.",
+        "enhanced_summary": "Family offices, including those of Jeff Bezos and Eric Schmidt, are increasingly investing in AI. However, despite high-profile startup investments, a Goldman Sachs poll reveals that most family offices prefer exposure to AI through public equities and ETFs rather than directly investing in AI startups.",
+        "why_matters": "This suggests family offices, while interested in AI's potential, are taking a more cautious and potentially more liquid approach to investing in the sector, favoring established companies over the higher risk and illiquidity of venture capital. This trend signals a desire for diversification and potentially a perceived overvaluation in the AI startup market, which could impact funding dynamics for early-stage AI companies."
+      }
+    ],
+    "quick_reads": [
+      {
+        "id": "7d9cee69ae41",
+        "title": "Spirit Airlines is halting 40 routes, hires ex-Amazon network planning exec",
+        "url": "https://www.cnbc.com/2025/09/26/spirit-airlines-routes-network-planning.html",
+        "description": "Spirit said it is halting 40 routes to focus on stronger markets.",
+        "source": "CNBC Finance",
+        "published": "2025-09-26T20:12:51+00:00",
+        "fetched_at": "2025-09-27T06:33:36.959971+00:00",
+        "category": "finance",
+        "llm_reason": "Worth monitoring airline industry consolidation and route adjustments, potentially affecting travel and freight costs in NZ."
       },
       {
-        "id": "de097f7bb255",
-        "title": "YouTube TV, NBCUniversal warn of impending carriage dispute that could lead to network blackout",
-        "url": "https://www.cnbc.com/2025/09/25/youtube-tv-nbcuniversal-impending-carriage-dispute.html",
-        "description": "YouTube TV and NBCUniversal may be heading toward a carriage dispute that could black out NBC programming such as \"Sunday Night Football\"",
+        "id": "2a5b19068642",
+        "title": "'A broken business': The company behind the makeover of bankrupt retailer Claire's",
+        "url": "https://www.cnbc.com/2025/09/26/ames-watson-tween-retailer-claires-rebuild.html",
+        "description": "Pulled out of bankruptcy, Claire's is on track for a major makeover by private holding company Ames Watson.",
         "source": "CNBC Finance",
-        "published": "2025-09-26T17:23:52+00:00",
-        "fetched_at": "2025-09-27T02:53:08.768403+00:00",
-        "category": "finance"
+        "published": "2025-09-26T11:00:01+00:00",
+        "fetched_at": "2025-09-27T06:33:36.960131+00:00",
+        "category": "finance",
+        "llm_reason": "Restructuring retail business. Could be indicative of broader shifts in the retail landscape."
       }
     ]
   }
