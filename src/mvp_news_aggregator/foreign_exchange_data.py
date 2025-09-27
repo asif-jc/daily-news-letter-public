@@ -5,6 +5,25 @@ from datetime import datetime, timedelta
 from typing import Dict, Optional
 import time
 
+def get_dxy_from_market_data() -> Dict:
+    """Get DXY data from market data system"""
+    try:
+        from market_data import get_market_changes_from_daily_data
+        market_data = get_market_changes_from_daily_data()
+        
+        if market_data.get('status') == 'success' and market_data.get('prices'):
+            prices = market_data['prices']
+            if 'DX=F' in prices:
+                dxy_data = prices['DX=F']
+                return {
+                    'current': round(dxy_data['current'], 2),
+                    'changes': dxy_data.get('changes', {})
+                }
+        return {'current': 0.00, 'changes': {}}
+    except Exception as e:
+        print(f"Error fetching DXY from market data: {e}")
+        return {'current': 0.00, 'changes': {}}
+
 # Local storage files
 DAILY_DATA_FILE = 'data/loading/fx_data.json'
 

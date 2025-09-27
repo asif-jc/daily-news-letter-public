@@ -1162,15 +1162,41 @@ class NewsletterGenerator:
             
             html += '<div class="fx-grid">'            
             
-            # DXY row (placeholder for now)
+            # DXY row with real data
             html += '<div class="fx-dxy-row">'            
+            
+            # Get DXY data
+            try:
+                from foreign_exchange_data import get_dxy_from_market_data
+                dxy_data = get_dxy_from_market_data()
+                dxy_current = dxy_data['current']
+                dxy_changes = dxy_data.get('changes', {})
+            except Exception:
+                dxy_current = 0.00
+                dxy_changes = {}
+            
             html += '<div class="fx-rate">'            
             html += '<div class="fx-pair">DXY</div>'            
-            html += '<div class="fx-value">0.00</div>'            
+            html += f'<div class="fx-value">{dxy_current}</div>'            
             html += '<div class="fx-changes">'            
-            html += '<span class="fx-change neutral">24h +0.0%</span>'            
-            html += '<span class="fx-change neutral">7d +0.0%</span>'            
-            html += '<span class="fx-change neutral">30d +0.0%</span>'            
+            
+            # Add real percentage changes or defaults
+            for period in ['24h', '7d', '30d']:
+                if period in dxy_changes:
+                    change_pct = dxy_changes[period]
+                    if change_pct > 0.1:
+                        color_class = 'positive'
+                        sign = '+'
+                    elif change_pct < -0.1:
+                        color_class = 'negative'
+                        sign = ''
+                    else:
+                        color_class = 'neutral'
+                        sign = '+' if change_pct >= 0 else ''
+                    html += f'<span class="fx-change {color_class}">{period} {sign}{change_pct:.1f}%</span>'
+                else:
+                    html += f'<span class="fx-change neutral">{period} +0.0%</span>'
+            
             html += '</div>'            
             html += '</div>'            
             html += '</div>'            
@@ -1244,6 +1270,7 @@ class NewsletterGenerator:
             # Group instruments by category
             categories = {
                 'US Indices': [],
+                'Currency Indices': [],
                 'International Indices': [],
                 'Commodities': [],
                 'ETFs': []
@@ -1265,6 +1292,7 @@ class NewsletterGenerator:
             # Category ID mapping for JavaScript
             category_ids = {
                 'US Indices': 'us-indices',
+                'Currency Indices': 'currency-indices',
                 'International Indices': 'international',
                 'Commodities': 'commodities',
                 'ETFs': 'etfs'
