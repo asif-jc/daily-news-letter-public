@@ -321,7 +321,7 @@ Generate exactly {question_count} questions now:"""
 
 def pull_quiz_data(use_llm: bool = True, 
                   topics: List[str] = None, 
-                  difficulty: str = "hard") -> Dict:
+                  difficulty: str = "medium") -> Dict:
     """
     Main function to generate daily quiz data.
     This mirrors the pattern used by other data pulling functions in the pipeline.

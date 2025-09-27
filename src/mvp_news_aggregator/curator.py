@@ -277,7 +277,8 @@ Only group titles about the same specific event/announcement."""
                         story['scraped_content'] = content
                         enhanced = self.enhance_summary(story['title'], content, category)
                         if enhanced:
-                            story['enhanced_summary'] = enhanced
+                            story['enhanced_summary'] = enhanced['summary']
+                            story['why_matters'] = enhanced['why_matters']
                     time.sleep(1)  # Be nice to servers
                 else:
                     print(f"⚡ Skipping content scraping for: {story['title'][:50]}...")
@@ -373,31 +374,52 @@ Only group titles about the same specific event/announcement."""
         
         return optimized
         
-    def enhance_summary(self, title: str, content: str, category: str) -> Optional[str]:
-        """Create better summary with full content or return None if LLM disabled"""
+    def enhance_summary(self, title: str, content: str, category: str) -> Optional[Dict]:
+        """Create better summary with 'Why This Matters' analysis"""
         if not self.use_llm:
             return None  # Skip enhanced summaries when LLM disabled
         
         print(f"\n🤖 LLM Enhancement: {title[:50]}...")
         print(f"   Input length: {len(content)} chars")
             
-        prompt = f"""Summarize this {category} article in 2 flowing sentences for business professionals:
+        prompt = f"""Analyze this {category} article for business professionals:
 
-        Sentence 1: What happened (key facts and players)
-        Sentence 2: Why this matters strategically (business implications or broader significance)
+Title: {title}
+Content: {content}
 
-        Keep it natural and conversational - don't make it sound like bullet points.
+Provide:
+1. SUMMARY (2 sentences): What happened + key players involved
+2. WHY IT MATTERS (2-3 sentences): Broader implications, why readers should care, what this signals about trends or changes
 
-        Title: {title}
-        Content: {content}
+Keep both sections natural and conversational - avoid bullet point format.
 
-        Summary:"""
+Format your response as:
+Summary: [your summary here]
+Why it matters: [your analysis here]"""
         
         try:
             response = self.model.generate_content(prompt)
             result = response.text.strip()
             print(f"   LLM output length: {len(result)} chars")
-            return result
+            
+            # Parse the response into summary and analysis
+            lines = result.split('\n')
+            summary = ""
+            why_matters = ""
+            
+            for line in lines:
+                if line.strip().lower().startswith('summary:'):
+                    summary = line.split(':', 1)[1].strip()
+                elif line.strip().lower().startswith('why it matters:'):
+                    why_matters = line.split(':', 1)[1].strip()
+            
+            # Return structured data
+            return {
+                'summary': summary,
+                'why_matters': why_matters,
+                'full_text': result  # Keep full text as backup
+            }
+            
         except Exception as e:
             print(f"   LLM error: {e}")
             return None

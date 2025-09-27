@@ -324,7 +324,7 @@
       "^GSPC": 6643.7,
       "^IXIC": 22484.07,
       "^DJI": 46247.29,
-      "DX=F": 97.85,
+      "DX=F": 97.82,
       "000001.SS": 3828.11,
       "^AXJO": 8787.7,
       "^NSEI": 24654.7,
@@ -429,6 +429,6 @@
       "display_symbol": "QQQ"
     }
   },
-  "fetch_timestamp": "2025-09-27T14:53:35.103066",
+  "fetch_timestamp": "2025-09-27T18:35:04.865562",
   "note": "Market data fetched from Yahoo Finance"
 }
