@@ -1156,7 +1156,7 @@ class NewsletterGenerator:
             
             html = '<div class="fx-box">'
             html += '<div class="fx-header">'
-            html += '<h3 class="fx-title">Exchange Rates</h3>'
+            html += '<h3 class="fx-title">Foreign Exchange Rates</h3>'
             html += f'<div class="fx-timestamp">{timestamp}</div>'
             html += '</div>'
             
@@ -1176,7 +1176,7 @@ class NewsletterGenerator:
                 dxy_changes = {}
             
             html += '<div class="fx-rate">'            
-            html += '<div class="fx-pair">DXY</div>'            
+            html += '<div class="fx-pair">DXY (US Dollar Index)</div>'            
             html += f'<div class="fx-value">{dxy_current}</div>'            
             html += '<div class="fx-changes">'            
             
