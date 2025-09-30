@@ -17,3 +17,6 @@ build/
 
 # Env files
 config.env
+
+# Sub Management
+sub_information.json
