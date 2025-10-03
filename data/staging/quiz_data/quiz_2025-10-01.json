@@ -1,0 +1,342 @@
+{
+  "date": "2025-10-01",
+  "metadata": {
+    "topics": [
+      "geography",
+      "STEM",
+      "history",
+      "general_knowledge"
+    ],
+    "difficulty": "medium",
+    "question_count": 25,
+    "generated_with_llm": true,
+    "generation_timestamp": "2025-09-30T13:58:44.999528+00:00"
+  },
+  "questions": [
+    {
+      "id": 1,
+      "question": "Which of the following countries is landlocked?",
+      "options": [
+        "Portugal",
+        "Norway",
+        "Switzerland",
+        "Greece"
+      ],
+      "correct_answer": "Switzerland",
+      "category": "geography",
+      "explanation": "Switzerland is a landlocked country in the heart of Europe, bordering France, Germany, Italy, Austria, and Liechtenstein."
+    },
+    {
+      "id": 2,
+      "question": "What is the primary function of a ribosome?",
+      "options": [
+        "DNA replication",
+        "Protein synthesis",
+        "Energy production",
+        "Waste disposal"
+      ],
+      "correct_answer": "Protein synthesis",
+      "category": "biology",
+      "explanation": "Ribosomes are responsible for translating mRNA into proteins, a crucial process for cell function."
+    },
+    {
+      "id": 3,
+      "question": "In what year did the French Revolution begin?",
+      "options": [
+        "1776",
+        "1789",
+        "1812",
+        "1848"
+      ],
+      "correct_answer": "1789",
+      "category": "history",
+      "explanation": "The French Revolution began in 1789 with the storming of the Bastille."
+    },
+    {
+      "id": 4,
+      "question": "What is the SI unit of electrical resistance?",
+      "options": [
+        "Ampere",
+        "Volt",
+        "Ohm",
+        "Watt"
+      ],
+      "correct_answer": "Ohm",
+      "category": "physics",
+      "explanation": "The Ohm (Ω) is the SI unit of electrical resistance, named after Georg Ohm."
+    },
+    {
+      "id": 5,
+      "question": "Which planet is known as the 'Morning Star' or 'Evening Star'?",
+      "options": [
+        "Mars",
+        "Jupiter",
+        "Venus",
+        "Mercury"
+      ],
+      "correct_answer": "Venus",
+      "category": "astronomy",
+      "explanation": "Venus is often visible near the horizon either shortly before sunrise or shortly after sunset, earning it the names 'Morning Star' and 'Evening Star'."
+    },
+    {
+      "id": 6,
+      "question": "What is the capital of Australia?",
+      "options": [
+        "Sydney",
+        "Melbourne",
+        "Canberra",
+        "Brisbane"
+      ],
+      "correct_answer": "Canberra",
+      "category": "geography",
+      "explanation": "Canberra was chosen as the capital to resolve the rivalry between Sydney and Melbourne."
+    },
+    {
+      "id": 7,
+      "question": "What is the name of the first cloned mammal?",
+      "options": [
+        "Polly",
+        "Dolly",
+        "Daisy",
+        "Molly"
+      ],
+      "correct_answer": "Dolly",
+      "category": "biology",
+      "explanation": "Dolly the sheep was the first mammal to be cloned from an adult somatic cell."
+    },
+    {
+      "id": 8,
+      "question": "Which empire was ruled by Mansa Musa?",
+      "options": [
+        "Roman Empire",
+        "Ottoman Empire",
+        "Mali Empire",
+        "Inca Empire"
+      ],
+      "correct_answer": "Mali Empire",
+      "category": "history",
+      "explanation": "Mansa Musa was the ruler of the Mali Empire, known for his pilgrimage to Mecca and immense wealth."
+    },
+    {
+      "id": 9,
+      "question": "What is the value of pi (π) to two decimal places?",
+      "options": [
+        "3.10",
+        "3.14",
+        "3.16",
+        "3.20"
+      ],
+      "correct_answer": "3.14",
+      "category": "mathematics",
+      "explanation": "Pi (π) is approximately equal to 3.14, representing the ratio of a circle's circumference to its diameter."
+    },
+    {
+      "id": 10,
+      "question": "Which gas is most abundant in Earth's atmosphere?",
+      "options": [
+        "Oxygen",
+        "Carbon Dioxide",
+        "Nitrogen",
+        "Argon"
+      ],
+      "correct_answer": "Nitrogen",
+      "category": "general_knowledge",
+      "explanation": "Nitrogen makes up approximately 78% of Earth's atmosphere."
+    },
+    {
+      "id": 11,
+      "question": "Which mountain range is home to Mount Everest?",
+      "options": [
+        "Andes",
+        "Alps",
+        "Himalayas",
+        "Rockies"
+      ],
+      "correct_answer": "Himalayas",
+      "category": "geography",
+      "explanation": "Mount Everest, the highest peak above sea level, is located in the Himalayas."
+    },
+    {
+      "id": 12,
+      "question": "What is the process by which plants convert light energy into chemical energy?",
+      "options": [
+        "Respiration",
+        "Photosynthesis",
+        "Transpiration",
+        "Fermentation"
+      ],
+      "correct_answer": "Photosynthesis",
+      "category": "biology",
+      "explanation": "Photosynthesis is the process used by plants and other organisms to convert light energy into chemical energy that can later be released to fuel the organisms' activities."
+    },
+    {
+      "id": 13,
+      "question": "Who painted the Mona Lisa?",
+      "options": [
+        "Michelangelo",
+        "Raphael",
+        "Leonardo da Vinci",
+        "Donatello"
+      ],
+      "correct_answer": "Leonardo da Vinci",
+      "category": "history",
+      "explanation": "The Mona Lisa was painted by Leonardo da Vinci during the Renaissance."
+    },
+    {
+      "id": 14,
+      "question": "What is the speed of light in a vacuum, approximately?",
+      "options": [
+        "300,000 km/s",
+        "150,000 km/s",
+        "450,000 km/s",
+        "600,000 km/s"
+      ],
+      "correct_answer": "300,000 km/s",
+      "category": "physics",
+      "explanation": "The speed of light in a vacuum is approximately 299,792,458 meters per second, often rounded to 300,000 km/s."
+    },
+    {
+      "id": 15,
+      "question": "What is the name of the Earth's natural satellite?",
+      "options": [
+        "Venus",
+        "Mars",
+        "Moon",
+        "Titan"
+      ],
+      "correct_answer": "Moon",
+      "category": "astronomy",
+      "explanation": "The Moon is Earth's only natural satellite."
+    },
+    {
+      "id": 16,
+      "question": "What is the longest river in the world?",
+      "options": [
+        "Amazon River",
+        "Nile River",
+        "Yangtze River",
+        "Mississippi River"
+      ],
+      "correct_answer": "Nile River",
+      "category": "geography",
+      "explanation": "The Nile River is generally considered the longest river in the world, flowing through northeastern Africa."
+    },
+    {
+      "id": 17,
+      "question": "What is the name of the energy currency of the cell?",
+      "options": [
+        "DNA",
+        "RNA",
+        "ATP",
+        "Protein"
+      ],
+      "correct_answer": "ATP",
+      "category": "biology",
+      "explanation": "ATP (adenosine triphosphate) is the primary energy carrier in cells."
+    },
+    {
+      "id": 18,
+      "question": "What was the name of the ship Charles Darwin sailed on during his voyage of discovery?",
+      "options": [
+        "The Beagle",
+        "The Enterprise",
+        "The Discovery",
+        "The Voyager"
+      ],
+      "correct_answer": "The Beagle",
+      "category": "history",
+      "explanation": "Charles Darwin sailed on the HMS Beagle, a voyage that significantly influenced the development of his theory of evolution."
+    },
+    {
+      "id": 19,
+      "question": "What is the SI unit of force?",
+      "options": [
+        "Joule",
+        "Watt",
+        "Newton",
+        "Pascal"
+      ],
+      "correct_answer": "Newton",
+      "category": "physics",
+      "explanation": "The Newton (N) is the SI unit of force, named after Sir Isaac Newton."
+    },
+    {
+      "id": 20,
+      "question": "Which of the following is NOT a greenhouse gas?",
+      "options": [
+        "Carbon Dioxide",
+        "Methane",
+        "Nitrous Oxide",
+        "Nitrogen"
+      ],
+      "correct_answer": "Nitrogen",
+      "category": "general_knowledge",
+      "explanation": "Nitrogen is a major component of the atmosphere but doesn't trap heat like greenhouse gasses."
+    },
+    {
+      "id": 21,
+      "question": "Which continent is also a country?",
+      "options": [
+        "Asia",
+        "Africa",
+        "Australia",
+        "South America"
+      ],
+      "correct_answer": "Australia",
+      "category": "geography",
+      "explanation": "Australia is both a continent and a country."
+    },
+    {
+      "id": 22,
+      "question": "What is the primary function of white blood cells?",
+      "options": [
+        "Oxygen transport",
+        "Blood clotting",
+        "Immune defense",
+        "Nutrient absorption"
+      ],
+      "correct_answer": "Immune defense",
+      "category": "biology",
+      "explanation": "White blood cells, or leukocytes, are the cells of the immune system involved in protecting the body against both infectious disease and foreign invaders."
+    },
+    {
+      "id": 23,
+      "question": "Who developed the theory of general relativity?",
+      "options": [
+        "Isaac Newton",
+        "Albert Einstein",
+        "Stephen Hawking",
+        "Niels Bohr"
+      ],
+      "correct_answer": "Albert Einstein",
+      "category": "history",
+      "explanation": "Albert Einstein developed the theory of general relativity, revolutionizing our understanding of gravity."
+    },
+    {
+      "id": 24,
+      "question": "What is the name of the phenomenon where a material's electrical resistance disappears below a critical temperature?",
+      "options": [
+        "Conduction",
+        "Insulation",
+        "Superconductivity",
+        "Semiconductivity"
+      ],
+      "correct_answer": "Superconductivity",
+      "category": "physics",
+      "explanation": "Superconductivity is a phenomenon where certain materials exhibit zero electrical resistance and expulsion of magnetic fields below a characteristic critical temperature."
+    },
+    {
+      "id": 25,
+      "question": "What is the name of the first artificial satellite launched into space?",
+      "options": [
+        "Apollo 11",
+        "Sputnik 1",
+        "Explorer 1",
+        "Vostok 1"
+      ],
+      "correct_answer": "Sputnik 1",
+      "category": "general_knowledge",
+      "explanation": "Sputnik 1 was the first artificial satellite, launched by the Soviet Union in 1957."
+    }
+  ]
+}

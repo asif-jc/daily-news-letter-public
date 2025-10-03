@@ -1,0 +1,232 @@
+{
+  "world": {
+    "top_stories": [
+      {
+        "id": "32f1f8e5feaf",
+        "title": "Chinese woman convicted after 'world's biggest' bitcoin seizure",
+        "url": "https://www.bbc.com/news/articles/cy0415kk3rzo?at_medium=RSS&at_campaign=rss",
+        "description": "UK police seized crypto worth over £5bn from Zhimin Qian, who was known as 'the goddess of wealth'.",
+        "source": "BBC World News",
+        "published": "2025-09-30T13:40:59+00:00",
+        "fetched_at": "2025-09-30T13:57:29.809000+00:00",
+        "category": "world",
+        "llm_summary": "",
+        "importance_score": 7,
+        "scraped_content": "Chinese woman convicted after 'world's biggest' bitcoin seizure 15 minutes ago Share Save Osmond Chia Business reporter, Singapore and Liv McMahon Technology reporter Share Save Metropolitan Police Zhimin Qian, also known as Yadi Zhang, was convicted on Monday A Chinese national has been convicted following an international fraud investigation which resulted in what's believed to be the single largest cryptocurrency seizure in the world. The Metropolitan Police says it recovered 61,000 bitcoin worth more than £5bn ($6. 7bn) in current prices. Zhimin Qian, also known as Yadi Zhang, pleaded guilty on Monday at Southwark Crown Court of illegally acquiring and possessing the cryptocurrency. Between 2014 and 2017 she led a large-scale scam in China which involved cheating more than 128,000 victims and storing the stolen funds in bitcoin assets, the Met said in a statement. It said the 47-year-old's guilty plea followed a seven-year probe into a global money laundering web which began when it got a tipoff about the transfer of criminal assets. Qian had been \"evading justice\" for five years up to her arrest, which required a complex investigation involving multiple jurisdictions, said Detective Sergeant Isabella Grotto, who led the Met's investigation. She fled China using false documents and entered the UK, where she attempted to launder the stolen money by buying property, said the Met.",
+        "enhanced_summary": "Zhimin Qian, a Chinese national also known as Yadi Zhang, has been convicted in the UK after a seven-year international investigation into a large-scale fraud she ran in China, resulting in the seizure of over £5bn worth of bitcoin, believed to be the largest cryptocurrency seizure globally. The Metropolitan Police played a key role in uncovering the money laundering scheme.",
+        "why_matters": "This case highlights the increasing focus of law enforcement on cryptocurrency-related crimes and their ability to pursue and prosecute individuals across borders. It signals to businesses and individuals that illicit cryptocurrency activities will be actively investigated and that even sophisticated laundering attempts can be uncovered, potentially impacting investment and compliance strategies within the crypto space."
+      },
+      {
+        "id": "cef6d1e8856f",
+        "title": "Former aide to far-right German politician jailed for spying for China",
+        "url": "https://www.bbc.com/news/articles/c99g52y7k1xo?at_medium=RSS&at_campaign=rss",
+        "description": "Jian Guo had worked in Brussels for five years for Maximilian Krah, while he was a member of the European Parliament.",
+        "source": "BBC World News",
+        "published": "2025-09-30T09:14:34+00:00",
+        "fetched_at": "2025-09-30T13:57:29.809320+00:00",
+        "category": "world",
+        "llm_summary": "",
+        "importance_score": 6,
+        "scraped_content": "Former aide to far-right German politician jailed for spying for China 5 hours ago Share Save Paul Kirby Europe digital editor and Bethany Bell In Vienna Share Save FILIP SINGER/POOL/EPA/Shutterstock Jian Guo (R) had denied spying for China during his trial An aide who worked for a leading member of Germany's far-right AfD party has been given a jail term of four years and nine months for spying for China. Jian Guo had worked in Brussels for Maximilian Krah, a member of the European Parliament for five years until last year. Krah is now an MP in the German parliament. The court in Dresden in eastern Germany had heard how Krah's former aide had gathered information and passed on confidential documents to Chinese authorities. Jian Guo had maintained his innocence, insisting he had not worked for Chinese intelligence, and Krah told the court last month he had only learned about allegations against his ex-employee from the media. The defendant, a German national, was accused by prosecutors of working for Chinese intelligence since 2002, in a case that fuelled concerns about China's spy activities in the European Union. He had also been accused of spying on Chinese dissidents and opposition figures in Germany. The court in Dresden said it was a particularly serious case, although in his final statement Jian Guo told the trial last week: \"I did not work for a Chinese intelligence agency and I am innocent.",
+        "enhanced_summary": "A former aide, Jian Guo, to Maximilian Krah, a far-right German politician, has been sentenced to nearly five years in prison for spying for China. The court found that Guo had passed confidential documents and gathered information for Chinese authorities while working for Krah, raising concerns about Chinese intelligence activities within the EU.",
+        "why_matters": "This case highlights the vulnerability of political institutions to foreign espionage, particularly from China, and should concern business professionals who engage with governments and international bodies. The incident underscores the need for heightened vigilance regarding data security, vetting processes, and potential influence operations targeting sensitive information and decision-making. It also signals a potential escalation in geopolitical tensions and the importance of proactive risk management for companies operating in international environments."
+      }
+    ],
+    "quick_reads": [
+      {
+        "id": "e78b42b02200",
+        "title": "US deporting 120 Iranians after deal struck with Tehran, Iran says",
+        "url": "https://www.bbc.com/news/articles/cgrql7gd10do?at_medium=RSS&at_campaign=rss",
+        "description": "The deal is part of US President Donald Trump's crackdown on immigration in the US.",
+        "source": "BBC World News",
+        "published": "2025-09-30T13:21:54+00:00",
+        "fetched_at": "2025-09-30T13:57:29.809145+00:00",
+        "category": "world",
+        "llm_reason": "US deportation policy changes could affect international labor and business relations."
+      },
+      {
+        "id": "4844aad5bbf5",
+        "title": "Watch: Trump and Netanyahu outline peace plan to end war in Gaza",
+        "url": "https://www.bbc.com/news/videos/c24r8zj1mnro?at_medium=RSS&at_campaign=rss",
+        "description": "The deal proposes an end to military operations, a release of Israeli hostages by Hamas and the immediate delivery of aid to Gaza.",
+        "source": "BBC World News",
+        "published": "2025-09-29T20:46:24+00:00",
+        "fetched_at": "2025-09-30T13:57:29.809549+00:00",
+        "category": "world",
+        "llm_reason": "Peace plans in Gaza can impact global markets and trade relationships."
+      }
+    ]
+  },
+  "tech": {
+    "top_stories": [
+      {
+        "id": "c44cb2515d17",
+        "title": "California Governor Newsom signs landmark AI safety bill SB 53",
+        "url": "https://techcrunch.com/2025/09/29/california-governor-newsom-signs-landmark-ai-safety-bill-sb-53/",
+        "description": "SB 53 requires large AI labs – including OpenAI, Anthropic, Meta, and Google DeepMind – to be transparent about safety protocols. It also ensures whistleblower protections for employees at those companies.",
+        "source": "TechCrunch",
+        "published": "2025-09-29T21:57:03+00:00",
+        "fetched_at": "2025-09-30T13:57:33.010370+00:00",
+        "category": "tech",
+        "llm_summary": "",
+        "importance_score": 9,
+        "scraped_content": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise EVs Fintech Fundraising Gadgets Gaming Google Government & Policy Hardware Instagram Layoffs Media & Entertainment Meta Microsoft Privacy Robotics Security Social Space Startups TikTok Transportation Venture Staff Events Startup Battlefield StrictlyVC Newsletters Podcasts Videos Partner Content TechCrunch Brand Studio Crunchboard Contact Us California Gov. Gavin Newsom hassigned SB 53, a first-in-the-nation bill that sets newtransparency requirementson large AI companies. SB 53, whichpassedthe state legislature two weeks ago, requires large AI labs — including OpenAI, Anthropic, Meta, and Google DeepMind — to be transparent about safety protocols. It also ensures whistleblower protections for employees at those companies. In addition, SB 53 creates a mechanism for AI companies and the public to report potential critical safety incidents to California’s Office of Emergency Services. Companies also have to report incidents related to crimes committed without human oversight, such as cyberattacks, and deceptive behavior by a model that isn’t required under the EU AI Act. The bill has received mixed reactions from the AI industry. Tech firms have broadly argued that state-level AI policy risks creating a “patchwork of regulation” that would hinder innovation, althoughAnthropic endorsed the bill.",
+        "enhanced_summary": "California Governor Gavin Newsom signed SB 53, a pioneering bill requiring transparency from large AI companies like OpenAI, Anthropic, Meta, and Google DeepMind regarding safety protocols and creating whistleblower protections. The bill also establishes reporting mechanisms for safety incidents and crimes committed without human oversight.",
+        "why_matters": "This legislation signals a growing trend towards increased AI regulation in the US, potentially setting a precedent for other states to follow suit and impacting how AI companies operate. Business professionals should care because this move could affect investment in AI, the development and deployment of AI technologies, and the overall competitive landscape of the industry."
+      },
+      {
+        "id": "e372cfe0e6a0",
+        "title": "Frank founder Charlie Javice sentenced to 7 years in prison for defrauding JPMorgan Chase",
+        "url": "https://techcrunch.com/2025/09/29/frank-founder-charlie-javice-sentenced-to-7-years-in-prison-for-defrauding-jpmorgan-chase/",
+        "description": "The fintech startup had been acquired by JPMorgan Chase in 2021 for $175 million. The bank later accused Frank of lying about its customer base.",
+        "source": "TechCrunch",
+        "published": "2025-09-29T21:08:44+00:00",
+        "fetched_at": "2025-09-30T13:57:33.010406+00:00",
+        "category": "tech",
+        "llm_summary": "",
+        "importance_score": 8,
+        "scraped_content": "Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise EVs Fintech Fundraising Gadgets Gaming Google Government & Policy Hardware Instagram Layoffs Media & Entertainment Meta Microsoft Privacy Robotics Security Social Space Startups TikTok Transportation Venture Staff Events Startup Battlefield StrictlyVC Newsletters Podcasts Videos Partner Content TechCrunch Brand Studio Crunchboard Contact Us Posted: Charlie Javice, founder of the financial aid startupFrankandForbes 30 under 30 alumnus, has been sentenced to seven years in prison for fraud. The fintech startup had been acquired by JPMorgan Chase in 2021 for $175 million. The bank later accused Javice of lying about its customer base; the founder claimed the company had 4 million customers, when it actually had 300,000. Evidently, JPMorgan Chase did not do its due diligence before agreeing to buy Frank. During the trial, former Frank engineer Patrick Vovor testified that Javice had asked him to create fake user data prior to the sale; when he declined, Javice asked math professor and data scientist Adam Kapelner for helpcreating synthetic data. Kapelner provided key testimony for the prosecution. Along with her co-defendant, Frank’s chief growth officer Olivier Amar, Javice will be responsible for paying $278. 5 million in restitution.",
+        "enhanced_summary": "Charlie Javice, the founder of fintech startup Frank, was sentenced to seven years in prison for defrauding JPMorgan Chase after the bank acquired her company for $175 million. She lied about the size of Frank's customer base, significantly inflating the numbers to make the acquisition more appealing, involving others in creating fake data to support the fraudulent claim.",
+        "why_matters": "This case serves as a stark reminder of the critical importance of due diligence in acquisitions, highlighting the potential risks of overlooking thorough verification. It underscores the increasing scrutiny and legal repercussions for founders who engage in fraudulent activities to inflate their company's value, potentially impacting investor confidence and the overall integrity of the startup ecosystem. This also shines a light on the potential dangers of unchecked growth and the pressure to present unrealistic figures, which may cause employees and stakeholders to engage in unethical behavior."
+      },
+      {
+        "id": "1bb91252ff03",
+        "title": "It’s official: EA is selling to private equity in $55 billion deal",
+        "url": "https://arstechnica.com/gaming/2025/09/its-official-ea-is-selling-to-private-equity-in-55-billion-deal/",
+        "description": "Investors will receive $210 per share, well above the stock's all-time high.",
+        "source": "Ars Technica",
+        "published": "2025-09-29T14:04:17+00:00",
+        "fetched_at": "2025-09-30T13:57:34.165286+00:00",
+        "category": "tech",
+        "llm_summary": "",
+        "importance_score": 7,
+        "scraped_content": "Private Art It’s official: EA is selling to private equity in $55 billion deal Investors will receive $210 per share, well above the stock's all-time high. Kyle Orland – Sep 29, 2025 10:04 am | 195 A lot has changed since EA last used this 20th century logo. Credit: EA A lot has changed since EA last used this 20th century logo. Credit: EA Text settings Story text Size Small Standard Large Width * Standard Wide Links Standard Orange * Subscribers only Learn more Minimize to nav Friday's reports that Electronic Arts planned to go private were publicly confirmed Monday morning. Silver Lake, Saudi Arabia's Public Investment Fund (PIF), and Jared Kushner's Affinity Partners will join together to pay an estimated $55 billion for the video game mega-publisher in a deal being described as the \"largest all-cash sponsor take-private investment in history. \" EA stockholders will receive $210 per share in the deal, a 25 percent premium on the $168. 32 price for a share at the close of business last Thursday (and well above the stock's $179 all-time-high share price). Share in EA closed at $193.",
+        "enhanced_summary": "Electronic Arts (EA) is being acquired by a consortium including Silver Lake, Saudi Arabia's PIF, and Jared Kushner's Affinity Partners in a massive $55 billion deal. Investors will receive $210 per share, a significant premium over the stock's previous trading price.",
+        "why_matters": "This deal signifies a major shift in the video game industry, demonstrating the growing appetite of private equity and sovereign wealth funds for established entertainment giants. The move could signal a trend of publicly traded gaming companies seeking the flexibility and long-term investment horizons offered by private ownership, potentially leading to strategic changes in EA's future direction and game development."
+      },
+      {
+        "id": "1bb91252ff03",
+        "title": "It’s official: EA is selling to private equity in $55 billion deal",
+        "url": "https://arstechnica.com/gaming/2025/09/its-official-ea-is-selling-to-private-equity-in-55-billion-deal/",
+        "description": "Investors will receive $210 per share, well above the stock's all-time high.",
+        "source": "Ars Technica",
+        "published": "2025-09-29T14:04:17+00:00",
+        "fetched_at": "2025-09-30T13:57:34.165286+00:00",
+        "category": "tech",
+        "llm_summary": "",
+        "importance_score": 7,
+        "scraped_content": "Private Art It’s official: EA is selling to private equity in $55 billion deal Investors will receive $210 per share, well above the stock's all-time high. Kyle Orland – Sep 29, 2025 10:04 am | 195 A lot has changed since EA last used this 20th century logo. Credit: EA A lot has changed since EA last used this 20th century logo. Credit: EA Text settings Story text Size Small Standard Large Width * Standard Wide Links Standard Orange * Subscribers only Learn more Minimize to nav Friday's reports that Electronic Arts planned to go private were publicly confirmed Monday morning. Silver Lake, Saudi Arabia's Public Investment Fund (PIF), and Jared Kushner's Affinity Partners will join together to pay an estimated $55 billion for the video game mega-publisher in a deal being described as the \"largest all-cash sponsor take-private investment in history. \" EA stockholders will receive $210 per share in the deal, a 25 percent premium on the $168. 32 price for a share at the close of business last Thursday (and well above the stock's $179 all-time-high share price). Share in EA closed at $193.",
+        "enhanced_summary": "Electronic Arts (EA), the video game mega-publisher, is being acquired by a private equity consortium for $55 billion. Silver Lake, Saudi Arabia's Public Investment Fund (PIF), and Jared Kushner's Affinity Partners are behind the deal, which will pay EA stockholders $210 per share.",
+        "why_matters": "This massive deal signals a significant shift in the gaming industry, highlighting the increasing attractiveness of gaming assets to private equity and sovereign wealth funds. The record-breaking all-cash investment suggests a bullish outlook on the long-term value of EA's intellectual property and potential for future growth under private ownership, possibly focusing on new business models or strategic expansions."
+      }
+    ],
+    "quick_reads": [
+      {
+        "id": "33adb5021dd7",
+        "title": "Spotify’s founder and CEO Daniel Ek is stepping down",
+        "url": "https://techcrunch.com/2025/09/30/spotifys-founder-and-ceo-daniel-ek-is-stepping-down/",
+        "description": "The company is replacing Daniel Ek with two co-CEOs: Gustav Söderström, currently co-president, and chief product and technology officer; and Alex Norström, co-president and chief business officer.",
+        "source": "TechCrunch",
+        "published": "2025-09-30T12:17:54+00:00",
+        "fetched_at": "2025-09-30T13:57:33.010188+00:00",
+        "category": "tech",
+        "llm_reason": "Leadership change at Spotify indicates potential shifts in strategy that are worth watching for implications on the music streaming market and technology development."
+      },
+      {
+        "id": "8b6057796174",
+        "title": "OpenAI takes on Google, Amazon with new agentic shopping system",
+        "url": "https://techcrunch.com/2025/09/29/openai-takes-on-google-amazon-with-new-agentic-shopping-system/",
+        "description": "This type of frictionless experience has the potential to spark a new movement in how people shop online – one that moves away from search engines like Google and e-commerce platforms like Amazon toward conversational agents with curated recommendations, comparisons, and easy checkout experiences.",
+        "source": "TechCrunch",
+        "published": "2025-09-29T19:32:27+00:00",
+        "fetched_at": "2025-09-30T13:57:33.010639+00:00",
+        "category": "tech",
+        "llm_reason": "OpenAI's new shopping system challenges established players like Google and Amazon, presenting new opportunities and competitive pressures for NZ businesses in the e-commerce space."
+      },
+      {
+        "id": "d80711694653",
+        "title": "DeepSeek releases ‘sparse attention’ model that cuts API costs in half",
+        "url": "https://techcrunch.com/2025/09/29/deepseek-releases-sparse-attention-model-that-cuts-api-costs-in-half/",
+        "description": "Researchers at DeepSeek released a new experimental model designed to have dramatically lower inference costs when used in long-context operations.",
+        "source": "TechCrunch",
+        "published": "2025-09-29T20:25:08+00:00",
+        "fetched_at": "2025-09-30T13:57:33.010601+00:00",
+        "category": "tech",
+        "llm_reason": "DeepSeek's 'sparse attention' model promising lower API costs is a commercial impact for AI developers and users."
+      }
+    ]
+  },
+  "finance": {
+    "top_stories": [
+      {
+        "id": "86103a20272a",
+        "title": "Here's JPMorgan Chase's blueprint to become the world’s first fully AI-powered megabank",
+        "url": "https://www.cnbc.com/2025/09/30/jpmorgan-chase-fully-ai-connected-megabank.html",
+        "description": "JPMorgan, the world's largest bank by market cap, is being \"fundamentally rewired\" to automate knowledge work across its operations, its data chief says.",
+        "source": "CNBC Finance",
+        "published": "2025-09-30T11:40:10+00:00",
+        "fetched_at": "2025-09-30T13:57:41.480445+00:00",
+        "category": "finance",
+        "llm_summary": "",
+        "importance_score": 8,
+        "scraped_content": "In this article Deep within the bowels ofJPMorgan Chase'sdata centers and cloud providers, an artificial intelligence program crucial to the bank's aspirations grows more powerful by the week. The program, calledLLM Suite, is a portal created by the bank to harness large language models from the world's leading AI startups. It currently uses models fromOpenAIandAnthropic. Every eight weeks, LLM Suite is updated as the bank feeds it vast databases and software applications of its major businesses, giving the platform more abilities,Derek Waldron, JPMorgan chief analytics officer, told CNBC in an exclusive interview. \"The broad vision that we're working towards is one where the JPMorgan Chase of the future is going to be a fully AI-connected enterprise,\" Waldron said. JPMorgan, the world's largest bank by market capitalization, is being \"fundamentally rewired\" for the coming AI era, according to Waldron. The bank, a heavyweight across Main Street and Wall Street finance, wants to provide every employee with AI agents, automate every behind-the-scenes process and have every client experience curated with AI concierges. If the effort succeeds, the project could have profound implications for the bank's employees, customers and shareholders — even the nature of corporate labor itself.",
+        "enhanced_summary": "JPMorgan Chase is developing a massive AI program called LLM Suite, leveraging large language models from companies like OpenAI and Anthropic, with the goal of becoming a fully AI-powered bank. Chief Analytics Officer Derek Waldron described this initiative as a fundamental rewiring of the bank, aiming to provide AI agents to employees, automate processes, and curate customer experiences.",
+        "why_matters": "This signals a major shift in the finance industry towards AI integration, suggesting other major banks will likely follow suit to remain competitive. For business professionals, it means understanding how AI can be leveraged for efficiency and customer service is becoming increasingly crucial, and it raises questions about the future role of human labor within large financial institutions."
+      },
+      {
+        "id": "2cd77a693787",
+        "title": "Wealthfront files for IPO, joining wave of fintech firms going public in 2025",
+        "url": "https://www.cnbc.com/2025/09/29/wealthfront-fintech-ipo-filing.html",
+        "description": "Wealthfront, the startup that helped popularize the robo-advisor style of automated investing, filed for a U.S. initial public offering Monday.",
+        "source": "CNBC Finance",
+        "published": "2025-09-29T22:39:25+00:00",
+        "fetched_at": "2025-09-30T13:57:41.480642+00:00",
+        "category": "finance",
+        "llm_summary": "",
+        "importance_score": 7,
+        "scraped_content": "Wealthfront, the startup that helped popularize the robo-advisor style of automated investing, filed for a U. initial public offering Monday, making it the latest in a wave of fintech firms going public this year includingChimeandKlarna. The companyin Junefiled confidentially for an IPO, but waited until now to make that filing public. That signals that Wealthfront is planning on kicking off its roadshow to pitch shares to investors; an IPO typically follows weeks after the S-1 filing is made public. The company intends to list on Nasdaq under the ticker symbol \"WLTH. \" Wealthfront, led by CEO David Fortunato, had $88. 2 billion in assets on its platform and served 1. 3 million customers as of July 31, according to the filing.",
+        "enhanced_summary": "Wealthfront, a well-known robo-advisor platform led by CEO David Fortunato, has officially filed for an IPO, planning to list on Nasdaq under the ticker \"WLTH.\" This move makes Wealthfront the latest in a series of fintech companies, including Chime and Klarna, looking to go public in 2025.",
+        "why_matters": "Wealthfront's IPO filing is a strong indicator of continued investor interest in the fintech space, even amidst potential economic uncertainties. It suggests that the market is receptive to automated investment platforms with significant assets under management ($88.2 billion) and a large customer base (1.3 million), highlighting the ongoing adoption of technology in personal finance and investment management."
+      },
+      {
+        "id": "77d79cd58001",
+        "title": "Comcast names Mike Cavanagh as co-CEO alongside Brian Roberts",
+        "url": "https://www.cnbc.com/2025/09/29/comcast-roberts-cavanagh-co-ceos.html",
+        "description": "Cavanagh previously served as chief financial officer of Comcast before being promoted to president in 2022.",
+        "source": "CNBC Finance",
+        "published": "2025-09-29T14:46:37+00:00",
+        "fetched_at": "2025-09-30T13:57:41.480748+00:00",
+        "category": "finance",
+        "llm_summary": "",
+        "importance_score": 6,
+        "scraped_content": "In this article Comcastannounced Monday it's named Mike Cavanagh as co-CEO alongside longtime leader Brian Roberts,starting in January. Cavanagh, who currently serves as president, will also be named to the Comcast board of directors at that time. Roberts will remain as chairman and co-CEO of the company. \"Since joining Comcast a decade ago, Mike has proven himself to be a trusted and collaborative leader,\" Roberts said in a statement. \"He is the ideal person to help lead Comcast as we manage the pivot we are making to drive growth across the company. Mike and I work seamlessly together, and I am thrilled to be partnering with him as Co-CEO and with the rest of our talented management team, for years to come. \" Cavanagh previously served as chief financial officer of the cable giant, which consists of a broadband, cable TV and mobile company as well as NBCUniversal. Before Comcast, Cavanagh was co-CEO of JPMorgan's corporate and investment bank.",
+        "enhanced_summary": "Comcast appointed Mike Cavanagh, currently President, as co-CEO alongside Brian Roberts, effective January. This move signals a significant shift in leadership structure with Cavanagh also joining the board of directors, while Roberts maintains his role as Chairman and co-CEO.",
+        "why_matters": "This co-CEO announcement suggests Comcast is actively planning for long-term growth and potential succession, especially given Roberts' longevity in the role. The appointment of Cavanagh, with his diverse financial and operational experience, signals a focus on navigating the evolving media landscape and driving growth across Comcast's various divisions, including its cable and NBCUniversal assets."
+      }
+    ],
+    "quick_reads": [
+      {
+        "id": "3c6029a8ef4e",
+        "title": "Exclusive: Hertz will let customers do entire car buying process online",
+        "url": "https://www.cnbc.com/2025/09/30/hertz-used-cars-online.html",
+        "description": "Hertz said Tuesday it will now allow customers to fill out paperwork and secure financing online — allowing them to do everything except pick up the car.",
+        "source": "CNBC Finance",
+        "published": "2025-09-30T13:18:36+00:00",
+        "fetched_at": "2025-09-30T13:57:41.480492+00:00",
+        "category": "finance",
+        "llm_reason": "Hertz's move to online car buying is a shift in consumer experience. Worth monitoring as this might influence customer expectations in other industries."
+      },
+      {
+        "id": "ae0f58c3306c",
+        "title": "Why movie production has moved out of the U.S. — and what a tariff could mean for Hollywood",
+        "url": "https://www.cnbc.com/2025/09/29/trump-movie-tariffs-why-production-has-left-hollywood.html",
+        "description": "Movie productions have been moving out of the U.S. for years, but efforts are being made to change that. Tariffs could complicate those plans.",
+        "source": "CNBC Finance",
+        "published": "2025-09-30T12:58:50+00:00",
+        "fetched_at": "2025-09-30T13:57:41.480570+00:00",
+        "category": "finance",
+        "llm_reason": "Movie production leaving the US may affect companies in the entertainment and media industry in NZ."
+      }
+    ]
+  }
+}

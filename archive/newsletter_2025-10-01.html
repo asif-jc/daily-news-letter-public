@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily News Feed - 2025-10-01</title>
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            background-image: url('assets/dunder_park.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .header .date {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            margin-bottom: 0.5rem;
+        }
+        
+        .header .last-updated {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            position: relative;
+            z-index: 2;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .content {
+            padding: 2rem;
+        }
+        
+        .article {
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+        }
+        
+        .article.critical {
+            border-left-color: #dc3545;
+            background: #fff5f5;
+            box-shadow: 0 2px 4px rgba(220,53,69,0.1);
+        }
+        
+        .article.key {
+            border-left-color: #667eea;
+            background: #f8f9fa;
+        }
+        
+        .article.monitoring {
+            border-left-color: #28a745;
+            background: #f8fff9;
+            padding: 1rem;
+        }
+        
+        .article-header {
+            margin-bottom: 0.75rem;
+        }
+        
+        .category-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-badge.tech {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .category-badge.world {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+        
+        .category-badge.finance {
+            background: #e8f5e8;
+            color: #388e3c;
+        }
+        
+        .category-badge.nz {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+        
+        .article-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .article-title a {
+            color: #2c3e50;
+            text-decoration: none;
+        }
+        
+        .article-title a:hover {
+            color: #667eea;
+            text-decoration: underline;
+        }
+        
+        .article-meta {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 0.75rem;
+        }
+        
+        .article-summary {
+            color: #495057;
+            margin-bottom: 0.5rem;
+        }
+        
+        .why-matters {
+            margin-top: 0.75rem;
+            padding: 0.75rem;
+            background-color: #f0f8ff;
+            border-left: 3px solid #007bff;
+            font-style: italic;
+            font-size: 0.95em;
+            color: #495057;
+            border-radius: 4px;
+        }
+        
+        .why-matters strong {
+            color: #007bff;
+            font-weight: 600;
+            font-style: normal;
+        }
+        
+        .article-reason {
+            color: #28a745;
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+        
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .footer .mission {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .footer .feedback {
+            margin-bottom: 1.5rem;
+            color: #bdc3c7;
+        }
+        
+        .footer .feedback a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .footer .feedback a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer .branding {
+            font-weight: 600;
+            color: #ecf0f1;
+            font-size: 1rem;
+        }
+        
+        .fx-box {
+            margin: 1rem 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #17a2b8;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .fx-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .fx-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 0;
+        }
+        
+        .fx-timestamp {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+        
+        .fx-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+        }
+        
+        .fx-dxy-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .fx-currencies-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+        }
+        
+        .fx-rate {
+            text-align: center;
+            padding: 0.5rem;
+            background: white;
+            border-radius: 4px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .fx-pair {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 0.25rem;
+        }
+        
+        .fx-value {
+            font-size: 0.95rem;
+            color: #17a2b8;
+            font-weight: 500;
+        }
+        
+        .fx-changes {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            gap: 0.5rem;
+        }
+        
+        .fx-change {
+            font-weight: 500;
+        }
+        
+        .fx-change.positive {
+            color: #28a745;
+        }
+        
+        .fx-change.negative {
+            color: #dc3545;
+        }
+        
+        .fx-change.neutral {
+            color: #6c757d;
+        }
+        
+        @media (max-width: 600px) {
+            .fx-box {
+                margin: 1rem;
+                padding: 1rem;
+            }
+            
+            .fx-currencies-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.5rem;
+            }
+            
+            .fx-changes {
+                flex-direction: column;
+                gap: 0.25rem;
+                align-items: center;
+            }
+            
+            .fx-change {
+                font-size: 0.75rem;
+            }
+        }
+        
+        /* Improved Market Data Styles */
+        .market-box {
+            margin: 1rem 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .market-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .market-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 0;
+        }
+        
+        .market-timestamp {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+        
+        .market-category {
+            margin-bottom: 1rem;
+        }
+        
+        .market-category:last-child {
+            margin-bottom: 0;
+        }
+        
+        .market-category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 0.75rem 0;
+            border-bottom: 2px solid #e9ecef;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .market-category-header:hover {
+            background-color: rgba(102, 126, 234, 0.05);
+            margin: 0 -0.5rem;
+            padding: 0.75rem 0.5rem;
+            border-radius: 4px;
+        }
+        
+        .market-category-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #495057;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .toggle-icon {
+            font-size: 1.1rem;
+            color: #667eea;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+        
+        .market-category.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+        
+        .category-count {
+            font-size: 0.8rem;
+            color: #6c757d;
+            font-weight: normal;
+            margin-left: 0.25rem;
+        }
+        
+        .market-instruments {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .market-category.collapsed .market-instruments {
+            height: 0;
+            opacity: 0;
+            margin: 0;
+        }
+        
+        .market-instruments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+        
+        .market-instrument-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+            transition: all 0.2s ease;
+        }
+        
+        .market-instrument-card:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transform: translateY(-1px);
+        }
+        
+        .market-symbol {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .market-price {
+            font-size: 1.1rem;
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        
+        .market-changes {
+            display: flex;
+            justify-content: space-between;
+            gap: 0.5rem;
+        }
+        
+        .market-change {
+            font-weight: 500;
+            font-size: 0.8rem;
+            text-align: center;
+            padding: 0.3rem 0.5rem;
+            border-radius: 4px;
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .market-change.positive {
+            color: #28a745;
+            background: rgba(40, 167, 69, 0.1);
+        }
+        
+        .market-change.negative {
+            color: #dc3545;
+            background: rgba(220, 53, 69, 0.1);
+        }
+        
+        .market-change.neutral {
+            color: #6c757d;
+            background: rgba(108, 117, 125, 0.1);
+        }
+        
+        /* Content Overview Styles */
+        .content-overview {
+            margin: 1rem 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #6c757d;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .overview-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .overview-section {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .overview-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .overview-section-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 0.75rem;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 0.5rem;
+        }
+        
+        .overview-story {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #f8f9fa;
+        }
+        
+        .overview-story:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .story-headline {
+            font-size: 0.9rem;
+            color: #2c3e50;
+            flex: 1;
+            margin-right: 1rem;
+            line-height: 1.3;
+        }
+        
+        .story-time {
+            font-size: 0.8rem;
+            color: #6c757d;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+        
+        .overview-more {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6c757d;
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+        
+        .coming-soon {
+            font-size: 0.9rem;
+            color: #6c757d;
+            font-style: italic;
+            text-align: center;
+            padding: 0.5rem;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+        
+        .market-snapshot {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.75rem;
+        }
+        
+        .snapshot-item {
+            font-size: 0.9rem;
+            color: #495057;
+        }
+        
+        .snapshot-item .value {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .quiz-preview {
+            font-size: 0.9rem;
+            color: #495057;
+            line-height: 1.4;
+        }
+        
+        /* Updated Quiz Section Styles */
+        .quiz-box {
+            margin: 1rem 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #fd7e14;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .quiz-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 0;
+        }
+        
+        .quiz-meta {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+        
+        .quiz-question {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .quiz-question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+        
+        .quiz-question-number {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #fd7e14;
+            background: rgba(253, 126, 20, 0.1);
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            min-width: 2rem;
+            text-align: center;
+        }
+        
+        .quiz-category {
+            font-size: 0.75rem;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .quiz-question-text {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #2c3e50;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+        
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.5rem;
+        }
+        
+        .quiz-option {
+            padding: 0.5rem 0.75rem;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .quiz-option:hover {
+            background: #e9ecef;
+            border-color: #fd7e14;
+        }
+        
+        .quiz-reveal-button {
+            margin-top: 0.75rem;
+            padding: 0.5rem 1rem;
+            background: #fd7e14;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        
+        .quiz-reveal-button:hover {
+            background: #e66b02;
+        }
+        
+        .quiz-answer-section {
+            margin-top: 0.75rem;
+            padding: 0.75rem;
+            background: #fff5f0;
+            border-radius: 4px;
+            border: 1px solid #fd7e14;
+            display: none;
+        }
+        
+        .quiz-correct-answer {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 0.5rem;
+        }
+        
+        .quiz-explanation {
+            font-size: 0.9rem;
+            color: #6c757d;
+            line-height: 1.4;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                margin: 0;
+                box-shadow: none;
+            }
+            
+            .header {
+                padding: 1.5rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 1.5rem;
+            }
+            
+            .article {
+                padding: 1rem;
+            }
+            
+            .fx-box, .market-box {
+                margin: 1rem;
+                padding: 1rem;
+            }
+            
+            .market-instruments-grid {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            
+            .market-changes {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+            
+            .market-change {
+                text-align: left;
+            }
+            
+            .quiz-box {
+                margin: 1rem;
+                padding: 1rem;
+            }
+            
+            .quiz-options {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            
+            .content-overview {
+                margin: 1rem;
+                padding: 1rem;
+            }
+            
+            .overview-story {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.25rem;
+            }
+            
+            .story-headline {
+                margin-right: 0;
+            }
+            
+            .market-snapshot {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="header">
+            <h1>Daily News Feed</h1>
+            <div class="date">October 01, 2025</div>
+            <div class="last-updated">Last Updated: 01 Oct 2025, 2:59 AM NZDT</div>
+        </div>
+        
+        <div class="content-overview"><div class="overview-title">Today's Essential Updates</div><div class="overview-section"><h4 class="overview-section-title">Breaking News</h4><div class="coming-soon">Real-time alerts coming soon</div></div><div class="overview-section"><h4 class="overview-section-title">Priority Stories</h4><div class="overview-story"><div class="story-headline">California Governor Newsom signs landmark AI safety bill SB 53</div><div class="story-time">Yesterday</div></div><div class="overview-story"><div class="story-headline">Frank founder Charlie Javice sentenced to 7 years in prison for defrauding JPMorgan Chase</div><div class="story-time">Yesterday</div></div><div class="overview-story"><div class="story-headline">Here's JPMorgan Chase's blueprint to become the world’s first fully AI-powered megabank</div><div class="story-time">2h ago</div></div><div class="overview-story"><div class="story-headline">Chinese woman convicted after 'world's biggest' bitcoin seizure</div><div class="story-time">18m ago</div></div><div class="overview-story"><div class="story-headline">It’s official: EA is selling to private equity in $55 billion deal</div><div class="story-time">Yesterday</div></div><div class="overview-more">+ 11 more updates available</div></div><div class="overview-section"><h4 class="overview-section-title">Markets Snapshot</h4><div class="market-snapshot"><div class="snapshot-item">NZD/USD: <span class="value">0.5685</span></div><div class="snapshot-item">VOO: <span class="value">$609</span></div><div class="snapshot-item">Gold: <span class="value">3521 USD per Troy ounce</span></div></div></div><div class="overview-section"><h4 class="overview-section-title">Knowledge Quiz</h4><div class="quiz-preview">25 questions • Medium level<br>Topics: Geography, STEM, History</div></div></div>
+        <div class="fx-box"><div class="fx-header"><h3 class="fx-title">Foreign Exchange Rates</h3><div class="fx-timestamp">01 Oct 2025, 02:59 AM</div></div><div class="fx-grid"><div class="fx-dxy-row"><div class="fx-rate"><div class="fx-pair">DXY (US Dollar Index)</div><div class="fx-value">97.54</div><div class="fx-changes"><span class="fx-change neutral">24h +-0.0%</span><span class="fx-change positive">7d +0.3%</span><span class="fx-change neutral">30d +0.0%</span></div></div></div><div class="fx-currencies-grid"><div class="fx-rate"><div class="fx-pair">NZD/USD</div><div class="fx-value">0.5685</div><div class="fx-changes"><span class="fx-change neutral">24h -0.1%</span><span class="fx-change positive">7d +0.3%</span><span class="fx-change positive">30d +0.2%</span></div></div><div class="fx-rate"><div class="fx-pair">NZD/AUD</div><div class="fx-value">0.8718</div><div class="fx-changes"><span class="fx-change negative">24h -2.1%</span><span class="fx-change negative">7d -2.4%</span><span class="fx-change negative">30d -2.5%</span></div></div><div class="fx-rate"><div class="fx-pair">NZD/INR</div><div class="fx-value">51.71</div><div class="fx-changes"><span class="fx-change positive">24h +0.6%</span><span class="fx-change positive">7d +2.8%</span><span class="fx-change neutral">30d +0.1%</span></div></div><div class="fx-rate"><div class="fx-pair">NZD/CNY</div><div class="fx-value">4.0788</div><div class="fx-changes"><span class="fx-change positive">24h +0.2%</span><span class="fx-change negative">7d -2.9%</span><span class="fx-change positive">30d +0.2%</span></div></div><div class="fx-rate"><div class="fx-pair">NZD/THB</div><div class="fx-value">18.62</div><div class="fx-changes"><span class="fx-change negative">24h -1.7%</span><span class="fx-change positive">7d +1.4%</span><span class="fx-change negative">30d -1.5%</span></div></div></div></div></div>
+        <div class="market-box"><div class="market-header"><h3 class="market-title">Market Data</h3><div class="market-timestamp">01 Oct 2025, 02:59 AM</div></div><div class="market-category collapsed" data-category="us-indices"><div class="market-category-header" onclick="toggleCategory('us-indices')"><div class="market-category-title"><span class="toggle-icon">+</span>US Indices<span class="category-count">(3)</span></div></div><div class="market-instruments"><div class="market-instruments-grid"><div class="market-instrument-card"><div class="market-symbol">S&P 500</div><div class="market-price">6,653 USD</div><div class="market-changes"><div class="market-change neutral">24h -0.1%</div><div class="market-change negative">7d -0.2%</div><div class="market-change neutral">30d -</div></div></div><div class="market-instrument-card"><div class="market-symbol">NASDAQ</div><div class="market-price">22,535 USD</div><div class="market-changes"><div class="market-change negative">24h -0.2%</div><div class="market-change negative">7d -0.4%</div><div class="market-change neutral">30d -</div></div></div><div class="market-instrument-card"><div class="market-symbol">Dow Jones</div><div class="market-price">46,344 USD</div><div class="market-changes"><div class="market-change neutral">24h +0.1%</div><div class="market-change neutral">7d +0.1%</div><div class="market-change neutral">30d -</div></div></div></div></div></div><div class="market-category collapsed" data-category="currency-indices"><div class="market-category-header" onclick="toggleCategory('currency-indices')"><div class="market-category-title"><span class="toggle-icon">+</span>Currency Indices<span class="category-count">(1)</span></div></div><div class="market-instruments"><div class="market-instruments-grid"><div class="market-instrument-card"><div class="market-symbol">DXY</div><div class="market-price">97 USD</div><div class="market-changes"><div class="market-change neutral">24h +-0.0%</div><div class="market-change positive">7d +0.3%</div><div class="market-change neutral">30d -</div></div></div></div></div></div><div class="market-category collapsed" data-category="international"><div class="market-category-header" onclick="toggleCategory('international')"><div class="market-category-title"><span class="toggle-icon">+</span>International Indices<span class="category-count">(4)</span></div></div><div class="market-instruments"><div class="market-instruments-grid"><div class="market-instrument-card"><div class="market-symbol">Shanghai (SSE)</div><div class="market-price">3,882 CNY</div><div class="market-changes"><div class="market-change positive">24h +0.5%</div><div class="market-change positive">7d +1.6%</div><div class="market-change positive">30d +0.2%</div></div></div><div class="market-instrument-card"><div class="market-symbol">ASX 200</div><div class="market-price">8,848 AUD</div><div class="market-changes"><div class="market-change negative">24h -0.2%</div><div class="market-change positive">7d +0.9%</div><div class="market-change negative">30d -0.9%</div></div></div><div class="market-instrument-card"><div class="market-symbol">NSE (India)</div><div class="market-price">24,611 INR</div><div class="market-changes"><div class="market-change neutral">24h -0.1%</div><div class="market-change negative">7d -2.8%</div><div class="market-change neutral">30d -0.1%</div></div></div><div class="market-instrument-card"><div class="market-symbol">NZX 50</div><div class="market-price">13,292 NZD</div><div class="market-changes"><div class="market-change positive">24h +1.2%</div><div class="market-change positive">7d +0.5%</div><div class="market-change positive">30d +1.7%</div></div></div></div></div></div><div class="market-category collapsed" data-category="commodities"><div class="market-category-header" onclick="toggleCategory('commodities')"><div class="market-category-title"><span class="toggle-icon">+</span>Commodities<span class="category-count">(3)</span></div></div><div class="market-instruments"><div class="market-instruments-grid"><div class="market-instrument-card"><div class="market-symbol">Gold (GLD)</div><div class="market-price">352 USD</div><div class="market-changes"><div class="market-change neutral">24h -0.1%</div><div class="market-change positive">7d +3.8%</div><div class="market-change neutral">30d -</div></div></div><div class="market-instrument-card"><div class="market-symbol">Oil (USO)</div><div class="market-price">73 USD</div><div class="market-changes"><div class="market-change negative">24h -0.8%</div><div class="market-change positive">7d +0.6%</div><div class="market-change neutral">30d -</div></div></div><div class="market-instrument-card"><div class="market-symbol">Silver (SLV)</div><div class="market-price">41 USD</div><div class="market-changes"><div class="market-change negative">24h -1.5%</div><div class="market-change positive">7d +7.3%</div><div class="market-change neutral">30d -</div></div></div></div></div></div><div class="market-category collapsed" data-category="etfs"><div class="market-category-header" onclick="toggleCategory('etfs')"><div class="market-category-title"><span class="toggle-icon">+</span>ETFs<span class="category-count">(3)</span></div></div><div class="market-instruments"><div class="market-instruments-grid"><div class="market-instrument-card"><div class="market-symbol">VOO</div><div class="market-price">609 USD</div><div class="market-changes"><div class="market-change neutral">24h -0.1%</div><div class="market-change neutral">7d -0.1%</div><div class="market-change neutral">30d -</div></div></div><div class="market-instrument-card"><div class="market-symbol">VTI</div><div class="market-price">326 USD</div><div class="market-changes"><div class="market-change neutral">24h -0.1%</div><div class="market-change negative">7d -0.3%</div><div class="market-change neutral">30d -</div></div></div><div class="market-instrument-card"><div class="market-symbol">QQQ</div><div class="market-price">597 USD</div><div class="market-changes"><div class="market-change negative">24h -0.2%</div><div class="market-change negative">7d -0.2%</div><div class="market-change neutral">30d -</div></div></div></div></div></div></div>
+        <div class="content"><div class="article critical"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/09/29/california-governor-newsom-signs-landmark-ai-safety-bill-sb-53/" target="_blank">California Governor Newsom signs landmark AI safety bill SB 53</a></div></div><div class="article-meta">TechCrunch • 30 Sep 2025, 10:57 AM NZDT • Priority: 9/10</div><div class="article-summary">California Governor Gavin Newsom signed SB 53, a pioneering bill requiring transparency from large AI companies like OpenAI, Anthropic, Meta, and Google DeepMind regarding safety protocols and creating whistleblower protections. The bill also establishes reporting mechanisms for safety incidents and crimes committed without human oversight.</div><div class="why-matters"><strong>Why this matters:</strong> This legislation signals a growing trend towards increased AI regulation in the US, potentially setting a precedent for other states to follow suit and impacting how AI companies operate. Business professionals should care because this move could affect investment in AI, the development and deployment of AI technologies, and the overall competitive landscape of the industry.</div></div><div class="article critical"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/09/29/frank-founder-charlie-javice-sentenced-to-7-years-in-prison-for-defrauding-jpmorgan-chase/" target="_blank">Frank founder Charlie Javice sentenced to 7 years in prison for defrauding JPMorgan Chase</a></div></div><div class="article-meta">TechCrunch • 30 Sep 2025, 10:08 AM NZDT • Priority: 8/10</div><div class="article-summary">Charlie Javice, the founder of fintech startup Frank, was sentenced to seven years in prison for defrauding JPMorgan Chase after the bank acquired her company for $175 million. She lied about the size of Frank's customer base, significantly inflating the numbers to make the acquisition more appealing, involving others in creating fake data to support the fraudulent claim.</div><div class="why-matters"><strong>Why this matters:</strong> This case serves as a stark reminder of the critical importance of due diligence in acquisitions, highlighting the potential risks of overlooking thorough verification. It underscores the increasing scrutiny and legal repercussions for founders who engage in fraudulent activities to inflate their company's value, potentially impacting investor confidence and the overall integrity of the startup ecosystem. This also shines a light on the potential dangers of unchecked growth and the pressure to present unrealistic figures, which may cause employees and stakeholders to engage in unethical behavior.</div></div><div class="article critical"><div class="article-header"><span class="category-badge finance">Markets & Finance</span><div class="article-title"><a href="https://www.cnbc.com/2025/09/30/jpmorgan-chase-fully-ai-connected-megabank.html" target="_blank">Here's JPMorgan Chase's blueprint to become the world’s first fully AI-powered megabank</a></div></div><div class="article-meta">CNBC Finance • 01 Oct 2025, 12:40 AM NZDT • Priority: 8/10</div><div class="article-summary">JPMorgan Chase is developing a massive AI program called LLM Suite, leveraging large language models from companies like OpenAI and Anthropic, with the goal of becoming a fully AI-powered bank. Chief Analytics Officer Derek Waldron described this initiative as a fundamental rewiring of the bank, aiming to provide AI agents to employees, automate processes, and curate customer experiences.</div><div class="why-matters"><strong>Why this matters:</strong> This signals a major shift in the finance industry towards AI integration, suggesting other major banks will likely follow suit to remain competitive. For business professionals, it means understanding how AI can be leveraged for efficiency and customer service is becoming increasingly crucial, and it raises questions about the future role of human labor within large financial institutions.</div></div><div class="article critical"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/cy0415kk3rzo?at_medium=RSS&at_campaign=rss" target="_blank">Chinese woman convicted after 'world's biggest' bitcoin seizure</a></div></div><div class="article-meta">BBC World News • 01 Oct 2025, 2:40 AM NZDT • Priority: 7/10</div><div class="article-summary">Zhimin Qian, a Chinese national also known as Yadi Zhang, has been convicted in the UK after a seven-year international investigation into a large-scale fraud she ran in China, resulting in the seizure of over £5bn worth of bitcoin, believed to be the largest cryptocurrency seizure globally. The Metropolitan Police played a key role in uncovering the money laundering scheme.</div><div class="why-matters"><strong>Why this matters:</strong> This case highlights the increasing focus of law enforcement on cryptocurrency-related crimes and their ability to pursue and prosecute individuals across borders. It signals to businesses and individuals that illicit cryptocurrency activities will be actively investigated and that even sophisticated laundering attempts can be uncovered, potentially impacting investment and compliance strategies within the crypto space.</div></div><div class="article critical"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://arstechnica.com/gaming/2025/09/its-official-ea-is-selling-to-private-equity-in-55-billion-deal/" target="_blank">It’s official: EA is selling to private equity in $55 billion deal</a></div></div><div class="article-meta">Ars Technica • 30 Sep 2025, 3:04 AM NZDT • Priority: 7/10</div><div class="article-summary">Electronic Arts (EA) is being acquired by a consortium including Silver Lake, Saudi Arabia's PIF, and Jared Kushner's Affinity Partners in a massive $55 billion deal. Investors will receive $210 per share, a significant premium over the stock's previous trading price.</div><div class="why-matters"><strong>Why this matters:</strong> This deal signifies a major shift in the video game industry, demonstrating the growing appetite of private equity and sovereign wealth funds for established entertainment giants. The move could signal a trend of publicly traded gaming companies seeking the flexibility and long-term investment horizons offered by private ownership, potentially leading to strategic changes in EA's future direction and game development.</div></div><div class="article key"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://arstechnica.com/gaming/2025/09/its-official-ea-is-selling-to-private-equity-in-55-billion-deal/" target="_blank">It’s official: EA is selling to private equity in $55 billion deal</a></div></div><div class="article-meta">Ars Technica • 30 Sep 2025, 3:04 AM NZDT • Priority: 7/10</div><div class="article-summary">Electronic Arts (EA), the video game mega-publisher, is being acquired by a private equity consortium for $55 billion. Silver Lake, Saudi Arabia's Public Investment Fund (PIF), and Jared Kushner's Affinity Partners are behind the deal, which will pay EA stockholders $210 per share.</div><div class="why-matters"><strong>Why this matters:</strong> This massive deal signals a significant shift in the gaming industry, highlighting the increasing attractiveness of gaming assets to private equity and sovereign wealth funds. The record-breaking all-cash investment suggests a bullish outlook on the long-term value of EA's intellectual property and potential for future growth under private ownership, possibly focusing on new business models or strategic expansions.</div></div><div class="article key"><div class="article-header"><span class="category-badge finance">Markets & Finance</span><div class="article-title"><a href="https://www.cnbc.com/2025/09/29/wealthfront-fintech-ipo-filing.html" target="_blank">Wealthfront files for IPO, joining wave of fintech firms going public in 2025</a></div></div><div class="article-meta">CNBC Finance • 30 Sep 2025, 11:39 AM NZDT • Priority: 7/10</div><div class="article-summary">Wealthfront, a well-known robo-advisor platform led by CEO David Fortunato, has officially filed for an IPO, planning to list on Nasdaq under the ticker "WLTH." This move makes Wealthfront the latest in a series of fintech companies, including Chime and Klarna, looking to go public in 2025.</div><div class="why-matters"><strong>Why this matters:</strong> Wealthfront's IPO filing is a strong indicator of continued investor interest in the fintech space, even amidst potential economic uncertainties. It suggests that the market is receptive to automated investment platforms with significant assets under management ($88.2 billion) and a large customer base (1.3 million), highlighting the ongoing adoption of technology in personal finance and investment management.</div></div><div class="article key"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/c99g52y7k1xo?at_medium=RSS&at_campaign=rss" target="_blank">Former aide to far-right German politician jailed for spying for China</a></div></div><div class="article-meta">BBC World News • 30 Sep 2025, 10:14 PM NZDT • Priority: 6/10</div><div class="article-summary">A former aide, Jian Guo, to Maximilian Krah, a far-right German politician, has been sentenced to nearly five years in prison for spying for China. The court found that Guo had passed confidential documents and gathered information for Chinese authorities while working for Krah, raising concerns about Chinese intelligence activities within the EU.</div><div class="why-matters"><strong>Why this matters:</strong> This case highlights the vulnerability of political institutions to foreign espionage, particularly from China, and should concern business professionals who engage with governments and international bodies. The incident underscores the need for heightened vigilance regarding data security, vetting processes, and potential influence operations targeting sensitive information and decision-making. It also signals a potential escalation in geopolitical tensions and the importance of proactive risk management for companies operating in international environments.</div></div><div class="article key"><div class="article-header"><span class="category-badge finance">Markets & Finance</span><div class="article-title"><a href="https://www.cnbc.com/2025/09/29/comcast-roberts-cavanagh-co-ceos.html" target="_blank">Comcast names Mike Cavanagh as co-CEO alongside Brian Roberts</a></div></div><div class="article-meta">CNBC Finance • 30 Sep 2025, 3:46 AM NZDT • Priority: 6/10</div><div class="article-summary">Comcast appointed Mike Cavanagh, currently President, as co-CEO alongside Brian Roberts, effective January. This move signals a significant shift in leadership structure with Cavanagh also joining the board of directors, while Roberts maintains his role as Chairman and co-CEO.</div><div class="why-matters"><strong>Why this matters:</strong> This co-CEO announcement suggests Comcast is actively planning for long-term growth and potential succession, especially given Roberts' longevity in the role. The appointment of Cavanagh, with his diverse financial and operational experience, signals a focus on navigating the evolving media landscape and driving growth across Comcast's various divisions, including its cable and NBCUniversal assets.</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/09/30/spotifys-founder-and-ceo-daniel-ek-is-stepping-down/" target="_blank">Spotify’s founder and CEO Daniel Ek is stepping down</a></div></div><div class="article-meta">TechCrunch • 01 Oct 2025, 1:17 AM NZDT</div><div class="article-reason">Leadership change at Spotify indicates potential shifts in strategy that are worth watching for implications on the music streaming market and technology development.</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/09/29/openai-takes-on-google-amazon-with-new-agentic-shopping-system/" target="_blank">OpenAI takes on Google, Amazon with new agentic shopping system</a></div></div><div class="article-meta">TechCrunch • 30 Sep 2025, 8:32 AM NZDT</div><div class="article-reason">OpenAI's new shopping system challenges established players like Google and Amazon, presenting new opportunities and competitive pressures for NZ businesses in the e-commerce space.</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge tech">Technology</span><div class="article-title"><a href="https://techcrunch.com/2025/09/29/deepseek-releases-sparse-attention-model-that-cuts-api-costs-in-half/" target="_blank">DeepSeek releases ‘sparse attention’ model that cuts API costs in half</a></div></div><div class="article-meta">TechCrunch • 30 Sep 2025, 9:25 AM NZDT</div><div class="article-reason">DeepSeek's 'sparse attention' model promising lower API costs is a commercial impact for AI developers and users.</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/articles/cgrql7gd10do?at_medium=RSS&at_campaign=rss" target="_blank">US deporting 120 Iranians after deal struck with Tehran, Iran says</a></div></div><div class="article-meta">BBC World News • 01 Oct 2025, 2:21 AM NZDT</div><div class="article-reason">US deportation policy changes could affect international labor and business relations.</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge world">Global News</span><div class="article-title"><a href="https://www.bbc.com/news/videos/c24r8zj1mnro?at_medium=RSS&at_campaign=rss" target="_blank">Watch: Trump and Netanyahu outline peace plan to end war in Gaza</a></div></div><div class="article-meta">BBC World News • 30 Sep 2025, 9:46 AM NZDT</div><div class="article-reason">Peace plans in Gaza can impact global markets and trade relationships.</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge finance">Markets & Finance</span><div class="article-title"><a href="https://www.cnbc.com/2025/09/30/hertz-used-cars-online.html" target="_blank">Exclusive: Hertz will let customers do entire car buying process online</a></div></div><div class="article-meta">CNBC Finance • 01 Oct 2025, 2:18 AM NZDT</div><div class="article-reason">Hertz's move to online car buying is a shift in consumer experience. Worth monitoring as this might influence customer expectations in other industries.</div></div><div class="article monitoring"><div class="article-header"><span class="category-badge finance">Markets & Finance</span><div class="article-title"><a href="https://www.cnbc.com/2025/09/29/trump-movie-tariffs-why-production-has-left-hollywood.html" target="_blank">Why movie production has moved out of the U.S. — and what a tariff could mean for Hollywood</a></div></div><div class="article-meta">CNBC Finance • 01 Oct 2025, 1:58 AM NZDT</div><div class="article-reason">Movie production leaving the US may affect companies in the entertainment and media industry in NZ.</div></div></div>
+        <div class="quiz-box"><div class="quiz-header"><h3 class="quiz-title">Daily Knowledge Quiz</h3><div class="quiz-meta">AI Generated • 25 Questions • Medium Level</div></div><p style="margin-bottom: 1.5rem; color: #6c757d; font-size: 0.9rem;">Test your knowledge across geography, STEM, history, and general topics. Click "Show Answer" to reveal the solution with explanation.</p><div class="quiz-question"><div class="quiz-question-header"><span class="quiz-question-number">1</span><span class="quiz-category">geography</span></div><div class="quiz-question-text">Which of the following countries is landlocked?</div><div class="quiz-options"><div class="quiz-option">Portugal</div><div class="quiz-option">Norway</div><div class="quiz-option">Switzerland</div><div class="quiz-option">Greece</div></div><button class="quiz-reveal-button" id="reveal-1" onclick="revealAnswer(1)">Show Answer</button><div class="quiz-answer-section" id="answer-1"><div class="quiz-correct-answer">Answer: Switzerland</div><div class="quiz-explanation">Switzerland is a landlocked country in the heart of Europe, bordering France, Germany, Italy, Austria, and Liechtenstein.</div></div></div><div class="quiz-question"><div class="quiz-question-header"><span class="quiz-question-number">2</span><span class="quiz-category">biology</span></div><div class="quiz-question-text">What is the primary function of a ribosome?</div><div class="quiz-options"><div class="quiz-option">DNA replication</div><div class="quiz-option">Protein synthesis</div><div class="quiz-option">Energy production</div><div class="quiz-option">Waste disposal</div></div><button class="quiz-reveal-button" id="reveal-2" onclick="revealAnswer(2)">Show Answer</button><div class="quiz-answer-section" id="answer-2"><div class="quiz-correct-answer">Answer: Protein synthesis</div><div class="quiz-explanation">Ribosomes are responsible for translating mRNA into proteins, a crucial process for cell function.</div></div></div><div class="quiz-question"><div class="quiz-question-header"><span class="quiz-question-number">3</span><span class="quiz-category">history</span></div><div class="quiz-question-text">In what year did the French Revolution begin?</div><div class="quiz-options"><div class="quiz-option">1776</div><div class="quiz-option">1789</div><div class="quiz-option">1812</div><div class="quiz-option">1848</div></div><button class="quiz-reveal-button" id="reveal-3" onclick="revealAnswer(3)">Show Answer</button><div class="quiz-answer-section" id="answer-3"><div class="quiz-correct-answer">Answer: 1789</div><div class="quiz-explanation">The French Revolution began in 1789 with the storming of the Bastille.</div></div></div><div class="quiz-question"><div class="quiz-question-header"><span class="quiz-question-number">4</span><span class="quiz-category">physics</span></div><div class="quiz-question-text">What is the SI unit of electrical resistance?</div><div class="quiz-options"><div class="quiz-option">Ampere</div><div class="quiz-option">Volt</div><div class="quiz-option">Ohm</div><div class="quiz-option">Watt</div></div><button class="quiz-reveal-button" id="reveal-4" onclick="revealAnswer(4)">Show Answer</button><div class="quiz-answer-section" id="answer-4"><div class="quiz-correct-answer">Answer: Ohm</div><div class="quiz-explanation">The Ohm (Ω) is the SI unit of electrical resistance, named after Georg Ohm.</div></div></div><div class="quiz-question"><div class="quiz-question-header"><span class="quiz-question-number">5</span><span class="quiz-category">astronomy</span></div><div class="quiz-question-text">Which planet is known as the 'Morning Star' or 'Evening Star'?</div><div class="quiz-options"><div class="quiz-option">Mars</div><div class="quiz-option">Jupiter</div><div class="quiz-option">Venus</div><div class="quiz-option">Mercury</div></div><button class="quiz-reveal-button" id="reveal-5" onclick="revealAnswer(5)">Show Answer</button><div class="quiz-answer-section" id="answer-5"><div class="quiz-correct-answer">Answer: Venus</div><div class="quiz-explanation">Venus is often visible near the horizon either shortly before sunrise or shortly after sunset, earning it the names 'Morning Star' and 'Evening Star'.</div></div></div><div class="quiz-question"><div class="quiz-question-header"><span class="quiz-question-number">6</span><span class="quiz-category">geography</span></div><div class="quiz-question-text">What is the capital of Australia?</div><div class="quiz-options"><div class="quiz-option">Sydney</div><div class="quiz-option">Melbourne</div><div class="quiz-option">Canberra</div><div class="quiz-option">Brisbane</div></div><button class="quiz-reveal-button" id="reveal-6" onclick="revealAnswer(6)">Show Answer</button><div class="quiz-answer-section" id="answer-6"><div class="quiz-correct-answer">Answer: Canberra</div><div class="quiz-explanation">Canberra was chosen as the capital to resolve the rivalry between Sydney and Melbourne.</div></div></div><div class="quiz-question"><div class="quiz-question-header"><span class="quiz-question-number">7</span><span class="quiz-category">biology</span></div><div class="quiz-question-text">What is the name of the first cloned mammal?</div><div class="quiz-options"><div class="quiz-option">Polly</div><div class="quiz-option">Dolly</div><div class="quiz-option">Daisy</div><div class="quiz-option">Molly</div></div><button class="quiz-reveal-button" id="reveal-7" onclick="revealAnswer(7)">Show Answer</button><div class="quiz-answer-section" id="answer-7"><div class="quiz-correct-answer">Answer: Dolly</div><div class="quiz-explanation">Dolly the sheep was the first mammal to be cloned from an adult somatic cell.</div></div></div><div class="quiz-question"><div class="quiz-question-header"><span class="quiz-question-number">8</span><span class="quiz-category">history</span></div><div class="quiz-question-text">Which empire was ruled by Mansa Musa?</div><div class="quiz-options"><div class="quiz-option">Roman Empire</div><div class="quiz-option">Ottoman Empire</div><div class="quiz-option">Mali Empire</div><div class="quiz-option">Inca Empire</div></div><button class="quiz-reveal-button" id="reveal-8" onclick="revealAnswer(8)">Show Answer</button><div class="quiz-answer-section" id="answer-8"><div class="quiz-correct-answer">Answer: Mali Empire</div><div class="quiz-explanation">Mansa Musa was the ruler of the Mali Empire, known for his pilgrimage to Mecca and immense wealth.</div></div></div><div class="quiz-question"><div class="quiz-question-header"><span class="quiz-question-number">9</span><span class="quiz-category">mathematics</span></div><div class="quiz-question-text">What is the value of pi (π) to two decimal places?</div><div class="quiz-options"><div class="quiz-option">3.10</div><div class="quiz-option">3.14</div><div class="quiz-option">3.16</div><div class="quiz-option">3.20</div></div><button class="quiz-reveal-button" id="reveal-9" onclick="revealAnswer(9)">Show Answer</button><div class="quiz-answer-section" id="answer-9"><div class="quiz-correct-answer">Answer: 3.14</div><div class="quiz-explanation">Pi (π) is approximately equal to 3.14, representing the ratio of a circle's circumference to its diameter.</div></div></div><div class="quiz-question"><div class="quiz-question-header"><span class="quiz-question-number">10</span><span class="quiz-category">general_knowledge</span></div><div class="quiz-question-text">Which gas is most abundant in Earth's atmosphere?</div><div class="quiz-options"><div class="quiz-option">Oxygen</div><div class="quiz-option">Carbon Dioxide</div><div class="quiz-option">Nitrogen</div><div class="quiz-option">Argon</div></div><button class="quiz-reveal-button" id="reveal-10" onclick="revealAnswer(10)">Show Answer</button><div class="quiz-answer-section" id="answer-10"><div class="quiz-correct-answer">Answer: Nitrogen</div><div class="quiz-explanation">Nitrogen makes up approximately 78% of Earth's atmosphere.</div></div></div><div class="quiz-question"><div class="quiz-question-header"><span class="quiz-question-number">11</span><span class="quiz-category">geography</span></div><div class="quiz-question-text">Which mountain range is home to Mount Everest?</div><div class="quiz-options"><div class="quiz-option">Andes</div><div class="quiz-option">Alps</div><div class="quiz-option">Himalayas</div><div class="quiz-option">Rockies</div></div><button class="quiz-reveal-button" id="reveal-11" onclick="revealAnswer(11)">Show Answer</button><div class="quiz-answer-section" id="answer-11"><div class="quiz-correct-answer">Answer: Himalayas</div><div class="quiz-explanation">Mount Everest, the highest peak above sea level, is located in the Himalayas.</div></div></div><div class="quiz-question"><div class="quiz-question-header"><span class="quiz-question-number">12</span><span class="quiz-category">biology</span></div><div class="quiz-question-text">What is the process by which plants convert light energy into chemical energy?</div><div class="quiz-options"><div class="quiz-option">Respiration</div><div class="quiz-option">Photosynthesis</div><div class="quiz-option">Transpiration</div><div class="quiz-option">Fermentation</div></div><button class="quiz-reveal-button" id="reveal-12" onclick="revealAnswer(12)">Show Answer</button><div class="quiz-answer-section" id="answer-12"><div class="quiz-correct-answer">Answer: Photosynthesis</div><div class="quiz-explanation">Photosynthesis is the process used by plants and other organisms to convert light energy into chemical energy that can later be released to fuel the organisms' activities.</div></div></div><div class="quiz-question"><div class="quiz-question-header"><span class="quiz-question-number">13</span><span class="quiz-category">history</span></div><div class="quiz-question-text">Who painted the Mona Lisa?</div><div class="quiz-options"><div class="quiz-option">Michelangelo</div><div class="quiz-option">Raphael</div><div class="quiz-option">Leonardo da Vinci</div><div class="quiz-option">Donatello</div></div><button class="quiz-reveal-button" id="reveal-13" onclick="revealAnswer(13)">Show Answer</button><div class="quiz-answer-section" id="answer-13"><div class="quiz-correct-answer">Answer: Leonardo da Vinci</div><div class="quiz-explanation">The Mona Lisa was painted by Leonardo da Vinci during the Renaissance.</div></div></div><div class="quiz-question"><div class="quiz-question-header"><span class="quiz-question-number">14</span><span class="quiz-category">physics</span></div><div class="quiz-question-text">What is the speed of light in a vacuum, approximately?</div><div class="quiz-options"><div class="quiz-option">300,000 km/s</div><div class="quiz-option">150,000 km/s</div><div class="quiz-option">450,000 km/s</div><div class="quiz-option">600,000 km/s</div></div><button class="quiz-reveal-button" id="reveal-14" onclick="revealAnswer(14)">Show Answer</button><div class="quiz-answer-section" id="answer-14"><div class="quiz-correct-answer">Answer: 300,000 km/s</div><div class="quiz-explanation">The speed of light in a vacuum is approximately 299,792,458 meters per second, often rounded to 300,000 km/s.</div></div></div><div class="quiz-question"><div class="quiz-question-header"><span class="quiz-question-number">15</span><span class="quiz-category">astronomy</span></div><div class="quiz-question-text">What is the name of the Earth's natural satellite?</div><div class="quiz-options"><div class="quiz-option">Venus</div><div class="quiz-option">Mars</div><div class="quiz-option">Moon</div><div class="quiz-option">Titan</div></div><button class="quiz-reveal-button" id="reveal-15" onclick="revealAnswer(15)">Show Answer</button><div class="quiz-answer-section" id="answer-15"><div class="quiz-correct-answer">Answer: Moon</div><div class="quiz-explanation">The Moon is Earth's only natural satellite.</div></div></div><div class="quiz-question"><div class="quiz-question-header"><span class="quiz-question-number">16</span><span class="quiz-category">geography</span></div><div class="quiz-question-text">What is the longest river in the world?</div><div class="quiz-options"><div class="quiz-option">Amazon River</div><div class="quiz-option">Nile River</div><div class="quiz-option">Yangtze River</div><div class="quiz-option">Mississippi River</div></div><button class="quiz-reveal-button" id="reveal-16" onclick="revealAnswer(16)">Show Answer</button><div class="quiz-answer-section" id="answer-16"><div class="quiz-correct-answer">Answer: Nile River</div><div class="quiz-explanation">The Nile River is generally considered the longest river in the world, flowing through northeastern Africa.</div></div></div><div class="quiz-question"><div class="quiz-question-header"><span class="quiz-question-number">17</span><span class="quiz-category">biology</span></div><div class="quiz-question-text">What is the name of the energy currency of the cell?</div><div class="quiz-options"><div class="quiz-option">DNA</div><div class="quiz-option">RNA</div><div class="quiz-option">ATP</div><div class="quiz-option">Protein</div></div><button class="quiz-reveal-button" id="reveal-17" onclick="revealAnswer(17)">Show Answer</button><div class="quiz-answer-section" id="answer-17"><div class="quiz-correct-answer">Answer: ATP</div><div class="quiz-explanation">ATP (adenosine triphosphate) is the primary energy carrier in cells.</div></div></div><div class="quiz-question"><div class="quiz-question-header"><span class="quiz-question-number">18</span><span class="quiz-category">history</span></div><div class="quiz-question-text">What was the name of the ship Charles Darwin sailed on during his voyage of discovery?</div><div class="quiz-options"><div class="quiz-option">The Beagle</div><div class="quiz-option">The Enterprise</div><div class="quiz-option">The Discovery</div><div class="quiz-option">The Voyager</div></div><button class="quiz-reveal-button" id="reveal-18" onclick="revealAnswer(18)">Show Answer</button><div class="quiz-answer-section" id="answer-18"><div class="quiz-correct-answer">Answer: The Beagle</div><div class="quiz-explanation">Charles Darwin sailed on the HMS Beagle, a voyage that significantly influenced the development of his theory of evolution.</div></div></div><div class="quiz-question"><div class="quiz-question-header"><span class="quiz-question-number">19</span><span class="quiz-category">physics</span></div><div class="quiz-question-text">What is the SI unit of force?</div><div class="quiz-options"><div class="quiz-option">Joule</div><div class="quiz-option">Watt</div><div class="quiz-option">Newton</div><div class="quiz-option">Pascal</div></div><button class="quiz-reveal-button" id="reveal-19" onclick="revealAnswer(19)">Show Answer</button><div class="quiz-answer-section" id="answer-19"><div class="quiz-correct-answer">Answer: Newton</div><div class="quiz-explanation">The Newton (N) is the SI unit of force, named after Sir Isaac Newton.</div></div></div><div class="quiz-question"><div class="quiz-question-header"><span class="quiz-question-number">20</span><span class="quiz-category">general_knowledge</span></div><div class="quiz-question-text">Which of the following is NOT a greenhouse gas?</div><div class="quiz-options"><div class="quiz-option">Carbon Dioxide</div><div class="quiz-option">Methane</div><div class="quiz-option">Nitrous Oxide</div><div class="quiz-option">Nitrogen</div></div><button class="quiz-reveal-button" id="reveal-20" onclick="revealAnswer(20)">Show Answer</button><div class="quiz-answer-section" id="answer-20"><div class="quiz-correct-answer">Answer: Nitrogen</div><div class="quiz-explanation">Nitrogen is a major component of the atmosphere but doesn't trap heat like greenhouse gasses.</div></div></div><div class="quiz-question"><div class="quiz-question-header"><span class="quiz-question-number">21</span><span class="quiz-category">geography</span></div><div class="quiz-question-text">Which continent is also a country?</div><div class="quiz-options"><div class="quiz-option">Asia</div><div class="quiz-option">Africa</div><div class="quiz-option">Australia</div><div class="quiz-option">South America</div></div><button class="quiz-reveal-button" id="reveal-21" onclick="revealAnswer(21)">Show Answer</button><div class="quiz-answer-section" id="answer-21"><div class="quiz-correct-answer">Answer: Australia</div><div class="quiz-explanation">Australia is both a continent and a country.</div></div></div><div class="quiz-question"><div class="quiz-question-header"><span class="quiz-question-number">22</span><span class="quiz-category">biology</span></div><div class="quiz-question-text">What is the primary function of white blood cells?</div><div class="quiz-options"><div class="quiz-option">Oxygen transport</div><div class="quiz-option">Blood clotting</div><div class="quiz-option">Immune defense</div><div class="quiz-option">Nutrient absorption</div></div><button class="quiz-reveal-button" id="reveal-22" onclick="revealAnswer(22)">Show Answer</button><div class="quiz-answer-section" id="answer-22"><div class="quiz-correct-answer">Answer: Immune defense</div><div class="quiz-explanation">White blood cells, or leukocytes, are the cells of the immune system involved in protecting the body against both infectious disease and foreign invaders.</div></div></div><div class="quiz-question"><div class="quiz-question-header"><span class="quiz-question-number">23</span><span class="quiz-category">history</span></div><div class="quiz-question-text">Who developed the theory of general relativity?</div><div class="quiz-options"><div class="quiz-option">Isaac Newton</div><div class="quiz-option">Albert Einstein</div><div class="quiz-option">Stephen Hawking</div><div class="quiz-option">Niels Bohr</div></div><button class="quiz-reveal-button" id="reveal-23" onclick="revealAnswer(23)">Show Answer</button><div class="quiz-answer-section" id="answer-23"><div class="quiz-correct-answer">Answer: Albert Einstein</div><div class="quiz-explanation">Albert Einstein developed the theory of general relativity, revolutionizing our understanding of gravity.</div></div></div><div class="quiz-question"><div class="quiz-question-header"><span class="quiz-question-number">24</span><span class="quiz-category">physics</span></div><div class="quiz-question-text">What is the name of the phenomenon where a material's electrical resistance disappears below a critical temperature?</div><div class="quiz-options"><div class="quiz-option">Conduction</div><div class="quiz-option">Insulation</div><div class="quiz-option">Superconductivity</div><div class="quiz-option">Semiconductivity</div></div><button class="quiz-reveal-button" id="reveal-24" onclick="revealAnswer(24)">Show Answer</button><div class="quiz-answer-section" id="answer-24"><div class="quiz-correct-answer">Answer: Superconductivity</div><div class="quiz-explanation">Superconductivity is a phenomenon where certain materials exhibit zero electrical resistance and expulsion of magnetic fields below a characteristic critical temperature.</div></div></div><div class="quiz-question"><div class="quiz-question-header"><span class="quiz-question-number">25</span><span class="quiz-category">general_knowledge</span></div><div class="quiz-question-text">What is the name of the first artificial satellite launched into space?</div><div class="quiz-options"><div class="quiz-option">Apollo 11</div><div class="quiz-option">Sputnik 1</div><div class="quiz-option">Explorer 1</div><div class="quiz-option">Vostok 1</div></div><button class="quiz-reveal-button" id="reveal-25" onclick="revealAnswer(25)">Show Answer</button><div class="quiz-answer-section" id="answer-25"><div class="quiz-correct-answer">Answer: Sputnik 1</div><div class="quiz-explanation">Sputnik 1 was the first artificial satellite, launched by the Soviet Union in 1957.</div></div></div></div>
+        
+        <div class="footer">
+            <div class="mission">
+                Inform on global events capturing key and interesting events that influence our lives and delivering that information in an easily consumable format.
+            </div>
+            <div class="feedback">
+                Appreciate feedback on source or content curation, new categories, or general queries. Send to: 
+                <a href="mailto:asif.ajcanalytics@gmail.com">asif.ajcanalytics@gmail.com</a>
+            </div>
+            <div class="branding">
+                AJC Analytics Limited
+            </div>
+        </div>
+        
+    </div>
+    
+    <script>
+        function toggleCategory(categoryId) {
+            const category = document.querySelector(`[data-category="${categoryId}"]`);
+            const icon = category.querySelector('.toggle-icon');
+            
+            if (category.classList.contains('collapsed')) {
+                category.classList.remove('collapsed');
+                category.classList.add('expanded');
+                icon.textContent = '−';
+            } else {
+                category.classList.remove('expanded');
+                category.classList.add('collapsed');
+                icon.textContent = '+';
+            }
+        }
+        
+        function revealAnswer(questionId) {
+            const answerDiv = document.getElementById(`answer-${questionId}`);
+            const button = document.getElementById(`reveal-${questionId}`);
+            
+            answerDiv.style.display = 'block';
+            button.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
