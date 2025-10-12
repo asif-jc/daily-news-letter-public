@@ -2,7 +2,7 @@ name: Generate Daily Newsletter
 
 on:
   schedule:
-    - cron: '0 */2 * * *' # Scheduled for every 2h
+    - cron: '0 */6 * * *' # Scheduled for every 2h
   workflow_dispatch:    # Manual trigger
 
 jobs:
