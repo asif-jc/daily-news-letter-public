@@ -1,4 +1,5 @@
 import json
+import argparse
 
 from collector import ArticleCollector
 from sources import RSS_FEEDS
@@ -11,8 +12,9 @@ from web_newsletter import NewsletterGenerator, generate_newsletter, regenerate_
 from quiz_data import pull_quiz_data
 from foreign_exchange_data import pull_fx_data
 from market_data import pull_market_data
+from email_newsletter_sender import send_newsletter, send_test_email, send_simple_test_email, send_simple_newsletter
 
-def run_daily_pipeline(use_llm: bool = True): 
+def run_daily_pipeline(use_llm: bool = True, send_email: bool = False, test_email: str = None): 
     # 1. Collect articles
     collector = ArticleCollector(RSS_FEEDS)
     results = collector.collect_all()
@@ -38,6 +40,15 @@ def run_daily_pipeline(use_llm: bool = True):
     # 4. Generate HTML
     html = generate_newsletter()
     
+    # 5. Send email if requested (simple version while testing deliverability)
+    if send_email:
+        if test_email:
+            email_success = send_simple_test_email(test_email)
+            print(f"Test email sent: {email_success}")
+        else:
+            email_success = send_simple_newsletter()
+            print(f"Newsletter email sent: {email_success}")
+    
     return newsletter_data
 
 
@@ -47,7 +58,7 @@ if __name__ == "__main__":
     USE_LLM = True
 
     if RUN_ETL:
-        run_daily_pipeline(use_llm=USE_LLM)
+        run_daily_pipeline(use_llm=USE_LLM, send_email=True, test_email="asif.cheena20102001@gmail.com")
     else:
         regenerate_newsletter_with_nzt()
 

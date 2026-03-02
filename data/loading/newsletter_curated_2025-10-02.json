@@ -1,0 +1,290 @@
+{
+  "world": {
+    "top_stories": [
+      {
+        "id": "d9cb24a1f51e",
+        "title": "White House says layoffs 'imminent' with no end to shutdown in sight",
+        "url": "https://www.bbc.com/news/articles/c8xrwdny8p1o?at_medium=RSS&at_campaign=rss",
+        "description": "As a bitter standoff between Republicans and Democrats plays out, there is little sign that either side is willing to budge.",
+        "source": "BBC World News",
+        "published": "2025-10-01T22:36:28+00:00",
+        "fetched_at": "2025-10-02T08:11:40.318482+00:00",
+        "category": "world"
+      },
+      {
+        "id": "3da1903af8ef",
+        "title": "Israeli naval ships intercept Gaza-bound flotilla",
+        "url": "https://www.bbc.com/news/articles/c0lk292jww4o?at_medium=RSS&at_campaign=rss",
+        "description": "Climate activist Greta Thunberg is among activists on the Global Sumud Flotilla being taken to an Israeli port.",
+        "source": "BBC World News",
+        "published": "2025-10-02T07:11:37+00:00",
+        "fetched_at": "2025-10-02T08:11:40.318525+00:00",
+        "category": "world"
+      },
+      {
+        "id": "4305f2062e08",
+        "title": "Four ways this US government shutdown could end",
+        "url": "https://www.bbc.com/news/articles/cdr6pnky7vyo?at_medium=RSS&at_campaign=rss",
+        "description": "At some point, public pressure and political pain will see one side yield to bring this latest US government shutdown to an end.",
+        "source": "BBC World News",
+        "published": "2025-10-01T18:25:22+00:00",
+        "fetched_at": "2025-10-02T08:11:40.318562+00:00",
+        "category": "world"
+      },
+      {
+        "id": "7fc009890dac",
+        "title": "Dame Jane Goodall remembered as a 'true hero for the planet'",
+        "url": "https://www.bbc.com/news/articles/czrp24myrl7o?at_medium=RSS&at_campaign=rss",
+        "description": "Leonardo DiCaprio and Barack Obama are among those paying tribute to the leading conservationist.",
+        "source": "BBC World News",
+        "published": "2025-10-02T03:30:57+00:00",
+        "fetched_at": "2025-10-02T08:11:40.318597+00:00",
+        "category": "world"
+      },
+      {
+        "id": "09c60cdc1def",
+        "title": "Dozens feared dead in Indonesia school collapse, officials say",
+        "url": "https://www.bbc.com/news/articles/c8d783yjvpyo?at_medium=RSS&at_campaign=rss",
+        "description": "There are reportedly \"no signs of life\" under the wreckage, where 59 people are still missing.",
+        "source": "BBC World News",
+        "published": "2025-10-02T07:04:20+00:00",
+        "fetched_at": "2025-10-02T08:11:40.318632+00:00",
+        "category": "world"
+      }
+    ],
+    "quick_reads": [
+      {
+        "id": "9a8c013e9602",
+        "title": "Musk becomes world's first half-trillionaire",
+        "url": "https://www.bbc.com/news/articles/c89d3547npjo?at_medium=RSS&at_campaign=rss",
+        "description": "The rise has been driven by a sharp increase in the value of his electric car company Tesla.",
+        "source": "BBC World News",
+        "published": "2025-10-02T01:45:44+00:00",
+        "fetched_at": "2025-10-02T08:11:40.318666+00:00",
+        "category": "world"
+      },
+      {
+        "id": "bff9e39fafdd",
+        "title": "Israel 'tightens siege' of Gaza City as Hamas reviews Trump peace plan",
+        "url": "https://www.bbc.com/news/articles/cvgnznkjrx6o?at_medium=RSS&at_campaign=rss",
+        "description": "The defence minister warns Palestinians to leave, saying those remaining will be considered \"terrorists and supporters of terror\".",
+        "source": "BBC World News",
+        "published": "2025-10-01T16:38:26+00:00",
+        "fetched_at": "2025-10-02T08:11:40.318702+00:00",
+        "category": "world"
+      },
+      {
+        "id": "695dc44540b8",
+        "title": "'None of us have ever asked for special treatment' - female veterans respond to Hegseth",
+        "url": "https://www.bbc.com/news/articles/cy8525w2v5wo?at_medium=RSS&at_campaign=rss",
+        "description": "The US Secretary of Defense said he wants a return to the 'male standard' for combat roles. Woman veterans say the standards were never different.",
+        "source": "BBC World News",
+        "published": "2025-10-01T21:59:48+00:00",
+        "fetched_at": "2025-10-02T08:11:40.318743+00:00",
+        "category": "world"
+      },
+      {
+        "id": "0712ec5f5dd7",
+        "title": "A new China tech visa has caught India's attention - now locals aren't happy",
+        "url": "https://www.bbc.com/news/articles/cvg4eeerzrwo?at_medium=RSS&at_campaign=rss",
+        "description": "China's aim to attract global talent comes as the US is making it harder to bring in foreign workers.",
+        "source": "BBC World News",
+        "published": "2025-10-01T22:24:03+00:00",
+        "fetched_at": "2025-10-02T08:11:40.318777+00:00",
+        "category": "world"
+      },
+      {
+        "id": "9939594d55bb",
+        "title": "Afghans rejoice as internet returns after Taliban blackout",
+        "url": "https://www.bbc.com/news/articles/c0jq2q5jnw3o?at_medium=RSS&at_campaign=rss",
+        "description": "A 48-hour shutdown imposed by the Taliban government hit firms, flights and risked further isolating women.",
+        "source": "BBC World News",
+        "published": "2025-10-01T17:35:33+00:00",
+        "fetched_at": "2025-10-02T08:11:40.318811+00:00",
+        "category": "world"
+      }
+    ]
+  },
+  "tech": {
+    "top_stories": [
+      {
+        "id": "ac8b7c5de249",
+        "title": "Meet the Arc spacecraft: it aims to deliver cargo anywhere in the world in an hour",
+        "url": "https://arstechnica.com/space/2025/10/meet-the-arc-spacecraft-it-aims-to-deliver-cargo-anywhere-in-the-world-in-an-hour/",
+        "description": "\"The key discriminator is, does this make a difference in the moment it's needed?\"",
+        "source": "Ars Technica",
+        "published": "2025-10-02T02:00:27+00:00",
+        "fetched_at": "2025-10-02T08:11:52.273518+00:00",
+        "category": "tech"
+      },
+      {
+        "id": "18f8398ef58c",
+        "title": "That annoying SMS phish you just got may have come from a box like this",
+        "url": "https://arstechnica.com/security/2025/10/that-annoying-sms-phish-you-just-got-may-have-come-from-a-box-like-this/",
+        "description": "Smishers looking for new infrastructure are getting creative.",
+        "source": "Ars Technica",
+        "published": "2025-10-01T22:16:07+00:00",
+        "fetched_at": "2025-10-02T08:11:52.273560+00:00",
+        "category": "tech"
+      },
+      {
+        "id": "4367ee83d3ff",
+        "title": "Megafauna was the meat of choice for South American hunters",
+        "url": "https://arstechnica.com/science/2025/10/ice-age-hunters-in-south-america-preferred-now-extinct-megafauna/",
+        "description": "Giant sloths are extinct in part because they were tasty and nutritious.",
+        "source": "Ars Technica",
+        "published": "2025-10-01T21:52:45+00:00",
+        "fetched_at": "2025-10-02T08:11:52.273597+00:00",
+        "category": "tech"
+      },
+      {
+        "id": "083bf9d9605d",
+        "title": "OpenAI mocks Musk’s math in suit over iPhone/ChatGPT integration",
+        "url": "https://arstechnica.com/tech-policy/2025/10/openai-mocks-musks-math-in-suit-over-iphone-chatgpt-integration/",
+        "description": "xAI's claim that Apple gave ChatGPT a monopoly on prompts is “baseless,” OpenAI says.",
+        "source": "Ars Technica",
+        "published": "2025-10-01T21:15:09+00:00",
+        "fetched_at": "2025-10-02T08:11:52.273635+00:00",
+        "category": "tech"
+      },
+      {
+        "id": "35dd2f761693",
+        "title": "Hyundai gives the Ioniq 5 a huge price cut for model-year 2026",
+        "url": "https://arstechnica.com/cars/2025/10/hyundai-gives-the-ioniq-5-a-huge-price-cut-for-model-year-2026/",
+        "description": "The Korean automaker's price cut comes in as the clean vehicle tax credit dies.",
+        "source": "Ars Technica",
+        "published": "2025-10-01T20:27:49+00:00",
+        "fetched_at": "2025-10-02T08:11:52.273671+00:00",
+        "category": "tech"
+      }
+    ],
+    "quick_reads": [
+      {
+        "id": "08cb8bdc3ea0",
+        "title": "Cable nostalgia persists as streaming gets more expensive, fragmented",
+        "url": "https://arstechnica.com/gadgets/2025/10/cable-nostalgia-lives-on-as-streaming-gets-more-expensive-fragmented/",
+        "description": "Cord reviving isn't common but points to discontent with today's streaming options.",
+        "source": "Ars Technica",
+        "published": "2025-10-01T19:30:59+00:00",
+        "fetched_at": "2025-10-02T08:11:52.273706+00:00",
+        "category": "tech"
+      },
+      {
+        "id": "776ed337f781",
+        "title": "OpenAI’s Sora 2 lets users insert themselves into AI videos with sound",
+        "url": "https://arstechnica.com/ai/2025/10/openais-sora-2-lets-users-insert-themselves-into-ai-videos-with-sound/",
+        "description": "Sora social app launches with deepfake-style \"cameos\" and feed controls.",
+        "source": "Ars Technica",
+        "published": "2025-10-01T18:37:00+00:00",
+        "fetched_at": "2025-10-02T08:11:52.273741+00:00",
+        "category": "tech"
+      },
+      {
+        "id": "1f4bc888b5dd",
+        "title": "FCC chairman leads “cruel” vote to take Wi-Fi access away from school kids",
+        "url": "https://arstechnica.com/tech-policy/2025/10/fcc-chairman-leads-cruel-vote-to-take-wi-fi-access-away-from-school-kids/",
+        "description": "FCC Republicans kill funding for Wi-Fi hotspot lending and Wi-Fi on school buses.",
+        "source": "Ars Technica",
+        "published": "2025-10-01T18:09:47+00:00",
+        "fetched_at": "2025-10-02T08:11:52.273785+00:00",
+        "category": "tech"
+      },
+      {
+        "id": "9bbffd571603",
+        "title": "Can today’s AI video models accurately model how the real world works?",
+        "url": "https://arstechnica.com/ai/2025/10/can-todays-ai-video-models-accurately-model-how-the-real-world-works/",
+        "description": "New research shows highly inconsistent performance on a variety of physical reasoning tasks.",
+        "source": "Ars Technica",
+        "published": "2025-10-01T16:43:24+00:00",
+        "fetched_at": "2025-10-02T08:11:52.273821+00:00",
+        "category": "tech"
+      },
+      {
+        "id": "6c0b123ea247",
+        "title": "Trailer for del Toro’s Frankenstein is pure macabre mythology",
+        "url": "https://arstechnica.com/culture/2025/10/trailer-for-del-toros-frankenstein-is-pure-macabre-mythology/",
+        "description": "\"My maker told his tale. And I will tell you mine.\"",
+        "source": "Ars Technica",
+        "published": "2025-10-01T16:31:08+00:00",
+        "fetched_at": "2025-10-02T08:11:52.273856+00:00",
+        "category": "tech"
+      }
+    ]
+  },
+  "finance": {
+    "top_stories": [
+      {
+        "id": "929534c45f0b",
+        "title": "Government shutdown means opportune timing for Neptune Flood IPO",
+        "url": "https://www.cnbc.com/2025/10/01/neptune-flood-ipo-government-shutdown.html",
+        "description": "Neptune Insurance, the nation's largest private flood insurance, goes public on the New York Stock Exchange Wednesday.",
+        "source": "CNBC Finance",
+        "published": "2025-10-01T18:34:22+00:00",
+        "fetched_at": "2025-10-02T08:12:01.501519+00:00",
+        "category": "finance"
+      },
+      {
+        "id": "c3331522f2fd",
+        "title": "Record EV sales lead GM, Ford to 8% increases in Q3 U.S. auto sales",
+        "url": "https://www.cnbc.com/2025/10/01/third-quarter-us-auto-sales.html",
+        "description": "EV sales during the third quarter are expected to be a record, ahead of federal incentives of up to $7,500 ending in September.",
+        "source": "CNBC Finance",
+        "published": "2025-10-01T20:48:06+00:00",
+        "fetched_at": "2025-10-02T08:12:01.501562+00:00",
+        "category": "finance"
+      },
+      {
+        "id": "472f36d2c4d6",
+        "title": "Trump's threats against late-night TV could spell more trouble for advertisers",
+        "url": "https://www.cnbc.com/2025/10/01/trump-late-night-tv-threats-trouble-advertisers.html",
+        "description": "The recent upheaval in late-night programming has shown a spotlight on ratings and revenue — and spurred questions of political influence.",
+        "source": "CNBC Finance",
+        "published": "2025-10-01T16:58:40+00:00",
+        "fetched_at": "2025-10-02T08:12:01.501601+00:00",
+        "category": "finance"
+      },
+      {
+        "id": "f67dd56b1a0b",
+        "title": "Ford CEO Jim Farley eyes further improvements after five years of ‘surprises,’ including investor returns",
+        "url": "https://www.cnbc.com/2025/10/01/ford-ceo-jim-farley.html",
+        "description": "Ford CEO Jim Farley marks his fifth anniversary as CEO at the automaker on Wednesday.",
+        "source": "CNBC Finance",
+        "published": "2025-10-01T11:41:28+00:00",
+        "fetched_at": "2025-10-02T08:12:01.501640+00:00",
+        "category": "finance"
+      },
+      {
+        "id": "9a9579c691ed",
+        "title": "Peloton revamps equipment, launches commercial unit and raises prices ahead of holidays",
+        "url": "https://www.cnbc.com/2025/10/01/peloton-revamps-equipment-raises-prices-ahead-of-holidays-.html",
+        "description": "Peloton is revamping its product assortment and raising prices for its subscription and hardware ahead of the holiday shopping season.",
+        "source": "CNBC Finance",
+        "published": "2025-10-01T16:19:01+00:00",
+        "fetched_at": "2025-10-02T08:12:01.501677+00:00",
+        "category": "finance"
+      }
+    ],
+    "quick_reads": [
+      {
+        "id": "08cb5a366d83",
+        "title": "States sue Zillow, Redfin for alleged antitrust violation in online rental housing",
+        "url": "https://www.cnbc.com/2025/10/01/state-ags-sue-zillow-redfin-for-alleged-antitrust-violation.html",
+        "description": "Attorneys general from New York, Virginia, Arizona, Connecticut and Washington filed a lawsuit against Redfin and Zillow on Wednesday.",
+        "source": "CNBC Finance",
+        "published": "2025-10-01T15:34:16+00:00",
+        "fetched_at": "2025-10-02T08:12:01.501712+00:00",
+        "category": "finance"
+      },
+      {
+        "id": "0f0331c68034",
+        "title": "FTC sues Zillow and Redfin, alleging antitrust violation in online rental listings",
+        "url": "https://www.cnbc.com/2025/09/30/ftc-sues-zillow-redfin-alleging-antitrust-violation-in-online-rentals.html",
+        "description": "The FTC alleges the companies violated federal antitrust laws when Zillow paid Redfin $100 million to essentially re-host Zillow multifamily rental listings on Redfin.",
+        "source": "CNBC Finance",
+        "published": "2025-10-01T12:09:14+00:00",
+        "fetched_at": "2025-10-02T08:12:01.501886+00:00",
+        "category": "finance"
+      }
+    ]
+  }
+}
