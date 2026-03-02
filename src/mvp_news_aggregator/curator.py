@@ -14,6 +14,8 @@ import os
 
 if True:
     load_dotenv("../env/config.env")
+    load_dotenv("config.env", override=True)        # project root wins
+    load_dotenv("../../config.env", override=True)  # also works when run from src/
 
 logger = logging.getLogger(__name__)
 
@@ -24,7 +26,7 @@ class ArticleCurator:
         
         if self.use_llm:
             genai.configure(api_key=os.getenv('GEMINI_API_KEY'))
-            self.model = genai.GenerativeModel('gemini-2.0-flash-001')
+            self.model = genai.GenerativeModel('gemini-2.0-flash')
         else:
             self.model = None
             print("🚫 LLM disabled - using simple fallback selection")

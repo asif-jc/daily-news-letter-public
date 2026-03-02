@@ -1,0 +1,290 @@
+{
+  "world": {
+    "top_stories": [
+      {
+        "id": "e085813c33c4",
+        "title": "'I love you, I'm sorry': What Sean 'Diddy' Combs did the moment he learned his sentence",
+        "url": "https://www.bbc.com/news/articles/c62z19lpwd2o?at_medium=RSS&at_campaign=rss",
+        "description": "It was a more subdued message from three months ago when Combs told his family he was \"coming home\".",
+        "source": "BBC World News",
+        "published": "2025-10-03T22:14:05+00:00",
+        "fetched_at": "2025-10-04T09:20:19.540943+00:00",
+        "category": "world"
+      },
+      {
+        "id": "86d6c5d8e576",
+        "title": "Munich airport resumes flights after suspected drones force second closure in 24 hours",
+        "url": "https://www.bbc.com/news/articles/cge2v4r4gr1o?at_medium=RSS&at_campaign=rss",
+        "description": "Flights were suspended for several hours on Friday night, with around 6,500 passengers affected.",
+        "source": "BBC World News",
+        "published": "2025-10-04T08:01:49+00:00",
+        "fetched_at": "2025-10-04T09:20:19.540985+00:00",
+        "category": "world"
+      },
+      {
+        "id": "b4010557f3f0",
+        "title": "Italians stage strike in support of Gaza Palestinians",
+        "url": "https://www.bbc.com/news/articles/cy8rdd5dzvro?at_medium=RSS&at_campaign=rss",
+        "description": "Pro-Palestinian marches gripped Italy's cities on Friday, defying the right-wing government of Giorgia Meloni.",
+        "source": "BBC World News",
+        "published": "2025-10-03T22:36:42+00:00",
+        "fetched_at": "2025-10-04T09:20:19.541023+00:00",
+        "category": "world"
+      },
+      {
+        "id": "1b97081bd78e",
+        "title": "Gisèle Pelicot returns to court after trial made her an icon - and tore her family apart",
+        "url": "https://www.bbc.com/news/articles/cvg4l80gz7eo?at_medium=RSS&at_campaign=rss",
+        "description": "A rift has emerged between Gisèle Pelicot - the victim at the centre of the largest rape trial in French history - and her eldest children",
+        "source": "BBC World News",
+        "published": "2025-10-04T00:00:48+00:00",
+        "fetched_at": "2025-10-04T09:20:19.541063+00:00",
+        "category": "world"
+      },
+      {
+        "id": "d8c0dcbfb637",
+        "title": "Senate stalemate sends US shutdown into second week",
+        "url": "https://www.bbc.com/news/articles/ce32eegrlpko?at_medium=RSS&at_campaign=rss",
+        "description": "Two separate funding proposals failed on Friday as mass lay-offs and sweeping cuts loom over the government.",
+        "source": "BBC World News",
+        "published": "2025-10-03T22:43:06+00:00",
+        "fetched_at": "2025-10-04T09:20:19.541099+00:00",
+        "category": "world"
+      }
+    ],
+    "quick_reads": [
+      {
+        "id": "42cfa00b149e",
+        "title": "Climbing star, 23, dies after falling from Yosemite's El Capitan",
+        "url": "https://www.bbc.com/news/articles/cz08jp4xv2jo?at_medium=RSS&at_campaign=rss",
+        "description": "Balin Miller's solo climb and fall was caught on a live stream.",
+        "source": "BBC World News",
+        "published": "2025-10-03T12:55:17+00:00",
+        "fetched_at": "2025-10-04T09:20:19.541136+00:00",
+        "category": "world"
+      },
+      {
+        "id": "8eecd10d4aa8",
+        "title": "Four Gaza flotilla activists deported by Israel",
+        "url": "https://www.bbc.com/news/articles/c701y9de2dro?at_medium=RSS&at_campaign=rss",
+        "description": "The four already deported are Italian citizens, the Israeli foreign ministry says.",
+        "source": "BBC World News",
+        "published": "2025-10-03T13:23:30+00:00",
+        "fetched_at": "2025-10-04T09:20:19.541171+00:00",
+        "category": "world"
+      },
+      {
+        "id": "a96c84b8662d",
+        "title": "Blackout in Spain and Portugal 'first of its kind', report finds",
+        "url": "https://www.bbc.com/news/articles/cg7d4vjdlrmo?at_medium=RSS&at_campaign=rss",
+        "description": "The massive blackout that hit the Iberian peninsula is the first known blackout caused by overvoltage.",
+        "source": "BBC World News",
+        "published": "2025-10-03T12:20:30+00:00",
+        "fetched_at": "2025-10-04T09:20:19.541210+00:00",
+        "category": "world"
+      },
+      {
+        "id": "80cf25fffe94",
+        "title": "Kenyans prove paternity case against UK soldiers",
+        "url": "https://www.bbc.com/news/articles/cewnqj27eg4o?at_medium=RSS&at_campaign=rss",
+        "description": "Commercially available DNA databases were used to identify unknown fathers, who had served in Kenya.",
+        "source": "BBC World News",
+        "published": "2025-10-03T14:06:02+00:00",
+        "fetched_at": "2025-10-04T09:20:19.541281+00:00",
+        "category": "world"
+      },
+      {
+        "id": "5eaa637a7d24",
+        "title": "Four killed in latest US strike on alleged drug vessel near Venezuela",
+        "url": "https://www.bbc.com/news/articles/cn0xvpxk9dqo?at_medium=RSS&at_campaign=rss",
+        "description": "Donald Trump says the boat was carrying enough drugs to kill thousands of people.",
+        "source": "BBC World News",
+        "published": "2025-10-03T17:58:37+00:00",
+        "fetched_at": "2025-10-04T09:20:19.541466+00:00",
+        "category": "world"
+      }
+    ]
+  },
+  "tech": {
+    "top_stories": [
+      {
+        "id": "446e08304dba",
+        "title": "Bezos predicts that millions will live in space kind of soon",
+        "url": "https://techcrunch.com/2025/10/03/bezos-predicts-that-millions-will-live-in-space-kind-of-soon/",
+        "description": "Amazon founder Jeff Bezos made a rare public appearance at Italian Tech Week in Turin on Friday and used the opportunity to predict that millions of people will be living in space &#8220;in the next couple of decades,&#8221; the Financial Times reports. Speaking with John Elkann, a scion of Italy&#8217;s Agnelli dynasty, Bezos, who also [&#8230;]",
+        "source": "TechCrunch",
+        "published": "2025-10-04T06:38:25+00:00",
+        "fetched_at": "2025-10-04T09:20:22.816058+00:00",
+        "category": "tech"
+      },
+      {
+        "id": "84f78ddab9b9",
+        "title": "With its latest acqui-hire, OpenAI is doubling down on personalized consumer AI",
+        "url": "https://techcrunch.com/2025/10/03/with-its-latest-acqui-hire-openai-is-doubling-down-on-personalized-consumer-ai/",
+        "description": "OpenAI is acquiring the CEO of Roi, an AI financial companion. Roi will sunset its service as its talent heads to OpenAI, ostensibly to help boost revenue in consumer apps.",
+        "source": "TechCrunch",
+        "published": "2025-10-03T22:52:14+00:00",
+        "fetched_at": "2025-10-04T09:20:22.816102+00:00",
+        "category": "tech"
+      },
+      {
+        "id": "6b54bfe29766",
+        "title": "Sources: Naveen Rao’s new AI hardware startup targets $5B valuation with backing from a16z",
+        "url": "https://techcrunch.com/2025/10/03/sources-naveen-raos-new-ai-hardware-startup-targets-5b-valuation-with-backing-from-a16z/",
+        "description": "Former Databricks AI chief is raising $1 billion to build an Nvidia rival through a novel approach.",
+        "source": "TechCrunch",
+        "published": "2025-10-03T21:56:58+00:00",
+        "fetched_at": "2025-10-04T09:20:22.816143+00:00",
+        "category": "tech"
+      },
+      {
+        "id": "d508b47021a5",
+        "title": "What to expect at OpenAI’s DevDay 2025, and how to watch it",
+        "url": "https://techcrunch.com/2025/10/03/what-to-expect-at-openais-devday-2025-and-how-to-watch-it/",
+        "description": "OpenAI's third developer conference is around the corner, and it's shaping up to be the company's biggest yet.",
+        "source": "TechCrunch",
+        "published": "2025-10-03T19:36:47+00:00",
+        "fetched_at": "2025-10-04T09:20:22.816183+00:00",
+        "category": "tech"
+      },
+      {
+        "id": "1b1f135077de",
+        "title": "Snapchat is going to charge for storage — here’s how to save your Memories for free",
+        "url": "https://techcrunch.com/2025/10/03/snapchat-is-going-to-charge-for-storage-heres-how-to-save-your-memories-for-free/",
+        "description": "If your Memories exceed the new limit, you will need to either export them or sign up for one of Snapchat's new Memories Storage plans in order to preserve them.",
+        "source": "TechCrunch",
+        "published": "2025-10-03T19:26:02+00:00",
+        "fetched_at": "2025-10-04T09:20:22.816222+00:00",
+        "category": "tech"
+      }
+    ],
+    "quick_reads": [
+      {
+        "id": "cbfd7fdc57c0",
+        "title": "Google’s Gemini AI app could soon be getting a big makeover",
+        "url": "https://techcrunch.com/2025/10/03/googles-gemini-ai-app-could-soon-be-getting-a-big-makeover/",
+        "description": "The company is seemingly experimenting with a new user interface that would shift the app from having a chatbot-style look and feel to one offering a scrollable feed with suggested prompts accompanied by eye-catching photos.",
+        "source": "TechCrunch",
+        "published": "2025-10-03T19:18:43+00:00",
+        "fetched_at": "2025-10-04T09:20:22.816260+00:00",
+        "category": "tech"
+      },
+      {
+        "id": "0425fafc76b7",
+        "title": "Rivian is redesigning the R2 SUV’s door handles for better safety",
+        "url": "https://techcrunch.com/2025/10/03/rivian-is-redesigning-the-r2-suvs-door-handles-for-better-safety/",
+        "description": "The change comes after employees and customers reportedly voiced concerns.",
+        "source": "TechCrunch",
+        "published": "2025-10-03T18:47:56+00:00",
+        "fetched_at": "2025-10-04T09:20:22.816295+00:00",
+        "category": "tech"
+      },
+      {
+        "id": "dd326cd32b6a",
+        "title": "Can you think like a YC partner? This game will help you find out",
+        "url": "https://techcrunch.com/2025/10/03/can-you-think-like-a-yc-partner-this-game-will-help-you-find-out/",
+        "description": "The YC Partner Simulator game, created by an undergrad in Berlin, lets you see if you can predict which startups get into Y Combinator.",
+        "source": "TechCrunch",
+        "published": "2025-10-03T18:36:53+00:00",
+        "fetched_at": "2025-10-04T09:20:22.816330+00:00",
+        "category": "tech"
+      },
+      {
+        "id": "6c7675b61825",
+        "title": "Can AI companies turn brainrot into revenue?",
+        "url": "https://techcrunch.com/video/can-ai-companies-turn-brainrot-into-revenue/",
+        "description": "The U.S. government shutdown that began this week is the first in seven years. While it might not feel immediately disruptive, for startups waiting on permits, visas, or regulatory approvals, even a few weeks can become an existential problem.&#160; On this episode of Equity, Kirsten Korosec, Anthony Ha, and Max Zeff talk through how uncertainty [&#8230;]",
+        "source": "TechCrunch",
+        "published": "2025-10-03T18:19:55+00:00",
+        "fetched_at": "2025-10-04T09:20:22.816368+00:00",
+        "category": "tech"
+      },
+      {
+        "id": "1f2105a5960a",
+        "title": "Supabase nabs $5B valuation, four months after hitting $2B",
+        "url": "https://techcrunch.com/2025/10/03/supabase-nabs-5b-valuation-four-months-after-hitting-2b/",
+        "description": "It's been a wild year of growth and fundraising for vibe-coding database of choice, Supabase.",
+        "source": "TechCrunch",
+        "published": "2025-10-03T18:14:03+00:00",
+        "fetched_at": "2025-10-04T09:20:22.816407+00:00",
+        "category": "tech"
+      }
+    ]
+  },
+  "finance": {
+    "top_stories": [
+      {
+        "id": "9470ea2a1d25",
+        "title": "Detroit auto stocks jump on report of tariff relief for U.S. vehicles",
+        "url": "https://www.cnbc.com/2025/10/03/ford-gm-stla-stock-tariffs.html",
+        "description": "Stocks for General Motors, Ford Motor and Chrysler parent Stellantis shifted from trading level or down to up roughly 2% to 4% on the report from Reuters.",
+        "source": "CNBC Finance",
+        "published": "2025-10-03T21:17:16+00:00",
+        "fetched_at": "2025-10-04T09:20:27.884045+00:00",
+        "category": "finance"
+      },
+      {
+        "id": "365e5999cb85",
+        "title": "Tesla, GM lead record U.S. EV sales this year as federal incentives end",
+        "url": "https://www.cnbc.com/2025/10/03/tesla-gm-ev-sales.html",
+        "description": "New data provided to CNBC from Motor Intelligence shows sales of EVs topped 1 million units through the first nine months of the year.",
+        "source": "CNBC Finance",
+        "published": "2025-10-03T20:20:21+00:00",
+        "fetched_at": "2025-10-04T09:20:27.884090+00:00",
+        "category": "finance"
+      },
+      {
+        "id": "e4b407abde7e",
+        "title": "Walmart-backed fintech OnePay is bringing crypto to its banking app, sources say",
+        "url": "https://www.cnbc.com/2025/10/03/walmart-onepay-is-rolling-out-crypto-to-mobile-banking-app.html",
+        "description": "The move shows that OnePay, founded by Walmart and venture firm Ribbit Capital in 2021, sees crypto as a core offering as it builds out its \"everything app.\"",
+        "source": "CNBC Finance",
+        "published": "2025-10-03T15:27:36+00:00",
+        "fetched_at": "2025-10-04T09:20:27.884129+00:00",
+        "category": "finance"
+      },
+      {
+        "id": "32f749d2e67d",
+        "title": "Why vinyl records like Taylor Swift's 'The Life of a Showgirl' are protected from tariffs",
+        "url": "https://www.cnbc.com/2025/10/03/taylor-swift-album-tariffs-vinyl-records.html",
+        "description": "Vinyl records, CDs and cassettes escape U.S. tariffs thanks to a Cold War-era exemption, keeping prices stable for fans.",
+        "source": "CNBC Finance",
+        "published": "2025-10-03T18:29:07+00:00",
+        "fetched_at": "2025-10-04T09:20:27.884165+00:00",
+        "category": "finance"
+      },
+      {
+        "id": "b00694b9ccdb",
+        "title": "The wealth of the top 1% reaches a record $52 trillion",
+        "url": "https://www.cnbc.com/2025/10/03/the-wealth-of-the-top-1percent-reaches-a-record-52-trillion.html",
+        "description": "All wealth groups saw gains over the past year, according to recent Fed data. But the growth has been fastest for those at the very top.",
+        "source": "CNBC Finance",
+        "published": "2025-10-03T12:30:01+00:00",
+        "fetched_at": "2025-10-04T09:20:27.884200+00:00",
+        "category": "finance"
+      }
+    ],
+    "quick_reads": [
+      {
+        "id": "b2a2b1f65500",
+        "title": "Property tech 'winter' is over, but climate investment is still struggling, says Fifth Wall CEO",
+        "url": "https://www.cnbc.com/2025/10/03/fifth-wall-ceo-property-tech-winter.html",
+        "description": "Higher interest rates, a capital market retraction and a push by almost all venture capital into AI collectively hit property tech hard.",
+        "source": "CNBC Finance",
+        "published": "2025-10-03T12:00:01+00:00",
+        "fetched_at": "2025-10-04T09:20:27.884235+00:00",
+        "category": "finance"
+      },
+      {
+        "id": "8d3d324c4621",
+        "title": "Elon Musk is telling his followers to cancel Netflix subscriptions. Here's what's happening",
+        "url": "https://www.cnbc.com/2025/10/02/elon-musk-calls-for-canceling-netflix-whats-happening.html",
+        "description": "Elon Musk this week urged his followers to cancel their Netflix subscriptions over a controversy surrounding an animated show and its creator.",
+        "source": "CNBC Finance",
+        "published": "2025-10-03T20:13:51+00:00",
+        "fetched_at": "2025-10-04T09:20:27.884270+00:00",
+        "category": "finance"
+      }
+    ]
+  }
+}

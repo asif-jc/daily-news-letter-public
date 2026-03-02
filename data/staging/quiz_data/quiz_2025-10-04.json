@@ -1,0 +1,160 @@
+{
+  "date": "2025-10-04",
+  "metadata": {
+    "topics": [
+      "geography",
+      "STEM",
+      "history",
+      "general_knowledge"
+    ],
+    "difficulty": "medium",
+    "question_count": 11,
+    "generated_with_llm": false,
+    "generation_timestamp": "2025-10-04T09:20:30.221814+00:00"
+  },
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the largest desert in the world?",
+      "options": [
+        "Sahara",
+        "Gobi",
+        "Antarctica",
+        "Arabian"
+      ],
+      "correct_answer": "Antarctica",
+      "category": "geography",
+      "explanation": "Antarctica is technically the world's largest desert as it receives very little precipitation."
+    },
+    {
+      "id": 2,
+      "question": "What is the speed of light in a vacuum?",
+      "options": [
+        "299,792,458 m/s",
+        "300,000,000 m/s",
+        "299,792,458 km/s",
+        "300,000,000 km/s"
+      ],
+      "correct_answer": "299,792,458 m/s",
+      "category": "physics",
+      "explanation": "The speed of light in a vacuum is exactly 299,792,458 meters per second."
+    },
+    {
+      "id": 3,
+      "question": "In which year did World War II end?",
+      "options": [
+        "1944",
+        "1945",
+        "1946",
+        "1947"
+      ],
+      "correct_answer": "1945",
+      "category": "history",
+      "explanation": "World War II ended in 1945 with Japan's surrender in September."
+    },
+    {
+      "id": 4,
+      "question": "Who was the first Prime Minister of New Zealand?",
+      "options": [
+        "John Ballance",
+        "Henry Sewell",
+        "Julius Vogel",
+        "Richard Seddon"
+      ],
+      "correct_answer": "Henry Sewell",
+      "category": "history",
+      "explanation": "Henry Sewell served as New Zealand's first Premier (later called Prime Minister) in 1856."
+    },
+    {
+      "id": 5,
+      "question": "What is the chemical symbol for gold?",
+      "options": [
+        "Au",
+        "Ag",
+        "Al",
+        "Ar"
+      ],
+      "correct_answer": "Au",
+      "category": "chemistry",
+      "explanation": "Au comes from the Latin word 'aurum' meaning gold."
+    },
+    {
+      "id": 6,
+      "question": "How many bones are in an adult human body?",
+      "options": [
+        "186",
+        "206",
+        "226",
+        "246"
+      ],
+      "correct_answer": "206",
+      "category": "biology",
+      "explanation": "An adult human skeleton has 206 bones, though babies are born with about 270."
+    },
+    {
+      "id": 7,
+      "question": "Which planet is known as the Red Planet?",
+      "options": [
+        "Venus",
+        "Mars",
+        "Jupiter",
+        "Saturn"
+      ],
+      "correct_answer": "Mars",
+      "category": "astronomy",
+      "explanation": "Mars appears red due to iron oxide (rust) on its surface."
+    },
+    {
+      "id": 8,
+      "question": "What is the capital of New Zealand?",
+      "options": [
+        "Auckland",
+        "Wellington",
+        "Christchurch",
+        "Hamilton"
+      ],
+      "correct_answer": "Wellington",
+      "category": "geography",
+      "explanation": "Wellington has been New Zealand's capital since 1865."
+    },
+    {
+      "id": 9,
+      "question": "Which ocean surrounds New Zealand?",
+      "options": [
+        "Pacific Ocean",
+        "Atlantic Ocean",
+        "Indian Ocean",
+        "Arctic Ocean"
+      ],
+      "correct_answer": "Pacific Ocean",
+      "category": "geography",
+      "explanation": "New Zealand is located in the South Pacific Ocean."
+    },
+    {
+      "id": 10,
+      "question": "Which ancient wonder of the world was located in Alexandria?",
+      "options": [
+        "Colossus of Rhodes",
+        "Lighthouse of Alexandria",
+        "Hanging Gardens",
+        "Temple of Artemis"
+      ],
+      "correct_answer": "Lighthouse of Alexandria",
+      "category": "history",
+      "explanation": "The Lighthouse of Alexandria was one of the Seven Wonders of the Ancient World."
+    },
+    {
+      "id": 11,
+      "question": "What is the largest mammal in the world?",
+      "options": [
+        "African Elephant",
+        "Blue Whale",
+        "Giraffe",
+        "Hippopotamus"
+      ],
+      "correct_answer": "Blue Whale",
+      "category": "biology",
+      "explanation": "Blue whales can grow up to 30 meters long and weigh up to 200 tonnes."
+    }
+  ]
+}

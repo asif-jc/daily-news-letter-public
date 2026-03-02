@@ -31,7 +31,7 @@ class QuizGenerator:
         if self.use_llm:
             # Initialize Gemini LLM using same configuration as curator
             genai.configure(api_key=os.getenv('GEMINI_API_KEY'))
-            self.model = genai.GenerativeModel('gemini-2.0-flash-001')
+            self.model = genai.GenerativeModel('gemini-2.0-flash')
         else:
             self.model = None
             print("LLM disabled - using fallback question bank for quiz generation")

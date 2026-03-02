@@ -244,15 +244,131 @@ class EmailNewsletterSender:
             print(f"Error sending newsletter: {e}")
             return False
 
+    def generate_simple_email_content(self, data: Dict):
+        """Plain text + minimal HTML email — avoids spam triggers from complex layouts."""
+        date = self.get_nz_date()
+        formatted_date = datetime.strptime(date, '%Y-%m-%d').strftime('%B %d, %Y')
+
+        top_stories = []
+        for category, articles in data.items():
+            for story in articles.get('top_stories', []):
+                top_stories.append(story)
+        top_stories.sort(key=lambda x: x.get('importance_score', 0), reverse=True)
+        top_stories = top_stories[:8]
+
+        # Plain text — primary body
+        lines = [
+            f"Daily News Feed — {formatted_date}",
+            "",
+            f"Read today's newsletter: {self.newsletter_url}",
+            "",
+            "TODAY'S TOP STORIES",
+            "-" * 40,
+        ]
+        for story in top_stories:
+            lines.append(f"• {story.get('title', '')}")
+            lines.append(f"  {story.get('source', '')}  |  {story.get('url', '')}")
+            lines.append("")
+        lines += [
+            "-" * 40,
+            "Daily News Feed by AJC Analytics",
+            f"View online: {self.newsletter_url}",
+        ]
+        plain_text = "\n".join(lines)
+
+        # Minimal HTML — no inline font blocks, no complex CSS
+        story_items = "\n".join(
+            f'<li><a href="{s.get("url","#")}">{s.get("title","")}</a>'
+            f' &mdash; <em>{s.get("source","")}</em></li>'
+            for s in top_stories
+        )
+        simple_html = f"""<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Daily News Feed</title></head>
+<body style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:20px;color:#222;">
+  <h2 style="border-bottom:2px solid #222;padding-bottom:8px;">Daily News Feed</h2>
+  <p>{formatted_date}</p>
+  <p><a href="{self.newsletter_url}" style="font-size:1.1em;font-weight:bold;">
+    Read today's full newsletter &rarr;
+  </a></p>
+  <h3>Today's Top Stories</h3>
+  <ul style="line-height:1.8;">
+    {story_items}
+  </ul>
+  <hr>
+  <p style="color:#666;font-size:0.85em;">
+    Daily News Feed by AJC Analytics &mdash;
+    <a href="{self.newsletter_url}">View online</a>
+  </p>
+</body>
+</html>"""
+        return plain_text, simple_html
+
+    def send_simple_newsletter_email(self, test_email: Optional[str] = None) -> bool:
+        """Send the simple plain-text email (spam-safe test version)."""
+        try:
+            newsletter_data = self.load_newsletter_data()
+            if not newsletter_data:
+                print("No newsletter data available")
+                return False
+
+            plain_text, simple_html = self.generate_simple_email_content(newsletter_data)
+
+            recipients = [test_email] if test_email else list(self.load_subscribers().keys())
+            if not recipients:
+                print("No recipients found")
+                return False
+
+            date = self.get_nz_date()
+            formatted_date = datetime.strptime(date, '%Y-%m-%d').strftime('%B %d, %Y')
+            subject = f"Daily News Feed — {formatted_date}"
+
+            success_count = 0
+            for recipient in recipients:
+                try:
+                    message = Mail(
+                        from_email=(self.from_email, self.from_name),
+                        to_emails=recipient,
+                        subject=subject,
+                        plain_text_content=plain_text,
+                        html_content=simple_html,
+                    )
+                    response = self.sg.send(message)
+                    if response.status_code in [200, 201, 202]:
+                        success_count += 1
+                        print(f"Simple email sent to {recipient} ({response.status_code})")
+                    else:
+                        print(f"Failed to send to {recipient}: {response.status_code}")
+                except Exception as e:
+                    print(f"Error sending to {recipient}: {e}")
+
+            print(f"Done: {success_count}/{len(recipients)} sent")
+            return success_count > 0
+
+        except Exception as e:
+            print(f"Error in send_simple_newsletter_email: {e}")
+            return False
+
+
 def send_test_email(email: str):
-    """Send test newsletter to single email"""
+    """Send test newsletter to single email (rich HTML version)."""
     sender = EmailNewsletterSender()
     return sender.send_newsletter_email(test_email=email)
 
 def send_newsletter():
-    """Send newsletter to all subscribers"""
+    """Send newsletter to all subscribers (rich HTML version)."""
     sender = EmailNewsletterSender()
     return sender.send_newsletter_email()
+
+def send_simple_test_email(email: str):
+    """Send plain-text test email to a single address."""
+    sender = EmailNewsletterSender()
+    return sender.send_simple_newsletter_email(test_email=email)
+
+def send_simple_newsletter():
+    """Send plain-text newsletter to all subscribers."""
+    sender = EmailNewsletterSender()
+    return sender.send_simple_newsletter_email()
 
 if __name__ == "__main__":
     test_email = "asif.ajcanalytics@gmail.com"
