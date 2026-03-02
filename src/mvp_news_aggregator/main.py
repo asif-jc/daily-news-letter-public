@@ -58,7 +58,7 @@ if __name__ == "__main__":
     USE_LLM = True
 
     if RUN_ETL:
-        run_daily_pipeline(use_llm=USE_LLM, send_email=True, test_email="asif.cheena20102001@gmail.com")
+        run_daily_pipeline(use_llm=USE_LLM, send_email=False, test_email="asif.cheena20102001@gmail.com")
     else:
         regenerate_newsletter_with_nzt()
 
