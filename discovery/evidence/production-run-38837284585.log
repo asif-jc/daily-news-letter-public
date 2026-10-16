@@ -1,0 +1,929 @@
+generate	UNKNOWN STEP	﻿2026-10-16T01:50:41.1305141Z Current runner version: '2.337.0'
+generate	UNKNOWN STEP	2026-10-16T01:50:41.1326474Z ##[group]Runner Image Provisioner
+generate	UNKNOWN STEP	2026-10-16T01:50:41.1327271Z Hosted Compute Agent
+generate	UNKNOWN STEP	2026-10-16T01:50:41.1327780Z Version: 20261012.601
+generate	UNKNOWN STEP	2026-10-16T01:50:41.1328352Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+generate	UNKNOWN STEP	2026-10-16T01:50:41.1329029Z Build Date: 2026-10-12T17:48:21Z
+generate	UNKNOWN STEP	2026-10-16T01:50:41.1329918Z Worker ID: {207ba2e3-4f90-454c-b026-c12eddb5ae94}
+generate	UNKNOWN STEP	2026-10-16T01:50:41.1330557Z Region: centralus
+generate	UNKNOWN STEP	2026-10-16T01:50:41.1331036Z Cloud: Azure
+generate	UNKNOWN STEP	2026-10-16T01:50:41.1331476Z ##[endgroup]
+generate	UNKNOWN STEP	2026-10-16T01:50:41.1332733Z ##[group]Operating System
+generate	UNKNOWN STEP	2026-10-16T01:50:41.1333262Z Ubuntu
+generate	UNKNOWN STEP	2026-10-16T01:50:41.1333749Z 24.04.5
+generate	UNKNOWN STEP	2026-10-16T01:50:41.1334177Z LTS
+generate	UNKNOWN STEP	2026-10-16T01:50:41.1334598Z ##[endgroup]
+generate	UNKNOWN STEP	2026-10-16T01:50:41.1335110Z ##[group]Runner Image
+generate	UNKNOWN STEP	2026-10-16T01:50:41.1335627Z Image: ubuntu-24.04
+generate	UNKNOWN STEP	2026-10-16T01:50:41.1336109Z Version: 20261012.334.1
+generate	UNKNOWN STEP	2026-10-16T01:50:41.1337194Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+generate	UNKNOWN STEP	2026-10-16T01:50:41.1338469Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+generate	UNKNOWN STEP	2026-10-16T01:50:41.1339291Z ##[endgroup]
+generate	UNKNOWN STEP	2026-10-16T01:50:41.1340524Z ##[group]GITHUB_TOKEN Permissions
+generate	UNKNOWN STEP	2026-10-16T01:50:41.1342614Z Actions: read
+generate	UNKNOWN STEP	2026-10-16T01:50:41.1343424Z Contents: write
+generate	UNKNOWN STEP	2026-10-16T01:50:41.1343958Z Metadata: read
+generate	UNKNOWN STEP	2026-10-16T01:50:41.1344446Z Pages: write
+generate	UNKNOWN STEP	2026-10-16T01:50:41.1344998Z ##[endgroup]
+generate	UNKNOWN STEP	2026-10-16T01:50:41.1346909Z Secret source: Actions
+generate	UNKNOWN STEP	2026-10-16T01:50:41.1347734Z Cache mode: write
+generate	UNKNOWN STEP	2026-10-16T01:50:41.1348424Z Prepare workflow directory
+generate	UNKNOWN STEP	2026-10-16T01:50:41.1630553Z Prepare all required actions
+generate	UNKNOWN STEP	2026-10-16T01:50:41.1672943Z Getting action download info
+generate	UNKNOWN STEP	2026-10-16T01:50:41.4099611Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+generate	UNKNOWN STEP	2026-10-16T01:50:41.4830225Z Download action repository 'actions/setup-python@v4' (SHA:7f4fc3e22c37d6ff65e88745f38bd3157c663f7c)
+generate	UNKNOWN STEP	2026-10-16T01:50:41.6291297Z Download action repository 'peaceiris/actions-gh-pages@v3' (SHA:373f7f263a76c20808c831209c920827a82a2847)
+generate	UNKNOWN STEP	2026-10-16T01:50:42.1145407Z Complete job name: generate
+generate	UNKNOWN STEP	2026-10-16T01:50:42.1778797Z ##[group]Run actions/checkout@v4
+generate	UNKNOWN STEP	2026-10-16T01:50:42.1779861Z with:
+generate	UNKNOWN STEP	2026-10-16T01:50:42.1780458Z   repository: asif-jc/daily-news-letter-public
+generate	UNKNOWN STEP	2026-10-16T01:50:42.1784556Z   token: ***
+generate	UNKNOWN STEP	2026-10-16T01:50:42.1785055Z   ssh-strict: true
+generate	UNKNOWN STEP	2026-10-16T01:50:42.1785546Z   ssh-user: git
+generate	UNKNOWN STEP	2026-10-16T01:50:42.1786091Z   persist-credentials: true
+generate	UNKNOWN STEP	2026-10-16T01:50:42.1786666Z   clean: true
+generate	UNKNOWN STEP	2026-10-16T01:50:42.1787168Z   sparse-checkout-cone-mode: true
+generate	UNKNOWN STEP	2026-10-16T01:50:42.1787751Z   fetch-depth: 1
+generate	UNKNOWN STEP	2026-10-16T01:50:42.1788242Z   fetch-tags: false
+generate	UNKNOWN STEP	2026-10-16T01:50:42.1788767Z   show-progress: true
+generate	UNKNOWN STEP	2026-10-16T01:50:42.1789263Z   lfs: false
+generate	UNKNOWN STEP	2026-10-16T01:50:42.1790203Z   submodules: false
+generate	UNKNOWN STEP	2026-10-16T01:50:42.1790746Z   set-safe-directory: true
+generate	UNKNOWN STEP	2026-10-16T01:50:42.1791307Z   allow-unsafe-pr-checkout: false
+generate	UNKNOWN STEP	2026-10-16T01:50:42.1792217Z ##[endgroup]
+generate	UNKNOWN STEP	2026-10-16T01:50:42.2675553Z Syncing repository: asif-jc/daily-news-letter-public
+generate	UNKNOWN STEP	2026-10-16T01:50:42.2678302Z ##[group]Getting Git version info
+generate	UNKNOWN STEP	2026-10-16T01:50:42.2679938Z Working directory is '/home/runner/work/daily-news-letter-public/daily-news-letter-public'
+generate	UNKNOWN STEP	2026-10-16T01:50:42.2681938Z [command]/usr/bin/git version
+generate	UNKNOWN STEP	2026-10-16T01:50:42.2746909Z git version 2.55.0
+generate	UNKNOWN STEP	2026-10-16T01:50:42.2779247Z ##[endgroup]
+generate	UNKNOWN STEP	2026-10-16T01:50:42.2786470Z Temporarily overriding HOME='/home/runner/work/_temp/bf4a0f70-b14a-4656-b8f7-8198506ec3a4' before making global git config changes
+generate	UNKNOWN STEP	2026-10-16T01:50:42.2788801Z Adding repository directory to the temporary git global config as a safe directory
+generate	UNKNOWN STEP	2026-10-16T01:50:42.2792711Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/daily-news-letter-public/daily-news-letter-public
+generate	UNKNOWN STEP	2026-10-16T01:50:42.2842858Z Deleting the contents of '/home/runner/work/daily-news-letter-public/daily-news-letter-public'
+generate	UNKNOWN STEP	2026-10-16T01:50:42.2849244Z ##[group]Initializing the repository
+generate	UNKNOWN STEP	2026-10-16T01:50:42.2853108Z [command]/usr/bin/git init /home/runner/work/daily-news-letter-public/daily-news-letter-public
+generate	UNKNOWN STEP	2026-10-16T01:50:42.2943584Z hint: Using 'master' as the name for the initial branch. This default branch name
+generate	UNKNOWN STEP	2026-10-16T01:50:42.2945139Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+generate	UNKNOWN STEP	2026-10-16T01:50:42.2946622Z hint: to use in all of your new repositories, which will suppress this warning,
+generate	UNKNOWN STEP	2026-10-16T01:50:42.2947794Z hint: call:
+generate	UNKNOWN STEP	2026-10-16T01:50:42.2948715Z hint:
+generate	UNKNOWN STEP	2026-10-16T01:50:42.2949780Z hint: 	git config --global init.defaultBranch <name>
+generate	UNKNOWN STEP	2026-10-16T01:50:42.2950824Z hint:
+generate	UNKNOWN STEP	2026-10-16T01:50:42.2951825Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+generate	UNKNOWN STEP	2026-10-16T01:50:42.2953300Z hint: 'development'. The just-created branch can be renamed via this command:
+generate	UNKNOWN STEP	2026-10-16T01:50:42.2954714Z hint:
+generate	UNKNOWN STEP	2026-10-16T01:50:42.2955502Z hint: 	git branch -m <name>
+generate	UNKNOWN STEP	2026-10-16T01:50:42.2956414Z hint:
+generate	UNKNOWN STEP	2026-10-16T01:50:42.2957543Z hint: Disable this message with "git config set advice.defaultBranchName false"
+generate	UNKNOWN STEP	2026-10-16T01:50:42.2963544Z Initialized empty Git repository in /home/runner/work/daily-news-letter-public/daily-news-letter-public/.git/
+generate	UNKNOWN STEP	2026-10-16T01:50:42.2971926Z [command]/usr/bin/git remote add origin https://github.com/asif-jc/daily-news-letter-public
+generate	UNKNOWN STEP	2026-10-16T01:50:42.3017279Z ##[endgroup]
+generate	UNKNOWN STEP	2026-10-16T01:50:42.3019070Z ##[group]Disabling automatic garbage collection
+generate	UNKNOWN STEP	2026-10-16T01:50:42.3020546Z [command]/usr/bin/git config --local gc.auto 0
+generate	UNKNOWN STEP	2026-10-16T01:50:42.3049403Z ##[endgroup]
+generate	UNKNOWN STEP	2026-10-16T01:50:42.3051211Z ##[group]Setting up auth
+generate	UNKNOWN STEP	2026-10-16T01:50:42.3053875Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+generate	UNKNOWN STEP	2026-10-16T01:50:42.3082042Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+generate	UNKNOWN STEP	2026-10-16T01:50:42.3373554Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+generate	UNKNOWN STEP	2026-10-16T01:50:42.3406759Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+generate	UNKNOWN STEP	2026-10-16T01:50:42.3588439Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+generate	UNKNOWN STEP	2026-10-16T01:50:42.3616758Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+generate	UNKNOWN STEP	2026-10-16T01:50:42.3782031Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+generate	UNKNOWN STEP	2026-10-16T01:50:42.3813344Z ##[endgroup]
+generate	UNKNOWN STEP	2026-10-16T01:50:42.3814469Z ##[group]Fetching the repository
+generate	UNKNOWN STEP	2026-10-16T01:50:42.3821664Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +59b7920ad252ef85725b998d64b2859d1077fceb:refs/remotes/origin/main
+generate	UNKNOWN STEP	2026-10-16T01:50:42.9897880Z From https://github.com/asif-jc/daily-news-letter-public
+generate	UNKNOWN STEP	2026-10-16T01:50:42.9901596Z  * [new ref]         59b7920ad252ef85725b998d64b2859d1077fceb -> origin/main
+generate	UNKNOWN STEP	2026-10-16T01:50:42.9907519Z ##[endgroup]
+generate	UNKNOWN STEP	2026-10-16T01:50:42.9910082Z ##[group]Determining the checkout info
+generate	UNKNOWN STEP	2026-10-16T01:50:42.9912798Z ##[endgroup]
+generate	UNKNOWN STEP	2026-10-16T01:50:42.9914727Z [command]/usr/bin/git sparse-checkout disable
+generate	UNKNOWN STEP	2026-10-16T01:50:42.9958900Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+generate	UNKNOWN STEP	2026-10-16T01:50:43.0012901Z ##[group]Checking out the ref
+generate	UNKNOWN STEP	2026-10-16T01:50:43.0014798Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+generate	UNKNOWN STEP	2026-10-16T01:50:43.0192623Z Switched to a new branch 'main'
+generate	UNKNOWN STEP	2026-10-16T01:50:43.0195677Z branch 'main' set up to track 'origin/main'.
+generate	UNKNOWN STEP	2026-10-16T01:50:43.0201901Z ##[endgroup]
+generate	UNKNOWN STEP	2026-10-16T01:50:43.0232953Z [command]/usr/bin/git log -1 --format=%H
+generate	UNKNOWN STEP	2026-10-16T01:50:43.0252561Z 59b7920ad252ef85725b998d64b2859d1077fceb
+generate	UNKNOWN STEP	2026-10-16T01:50:43.0584512Z ##[group]Run actions/setup-python@v4
+generate	UNKNOWN STEP	2026-10-16T01:50:43.0585667Z with:
+generate	UNKNOWN STEP	2026-10-16T01:50:43.0586501Z   python-version: 3.11
+generate	UNKNOWN STEP	2026-10-16T01:50:43.0587439Z   check-latest: false
+generate	UNKNOWN STEP	2026-10-16T01:50:43.0596347Z   token: ***
+generate	UNKNOWN STEP	2026-10-16T01:50:43.0597255Z   update-environment: true
+generate	UNKNOWN STEP	2026-10-16T01:50:43.0598322Z   allow-prereleases: false
+generate	UNKNOWN STEP	2026-10-16T01:50:43.0599311Z ##[endgroup]
+generate	UNKNOWN STEP	2026-10-16T01:50:43.1832459Z ##[group]Installed versions
+generate	UNKNOWN STEP	2026-10-16T01:50:43.1913678Z (node:2108) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+generate	UNKNOWN STEP	2026-10-16T01:50:43.1917475Z (Use `node --trace-deprecation ...` to show where the warning was created)
+generate	UNKNOWN STEP	2026-10-16T01:50:43.1920299Z Successfully set up CPython (3.11.17)
+generate	UNKNOWN STEP	2026-10-16T01:50:43.1923151Z ##[endgroup]
+generate	UNKNOWN STEP	2026-10-16T01:50:43.2158833Z ##[group]Run pip install -r requirements.txt
+generate	UNKNOWN STEP	2026-10-16T01:50:43.2160370Z ^[[36;1mpip install -r requirements.txt^[[0m
+generate	UNKNOWN STEP	2026-10-16T01:50:43.2384625Z shell: /usr/bin/bash -e {0}
+generate	UNKNOWN STEP	2026-10-16T01:50:43.2385868Z env:
+generate	UNKNOWN STEP	2026-10-16T01:50:43.2386894Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.17/x64
+generate	UNKNOWN STEP	2026-10-16T01:50:43.2388532Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib/pkgconfig
+generate	UNKNOWN STEP	2026-10-16T01:50:43.2390471Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+generate	UNKNOWN STEP	2026-10-16T01:50:43.2391981Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+generate	UNKNOWN STEP	2026-10-16T01:50:43.2393474Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+generate	UNKNOWN STEP	2026-10-16T01:50:43.2394995Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib
+generate	UNKNOWN STEP	2026-10-16T01:50:43.2396275Z ##[endgroup]
+generate	UNKNOWN STEP	2026-10-16T01:50:45.7103520Z Collecting annotated-types==0.7.0 (from -r requirements.txt (line 1))
+generate	UNKNOWN STEP	2026-10-16T01:50:45.7969970Z   Downloading annotated_types-0.7.0-py3-none-any.whl.metadata (15 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:45.8298631Z Collecting beautifulsoup4==4.13.4 (from -r requirements.txt (line 2))
+generate	UNKNOWN STEP	2026-10-16T01:50:45.8478702Z   Downloading beautifulsoup4-4.13.4-py3-none-any.whl.metadata (3.8 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:45.8796778Z Collecting cachetools==5.5.2 (from -r requirements.txt (line 3))
+generate	UNKNOWN STEP	2026-10-16T01:50:45.8934894Z   Downloading cachetools-5.5.2-py3-none-any.whl.metadata (5.4 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:45.9230198Z Collecting certifi==2025.8.3 (from -r requirements.txt (line 4))
+generate	UNKNOWN STEP	2026-10-16T01:50:45.9375041Z   Downloading certifi-2025.8.3-py3-none-any.whl.metadata (2.4 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:46.0813032Z Collecting charset-normalizer==3.4.3 (from -r requirements.txt (line 5))
+generate	UNKNOWN STEP	2026-10-16T01:50:46.0972481Z   Downloading charset_normalizer-3.4.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (36 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:46.1386476Z Collecting ecdsa==0.19.1 (from -r requirements.txt (line 6))
+generate	UNKNOWN STEP	2026-10-16T01:50:46.1539676Z   Downloading ecdsa-0.19.1-py2.py3-none-any.whl.metadata (29 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:46.1814283Z Collecting feedparser==6.0.11 (from -r requirements.txt (line 7))
+generate	UNKNOWN STEP	2026-10-16T01:50:46.1949143Z   Downloading feedparser-6.0.11-py3-none-any.whl.metadata (2.4 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:46.2201446Z Collecting google-ai-generativelanguage==0.6.15 (from -r requirements.txt (line 8))
+generate	UNKNOWN STEP	2026-10-16T01:50:46.2342076Z   Downloading google_ai_generativelanguage-0.6.15-py3-none-any.whl.metadata (5.7 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:46.2667596Z Collecting google-api-core==2.25.1 (from -r requirements.txt (line 9))
+generate	UNKNOWN STEP	2026-10-16T01:50:46.2801397Z   Downloading google_api_core-2.25.1-py3-none-any.whl.metadata (3.0 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:46.3197640Z Collecting google-api-python-client==2.179.0 (from -r requirements.txt (line 10))
+generate	UNKNOWN STEP	2026-10-16T01:50:46.3381478Z   Downloading google_api_python_client-2.179.0-py3-none-any.whl.metadata (7.0 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:46.3731130Z Collecting google-auth==2.40.3 (from -r requirements.txt (line 11))
+generate	UNKNOWN STEP	2026-10-16T01:50:46.3871259Z   Downloading google_auth-2.40.3-py2.py3-none-any.whl.metadata (6.2 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:46.4127047Z Collecting google-auth-httplib2==0.2.0 (from -r requirements.txt (line 12))
+generate	UNKNOWN STEP	2026-10-16T01:50:46.4277944Z   Downloading google_auth_httplib2-0.2.0-py2.py3-none-any.whl.metadata (2.2 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:46.4544348Z Collecting google-generativeai==0.8.5 (from -r requirements.txt (line 13))
+generate	UNKNOWN STEP	2026-10-16T01:50:46.4678779Z   Downloading google_generativeai-0.8.5-py3-none-any.whl.metadata (3.9 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:46.5005670Z Collecting googleapis-common-protos==1.70.0 (from -r requirements.txt (line 14))
+generate	UNKNOWN STEP	2026-10-16T01:50:46.5136551Z   Downloading googleapis_common_protos-1.70.0-py3-none-any.whl.metadata (9.3 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:46.9102027Z Collecting grpcio==1.74.0 (from -r requirements.txt (line 15))
+generate	UNKNOWN STEP	2026-10-16T01:50:46.9241081Z   Downloading grpcio-1.74.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (3.8 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:46.9638067Z Collecting grpcio-status==1.71.2 (from -r requirements.txt (line 16))
+generate	UNKNOWN STEP	2026-10-16T01:50:46.9787737Z   Downloading grpcio_status-1.71.2-py3-none-any.whl.metadata (1.1 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:47.0052704Z Collecting httplib2==0.22.0 (from -r requirements.txt (line 17))
+generate	UNKNOWN STEP	2026-10-16T01:50:47.0187255Z   Downloading httplib2-0.22.0-py3-none-any.whl.metadata (2.6 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:47.0432721Z Collecting idna==3.10 (from -r requirements.txt (line 18))
+generate	UNKNOWN STEP	2026-10-16T01:50:47.0597219Z   Downloading idna-3.10-py3-none-any.whl.metadata (10 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:47.1126013Z Collecting MarkupSafe==3.0.2 (from -r requirements.txt (line 19))
+generate	UNKNOWN STEP	2026-10-16T01:50:47.1269053Z   Downloading MarkupSafe-3.0.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.0 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:47.2963032Z Collecting numpy==2.3.2 (from -r requirements.txt (line 20))
+generate	UNKNOWN STEP	2026-10-16T01:50:47.3108571Z   Downloading numpy-2.3.2-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (62 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:47.4162216Z Collecting pandas==2.3.1 (from -r requirements.txt (line 21))
+generate	UNKNOWN STEP	2026-10-16T01:50:47.4300718Z   Downloading pandas-2.3.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (91 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:47.4770105Z Collecting proto-plus==1.26.1 (from -r requirements.txt (line 22))
+generate	UNKNOWN STEP	2026-10-16T01:50:47.4903539Z   Downloading proto_plus-1.26.1-py3-none-any.whl.metadata (2.2 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:47.6316374Z Collecting protobuf==5.29.5 (from -r requirements.txt (line 23))
+generate	UNKNOWN STEP	2026-10-16T01:50:47.6451287Z   Downloading protobuf-5.29.5-cp38-abi3-manylinux2014_x86_64.whl.metadata (592 bytes)
+generate	UNKNOWN STEP	2026-10-16T01:50:47.6732658Z Collecting pyasn1==0.6.1 (from -r requirements.txt (line 24))
+generate	UNKNOWN STEP	2026-10-16T01:50:47.6867725Z   Downloading pyasn1-0.6.1-py3-none-any.whl.metadata (8.4 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:47.7156388Z Collecting pyasn1_modules==0.4.2 (from -r requirements.txt (line 25))
+generate	UNKNOWN STEP	2026-10-16T01:50:47.7290761Z   Downloading pyasn1_modules-0.4.2-py3-none-any.whl.metadata (3.5 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:47.8127063Z Collecting pydantic==2.11.7 (from -r requirements.txt (line 26))
+generate	UNKNOWN STEP	2026-10-16T01:50:47.8273591Z   Downloading pydantic-2.11.7-py3-none-any.whl.metadata (67 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:48.3201357Z Collecting pydantic_core==2.33.2 (from -r requirements.txt (line 27))
+generate	UNKNOWN STEP	2026-10-16T01:50:48.3342629Z   Downloading pydantic_core-2.33.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.8 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:48.3643380Z Collecting pyparsing==3.2.3 (from -r requirements.txt (line 28))
+generate	UNKNOWN STEP	2026-10-16T01:50:48.3778729Z   Downloading pyparsing-3.2.3-py3-none-any.whl.metadata (5.0 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:48.4023151Z Collecting python-dateutil==2.9.0.post0 (from -r requirements.txt (line 29))
+generate	UNKNOWN STEP	2026-10-16T01:50:48.4159149Z   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:48.4449906Z Collecting python-dotenv==1.1.1 (from -r requirements.txt (line 30))
+generate	UNKNOWN STEP	2026-10-16T01:50:48.4584237Z   Downloading python_dotenv-1.1.1-py3-none-any.whl.metadata (24 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:48.4850228Z Collecting python-http-client==3.3.7 (from -r requirements.txt (line 31))
+generate	UNKNOWN STEP	2026-10-16T01:50:48.4983540Z   Downloading python_http_client-3.3.7-py3-none-any.whl.metadata (6.9 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:48.5662008Z Collecting pytz==2025.2 (from -r requirements.txt (line 32))
+generate	UNKNOWN STEP	2026-10-16T01:50:48.5796011Z   Downloading pytz-2025.2-py2.py3-none-any.whl.metadata (22 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:48.6101616Z Collecting requests==2.32.5 (from -r requirements.txt (line 33))
+generate	UNKNOWN STEP	2026-10-16T01:50:48.6235481Z   Downloading requests-2.32.5-py3-none-any.whl.metadata (4.9 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:48.6483188Z Collecting rsa==4.9.1 (from -r requirements.txt (line 34))
+generate	UNKNOWN STEP	2026-10-16T01:50:48.6618326Z   Downloading rsa-4.9.1-py3-none-any.whl.metadata (5.6 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:48.6932824Z Collecting sendgrid==6.12.4 (from -r requirements.txt (line 35))
+generate	UNKNOWN STEP	2026-10-16T01:50:48.7068649Z   Downloading sendgrid-6.12.4-py3-none-any.whl.metadata (12 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:48.7321183Z Collecting sgmllib3k==1.0.0 (from -r requirements.txt (line 36))
+generate	UNKNOWN STEP	2026-10-16T01:50:48.7455669Z   Downloading sgmllib3k-1.0.0.tar.gz (5.8 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:48.7881454Z   Installing build dependencies: started
+generate	UNKNOWN STEP	2026-10-16T01:50:49.7301311Z   Installing build dependencies: finished with status 'done'
+generate	UNKNOWN STEP	2026-10-16T01:50:49.7306068Z   Getting requirements to build wheel: started
+generate	UNKNOWN STEP	2026-10-16T01:50:50.1496229Z   Getting requirements to build wheel: finished with status 'done'
+generate	UNKNOWN STEP	2026-10-16T01:50:50.1503696Z   Preparing metadata (pyproject.toml): started
+generate	UNKNOWN STEP	2026-10-16T01:50:50.3124076Z   Preparing metadata (pyproject.toml): finished with status 'done'
+generate	UNKNOWN STEP	2026-10-16T01:50:50.3359780Z Collecting six==1.17.0 (from -r requirements.txt (line 37))
+generate	UNKNOWN STEP	2026-10-16T01:50:50.3495054Z   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:50.3749965Z Collecting soupsieve==2.7 (from -r requirements.txt (line 38))
+generate	UNKNOWN STEP	2026-10-16T01:50:50.3882772Z   Downloading soupsieve-2.7-py3-none-any.whl.metadata (4.6 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:50.4194361Z Collecting tqdm==4.67.1 (from -r requirements.txt (line 39))
+generate	UNKNOWN STEP	2026-10-16T01:50:50.4328524Z   Downloading tqdm-4.67.1-py3-none-any.whl.metadata (57 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:50.4622021Z Collecting typing-inspection==0.4.1 (from -r requirements.txt (line 40))
+generate	UNKNOWN STEP	2026-10-16T01:50:50.4754724Z   Downloading typing_inspection-0.4.1-py3-none-any.whl.metadata (2.6 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:50.5006339Z Collecting typing_extensions==4.14.1 (from -r requirements.txt (line 41))
+generate	UNKNOWN STEP	2026-10-16T01:50:50.5139908Z   Downloading typing_extensions-4.14.1-py3-none-any.whl.metadata (3.0 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:50.5379769Z Collecting tzdata==2025.2 (from -r requirements.txt (line 42))
+generate	UNKNOWN STEP	2026-10-16T01:50:50.5512531Z   Downloading tzdata-2025.2-py2.py3-none-any.whl.metadata (1.4 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:50.5792665Z Collecting uritemplate==4.2.0 (from -r requirements.txt (line 43))
+generate	UNKNOWN STEP	2026-10-16T01:50:50.5927351Z   Downloading uritemplate-4.2.0-py3-none-any.whl.metadata (2.6 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:50.6194931Z Collecting urllib3==2.5.0 (from -r requirements.txt (line 44))
+generate	UNKNOWN STEP	2026-10-16T01:50:50.6329592Z   Downloading urllib3-2.5.0-py3-none-any.whl.metadata (6.5 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:50.6602112Z Collecting Werkzeug==3.1.3 (from -r requirements.txt (line 45))
+generate	UNKNOWN STEP	2026-10-16T01:50:50.6735155Z   Downloading werkzeug-3.1.3-py3-none-any.whl.metadata (3.7 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:50.7068648Z Collecting yfinance (from -r requirements.txt (line 47))
+generate	UNKNOWN STEP	2026-10-16T01:50:50.7210108Z   Downloading yfinance-1.7.0-py3-none-any.whl.metadata (6.7 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:50.8346093Z Collecting curl_cffi>=0.15 (from yfinance->-r requirements.txt (line 47))
+generate	UNKNOWN STEP	2026-10-16T01:50:50.8479136Z   Downloading curl_cffi-0.16.3-cp310-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (17 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:51.0611802Z Collecting lxml>=4.9.0 (from yfinance->-r requirements.txt (line 47))
+generate	UNKNOWN STEP	2026-10-16T01:50:51.0746943Z   Downloading lxml-6.1.3-cp311-cp311-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl.metadata (3.3 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:51.0988626Z Collecting multitasking>=0.0.7 (from yfinance->-r requirements.txt (line 47))
+generate	UNKNOWN STEP	2026-10-16T01:50:51.1125609Z   Downloading multitasking-0.0.13-py3-none-any.whl.metadata (16 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:51.1459224Z Collecting peewee>=3.16.2 (from yfinance->-r requirements.txt (line 47))
+generate	UNKNOWN STEP	2026-10-16T01:50:51.1592337Z   Downloading peewee-4.5.3-py3-none-any.whl.metadata (10 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:51.1908514Z Collecting platformdirs>=2.0.0 (from yfinance->-r requirements.txt (line 47))
+generate	UNKNOWN STEP	2026-10-16T01:50:51.2048955Z   Downloading platformdirs-4.13.3-py3-none-any.whl.metadata (5.5 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:51.3014003Z Collecting websockets>=13.0 (from yfinance->-r requirements.txt (line 47))
+generate	UNKNOWN STEP	2026-10-16T01:50:51.3154948Z   Downloading websockets-17.2-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.3 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:51.4023230Z Collecting cffi>=2.0.0 (from curl_cffi>=0.15->yfinance->-r requirements.txt (line 47))
+generate	UNKNOWN STEP	2026-10-16T01:50:51.4168619Z   Downloading cffi-2.1.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.5 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:51.4420086Z Collecting pycparser (from cffi>=2.0.0->curl_cffi>=0.15->yfinance->-r requirements.txt (line 47))
+generate	UNKNOWN STEP	2026-10-16T01:50:51.4557569Z   Downloading pycparser-3.11-py3-none-any.whl.metadata (8.2 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:51.4760271Z Downloading annotated_types-0.7.0-py3-none-any.whl (13 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:51.4913570Z Downloading beautifulsoup4-4.13.4-py3-none-any.whl (187 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:51.5190920Z Downloading cachetools-5.5.2-py3-none-any.whl (10 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:51.5360603Z Downloading certifi-2025.8.3-py3-none-any.whl (161 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:51.5534217Z Downloading charset_normalizer-3.4.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (150 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:51.5701723Z Downloading ecdsa-0.19.1-py2.py3-none-any.whl (150 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:51.5867589Z Downloading feedparser-6.0.11-py3-none-any.whl (81 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:51.6025417Z Downloading google_ai_generativelanguage-0.6.15-py3-none-any.whl (1.3 MB)
+generate	UNKNOWN STEP	2026-10-16T01:50:51.6351147Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 38.8 MB/s  0:00:00
+generate	UNKNOWN STEP	2026-10-16T01:50:51.6486456Z Downloading google_api_core-2.25.1-py3-none-any.whl (160 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:51.6648498Z Downloading google_auth-2.40.3-py2.py3-none-any.whl (216 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:51.6803325Z Downloading googleapis_common_protos-1.70.0-py3-none-any.whl (294 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:51.6967212Z Downloading proto_plus-1.26.1-py3-none-any.whl (50 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:51.7127774Z Downloading protobuf-5.29.5-cp38-abi3-manylinux2014_x86_64.whl (319 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:51.7289142Z Downloading requests-2.32.5-py3-none-any.whl (64 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:51.7447662Z Downloading idna-3.10-py3-none-any.whl (70 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:51.7610641Z Downloading rsa-4.9.1-py3-none-any.whl (34 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:51.7761847Z Downloading urllib3-2.5.0-py3-none-any.whl (129 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:51.7937264Z Downloading google_api_python_client-2.179.0-py3-none-any.whl (14.0 MB)
+generate	UNKNOWN STEP	2026-10-16T01:50:51.9460273Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 14.0/14.0 MB 91.8 MB/s  0:00:00
+generate	UNKNOWN STEP	2026-10-16T01:50:51.9598942Z Downloading google_auth_httplib2-0.2.0-py2.py3-none-any.whl (9.3 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:51.9760634Z Downloading httplib2-0.22.0-py3-none-any.whl (96 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:51.9918570Z Downloading pyparsing-3.2.3-py3-none-any.whl (111 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:52.0077902Z Downloading uritemplate-4.2.0-py3-none-any.whl (11 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:52.0225073Z Downloading google_generativeai-0.8.5-py3-none-any.whl (155 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:52.0408014Z Downloading grpcio-1.74.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (6.2 MB)
+generate	UNKNOWN STEP	2026-10-16T01:50:52.0852661Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.2/6.2 MB 141.1 MB/s  0:00:00
+generate	UNKNOWN STEP	2026-10-16T01:50:52.0992906Z Downloading grpcio_status-1.71.2-py3-none-any.whl (14 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:52.1159008Z Downloading MarkupSafe-3.0.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (23 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:52.1333257Z Downloading numpy-2.3.2-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.9 MB)
+generate	UNKNOWN STEP	2026-10-16T01:50:52.3082440Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.9/16.9 MB 96.9 MB/s  0:00:00
+generate	UNKNOWN STEP	2026-10-16T01:50:52.3224566Z Downloading pandas-2.3.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (12.4 MB)
+generate	UNKNOWN STEP	2026-10-16T01:50:52.4250391Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.4/12.4 MB 120.7 MB/s  0:00:00
+generate	UNKNOWN STEP	2026-10-16T01:50:52.4389777Z Downloading pyasn1-0.6.1-py3-none-any.whl (83 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:52.4544058Z Downloading pyasn1_modules-0.4.2-py3-none-any.whl (181 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:52.4701650Z Downloading pydantic-2.11.7-py3-none-any.whl (444 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:52.4858963Z Downloading pydantic_core-2.33.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.0 MB)
+generate	UNKNOWN STEP	2026-10-16T01:50:52.4936568Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 300.3 MB/s  0:00:00
+generate	UNKNOWN STEP	2026-10-16T01:50:52.5069728Z Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:52.5225208Z Downloading python_dotenv-1.1.1-py3-none-any.whl (20 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:52.5377701Z Downloading python_http_client-3.3.7-py3-none-any.whl (8.4 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:52.5531336Z Downloading pytz-2025.2-py2.py3-none-any.whl (509 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:52.5718775Z Downloading sendgrid-6.12.4-py3-none-any.whl (102 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:52.5869948Z Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:52.6026198Z Downloading soupsieve-2.7-py3-none-any.whl (36 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:52.6176503Z Downloading tqdm-4.67.1-py3-none-any.whl (78 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:52.6324703Z Downloading typing_inspection-0.4.1-py3-none-any.whl (14 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:52.6474489Z Downloading typing_extensions-4.14.1-py3-none-any.whl (43 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:52.6633419Z Downloading tzdata-2025.2-py2.py3-none-any.whl (347 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:52.6789766Z Downloading werkzeug-3.1.3-py3-none-any.whl (224 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:52.6943674Z Downloading yfinance-1.7.0-py3-none-any.whl (149 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:52.7095723Z Downloading curl_cffi-0.16.3-cp310-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (13.5 MB)
+generate	UNKNOWN STEP	2026-10-16T01:50:52.7971071Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.5/13.5 MB 155.1 MB/s  0:00:00
+generate	UNKNOWN STEP	2026-10-16T01:50:52.8118900Z Downloading cffi-2.1.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (217 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:52.8283818Z Downloading lxml-6.1.3-cp311-cp311-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl (5.2 MB)
+generate	UNKNOWN STEP	2026-10-16T01:50:52.8550171Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.2/5.2 MB 202.6 MB/s  0:00:00
+generate	UNKNOWN STEP	2026-10-16T01:50:52.8685513Z Downloading multitasking-0.0.13-py3-none-any.whl (16 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:52.8834170Z Downloading peewee-4.5.3-py3-none-any.whl (194 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:52.8989608Z Downloading platformdirs-4.13.3-py3-none-any.whl (32 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:52.9153782Z Downloading websockets-17.2-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (225 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:52.9315768Z Downloading pycparser-3.11-py3-none-any.whl (51 kB)
+generate	UNKNOWN STEP	2026-10-16T01:50:53.1054639Z Building wheels for collected packages: sgmllib3k
+generate	UNKNOWN STEP	2026-10-16T01:50:53.1062123Z   Building wheel for sgmllib3k (pyproject.toml): started
+generate	UNKNOWN STEP	2026-10-16T01:50:53.2678129Z   Building wheel for sgmllib3k (pyproject.toml): finished with status 'done'
+generate	UNKNOWN STEP	2026-10-16T01:50:53.2682875Z   Created wheel for sgmllib3k: filename=sgmllib3k-1.0.0-py3-none-any.whl size=6090 sha256=7da18e2f0d379a144df19e1669430d9811c8a6279cac04e82ef89d87efd39614
+generate	UNKNOWN STEP	2026-10-16T01:50:53.2684572Z   Stored in directory: /home/runner/.cache/pip/wheels/3b/25/2a/105d6a15df6914f4d15047691c6c28f9052cc1173e40285d03
+generate	UNKNOWN STEP	2026-10-16T01:50:53.2696798Z Successfully built sgmllib3k
+generate	UNKNOWN STEP	2026-10-16T01:50:53.3595349Z Installing collected packages: sgmllib3k, pytz, multitasking, websockets, urllib3, uritemplate, tzdata, typing_extensions, tqdm, soupsieve, six, python-http-client, python-dotenv, pyparsing, pycparser, pyasn1, protobuf, platformdirs, peewee, numpy, MarkupSafe, lxml, idna, grpcio, feedparser, charset-normalizer, certifi, cachetools, annotated-types, Werkzeug, typing-inspection, rsa, requests, python-dateutil, pydantic_core, pyasn1_modules, proto-plus, httplib2, googleapis-common-protos, ecdsa, cffi, beautifulsoup4, sendgrid, pydantic, pandas, grpcio-status, google-auth, curl_cffi, yfinance, google-auth-httplib2, google-api-core, google-api-python-client, google-ai-generativelanguage, google-generativeai
+generate	UNKNOWN STEP	2026-10-16T01:51:01.0222948Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:01.0246281Z Successfully installed MarkupSafe-3.0.2 Werkzeug-3.1.3 annotated-types-0.7.0 beautifulsoup4-4.13.4 cachetools-5.5.2 certifi-2025.8.3 cffi-2.1.1 charset-normalizer-3.4.3 curl_cffi-0.16.3 ecdsa-0.19.1 feedparser-6.0.11 google-ai-generativelanguage-0.6.15 google-api-core-2.25.1 google-api-python-client-2.179.0 google-auth-2.40.3 google-auth-httplib2-0.2.0 google-generativeai-0.8.5 googleapis-common-protos-1.70.0 grpcio-1.74.0 grpcio-status-1.71.2 httplib2-0.22.0 idna-3.10 lxml-6.1.3 multitasking-0.0.13 numpy-2.3.2 pandas-2.3.1 peewee-4.5.3 platformdirs-4.13.3 proto-plus-1.26.1 protobuf-5.29.5 pyasn1-0.6.1 pyasn1_modules-0.4.2 pycparser-3.11 pydantic-2.11.7 pydantic_core-2.33.2 pyparsing-3.2.3 python-dateutil-2.9.0.post0 python-dotenv-1.1.1 python-http-client-3.3.7 pytz-2025.2 requests-2.32.5 rsa-4.9.1 sendgrid-6.12.4 sgmllib3k-1.0.0 six-1.17.0 soupsieve-2.7 tqdm-4.67.1 typing-inspection-0.4.1 typing_extensions-4.14.1 tzdata-2025.2 uritemplate-4.2.0 urllib3-2.5.0 websockets-17.2 yfinance-1.7.0
+generate	UNKNOWN STEP	2026-10-16T01:51:01.1988555Z ##[group]Run mkdir -p data/loading
+generate	UNKNOWN STEP	2026-10-16T01:51:01.1988956Z ^[[36;1mmkdir -p data/loading^[[0m
+generate	UNKNOWN STEP	2026-10-16T01:51:01.1989309Z ^[[36;1mmkdir -p docs^[[0m
+generate	UNKNOWN STEP	2026-10-16T01:51:01.1989957Z ^[[36;1mmkdir -p archive^[[0m
+generate	UNKNOWN STEP	2026-10-16T01:51:01.2026545Z shell: /usr/bin/bash -e {0}
+generate	UNKNOWN STEP	2026-10-16T01:51:01.2026937Z env:
+generate	UNKNOWN STEP	2026-10-16T01:51:01.2027313Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.17/x64
+generate	UNKNOWN STEP	2026-10-16T01:51:01.2027777Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib/pkgconfig
+generate	UNKNOWN STEP	2026-10-16T01:51:01.2028263Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+generate	UNKNOWN STEP	2026-10-16T01:51:01.2028709Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+generate	UNKNOWN STEP	2026-10-16T01:51:01.2029115Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+generate	UNKNOWN STEP	2026-10-16T01:51:01.2029740Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib
+generate	UNKNOWN STEP	2026-10-16T01:51:01.2030132Z ##[endgroup]
+generate	UNKNOWN STEP	2026-10-16T01:51:01.2150200Z ##[group]Run python src/mvp_news_aggregator/main.py
+generate	UNKNOWN STEP	2026-10-16T01:51:01.2150629Z ^[[36;1mpython src/mvp_news_aggregator/main.py^[[0m
+generate	UNKNOWN STEP	2026-10-16T01:51:01.2183743Z shell: /usr/bin/bash -e {0}
+generate	UNKNOWN STEP	2026-10-16T01:51:01.2184136Z env:
+generate	UNKNOWN STEP	2026-10-16T01:51:01.2184472Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.17/x64
+generate	UNKNOWN STEP	2026-10-16T01:51:01.2184959Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib/pkgconfig
+generate	UNKNOWN STEP	2026-10-16T01:51:01.2185567Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+generate	UNKNOWN STEP	2026-10-16T01:51:01.2185969Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+generate	UNKNOWN STEP	2026-10-16T01:51:01.2186367Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+generate	UNKNOWN STEP	2026-10-16T01:51:01.2186771Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib
+generate	UNKNOWN STEP	2026-10-16T01:51:01.2187407Z   GEMINI_API_KEY: ***
+generate	UNKNOWN STEP	2026-10-16T01:51:01.2187739Z ##[endgroup]
+generate	UNKNOWN STEP	2026-10-16T01:51:02.7142559Z INFO:collector:Collecting articles for category: world
+generate	UNKNOWN STEP	2026-10-16T01:51:02.7143490Z INFO:collector:Fetching feed: BBC World News (http://feeds.bbci.co.uk/news/world/rss.xml)
+generate	UNKNOWN STEP	2026-10-16T01:51:03.1034202Z INFO:collector:Collected 34 articles from BBC World News
+generate	UNKNOWN STEP	2026-10-16T01:51:04.1037482Z INFO:collector:Fetching feed: CNN World (http://rss.cnn.com/rss/cnn_world.rss)
+generate	UNKNOWN STEP	2026-10-16T01:51:04.3198121Z INFO:collector:Collected 29 articles from CNN World
+generate	UNKNOWN STEP	2026-10-16T01:51:05.3202600Z INFO:collector:Collecting articles for category: tech
+generate	UNKNOWN STEP	2026-10-16T01:51:05.3203208Z INFO:collector:Fetching feed: TechCrunch (https://techcrunch.com/feed/)
+generate	UNKNOWN STEP	2026-10-16T01:51:05.4775671Z INFO:collector:Collected 20 articles from TechCrunch
+generate	UNKNOWN STEP	2026-10-16T01:51:06.4779292Z INFO:collector:Fetching feed: Ars Technica (http://feeds.arstechnica.com/arstechnica/index)
+generate	UNKNOWN STEP	2026-10-16T01:51:06.5644221Z INFO:collector:Collected 20 articles from Ars Technica
+generate	UNKNOWN STEP	2026-10-16T01:51:07.5648494Z INFO:collector:Collecting articles for category: finance
+generate	UNKNOWN STEP	2026-10-16T01:51:07.5649204Z INFO:collector:Fetching feed: Yahoo Finance (https://finance.yahoo.com/news/rssindex)
+generate	UNKNOWN STEP	2026-10-16T01:51:07.7854677Z ERROR:collector:Network error fetching Yahoo Finance: 404 Client Error: Not Found for url: https://finance.yahoo.com/news/rssindex
+generate	UNKNOWN STEP	2026-10-16T01:51:08.7858809Z INFO:collector:Fetching feed: CNBC Finance (https://cnbc.com/id/10001147/device/rss/rss.html)
+generate	UNKNOWN STEP	2026-10-16T01:51:09.2724268Z INFO:collector:Collected 30 articles from CNBC Finance
+generate	UNKNOWN STEP	2026-10-16T01:51:10.2729667Z INFO:collector:Fetching feed: Investing (https://www.investing.com/rss/news.rss)
+generate	UNKNOWN STEP	2026-10-16T01:51:10.4363163Z INFO:collector:Collected 10 articles from Investing
+generate	UNKNOWN STEP	2026-10-16T01:51:11.4365303Z INFO:collector:Collecting articles for category: nz
+generate	UNKNOWN STEP	2026-10-16T01:51:11.4366309Z INFO:collector:Collection complete: 143 total articles across 4 categories
+generate	UNKNOWN STEP	2026-10-16T01:51:11.4367893Z INFO:curator:Filtered to 84 recent articles from last 24 hours
+generate	UNKNOWN STEP	2026-10-16T01:51:11.4368793Z INFO:curator:Filtered 84 → 68 articles
+generate	UNKNOWN STEP	2026-10-16T01:51:11.5900322Z WARNING:curator:Deduplication failed: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started)., returning original articles
+generate	UNKNOWN STEP	2026-10-16T01:51:11.6763828Z ERROR:curator:LLM error for world: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
+generate	UNKNOWN STEP	2026-10-16T01:51:11.7425217Z ERROR:curator:LLM error for tech: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
+generate	UNKNOWN STEP	2026-10-16T01:51:11.8057192Z ERROR:curator:LLM error for finance: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5798858Z DEBUG: SENDGRID_API_KEY loaded: No
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5799766Z Received results with categories: ['world', 'tech', 'finance', 'nz']
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5800498Z Found 84 recent articles after time filtering
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5800937Z Found 68 articles after basic filtering
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5801383Z Found 68 articles after deduplication
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5801958Z LLM curated articles for categories: ['world', 'tech', 'finance']
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5802666Z Scraping: https://www.bbc.co.uk/news/articles/cm89zp48k4kzo?at_medium=RSS&at_campaign=rss
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5803296Z Found content with selector 'article': 2034 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5803725Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5804474Z 📝 Content optimization for https://www.bbc.co.uk/news/articles/cm89zp48k4kzo?at_medium=RSS&at_campaign=rss:
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5805267Z    Original: 2034 chars → Optimized: 1124 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5805754Z    Reduction: 44.7%
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5806120Z    Sentences: kept 8/17 best sentences
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5806427Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5806807Z 🤖 LLM Enhancement: Three children and a teacher killed by 16-year-old...
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5807356Z    Input length: 1124 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5808596Z    LLM error: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5810581Z Scraping: https://www.bbc.co.uk/news/videos/cwe8r29mjd05o?at_medium=RSS&at_campaign=rss
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5811282Z Found content with selector 'article': 1616 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5811561Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5812162Z 📝 Content optimization for https://www.bbc.co.uk/news/videos/cwe8r29mjd05o?at_medium=RSS&at_campaign=rss:
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5812950Z    Original: 1616 chars → Optimized: 1422 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5813416Z    Reduction: 12.0%
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5813870Z    Sentences: kept 8/9 best sentences
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5814584Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5814966Z 🤖 LLM Enhancement: 'It's really hard to believe' - How Oregon primary...
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5815534Z    Input length: 1422 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5816602Z    LLM error: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5817938Z Scraping: https://www.bbc.co.uk/news/articles/crx23qlnj27qo?at_medium=RSS&at_campaign=rss
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5818559Z Found content with selector 'article': 4778 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5818803Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5819361Z 📝 Content optimization for https://www.bbc.co.uk/news/articles/crx23qlnj27qo?at_medium=RSS&at_campaign=rss:
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5820205Z    Original: 4778 chars → Optimized: 1328 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5820702Z    Reduction: 72.2%
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5821039Z    Sentences: kept 8/34 best sentences
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5821259Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5821555Z 🤖 LLM Enhancement: Trump calls off livestream of Fort Hood attacker's...
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5822028Z    Input length: 1328 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5822877Z    LLM error: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5823910Z Scraping: https://www.bbc.co.uk/news/articles/cqwyrnwd9dw1o?at_medium=RSS&at_campaign=rss
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5824356Z Found content with selector 'article': 7739 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5824574Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5825168Z 📝 Content optimization for https://www.bbc.co.uk/news/articles/cqwyrnwd9dw1o?at_medium=RSS&at_campaign=rss:
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5825714Z    Original: 7739 chars → Optimized: 1604 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5826042Z    Reduction: 79.3%
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5826396Z    Sentences: kept 8/51 best sentences
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5826569Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5826830Z 🤖 LLM Enhancement: Russia accuses Ukraine of attacking oil refinery a...
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5827249Z    Input length: 1604 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5828073Z    LLM error: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5829107Z Scraping: https://www.bbc.co.uk/news/articles/c6wyrnmgzn01o?at_medium=RSS&at_campaign=rss
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5829711Z Found content with selector 'article': 3085 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5829914Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5830287Z 📝 Content optimization for https://www.bbc.co.uk/news/articles/c6wyrnmgzn01o?at_medium=RSS&at_campaign=rss:
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5830860Z    Original: 3085 chars → Optimized: 1173 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5831181Z    Reduction: 62.0%
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5831533Z    Sentences: kept 8/24 best sentences
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5831703Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5831967Z 🤖 LLM Enhancement: Bus hits train stopped on French side of Channel T...
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5832337Z    Input length: 1173 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5833188Z    LLM error: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5834266Z Scraping: https://techcrunch.com/2026/10/15/tesla-reveals-spacex-powered-roadster-that-flies-and-falls-with-style/
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5834874Z Fallback paragraphs: 8323 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5835037Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5835541Z 📝 Content optimization for https://techcrunch.com/2026/10/15/tesla-reveals-spacex-powered-roadster-that-flies-and-falls-with-style/:
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5836157Z    Original: 8323 chars → Optimized: 1349 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5836759Z    Reduction: 83.8%
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5837034Z    Sentences: kept 8/66 best sentences
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5837245Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5837551Z 🤖 LLM Enhancement: Tesla reveals SpaceX-powered Roadster that flies a...
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5837939Z    Input length: 1349 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5838745Z    LLM error: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5839982Z Scraping: https://techcrunch.com/2026/10/15/when-it-came-to-cal-ais-viral-success-a-small-army-of-influencers-paid-off/
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5840617Z Fallback paragraphs: 4244 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5840764Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5841309Z 📝 Content optimization for https://techcrunch.com/2026/10/15/when-it-came-to-cal-ais-viral-success-a-small-army-of-influencers-paid-off/:
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5841988Z    Original: 4244 chars → Optimized: 1215 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5842296Z    Reduction: 71.4%
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5842751Z    Sentences: kept 8/33 best sentences
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5842951Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5843585Z 🤖 LLM Enhancement: When it came to Cal AI’s viral success, a small ar...
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5844006Z    Input length: 1215 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5844842Z    LLM error: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5846329Z Scraping: https://techcrunch.com/2026/10/15/and-the-winner-of-startup-battlefield-at-disrupt-2026-is-intero-biosystems/
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5846927Z Fallback paragraphs: 4759 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5847120Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5847603Z 📝 Content optimization for https://techcrunch.com/2026/10/15/and-the-winner-of-startup-battlefield-at-disrupt-2026-is-intero-biosystems/:
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5848268Z    Original: 4759 chars → Optimized: 1266 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5848613Z    Reduction: 73.4%
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5849317Z    Removed junk: read more about
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5849822Z    Sentences: kept 8/31 best sentences
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5850032Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5850282Z 🤖 LLM Enhancement: And the winner of Startup Battlefield at Disrupt 2...
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5850702Z    Input length: 1266 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5851569Z    LLM error: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5852711Z Scraping: https://techcrunch.com/2026/10/15/amazon-devices-chief-panos-panay-on-the-importance-of-failure-and-bouncing-back-from-it/
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5853373Z Fallback paragraphs: 4527 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5853579Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5854128Z 📝 Content optimization for https://techcrunch.com/2026/10/15/amazon-devices-chief-panos-panay-on-the-importance-of-failure-and-bouncing-back-from-it/:
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5854878Z    Original: 4527 chars → Optimized: 1181 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5855200Z    Reduction: 73.9%
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5855480Z    Sentences: kept 8/42 best sentences
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5855711Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5855947Z 🤖 LLM Enhancement: Amazon devices chief Panos Panay on the importance...
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5856336Z    Input length: 1181 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5857213Z    LLM error: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5858225Z Scraping: https://techcrunch.com/2026/10/15/meta-launches-an-open-weight-model-that-runs-on-macs/
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5858813Z Fallback paragraphs: 3236 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5859014Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5859402Z 📝 Content optimization for https://techcrunch.com/2026/10/15/meta-launches-an-open-weight-model-that-runs-on-macs/:
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5860192Z    Original: 3236 chars → Optimized: 1137 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5860556Z    Reduction: 64.9%
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5860835Z    Sentences: kept 8/24 best sentences
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5861001Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5861304Z 🤖 LLM Enhancement: Meta launches an open-weight AI model that runs on...
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5861709Z    Input length: 1137 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5862568Z    LLM error: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5863535Z Scraping: https://www.cnbc.com/2026/10/15/kfc-coca-cola-pepsi-switch.html
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5863942Z Fallback paragraphs: 2914 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5864138Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5864457Z 📝 Content optimization for https://www.cnbc.com/2026/10/15/kfc-coca-cola-pepsi-switch.html:
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5864973Z    Original: 2914 chars → Optimized: 767 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5865310Z    Reduction: 73.7%
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5865610Z    Removed junk: sign up for
+generate	UNKNOWN STEP	2026-10-16T01:51:31.8163544Z INFO:curator:Saved curated newsletter data to data/loading/newsletter_curated.json for 2026-10-16
+generate	UNKNOWN STEP	2026-10-16T01:51:31.8170677Z INFO:curator:Created backup at data/loading/newsletter_curated_2026-10-16.json
+generate	UNKNOWN STEP	2026-10-16T01:51:31.9627508Z ERROR:quiz_data:LLM quiz generation failed: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
+generate	UNKNOWN STEP	2026-10-16T01:51:31.9635445Z INFO:quiz_data:Saved quiz data to data/staging/quiz_data/quiz_2026-10-16.json and data/loading/quiz_today.json
+generate	UNKNOWN STEP	2026-10-16T01:51:44.5660413Z INFO:yfinance:Failed to create TzCache, reason: Error creating TzCache folder: '/home/runner/.cache/py-yfinance' reason: [Errno 17] File exists: '/home/runner/.cache/py-yfinance'. TzCache will not be used. Tip: You can direct cache to use a different location with 'set_tz_cache_location(mylocation)'
+generate	UNKNOWN STEP	2026-10-16T01:51:46.3196720Z ERROR:yfinance:HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: DX=F"}}}
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5250811Z ERROR:yfinance:$DX=F: possibly delisted; no timezone found
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5297739Z ERROR:yfinance:
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5298241Z 1 Failed download:
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5298770Z ERROR:yfinance:['DX=F']: possibly delisted; no timezone found
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5426439Z    Sentences: kept 8/31 best sentences
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5426753Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5427435Z 🤖 LLM Enhancement: KFC to switch to Coca-Cola beverages in U.S. resta...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5428061Z    Input length: 767 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5429189Z    LLM error: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5431565Z Scraping: https://www.cnbc.com/2026/10/15/porsche-mission-s-concept-car.html
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5432296Z Fallback paragraphs: 2500 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5432542Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5433306Z 📝 Content optimization for https://www.cnbc.com/2026/10/15/porsche-mission-s-concept-car.html:
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5433912Z    Original: 2500 chars → Optimized: 1212 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5434308Z    Reduction: 51.5%
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5434590Z    Removed junk: sign up for
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5434947Z    Sentences: kept 8/24 best sentences
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5435118Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5435670Z 🤖 LLM Enhancement: Porsche reveals Mission S concept car that preview...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5436110Z    Input length: 1212 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5437065Z    LLM error: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5438032Z Scraping: https://www.cnbc.com/2026/10/15/jetblue-bluefirst-first-class.html
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5438466Z Fallback paragraphs: 2343 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5438658Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5439050Z 📝 Content optimization for https://www.cnbc.com/2026/10/15/jetblue-bluefirst-first-class.html:
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5439816Z    Original: 2343 chars → Optimized: 1357 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5440249Z    Reduction: 42.1%
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5440701Z    Removed junk: sign up for
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5441039Z    Sentences: kept 8/18 best sentences
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5441313Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5441623Z 🤖 LLM Enhancement: JetBlue’s new domestic first class, BlueFirst, is ...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5442127Z    Input length: 1357 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5442956Z    LLM error: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5443899Z Scraping: https://www.cnbc.com/2026/10/15/southwest-rapid-rewards-tiers-a-list.html
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5444366Z Fallback paragraphs: 4409 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5444565Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5445112Z 📝 Content optimization for https://www.cnbc.com/2026/10/15/southwest-rapid-rewards-tiers-a-list.html:
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5445686Z    Original: 4409 chars → Optimized: 1085 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5446012Z    Reduction: 75.4%
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5446276Z    Removed junk: sign up for
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5446610Z    Sentences: kept 8/37 best sentences
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5446813Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5447102Z 🤖 LLM Enhancement: Southwest is overhauling its frequent flyer progra...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5447504Z    Input length: 1085 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5448327Z    LLM error: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5449237Z Scraping: https://www.cnbc.com/2026/10/15/cafe-fuel-economy-v8-trucks.html
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5449789Z Fallback paragraphs: 6492 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5450070Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5450430Z 📝 Content optimization for https://www.cnbc.com/2026/10/15/cafe-fuel-economy-v8-trucks.html:
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5450950Z    Original: 6492 chars → Optimized: 659 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5451264Z    Reduction: 89.8%
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5451520Z    Removed junk: sign up for
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5451848Z    Sentences: kept 8/60 best sentences
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5452075Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5452341Z 🤖 LLM Enhancement: How lower fuel economy targets could boost pickups...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5452735Z    Input length: 659 chars
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5453547Z    LLM error: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5454395Z Enhanced top stories with scraped content
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5454803Z Saved curated data to JSON
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5455129Z Generating daily quiz: 25 questions, difficulty: medium
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5455526Z Topics: geography, STEM, history, general_knowledge
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5455857Z LLM enabled: True
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5456117Z Using LLM to generate 25 questions
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5457159Z LLM generation failed (404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).), falling back to static questions
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5458303Z Using fallback question bank for 25 questions
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5458661Z Selected 11 questions from fallback bank
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5458985Z Successfully generated quiz with 11 questions
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5459285Z Quiz data saved:
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5459730Z   Staging: data/staging/quiz_data/quiz_2026-10-16.json
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5460110Z   Loading: data/loading/quiz_today.json
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5460435Z Quiz data status: success
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5460733Z Fetching fresh daily FX data...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5461027Z Fetching current rates as baseline...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5461510Z Current rates: {'NZD/USD': 0.562, 'NZD/AUD': 0.812, 'NZD/INR': 53.36, 'NZD/CNY': 3.75, 'NZD/THB': 18.81}
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5461999Z Fetching daily FX data from 2026-09-16 to 2026-10-16
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5462350Z Processing 2026-09-16...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5462631Z Processing 2026-09-17...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5462889Z Processing 2026-09-18...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5463210Z Processing 2026-09-19...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5463476Z Processing 2026-09-20...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5463790Z Processing 2026-09-21...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5464058Z Processing 2026-09-22...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5464311Z Processing 2026-09-23...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5464620Z Processing 2026-09-24...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5464884Z Processing 2026-09-25...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5465155Z Processing 2026-09-26...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5465462Z Processing 2026-09-27...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5465712Z Processing 2026-09-28...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5466216Z Processing 2026-09-29...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5466489Z Processing 2026-09-30...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5466765Z Processing 2026-10-01...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5467049Z Processing 2026-10-02...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5467359Z Processing 2026-10-03...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5467660Z Processing 2026-10-04...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5467928Z Processing 2026-10-05...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5468195Z Processing 2026-10-06...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5468472Z Processing 2026-10-07...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5468759Z Processing 2026-10-08...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5469076Z Processing 2026-10-09...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5469346Z Processing 2026-10-10...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5469691Z Processing 2026-10-11...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5469970Z Processing 2026-10-12...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5470257Z Processing 2026-10-13...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5470536Z Processing 2026-10-14...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5470837Z Processing 2026-10-15...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5471110Z Processing 2026-10-16...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5471428Z Daily FX data saved to data/loading/fx_data.json
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5471793Z Successfully processed 31/31 dates
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5472119Z FX data ready: 5 currency pairs
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5472408Z FX data status: success
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5472729Z Fetching data for 14 instruments...
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5473049Z Failed to get data for: DX=F
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5473503Z Successfully got data for: ^NSEI, ^NZ50, USO, ^IXIC, ^GSPC, ^DJI, 000001.SS, ^AXJO, QQQ, VOO, VTI, SLV, GLD
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5473972Z Saved 22 days of data for 14 instruments
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5474279Z Market data status: None
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5474545Z Loaded quiz data: 11 questions
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5474768Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5474936Z === MARKET DATA PROCESSING DEBUG ===
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5475276Z Loaded daily data from data/loading/market_data.json
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5475625Z Daily prices keys: 22 dates
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5475921Z Instruments keys: 14 instruments
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5476758Z Instruments: ['^GSPC', '^IXIC', '^DJI', 'DX=F', '000001.SS', '^AXJO', '^NSEI', '^NZ50', 'GLD', 'USO', 'SLV', 'VOO', 'VTI', 'QQQ']
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5477325Z Date 2026-10-15: 13 instruments
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5477649Z Using 2026-10-15 as base date with 13 instruments
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5478133Z Current prices for 2026-10-15: 13 instruments
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5478449Z   ^GSPC: 7744.06
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5478688Z   ^IXIC: 26713.03
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5479001Z   ^DJI: 52177.69
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5479300Z   000001.SS: 3707.48
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5479665Z   ^AXJO: 8719.7
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5479931Z   ^NSEI: 22997.35
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5480169Z   ^NZ50: 13832.8
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5480467Z   GLD: 382.71
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5480714Z   USO: 157.31
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5481013Z   SLV: 51.92
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5481256Z   VOO: 709.43
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5481486Z   VTI: 378.42
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5481773Z   QQQ: 728.0
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5481976Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5482131Z Processing ticker: ^GSPC (price: 7744.06)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5482672Z   Found instrument info - Category: US Indices, Symbol: S&P 500
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5483332Z   ✅ Added ^GSPC to market_data
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5483526Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5483631Z Processing ticker: ^IXIC (price: 26713.03)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5484091Z   Found instrument info - Category: US Indices, Symbol: NASDAQ
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5484485Z   ✅ Added ^IXIC to market_data
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5484627Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5484865Z Processing ticker: ^DJI (price: 52177.69)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5485408Z   Found instrument info - Category: US Indices, Symbol: Dow Jones
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5485802Z   ✅ Added ^DJI to market_data
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5486041Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5486197Z Processing ticker: 000001.SS (price: 3707.48)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5486619Z   Found instrument info - Category: International Indices, Symbol: Shanghai (SSE)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5487086Z   ✅ Added 000001.SS to market_data
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5487280Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5487399Z Processing ticker: ^AXJO (price: 8719.7)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5487894Z   Found instrument info - Category: International Indices, Symbol: ASX 200
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5488371Z   ✅ Added ^AXJO to market_data
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5488529Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5488680Z Processing ticker: ^NSEI (price: 22997.35)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5489109Z   Found instrument info - Category: International Indices, Symbol: NSE (India)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5489644Z   ✅ Added ^NSEI to market_data
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5489858Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5489960Z Processing ticker: ^NZ50 (price: 13832.8)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5490413Z   Found instrument info - Category: International Indices, Symbol: NZX 50
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5490836Z   ✅ Added ^NZ50 to market_data
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5490972Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5491157Z Processing ticker: GLD (price: 382.71)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5491534Z   Found instrument info - Category: Commodities, Symbol: Gold (GLD)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5491941Z   ✅ Added GLD to market_data
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5492164Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5492310Z Processing ticker: USO (price: 157.31)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5492687Z   Found instrument info - Category: Commodities, Symbol: Oil (USO)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5493097Z   ✅ Added USO to market_data
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5493274Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5493411Z Processing ticker: SLV (price: 51.92)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5493776Z   Found instrument info - Category: Commodities, Symbol: Silver (SLV)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5494447Z   ✅ Added SLV to market_data
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5494601Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5494744Z Processing ticker: VOO (price: 709.43)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5495090Z   Found instrument info - Category: ETFs, Symbol: VOO
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5495471Z   ✅ Added VOO to market_data
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5495653Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5495751Z Processing ticker: VTI (price: 378.42)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5496111Z   Found instrument info - Category: ETFs, Symbol: VTI
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5496498Z   ✅ Added VTI to market_data
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5496634Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5496806Z Processing ticker: QQQ (price: 728.0)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5497167Z   Found instrument info - Category: ETFs, Symbol: QQQ
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5497509Z   ✅ Added QQQ to market_data
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5497740Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5497857Z Final market_data contains 13 instruments
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5498294Z   - ^GSPC
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5498567Z   - ^IXIC
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5498827Z   - ^DJI
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5499054Z   - 000001.SS
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5499332Z   - ^AXJO
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5499663Z   - ^NSEI
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5499964Z   - ^NZ50
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5500205Z   - GLD
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5500429Z   - USO
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5500699Z   - SLV
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5500932Z   - VOO
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5501170Z   - VTI
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5501436Z   - QQQ
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5501580Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5501715Z === MARKET DATA PROCESSING DEBUG ===
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5512934Z Loaded daily data from data/loading/market_data.json
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5513398Z Daily prices keys: 22 dates
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5513890Z Instruments keys: 14 instruments
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5514402Z Instruments: ['^GSPC', '^IXIC', '^DJI', 'DX=F', '000001.SS', '^AXJO', '^NSEI', '^NZ50', 'GLD', 'USO', 'SLV', 'VOO', 'VTI', 'QQQ']
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5514926Z Date 2026-10-15: 13 instruments
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5515238Z Using 2026-10-15 as base date with 13 instruments
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5515574Z Current prices for 2026-10-15: 13 instruments
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5515939Z   ^GSPC: 7744.06
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5516190Z   ^IXIC: 26713.03
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5516496Z   ^DJI: 52177.69
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5516746Z   000001.SS: 3707.48
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5516984Z   ^AXJO: 8719.7
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5517278Z   ^NSEI: 22997.35
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5517526Z   ^NZ50: 13832.8
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5517842Z   GLD: 382.71
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5518086Z   USO: 157.31
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5518312Z   SLV: 51.92
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5518601Z   VOO: 709.43
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5518838Z   VTI: 378.42
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5519075Z   QQQ: 728.0
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5519241Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5519388Z Processing ticker: ^GSPC (price: 7744.06)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5520095Z   Found instrument info - Category: US Indices, Symbol: S&P 500
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5520625Z   ✅ Added ^GSPC to market_data
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5520813Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5520933Z Processing ticker: ^IXIC (price: 26713.03)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5521304Z   Found instrument info - Category: US Indices, Symbol: NASDAQ
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5521739Z   ✅ Added ^IXIC to market_data
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5521891Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5522029Z Processing ticker: ^DJI (price: 52177.69)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5522461Z   Found instrument info - Category: US Indices, Symbol: Dow Jones
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5522862Z   ✅ Added ^DJI to market_data
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5523037Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5523176Z Processing ticker: 000001.SS (price: 3707.48)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5523634Z   Found instrument info - Category: International Indices, Symbol: Shanghai (SSE)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5524092Z   ✅ Added 000001.SS to market_data
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5524273Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5524445Z Processing ticker: ^AXJO (price: 8719.7)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5524833Z   Found instrument info - Category: International Indices, Symbol: ASX 200
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5525250Z   ✅ Added ^AXJO to market_data
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5525450Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5525609Z Processing ticker: ^NSEI (price: 22997.35)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5526010Z   Found instrument info - Category: International Indices, Symbol: NSE (India)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5526455Z   ✅ Added ^NSEI to market_data
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5526641Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5526756Z Processing ticker: ^NZ50 (price: 13832.8)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5527142Z   Found instrument info - Category: International Indices, Symbol: NZX 50
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5527595Z   ✅ Added ^NZ50 to market_data
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5527748Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5527902Z Processing ticker: GLD (price: 382.71)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5528298Z   Found instrument info - Category: Commodities, Symbol: Gold (GLD)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5528701Z   ✅ Added GLD to market_data
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5528874Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5529013Z Processing ticker: USO (price: 157.31)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5529535Z   Found instrument info - Category: Commodities, Symbol: Oil (USO)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5529949Z   ✅ Added USO to market_data
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5530212Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5530376Z Processing ticker: SLV (price: 51.92)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5530740Z   Found instrument info - Category: Commodities, Symbol: Silver (SLV)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5531141Z   ✅ Added SLV to market_data
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5531343Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5531508Z Processing ticker: VOO (price: 709.43)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5531826Z   Found instrument info - Category: ETFs, Symbol: VOO
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5532233Z   ✅ Added VOO to market_data
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5532418Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5532532Z Processing ticker: VTI (price: 378.42)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5532868Z   Found instrument info - Category: ETFs, Symbol: VTI
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5533287Z   ✅ Added VTI to market_data
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5533437Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5533570Z Processing ticker: QQQ (price: 728.0)
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5533938Z   Found instrument info - Category: ETFs, Symbol: QQQ
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5534286Z   ✅ Added QQQ to market_data
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5534451Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5534582Z Final market_data contains 13 instruments
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5534925Z   - ^GSPC
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5535182Z   - ^IXIC
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5535446Z   - ^DJI
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5535683Z   - 000001.SS
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5535926Z   - ^AXJO
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5536183Z   - ^NSEI
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5536414Z   - ^NZ50
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5536689Z   - GLD
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5536924Z   - USO
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5537159Z   - SLV
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5537418Z   - VOO
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5537646Z   - VTI
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5537884Z   - QQQ
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5538022Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5538176Z Grouping 13 instruments by category:
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5538487Z   ^GSPC: S&P 500 -> US Indices
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5538807Z   ^IXIC: NASDAQ -> US Indices
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5539095Z   ^DJI: Dow Jones -> US Indices
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5539603Z   000001.SS: Shanghai (SSE) -> International Indices
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5539958Z   ^AXJO: ASX 200 -> International Indices
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5540345Z   ^NSEI: NSE (India) -> International Indices
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5540696Z   ^NZ50: NZX 50 -> International Indices
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5541017Z   GLD: Gold (GLD) -> Commodities
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5541337Z   USO: Oil (USO) -> Commodities
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5541637Z   SLV: Silver (SLV) -> Commodities
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5541917Z   VOO: VOO -> ETFs
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5542259Z   VTI: VTI -> ETFs
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5542560Z   QQQ: QQQ -> ETFs
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5542677Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5542845Z Category summary:
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5543111Z   US Indices: 3 instruments
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5543507Z   Currency Indices: 0 instruments
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5543841Z   International Indices: 4 instruments
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5544184Z   Commodities: 3 instruments
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5544493Z   ETFs: 3 instruments
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5544823Z Newsletter generated: archive/newsletter_2026-10-16.html
+generate	UNKNOWN STEP	2026-10-16T01:51:48.7236730Z ##[group]Run cp -r assets docs/
+generate	UNKNOWN STEP	2026-10-16T01:51:48.7237139Z ^[[36;1mcp -r assets docs/^[[0m
+generate	UNKNOWN STEP	2026-10-16T01:51:48.7237526Z ^[[36;1mcp newsletter.html docs/index.html^[[0m
+generate	UNKNOWN STEP	2026-10-16T01:51:48.7276509Z shell: /usr/bin/bash -e {0}
+generate	UNKNOWN STEP	2026-10-16T01:51:48.7276888Z env:
+generate	UNKNOWN STEP	2026-10-16T01:51:48.7277273Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.17/x64
+generate	UNKNOWN STEP	2026-10-16T01:51:48.7277834Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib/pkgconfig
+generate	UNKNOWN STEP	2026-10-16T01:51:48.7278309Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+generate	UNKNOWN STEP	2026-10-16T01:51:48.7278756Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+generate	UNKNOWN STEP	2026-10-16T01:51:48.7279198Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+generate	UNKNOWN STEP	2026-10-16T01:51:48.7279993Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib
+generate	UNKNOWN STEP	2026-10-16T01:51:48.7280437Z ##[endgroup]
+generate	UNKNOWN STEP	2026-10-16T01:51:48.7458383Z ##[group]Run peaceiris/actions-gh-pages@v3
+generate	UNKNOWN STEP	2026-10-16T01:51:48.7458748Z with:
+generate	UNKNOWN STEP	2026-10-16T01:51:48.7461703Z   github_token: ***
+generate	UNKNOWN STEP	2026-10-16T01:51:48.7462007Z   publish_dir: ./docs
+generate	UNKNOWN STEP	2026-10-16T01:51:48.7462321Z   publish_branch: gh-pages
+generate	UNKNOWN STEP	2026-10-16T01:51:48.7462663Z   allow_empty_commit: false
+generate	UNKNOWN STEP	2026-10-16T01:51:48.7463106Z   keep_files: false
+generate	UNKNOWN STEP	2026-10-16T01:51:48.7463377Z   force_orphan: false
+generate	UNKNOWN STEP	2026-10-16T01:51:48.7463672Z   enable_jekyll: false
+generate	UNKNOWN STEP	2026-10-16T01:51:48.7463950Z   disable_nojekyll: false
+generate	UNKNOWN STEP	2026-10-16T01:51:48.7464308Z   exclude_assets: .github
+generate	UNKNOWN STEP	2026-10-16T01:51:48.7464589Z env:
+generate	UNKNOWN STEP	2026-10-16T01:51:48.7464896Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.17/x64
+generate	UNKNOWN STEP	2026-10-16T01:51:48.7465354Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib/pkgconfig
+generate	UNKNOWN STEP	2026-10-16T01:51:48.7465789Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+generate	UNKNOWN STEP	2026-10-16T01:51:48.7466254Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+generate	UNKNOWN STEP	2026-10-16T01:51:48.7466704Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+generate	UNKNOWN STEP	2026-10-16T01:51:48.7467145Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib
+generate	UNKNOWN STEP	2026-10-16T01:51:48.7467496Z ##[endgroup]
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8094530Z [INFO] Usage https://github.com/peaceiris/actions-gh-pages#readme
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8098372Z ##[group]Dump inputs
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8098847Z [INFO] GithubToken: true
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8099192Z [INFO] PublishBranch: gh-pages
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8099678Z [INFO] PublishDir: ./docs
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8100110Z [INFO] DestinationDir: 
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8100418Z [INFO] ExternalRepository: 
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8100717Z [INFO] AllowEmptyCommit: false
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8101065Z [INFO] KeepFiles: false
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8101379Z [INFO] ForceOrphan: false
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8101785Z [INFO] UserName: 
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8102221Z [INFO] UserEmail: 
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8102497Z [INFO] CommitMessage: 
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8102802Z [INFO] FullCommitMessage: 
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8103148Z [INFO] TagName: 
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8103757Z [INFO] TagMessage: 
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8104948Z [INFO] EnableJekyll (DisableNoJekyll): false
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8105445Z [INFO] CNAME: 
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8105729Z [INFO] ExcludeAssets .github
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8105922Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8106331Z ##[endgroup]
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8106965Z ##[group]Setup auth token
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8107660Z (node:2275) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8108566Z (Use `node --trace-deprecation ...` to show where the warning was created)
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8109174Z [INFO] setup GITHUB_TOKEN
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8110846Z ##[endgroup]
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8111449Z ##[group]Prepare publishing assets
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8112126Z [INFO] ForceOrphan: false
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8133000Z [command]/usr/bin/git clone --depth=1 --single-branch --branch gh-pages ***github.com/asif-jc/daily-news-letter-public.git /home/runner/actions_github_pages_1792115508810
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8162494Z Cloning into '/home/runner/actions_github_pages_1792115508810'...
+generate	UNKNOWN STEP	2026-10-16T01:51:49.4922587Z [INFO] clean up /home/runner/actions_github_pages_1792115508810
+generate	UNKNOWN STEP	2026-10-16T01:51:49.4923514Z [INFO] chdir /home/runner/actions_github_pages_1792115508810
+generate	UNKNOWN STEP	2026-10-16T01:51:49.4932080Z [command]/usr/bin/git rm -r --ignore-unmatch *
+generate	UNKNOWN STEP	2026-10-16T01:51:49.5117420Z rm '.nojekyll'
+generate	UNKNOWN STEP	2026-10-16T01:51:49.5118001Z rm 'assets/dunder_park.jpg'
+generate	UNKNOWN STEP	2026-10-16T01:51:49.5118445Z rm 'assets/mt_kalash.png'
+generate	UNKNOWN STEP	2026-10-16T01:51:49.5118921Z rm 'assets/mt_kalash_resize.png'
+generate	UNKNOWN STEP	2026-10-16T01:51:49.5119306Z rm 'assets/windows_hills.png'
+generate	UNKNOWN STEP	2026-10-16T01:51:49.5119787Z rm 'index.html'
+generate	UNKNOWN STEP	2026-10-16T01:51:49.5120295Z [INFO] chdir /home/runner/actions_github_pages_1792115508810
+generate	UNKNOWN STEP	2026-10-16T01:51:49.5121929Z [INFO] prepare publishing assets
+generate	UNKNOWN STEP	2026-10-16T01:51:49.5122717Z [INFO] copy /home/runner/work/daily-news-letter-public/daily-news-letter-public/docs to /home/runner/actions_github_pages_1792115508810
+generate	UNKNOWN STEP	2026-10-16T01:51:49.5227068Z cp: no such file or directory: /home/runner/work/daily-news-letter-public/daily-news-letter-public/docs/.*
+generate	UNKNOWN STEP	2026-10-16T01:51:49.5227946Z [INFO] delete excluded assets
+generate	UNKNOWN STEP	2026-10-16T01:51:49.5250812Z rm: no paths given
+generate	UNKNOWN STEP	2026-10-16T01:51:49.5252012Z [INFO] Created /home/runner/actions_github_pages_1792115508810/.nojekyll
+generate	UNKNOWN STEP	2026-10-16T01:51:49.5253437Z ##[endgroup]
+generate	UNKNOWN STEP	2026-10-16T01:51:49.5254034Z ##[group]Setup Git config
+generate	UNKNOWN STEP	2026-10-16T01:51:49.5264274Z [command]/usr/bin/git remote rm origin
+generate	UNKNOWN STEP	2026-10-16T01:51:49.5318431Z [command]/usr/bin/git remote add origin ***github.com/asif-jc/daily-news-letter-public.git
+generate	UNKNOWN STEP	2026-10-16T01:51:49.5353677Z [command]/usr/bin/git add --all
+generate	UNKNOWN STEP	2026-10-16T01:51:49.5475406Z [command]/usr/bin/git config user.name asif-jc
+generate	UNKNOWN STEP	2026-10-16T01:51:49.5510398Z [command]/usr/bin/git config user.email [email redacted]
+generate	UNKNOWN STEP	2026-10-16T01:51:49.5533584Z ##[endgroup]
+generate	UNKNOWN STEP	2026-10-16T01:51:49.5534052Z ##[group]Create a commit
+generate	UNKNOWN STEP	2026-10-16T01:51:49.5544447Z [command]/usr/bin/git commit -m deploy: 59b7920ad252ef85725b998d64b2859d1077fceb
+generate	UNKNOWN STEP	2026-10-16T01:51:49.5680045Z [gh-pages 98b1d4a] deploy: 59b7920ad252ef85725b998d64b2859d1077fceb
+generate	UNKNOWN STEP	2026-10-16T01:51:49.5680847Z  1 file changed, 5 insertions(+), 5 deletions(-)
+generate	UNKNOWN STEP	2026-10-16T01:51:49.5682900Z ##[endgroup]
+generate	UNKNOWN STEP	2026-10-16T01:51:49.5683597Z ##[group]Push the commit or tag
+generate	UNKNOWN STEP	2026-10-16T01:51:49.5699981Z [command]/usr/bin/git push origin gh-pages
+generate	UNKNOWN STEP	2026-10-16T01:51:51.0850951Z To https://github.com/asif-jc/daily-news-letter-public.git
+generate	UNKNOWN STEP	2026-10-16T01:51:51.0851505Z    5100f5b..98b1d4a  gh-pages -> gh-pages
+generate	UNKNOWN STEP	2026-10-16T01:51:51.0885015Z ##[endgroup]
+generate	UNKNOWN STEP	2026-10-16T01:51:51.0885525Z [INFO] Action successfully completed
+generate	UNKNOWN STEP	2026-10-16T01:51:51.1009356Z Post job cleanup.
+generate	UNKNOWN STEP	2026-10-16T01:51:51.2113494Z (node:2311) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+generate	UNKNOWN STEP	2026-10-16T01:51:51.2114545Z (Use `node --trace-deprecation ...` to show where the warning was created)
+generate	UNKNOWN STEP	2026-10-16T01:51:51.2273169Z Post job cleanup.
+generate	UNKNOWN STEP	2026-10-16T01:51:51.3093654Z [command]/usr/bin/git version
+generate	UNKNOWN STEP	2026-10-16T01:51:51.3127935Z git version 2.55.0
+generate	UNKNOWN STEP	2026-10-16T01:51:51.3159032Z Temporarily overriding HOME='/home/runner/work/_temp/754b7ea6-69e5-4c8f-92c4-e392ab760531' before making global git config changes
+generate	UNKNOWN STEP	2026-10-16T01:51:51.3160503Z Adding repository directory to the temporary git global config as a safe directory
+generate	UNKNOWN STEP	2026-10-16T01:51:51.3162888Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/daily-news-letter-public/daily-news-letter-public
+generate	UNKNOWN STEP	2026-10-16T01:51:51.3198001Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+generate	UNKNOWN STEP	2026-10-16T01:51:51.3225513Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+generate	UNKNOWN STEP	2026-10-16T01:51:51.3410545Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+generate	UNKNOWN STEP	2026-10-16T01:51:51.3432977Z http.https://github.com/.extraheader
+generate	UNKNOWN STEP	2026-10-16T01:51:51.3442759Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+generate	UNKNOWN STEP	2026-10-16T01:51:51.3491084Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+generate	UNKNOWN STEP	2026-10-16T01:51:51.3686683Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+generate	UNKNOWN STEP	2026-10-16T01:51:51.3715397Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+generate	UNKNOWN STEP	2026-10-16T01:51:51.4033612Z Cleaning up orphan processes
+generate	UNKNOWN STEP	2026-10-16T01:51:51.4247408Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v4, peaceiris/actions-gh-pages@v3. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

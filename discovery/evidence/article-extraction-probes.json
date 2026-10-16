@@ -1,0 +1,50 @@
+[
+  {
+    "source": "BBC World News",
+    "article_url": "https://www.bbc.co.uk/news/articles/cm89zp48k4kzo?at_medium=RSS&at_campaign=rss",
+    "status": 200,
+    "selected_method": "article",
+    "extracted_characters": 4655,
+    "structured_article_body": false,
+    "contains_cookie_word": false,
+    "contains_subscribe_word": false,
+    "rss_description_characters": 117,
+    "seconds": 0.42
+  },
+  {
+    "source": "TechCrunch",
+    "article_url": "https://techcrunch.com/2026/10/15/even-benchmark-thinks-ai-is-eroding-the-venture-pact-against-backing-rivals/",
+    "status": 200,
+    "selected_method": "all paragraphs",
+    "extracted_characters": 5031,
+    "structured_article_body": false,
+    "contains_cookie_word": false,
+    "contains_subscribe_word": false,
+    "rss_description_characters": 82,
+    "seconds": 0.23
+  },
+  {
+    "source": "Ars Technica",
+    "article_url": "https://arstechnica.com/space/2026/10/blue-origin-is-going-all-in-on-the-new-glenn-rocket/",
+    "status": 200,
+    "selected_method": "article",
+    "extracted_characters": 5289,
+    "structured_article_body": false,
+    "contains_cookie_word": false,
+    "contains_subscribe_word": true,
+    "rss_description_characters": 93,
+    "seconds": 1.07
+  },
+  {
+    "source": "CNBC Finance",
+    "article_url": "https://www.cnbc.com/2026/10/15/kfc-coca-cola-pepsi-switch.html",
+    "status": 200,
+    "selected_method": "all paragraphs",
+    "extracted_characters": 2914,
+    "structured_article_body": false,
+    "contains_cookie_word": false,
+    "contains_subscribe_word": false,
+    "rss_description_characters": 89,
+    "seconds": 0.47
+  }
+]

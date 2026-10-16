@@ -1,0 +1,519 @@
+{
+  "source_files": {
+    "src/mvp_news_aggregator/breaking_news_data.py": {
+      "lines": 1,
+      "definitions": []
+    },
+    "src/mvp_news_aggregator/collector.py": {
+      "lines": 185,
+      "definitions": [
+        "ArticleCollector"
+      ]
+    },
+    "src/mvp_news_aggregator/config.py": {
+      "lines": 24,
+      "definitions": []
+    },
+    "src/mvp_news_aggregator/curator.py": {
+      "lines": 462,
+      "definitions": [
+        "ArticleCurator"
+      ]
+    },
+    "src/mvp_news_aggregator/database.py": {
+      "lines": 350,
+      "definitions": []
+    },
+    "src/mvp_news_aggregator/db_utils.py": {
+      "lines": 186,
+      "definitions": []
+    },
+    "src/mvp_news_aggregator/eggs_data.py": {
+      "lines": 33,
+      "definitions": [
+        "_fetch_apu_retail_egg_data",
+        "_fetch_egg_stock_market_data",
+        "_fetch_polymarket_eggs_odds_data",
+        "_fetch_kalashi_eggs_odds_data",
+        "_fetch_wholesale_index_eggs",
+        "_fetch_algo_bet_model_outputs",
+        "pull_eggs_data"
+      ]
+    },
+    "src/mvp_news_aggregator/email_newsletter_sender.py": {
+      "lines": 377,
+      "definitions": [
+        "EmailNewsletterSender",
+        "send_test_email",
+        "send_newsletter",
+        "send_simple_test_email",
+        "send_simple_newsletter"
+      ]
+    },
+    "src/mvp_news_aggregator/email_sender.py": {
+      "lines": 248,
+      "definitions": []
+    },
+    "src/mvp_news_aggregator/foreign_exchange_data.py": {
+      "lines": 342,
+      "definitions": [
+        "get_dxy_from_market_data",
+        "_ensure_data_directory",
+        "_calculate_percentage_change",
+        "_fetch_current_rates",
+        "_fetch_historical_rates_fixer",
+        "_fetch_historical_rates_alternative",
+        "_try_exchangerate_api",
+        "_try_coingecko_historical",
+        "fetch_daily_fx_data_past_month",
+        "get_fx_changes_from_daily_data",
+        "pull_fx_data"
+      ]
+    },
+    "src/mvp_news_aggregator/main.py": {
+      "lines": 65,
+      "definitions": [
+        "run_daily_pipeline"
+      ]
+    },
+    "src/mvp_news_aggregator/market_data.py": {
+      "lines": 367,
+      "definitions": [
+        "_ensure_data_directory",
+        "_calculate_percentage_change",
+        "get_market_instruments",
+        "pull_market_data",
+        "get_market_changes_from_daily_data",
+        "pull_and_process_market_data"
+      ]
+    },
+    "src/mvp_news_aggregator/quiz_data.py": {
+      "lines": 475,
+      "definitions": [
+        "QuizGenerator",
+        "pull_quiz_data",
+        "save_quiz_data",
+        "load_quiz_data"
+      ]
+    },
+    "src/mvp_news_aggregator/scrapper.py": {
+      "lines": 84,
+      "definitions": [
+        "scrape_article_content",
+        "enhance_top_stories_with_content"
+      ]
+    },
+    "src/mvp_news_aggregator/sources.py": {
+      "lines": 18,
+      "definitions": []
+    },
+    "src/mvp_news_aggregator/subscribers.py": {
+      "lines": 31,
+      "definitions": []
+    },
+    "src/mvp_news_aggregator/web_newsletter.py": {
+      "lines": 1294,
+      "definitions": [
+        "NewsletterGenerator",
+        "regenerate_newsletter_with_nzt",
+        "generate_newsletter",
+        "test_nzt_formatting"
+      ]
+    },
+    "src/version_agentic/__init__.py": {
+      "lines": 5,
+      "definitions": []
+    },
+    "src/version_agentic/agents/__init__.py": {
+      "lines": 3,
+      "definitions": []
+    },
+    "src/version_agentic/agents/base_agent.py": {
+      "lines": 6,
+      "definitions": []
+    },
+    "src/version_agentic/agents/curation_agent.py": {
+      "lines": 7,
+      "definitions": []
+    },
+    "src/version_agentic/agents/enhancement_agent.py": {
+      "lines": 7,
+      "definitions": []
+    },
+    "src/version_agentic/coordinator/__init__.py": {
+      "lines": 3,
+      "definitions": []
+    },
+    "src/version_agentic/coordinator/config_loader.py": {
+      "lines": 6,
+      "definitions": []
+    },
+    "src/version_agentic/coordinator/pipeline_coordinator.py": {
+      "lines": 182,
+      "definitions": [
+        "PipelineState",
+        "PipelineCoordinator",
+        "run_agentic_pipeline"
+      ]
+    },
+    "src/version_agentic/coordinator/state_manager.py": {
+      "lines": 6,
+      "definitions": []
+    },
+    "src/version_agentic/main.py": {
+      "lines": 43,
+      "definitions": [
+        "main"
+      ]
+    },
+    "src/version_agentic/services/__init__.py": {
+      "lines": 3,
+      "definitions": []
+    },
+    "src/version_agentic/services/collector_service.py": {
+      "lines": 6,
+      "definitions": []
+    },
+    "src/version_agentic/services/deployment_service.py": {
+      "lines": 6,
+      "definitions": []
+    },
+    "src/version_agentic/services/generator_service.py": {
+      "lines": 6,
+      "definitions": []
+    },
+    "src/version_agentic/services/scraping_service.py": {
+      "lines": 6,
+      "definitions": []
+    },
+    "src/version_agentic/utils/__init__.py": {
+      "lines": 3,
+      "definitions": []
+    },
+    "src/version_agentic/utils/logging.py": {
+      "lines": 6,
+      "definitions": []
+    },
+    "src/version_agentic/utils/retry.py": {
+      "lines": 6,
+      "definitions": []
+    },
+    "src/version_agentic/utils/validators.py": {
+      "lines": 6,
+      "definitions": []
+    }
+  },
+  "archives": {
+    "quiz_2025-09-11.json": {
+      "question_count": 25,
+      "unique_questions": 25,
+      "metadata": {
+        "topics": [
+          "geography",
+          "STEM",
+          "history",
+          "general_knowledge"
+        ],
+        "difficulty": "hard",
+        "question_count": 25,
+        "generated_with_llm": true,
+        "generation_timestamp": "2025-09-11T07:59:22.846766+00:00"
+      }
+    },
+    "quiz_2025-09-27.json": {
+      "question_count": 25,
+      "unique_questions": 25,
+      "metadata": {
+        "topics": [
+          "geography",
+          "STEM",
+          "history",
+          "general_knowledge"
+        ],
+        "difficulty": "medium",
+        "question_count": 25,
+        "generated_with_llm": true,
+        "generation_timestamp": "2025-09-27T06:34:42.343529+00:00"
+      }
+    },
+    "quiz_2025-10-01.json": {
+      "question_count": 25,
+      "unique_questions": 25,
+      "metadata": {
+        "topics": [
+          "geography",
+          "STEM",
+          "history",
+          "general_knowledge"
+        ],
+        "difficulty": "medium",
+        "question_count": 25,
+        "generated_with_llm": true,
+        "generation_timestamp": "2025-09-30T13:58:44.999528+00:00"
+      }
+    },
+    "quiz_2025-10-02.json": {
+      "question_count": 11,
+      "unique_questions": 11,
+      "metadata": {
+        "topics": [
+          "geography",
+          "STEM",
+          "history",
+          "general_knowledge"
+        ],
+        "difficulty": "medium",
+        "question_count": 11,
+        "generated_with_llm": false,
+        "generation_timestamp": "2025-10-02T07:41:35.325069+00:00"
+      }
+    },
+    "quiz_2025-10-04.json": {
+      "question_count": 11,
+      "unique_questions": 11,
+      "metadata": {
+        "topics": [
+          "geography",
+          "STEM",
+          "history",
+          "general_knowledge"
+        ],
+        "difficulty": "medium",
+        "question_count": 11,
+        "generated_with_llm": false,
+        "generation_timestamp": "2025-10-04T09:20:30.221814+00:00"
+      }
+    },
+    "quiz_2026-03-02.json": {
+      "question_count": 25,
+      "unique_questions": 25,
+      "metadata": {
+        "topics": [
+          "geography",
+          "STEM",
+          "history",
+          "general_knowledge"
+        ],
+        "difficulty": "medium",
+        "question_count": 25,
+        "generated_with_llm": true,
+        "generation_timestamp": "2026-03-02T07:48:59.607574+00:00"
+      }
+    }
+  },
+  "probes": {
+    "quiz_fallback": {
+      "requested": 25,
+      "first_count": 11,
+      "second_count": 11,
+      "overlap": 11
+    },
+    "no_llm_dedup_count": 2,
+    "selection_reason_lost": {
+      "llm_summary": "",
+      "has_reason": false,
+      "importance_score": 8
+    },
+    "cached_render": {
+      "bytes": 54877,
+      "article_blocks": 9,
+      "quiz_buttons": 25,
+      "why_matters_blocks": 4,
+      "output": "temporary directory, removed automatically"
+    },
+    "raw_html_interpolation": true,
+    "synthetic_fx_example": {
+      "NZD/USD": 0.5538,
+      "NZD/AUD": 0.814,
+      "NZD/INR": 53.71,
+      "NZD/CNY": 3.7365,
+      "NZD/THB": 18.66
+    }
+  },
+  "news_schema": {
+    "world": {
+      "top_stories": {
+        "count": 2,
+        "fields": [
+          "category",
+          "description",
+          "enhanced_summary",
+          "fetched_at",
+          "id",
+          "importance_score",
+          "llm_summary",
+          "published",
+          "scraped_content",
+          "source",
+          "title",
+          "url",
+          "why_matters"
+        ]
+      },
+      "quick_reads": {
+        "count": 2,
+        "fields": [
+          "category",
+          "description",
+          "fetched_at",
+          "id",
+          "llm_reason",
+          "published",
+          "source",
+          "title",
+          "url"
+        ]
+      }
+    },
+    "tech": {
+      "top_stories": {
+        "count": 2,
+        "fields": [
+          "category",
+          "description",
+          "enhanced_summary",
+          "fetched_at",
+          "id",
+          "importance_score",
+          "llm_summary",
+          "published",
+          "scraped_content",
+          "source",
+          "title",
+          "url",
+          "why_matters"
+        ]
+      },
+      "quick_reads": {
+        "count": 3,
+        "fields": [
+          "category",
+          "description",
+          "fetched_at",
+          "id",
+          "llm_reason",
+          "published",
+          "source",
+          "title",
+          "url"
+        ]
+      }
+    }
+  },
+  "quiz_pair_overlap": [
+    {
+      "a": "quiz_2025-09-11.json",
+      "b": "quiz_2025-09-27.json",
+      "shared": 2
+    },
+    {
+      "a": "quiz_2025-09-11.json",
+      "b": "quiz_2025-10-01.json",
+      "shared": 2
+    },
+    {
+      "a": "quiz_2025-09-11.json",
+      "b": "quiz_2025-10-02.json",
+      "shared": 0
+    },
+    {
+      "a": "quiz_2025-09-11.json",
+      "b": "quiz_2025-10-04.json",
+      "shared": 0
+    },
+    {
+      "a": "quiz_2025-09-11.json",
+      "b": "quiz_2026-03-02.json",
+      "shared": 2
+    },
+    {
+      "a": "quiz_2025-09-27.json",
+      "b": "quiz_2025-10-01.json",
+      "shared": 8
+    },
+    {
+      "a": "quiz_2025-09-27.json",
+      "b": "quiz_2025-10-02.json",
+      "shared": 0
+    },
+    {
+      "a": "quiz_2025-09-27.json",
+      "b": "quiz_2025-10-04.json",
+      "shared": 0
+    },
+    {
+      "a": "quiz_2025-09-27.json",
+      "b": "quiz_2026-03-02.json",
+      "shared": 6
+    },
+    {
+      "a": "quiz_2025-10-01.json",
+      "b": "quiz_2025-10-02.json",
+      "shared": 0
+    },
+    {
+      "a": "quiz_2025-10-01.json",
+      "b": "quiz_2025-10-04.json",
+      "shared": 0
+    },
+    {
+      "a": "quiz_2025-10-01.json",
+      "b": "quiz_2026-03-02.json",
+      "shared": 4
+    },
+    {
+      "a": "quiz_2025-10-02.json",
+      "b": "quiz_2025-10-04.json",
+      "shared": 11
+    },
+    {
+      "a": "quiz_2025-10-02.json",
+      "b": "quiz_2026-03-02.json",
+      "shared": 0
+    },
+    {
+      "a": "quiz_2025-10-04.json",
+      "b": "quiz_2026-03-02.json",
+      "shared": 0
+    }
+  ],
+  "legacy_database": {
+    "articles": {
+      "rows": 185,
+      "columns": [
+        "id",
+        "title",
+        "url",
+        "description",
+        "source",
+        "category",
+        "published",
+        "fetched_at",
+        "content_hash",
+        "word_count",
+        "selected_for_newsletter",
+        "newsletter_date",
+        "priority_score",
+        "click_count"
+      ]
+    },
+    "subscribers": {
+      "rows": 0,
+      "columns": [
+        "id",
+        "email",
+        "name",
+        "active",
+        "preferences",
+        "frequency",
+        "timezone",
+        "created_at",
+        "updated_at",
+        "last_sent",
+        "open_count",
+        "click_count"
+      ]
+    }
+  },
+  "test_files": []
+}
