@@ -313,7 +313,7 @@ generate	UNKNOWN STEP	2026-10-16T01:50:53.2682875Z   Created wheel for sgmllib3k
 generate	UNKNOWN STEP	2026-10-16T01:50:53.2684572Z   Stored in directory: /home/runner/.cache/pip/wheels/3b/25/2a/105d6a15df6914f4d15047691c6c28f9052cc1173e40285d03
 generate	UNKNOWN STEP	2026-10-16T01:50:53.2696798Z Successfully built sgmllib3k
 generate	UNKNOWN STEP	2026-10-16T01:50:53.3595349Z Installing collected packages: sgmllib3k, pytz, multitasking, websockets, urllib3, uritemplate, tzdata, typing_extensions, tqdm, soupsieve, six, python-http-client, python-dotenv, pyparsing, pycparser, pyasn1, protobuf, platformdirs, peewee, numpy, MarkupSafe, lxml, idna, grpcio, feedparser, charset-normalizer, certifi, cachetools, annotated-types, Werkzeug, typing-inspection, rsa, requests, python-dateutil, pydantic_core, pyasn1_modules, proto-plus, httplib2, googleapis-common-protos, ecdsa, cffi, beautifulsoup4, sendgrid, pydantic, pandas, grpcio-status, google-auth, curl_cffi, yfinance, google-auth-httplib2, google-api-core, google-api-python-client, google-ai-generativelanguage, google-generativeai
-generate	UNKNOWN STEP	2026-10-16T01:51:01.0222948Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:01.0222948Z
 generate	UNKNOWN STEP	2026-10-16T01:51:01.0246281Z Successfully installed MarkupSafe-3.0.2 Werkzeug-3.1.3 annotated-types-0.7.0 beautifulsoup4-4.13.4 cachetools-5.5.2 certifi-2025.8.3 cffi-2.1.1 charset-normalizer-3.4.3 curl_cffi-0.16.3 ecdsa-0.19.1 feedparser-6.0.11 google-ai-generativelanguage-0.6.15 google-api-core-2.25.1 google-api-python-client-2.179.0 google-auth-2.40.3 google-auth-httplib2-0.2.0 google-generativeai-0.8.5 googleapis-common-protos-1.70.0 grpcio-1.74.0 grpcio-status-1.71.2 httplib2-0.22.0 idna-3.10 lxml-6.1.3 multitasking-0.0.13 numpy-2.3.2 pandas-2.3.1 peewee-4.5.3 platformdirs-4.13.3 proto-plus-1.26.1 protobuf-5.29.5 pyasn1-0.6.1 pyasn1_modules-0.4.2 pycparser-3.11 pydantic-2.11.7 pydantic_core-2.33.2 pyparsing-3.2.3 python-dateutil-2.9.0.post0 python-dotenv-1.1.1 python-http-client-3.3.7 pytz-2025.2 requests-2.32.5 rsa-4.9.1 sendgrid-6.12.4 sgmllib3k-1.0.0 six-1.17.0 soupsieve-2.7 tqdm-4.67.1 typing-inspection-0.4.1 typing_extensions-4.14.1 tzdata-2025.2 uritemplate-4.2.0 urllib3-2.5.0 websockets-17.2 yfinance-1.7.0
 generate	UNKNOWN STEP	2026-10-16T01:51:01.1988555Z ##[group]Run mkdir -p data/loading
 generate	UNKNOWN STEP	2026-10-16T01:51:01.1988956Z ^[[36;1mmkdir -p data/loading^[[0m
@@ -373,118 +373,118 @@ generate	UNKNOWN STEP	2026-10-16T01:51:24.5801383Z Found 68 articles after dedup
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5801958Z LLM curated articles for categories: ['world', 'tech', 'finance']
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5802666Z Scraping: https://www.bbc.co.uk/news/articles/cm89zp48k4kzo?at_medium=RSS&at_campaign=rss
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5803296Z Found content with selector 'article': 2034 chars
-generate	UNKNOWN STEP	2026-10-16T01:51:24.5803725Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5803725Z
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5804474Z 📝 Content optimization for https://www.bbc.co.uk/news/articles/cm89zp48k4kzo?at_medium=RSS&at_campaign=rss:
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5805267Z    Original: 2034 chars → Optimized: 1124 chars
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5805754Z    Reduction: 44.7%
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5806120Z    Sentences: kept 8/17 best sentences
-generate	UNKNOWN STEP	2026-10-16T01:51:24.5806427Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5806427Z
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5806807Z 🤖 LLM Enhancement: Three children and a teacher killed by 16-year-old...
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5807356Z    Input length: 1124 chars
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5808596Z    LLM error: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5810581Z Scraping: https://www.bbc.co.uk/news/videos/cwe8r29mjd05o?at_medium=RSS&at_campaign=rss
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5811282Z Found content with selector 'article': 1616 chars
-generate	UNKNOWN STEP	2026-10-16T01:51:24.5811561Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5811561Z
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5812162Z 📝 Content optimization for https://www.bbc.co.uk/news/videos/cwe8r29mjd05o?at_medium=RSS&at_campaign=rss:
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5812950Z    Original: 1616 chars → Optimized: 1422 chars
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5813416Z    Reduction: 12.0%
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5813870Z    Sentences: kept 8/9 best sentences
-generate	UNKNOWN STEP	2026-10-16T01:51:24.5814584Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5814584Z
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5814966Z 🤖 LLM Enhancement: 'It's really hard to believe' - How Oregon primary...
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5815534Z    Input length: 1422 chars
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5816602Z    LLM error: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5817938Z Scraping: https://www.bbc.co.uk/news/articles/crx23qlnj27qo?at_medium=RSS&at_campaign=rss
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5818559Z Found content with selector 'article': 4778 chars
-generate	UNKNOWN STEP	2026-10-16T01:51:24.5818803Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5818803Z
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5819361Z 📝 Content optimization for https://www.bbc.co.uk/news/articles/crx23qlnj27qo?at_medium=RSS&at_campaign=rss:
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5820205Z    Original: 4778 chars → Optimized: 1328 chars
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5820702Z    Reduction: 72.2%
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5821039Z    Sentences: kept 8/34 best sentences
-generate	UNKNOWN STEP	2026-10-16T01:51:24.5821259Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5821259Z
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5821555Z 🤖 LLM Enhancement: Trump calls off livestream of Fort Hood attacker's...
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5822028Z    Input length: 1328 chars
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5822877Z    LLM error: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5823910Z Scraping: https://www.bbc.co.uk/news/articles/cqwyrnwd9dw1o?at_medium=RSS&at_campaign=rss
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5824356Z Found content with selector 'article': 7739 chars
-generate	UNKNOWN STEP	2026-10-16T01:51:24.5824574Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5824574Z
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5825168Z 📝 Content optimization for https://www.bbc.co.uk/news/articles/cqwyrnwd9dw1o?at_medium=RSS&at_campaign=rss:
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5825714Z    Original: 7739 chars → Optimized: 1604 chars
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5826042Z    Reduction: 79.3%
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5826396Z    Sentences: kept 8/51 best sentences
-generate	UNKNOWN STEP	2026-10-16T01:51:24.5826569Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5826569Z
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5826830Z 🤖 LLM Enhancement: Russia accuses Ukraine of attacking oil refinery a...
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5827249Z    Input length: 1604 chars
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5828073Z    LLM error: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5829107Z Scraping: https://www.bbc.co.uk/news/articles/c6wyrnmgzn01o?at_medium=RSS&at_campaign=rss
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5829711Z Found content with selector 'article': 3085 chars
-generate	UNKNOWN STEP	2026-10-16T01:51:24.5829914Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5829914Z
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5830287Z 📝 Content optimization for https://www.bbc.co.uk/news/articles/c6wyrnmgzn01o?at_medium=RSS&at_campaign=rss:
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5830860Z    Original: 3085 chars → Optimized: 1173 chars
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5831181Z    Reduction: 62.0%
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5831533Z    Sentences: kept 8/24 best sentences
-generate	UNKNOWN STEP	2026-10-16T01:51:24.5831703Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5831703Z
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5831967Z 🤖 LLM Enhancement: Bus hits train stopped on French side of Channel T...
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5832337Z    Input length: 1173 chars
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5833188Z    LLM error: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5834266Z Scraping: https://techcrunch.com/2026/10/15/tesla-reveals-spacex-powered-roadster-that-flies-and-falls-with-style/
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5834874Z Fallback paragraphs: 8323 chars
-generate	UNKNOWN STEP	2026-10-16T01:51:24.5835037Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5835037Z
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5835541Z 📝 Content optimization for https://techcrunch.com/2026/10/15/tesla-reveals-spacex-powered-roadster-that-flies-and-falls-with-style/:
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5836157Z    Original: 8323 chars → Optimized: 1349 chars
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5836759Z    Reduction: 83.8%
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5837034Z    Sentences: kept 8/66 best sentences
-generate	UNKNOWN STEP	2026-10-16T01:51:24.5837245Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5837245Z
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5837551Z 🤖 LLM Enhancement: Tesla reveals SpaceX-powered Roadster that flies a...
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5837939Z    Input length: 1349 chars
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5838745Z    LLM error: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5839982Z Scraping: https://techcrunch.com/2026/10/15/when-it-came-to-cal-ais-viral-success-a-small-army-of-influencers-paid-off/
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5840617Z Fallback paragraphs: 4244 chars
-generate	UNKNOWN STEP	2026-10-16T01:51:24.5840764Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5840764Z
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5841309Z 📝 Content optimization for https://techcrunch.com/2026/10/15/when-it-came-to-cal-ais-viral-success-a-small-army-of-influencers-paid-off/:
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5841988Z    Original: 4244 chars → Optimized: 1215 chars
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5842296Z    Reduction: 71.4%
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5842751Z    Sentences: kept 8/33 best sentences
-generate	UNKNOWN STEP	2026-10-16T01:51:24.5842951Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5842951Z
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5843585Z 🤖 LLM Enhancement: When it came to Cal AI’s viral success, a small ar...
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5844006Z    Input length: 1215 chars
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5844842Z    LLM error: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5846329Z Scraping: https://techcrunch.com/2026/10/15/and-the-winner-of-startup-battlefield-at-disrupt-2026-is-intero-biosystems/
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5846927Z Fallback paragraphs: 4759 chars
-generate	UNKNOWN STEP	2026-10-16T01:51:24.5847120Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5847120Z
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5847603Z 📝 Content optimization for https://techcrunch.com/2026/10/15/and-the-winner-of-startup-battlefield-at-disrupt-2026-is-intero-biosystems/:
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5848268Z    Original: 4759 chars → Optimized: 1266 chars
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5848613Z    Reduction: 73.4%
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5849317Z    Removed junk: read more about
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5849822Z    Sentences: kept 8/31 best sentences
-generate	UNKNOWN STEP	2026-10-16T01:51:24.5850032Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5850032Z
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5850282Z 🤖 LLM Enhancement: And the winner of Startup Battlefield at Disrupt 2...
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5850702Z    Input length: 1266 chars
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5851569Z    LLM error: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5852711Z Scraping: https://techcrunch.com/2026/10/15/amazon-devices-chief-panos-panay-on-the-importance-of-failure-and-bouncing-back-from-it/
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5853373Z Fallback paragraphs: 4527 chars
-generate	UNKNOWN STEP	2026-10-16T01:51:24.5853579Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5853579Z
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5854128Z 📝 Content optimization for https://techcrunch.com/2026/10/15/amazon-devices-chief-panos-panay-on-the-importance-of-failure-and-bouncing-back-from-it/:
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5854878Z    Original: 4527 chars → Optimized: 1181 chars
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5855200Z    Reduction: 73.9%
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5855480Z    Sentences: kept 8/42 best sentences
-generate	UNKNOWN STEP	2026-10-16T01:51:24.5855711Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5855711Z
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5855947Z 🤖 LLM Enhancement: Amazon devices chief Panos Panay on the importance...
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5856336Z    Input length: 1181 chars
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5857213Z    LLM error: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5858225Z Scraping: https://techcrunch.com/2026/10/15/meta-launches-an-open-weight-model-that-runs-on-macs/
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5858813Z Fallback paragraphs: 3236 chars
-generate	UNKNOWN STEP	2026-10-16T01:51:24.5859014Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5859014Z
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5859402Z 📝 Content optimization for https://techcrunch.com/2026/10/15/meta-launches-an-open-weight-model-that-runs-on-macs/:
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5860192Z    Original: 3236 chars → Optimized: 1137 chars
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5860556Z    Reduction: 64.9%
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5860835Z    Sentences: kept 8/24 best sentences
-generate	UNKNOWN STEP	2026-10-16T01:51:24.5861001Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5861001Z
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5861304Z 🤖 LLM Enhancement: Meta launches an open-weight AI model that runs on...
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5861709Z    Input length: 1137 chars
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5862568Z    LLM error: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5863535Z Scraping: https://www.cnbc.com/2026/10/15/kfc-coca-cola-pepsi-switch.html
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5863942Z Fallback paragraphs: 2914 chars
-generate	UNKNOWN STEP	2026-10-16T01:51:24.5864138Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:24.5864138Z
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5864457Z 📝 Content optimization for https://www.cnbc.com/2026/10/15/kfc-coca-cola-pepsi-switch.html:
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5864973Z    Original: 2914 chars → Optimized: 767 chars
 generate	UNKNOWN STEP	2026-10-16T01:51:24.5865310Z    Reduction: 73.7%
@@ -500,55 +500,55 @@ generate	UNKNOWN STEP	2026-10-16T01:51:46.5297739Z ERROR:yfinance:
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5298241Z 1 Failed download:
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5298770Z ERROR:yfinance:['DX=F']: possibly delisted; no timezone found
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5426439Z    Sentences: kept 8/31 best sentences
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5426753Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5426753Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5427435Z 🤖 LLM Enhancement: KFC to switch to Coca-Cola beverages in U.S. resta...
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5428061Z    Input length: 767 chars
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5429189Z    LLM error: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5431565Z Scraping: https://www.cnbc.com/2026/10/15/porsche-mission-s-concept-car.html
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5432296Z Fallback paragraphs: 2500 chars
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5432542Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5432542Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5433306Z 📝 Content optimization for https://www.cnbc.com/2026/10/15/porsche-mission-s-concept-car.html:
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5433912Z    Original: 2500 chars → Optimized: 1212 chars
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5434308Z    Reduction: 51.5%
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5434590Z    Removed junk: sign up for
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5434947Z    Sentences: kept 8/24 best sentences
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5435118Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5435118Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5435670Z 🤖 LLM Enhancement: Porsche reveals Mission S concept car that preview...
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5436110Z    Input length: 1212 chars
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5437065Z    LLM error: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5438032Z Scraping: https://www.cnbc.com/2026/10/15/jetblue-bluefirst-first-class.html
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5438466Z Fallback paragraphs: 2343 chars
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5438658Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5438658Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5439050Z 📝 Content optimization for https://www.cnbc.com/2026/10/15/jetblue-bluefirst-first-class.html:
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5439816Z    Original: 2343 chars → Optimized: 1357 chars
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5440249Z    Reduction: 42.1%
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5440701Z    Removed junk: sign up for
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5441039Z    Sentences: kept 8/18 best sentences
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5441313Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5441313Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5441623Z 🤖 LLM Enhancement: JetBlue’s new domestic first class, BlueFirst, is ...
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5442127Z    Input length: 1357 chars
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5442956Z    LLM error: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5443899Z Scraping: https://www.cnbc.com/2026/10/15/southwest-rapid-rewards-tiers-a-list.html
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5444366Z Fallback paragraphs: 4409 chars
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5444565Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5444565Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5445112Z 📝 Content optimization for https://www.cnbc.com/2026/10/15/southwest-rapid-rewards-tiers-a-list.html:
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5445686Z    Original: 4409 chars → Optimized: 1085 chars
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5446012Z    Reduction: 75.4%
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5446276Z    Removed junk: sign up for
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5446610Z    Sentences: kept 8/37 best sentences
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5446813Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5446813Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5447102Z 🤖 LLM Enhancement: Southwest is overhauling its frequent flyer progra...
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5447504Z    Input length: 1085 chars
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5448327Z    LLM error: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5449237Z Scraping: https://www.cnbc.com/2026/10/15/cafe-fuel-economy-v8-trucks.html
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5449789Z Fallback paragraphs: 6492 chars
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5450070Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5450070Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5450430Z 📝 Content optimization for https://www.cnbc.com/2026/10/15/cafe-fuel-economy-v8-trucks.html:
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5450950Z    Original: 6492 chars → Optimized: 659 chars
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5451264Z    Reduction: 89.8%
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5451520Z    Removed junk: sign up for
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5451848Z    Sentences: kept 8/60 best sentences
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5452075Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5452075Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5452341Z 🤖 LLM Enhancement: How lower fuel economy targets could boost pickups...
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5452735Z    Input length: 659 chars
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5453547Z    LLM error: 404 This model models/gemini-2.0-flash is no longer available. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
@@ -611,7 +611,7 @@ generate	UNKNOWN STEP	2026-10-16T01:51:46.5473503Z Successfully got data for: ^N
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5473972Z Saved 22 days of data for 14 instruments
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5474279Z Market data status: None
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5474545Z Loaded quiz data: 11 questions
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5474768Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5474768Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5474936Z === MARKET DATA PROCESSING DEBUG ===
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5475276Z Loaded daily data from data/loading/market_data.json
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5475625Z Daily prices keys: 22 dates
@@ -633,59 +633,59 @@ generate	UNKNOWN STEP	2026-10-16T01:51:46.5481013Z   SLV: 51.92
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5481256Z   VOO: 709.43
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5481486Z   VTI: 378.42
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5481773Z   QQQ: 728.0
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5481976Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5481976Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5482131Z Processing ticker: ^GSPC (price: 7744.06)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5482672Z   Found instrument info - Category: US Indices, Symbol: S&P 500
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5483332Z   ✅ Added ^GSPC to market_data
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5483526Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5483526Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5483631Z Processing ticker: ^IXIC (price: 26713.03)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5484091Z   Found instrument info - Category: US Indices, Symbol: NASDAQ
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5484485Z   ✅ Added ^IXIC to market_data
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5484627Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5484627Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5484865Z Processing ticker: ^DJI (price: 52177.69)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5485408Z   Found instrument info - Category: US Indices, Symbol: Dow Jones
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5485802Z   ✅ Added ^DJI to market_data
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5486041Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5486041Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5486197Z Processing ticker: 000001.SS (price: 3707.48)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5486619Z   Found instrument info - Category: International Indices, Symbol: Shanghai (SSE)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5487086Z   ✅ Added 000001.SS to market_data
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5487280Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5487280Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5487399Z Processing ticker: ^AXJO (price: 8719.7)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5487894Z   Found instrument info - Category: International Indices, Symbol: ASX 200
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5488371Z   ✅ Added ^AXJO to market_data
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5488529Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5488529Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5488680Z Processing ticker: ^NSEI (price: 22997.35)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5489109Z   Found instrument info - Category: International Indices, Symbol: NSE (India)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5489644Z   ✅ Added ^NSEI to market_data
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5489858Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5489858Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5489960Z Processing ticker: ^NZ50 (price: 13832.8)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5490413Z   Found instrument info - Category: International Indices, Symbol: NZX 50
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5490836Z   ✅ Added ^NZ50 to market_data
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5490972Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5490972Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5491157Z Processing ticker: GLD (price: 382.71)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5491534Z   Found instrument info - Category: Commodities, Symbol: Gold (GLD)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5491941Z   ✅ Added GLD to market_data
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5492164Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5492164Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5492310Z Processing ticker: USO (price: 157.31)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5492687Z   Found instrument info - Category: Commodities, Symbol: Oil (USO)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5493097Z   ✅ Added USO to market_data
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5493274Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5493274Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5493411Z Processing ticker: SLV (price: 51.92)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5493776Z   Found instrument info - Category: Commodities, Symbol: Silver (SLV)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5494447Z   ✅ Added SLV to market_data
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5494601Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5494601Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5494744Z Processing ticker: VOO (price: 709.43)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5495090Z   Found instrument info - Category: ETFs, Symbol: VOO
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5495471Z   ✅ Added VOO to market_data
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5495653Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5495653Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5495751Z Processing ticker: VTI (price: 378.42)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5496111Z   Found instrument info - Category: ETFs, Symbol: VTI
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5496498Z   ✅ Added VTI to market_data
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5496634Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5496634Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5496806Z Processing ticker: QQQ (price: 728.0)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5497167Z   Found instrument info - Category: ETFs, Symbol: QQQ
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5497509Z   ✅ Added QQQ to market_data
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5497740Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5497740Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5497857Z Final market_data contains 13 instruments
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5498294Z   - ^GSPC
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5498567Z   - ^IXIC
@@ -700,7 +700,7 @@ generate	UNKNOWN STEP	2026-10-16T01:51:46.5500699Z   - SLV
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5500932Z   - VOO
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5501170Z   - VTI
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5501436Z   - QQQ
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5501580Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5501580Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5501715Z === MARKET DATA PROCESSING DEBUG ===
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5512934Z Loaded daily data from data/loading/market_data.json
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5513398Z Daily prices keys: 22 dates
@@ -722,59 +722,59 @@ generate	UNKNOWN STEP	2026-10-16T01:51:46.5518312Z   SLV: 51.92
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5518601Z   VOO: 709.43
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5518838Z   VTI: 378.42
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5519075Z   QQQ: 728.0
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5519241Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5519241Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5519388Z Processing ticker: ^GSPC (price: 7744.06)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5520095Z   Found instrument info - Category: US Indices, Symbol: S&P 500
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5520625Z   ✅ Added ^GSPC to market_data
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5520813Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5520813Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5520933Z Processing ticker: ^IXIC (price: 26713.03)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5521304Z   Found instrument info - Category: US Indices, Symbol: NASDAQ
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5521739Z   ✅ Added ^IXIC to market_data
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5521891Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5521891Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5522029Z Processing ticker: ^DJI (price: 52177.69)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5522461Z   Found instrument info - Category: US Indices, Symbol: Dow Jones
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5522862Z   ✅ Added ^DJI to market_data
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5523037Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5523037Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5523176Z Processing ticker: 000001.SS (price: 3707.48)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5523634Z   Found instrument info - Category: International Indices, Symbol: Shanghai (SSE)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5524092Z   ✅ Added 000001.SS to market_data
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5524273Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5524273Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5524445Z Processing ticker: ^AXJO (price: 8719.7)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5524833Z   Found instrument info - Category: International Indices, Symbol: ASX 200
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5525250Z   ✅ Added ^AXJO to market_data
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5525450Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5525450Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5525609Z Processing ticker: ^NSEI (price: 22997.35)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5526010Z   Found instrument info - Category: International Indices, Symbol: NSE (India)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5526455Z   ✅ Added ^NSEI to market_data
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5526641Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5526641Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5526756Z Processing ticker: ^NZ50 (price: 13832.8)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5527142Z   Found instrument info - Category: International Indices, Symbol: NZX 50
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5527595Z   ✅ Added ^NZ50 to market_data
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5527748Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5527748Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5527902Z Processing ticker: GLD (price: 382.71)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5528298Z   Found instrument info - Category: Commodities, Symbol: Gold (GLD)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5528701Z   ✅ Added GLD to market_data
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5528874Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5528874Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5529013Z Processing ticker: USO (price: 157.31)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5529535Z   Found instrument info - Category: Commodities, Symbol: Oil (USO)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5529949Z   ✅ Added USO to market_data
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5530212Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5530212Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5530376Z Processing ticker: SLV (price: 51.92)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5530740Z   Found instrument info - Category: Commodities, Symbol: Silver (SLV)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5531141Z   ✅ Added SLV to market_data
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5531343Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5531343Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5531508Z Processing ticker: VOO (price: 709.43)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5531826Z   Found instrument info - Category: ETFs, Symbol: VOO
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5532233Z   ✅ Added VOO to market_data
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5532418Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5532418Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5532532Z Processing ticker: VTI (price: 378.42)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5532868Z   Found instrument info - Category: ETFs, Symbol: VTI
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5533287Z   ✅ Added VTI to market_data
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5533437Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5533437Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5533570Z Processing ticker: QQQ (price: 728.0)
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5533938Z   Found instrument info - Category: ETFs, Symbol: QQQ
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5534286Z   ✅ Added QQQ to market_data
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5534451Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5534451Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5534582Z Final market_data contains 13 instruments
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5534925Z   - ^GSPC
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5535182Z   - ^IXIC
@@ -789,7 +789,7 @@ generate	UNKNOWN STEP	2026-10-16T01:51:46.5537159Z   - SLV
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5537418Z   - VOO
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5537646Z   - VTI
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5537884Z   - QQQ
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5538022Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5538022Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5538176Z Grouping 13 instruments by category:
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5538487Z   ^GSPC: S&P 500 -> US Indices
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5538807Z   ^IXIC: NASDAQ -> US Indices
@@ -804,7 +804,7 @@ generate	UNKNOWN STEP	2026-10-16T01:51:46.5541637Z   SLV: Silver (SLV) -> Commod
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5541917Z   VOO: VOO -> ETFs
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5542259Z   VTI: VTI -> ETFs
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5542560Z   QQQ: QQQ -> ETFs
-generate	UNKNOWN STEP	2026-10-16T01:51:46.5542677Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:46.5542677Z
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5542845Z Category summary:
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5543111Z   US Indices: 3 instruments
 generate	UNKNOWN STEP	2026-10-16T01:51:46.5543507Z   Currency Indices: 0 instruments
@@ -848,21 +848,21 @@ generate	UNKNOWN STEP	2026-10-16T01:51:48.8098372Z ##[group]Dump inputs
 generate	UNKNOWN STEP	2026-10-16T01:51:48.8098847Z [INFO] GithubToken: true
 generate	UNKNOWN STEP	2026-10-16T01:51:48.8099192Z [INFO] PublishBranch: gh-pages
 generate	UNKNOWN STEP	2026-10-16T01:51:48.8099678Z [INFO] PublishDir: ./docs
-generate	UNKNOWN STEP	2026-10-16T01:51:48.8100110Z [INFO] DestinationDir: 
-generate	UNKNOWN STEP	2026-10-16T01:51:48.8100418Z [INFO] ExternalRepository: 
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8100110Z [INFO] DestinationDir:
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8100418Z [INFO] ExternalRepository:
 generate	UNKNOWN STEP	2026-10-16T01:51:48.8100717Z [INFO] AllowEmptyCommit: false
 generate	UNKNOWN STEP	2026-10-16T01:51:48.8101065Z [INFO] KeepFiles: false
 generate	UNKNOWN STEP	2026-10-16T01:51:48.8101379Z [INFO] ForceOrphan: false
-generate	UNKNOWN STEP	2026-10-16T01:51:48.8101785Z [INFO] UserName: 
-generate	UNKNOWN STEP	2026-10-16T01:51:48.8102221Z [INFO] UserEmail: 
-generate	UNKNOWN STEP	2026-10-16T01:51:48.8102497Z [INFO] CommitMessage: 
-generate	UNKNOWN STEP	2026-10-16T01:51:48.8102802Z [INFO] FullCommitMessage: 
-generate	UNKNOWN STEP	2026-10-16T01:51:48.8103148Z [INFO] TagName: 
-generate	UNKNOWN STEP	2026-10-16T01:51:48.8103757Z [INFO] TagMessage: 
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8101785Z [INFO] UserName:
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8102221Z [INFO] UserEmail:
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8102497Z [INFO] CommitMessage:
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8102802Z [INFO] FullCommitMessage:
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8103148Z [INFO] TagName:
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8103757Z [INFO] TagMessage:
 generate	UNKNOWN STEP	2026-10-16T01:51:48.8104948Z [INFO] EnableJekyll (DisableNoJekyll): false
-generate	UNKNOWN STEP	2026-10-16T01:51:48.8105445Z [INFO] CNAME: 
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8105445Z [INFO] CNAME:
 generate	UNKNOWN STEP	2026-10-16T01:51:48.8105729Z [INFO] ExcludeAssets .github
-generate	UNKNOWN STEP	2026-10-16T01:51:48.8105922Z 
+generate	UNKNOWN STEP	2026-10-16T01:51:48.8105922Z
 generate	UNKNOWN STEP	2026-10-16T01:51:48.8106331Z ##[endgroup]
 generate	UNKNOWN STEP	2026-10-16T01:51:48.8106965Z ##[group]Setup auth token
 generate	UNKNOWN STEP	2026-10-16T01:51:48.8107660Z (node:2275) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
