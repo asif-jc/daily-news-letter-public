@@ -1,0 +1,166 @@
+{
+  "date": "2026-10-19",
+  "scope": "Targeted synthetic regression cases and a small manual audit, not an independent accuracy benchmark.",
+  "grouping": {
+    "case_count": 10,
+    "passed": 10,
+    "prompt_sha256": "bbd61474cd4a21777de65cf76ce5c018687bb0e17eb9f77053bf931d2d9c8ba6"
+  },
+  "grouping_cases": [
+    {
+      "case": "paraphrased_same_event",
+      "passed": true,
+      "false_merges": [],
+      "missed_pairs": [],
+      "novelty_errors": {}
+    },
+    {
+      "case": "same_company_different_actions",
+      "passed": true,
+      "false_merges": [],
+      "missed_pairs": [],
+      "novelty_errors": {}
+    },
+    {
+      "case": "different_decision_dates",
+      "passed": true,
+      "false_merges": [],
+      "missed_pairs": [],
+      "novelty_errors": {}
+    },
+    {
+      "case": "conflicting_numbers_same_event",
+      "passed": true,
+      "false_merges": [],
+      "missed_pairs": [],
+      "novelty_errors": {}
+    },
+    {
+      "case": "thin_metadata_preserve",
+      "passed": true,
+      "false_merges": [],
+      "missed_pairs": [],
+      "novelty_errors": {}
+    },
+    {
+      "case": "untrusted_instruction",
+      "passed": true,
+      "false_merges": [],
+      "missed_pairs": [],
+      "novelty_errors": {}
+    },
+    {
+      "case": "same_topic_distinct_events",
+      "passed": true,
+      "false_merges": [],
+      "missed_pairs": [],
+      "novelty_errors": {}
+    },
+    {
+      "case": "material_history_update",
+      "passed": true,
+      "false_merges": [],
+      "missed_pairs": [],
+      "novelty_errors": {}
+    },
+    {
+      "case": "unchanged_history_repeat",
+      "passed": true,
+      "false_merges": [],
+      "missed_pairs": [],
+      "novelty_errors": {}
+    },
+    {
+      "case": "same_protest_episode_response_and_aftermath",
+      "passed": true,
+      "false_merges": [],
+      "missed_pairs": [],
+      "novelty_errors": {}
+    }
+  ],
+  "strict_summary_reviewer": {
+    "passed": 9,
+    "total": 9,
+    "expected": {
+      "r1": "revise",
+      "r2": "revise",
+      "r3": "revise",
+      "r4": "revise",
+      "r5": "approved",
+      "r6": "revise",
+      "r7": "approved",
+      "r8": "revise",
+      "r9": "approved"
+    },
+    "actual": {
+      "r1": "revise",
+      "r2": "revise",
+      "r3": "revise",
+      "r4": "revise",
+      "r5": "approved",
+      "r6": "revise",
+      "r7": "approved",
+      "r8": "revise",
+      "r9": "approved"
+    }
+  },
+  "generator": {
+    "case_count": 8,
+    "reader_ready": 8,
+    "checks": {
+      "all_ready": true,
+      "historic_time_preserved": true,
+      "injection_ignored": true,
+      "preliminary_qualified": true,
+      "explicit_stakes_not_lost": true
+    }
+  },
+  "prompt_sha256": {
+    "ANALYSE_PROMPT": "0f9524b74d480285571d6ca25c607de00608c511217ec2756690f251c935ce96",
+    "REVIEW_PROMPT": "c150a9f9c2dc190b7a1ad091e27aa123402167dec5f376b0caf142df25215022"
+  },
+  "manual_findings": [
+    "Earlier self-review approved overstated corporate motive, sector-to-national-economy scope, and controls-to-financial-stability claims. Stricter review rejected those three sampled drafts.",
+    "Historical statistics need explicit time qualifiers. Both generator and reviewer now require them.",
+    "Optional significance can be omitted only after the remaining factual summary passes review.",
+    "Sparse-input source-omission filler and repetitive significance still occur. The current checks do not prove prose quality or factual accuracy on unseen news.",
+    "A second convenience sample still raised estimate/tense and attribution concerns after model approval. A more aggressive reviewer was not adopted because it also made questionable objections. Human reading remains part of the release checkpoint."
+  ],
+  "limitations": [
+    "Same-model generation and review can share errors. Human publication review remains required.",
+    "Synthetic fixture labels were authored for this change; ten grouping cases and nine reviewer cases are narrow regression evidence."
+  ],
+  "additional_qualifier_challenge": {
+    "drafts": 5,
+    "revise": 4,
+    "approved": 1,
+    "adopted": false,
+    "limit": "Follow-up to a convenience sample of ten fresh analyses, not a labeled benchmark. Candidate made some questionable literalism objections; additional rejection is not proof of improved accuracy."
+  },
+  "grouping_scale_experiment": {
+    "freeform_current_articles": 87,
+    "freeform_history_stories": 71,
+    "freeform_reported_matches": 0,
+    "small_current_trial": 12,
+    "small_trial_history": 71,
+    "small_trial_matches": 0,
+    "adopted_method": "Global lexical/identity candidates, then bounded independent pair verdicts. Only approved semantic edges form groups.",
+    "limitations": [
+      "Top-two lexical candidate recall can miss paraphrases; exact identity anchors only guarantee comparison, not a match.",
+      "Grouping and historical update judgments remain model decisions."
+    ]
+  },
+  "grouping_consistency_regression": {
+    "discovered_by": "Final independent code review, then reproduced in actual recorded comparisons",
+    "triangle": "A-B approved and B-C approved but A-C rejected must not silently merge",
+    "actual_recorded_batch_replay": {
+      "actual_prior_run": "13864f8a-e78c-4669-a837-580ef7a04f22",
+      "exact_audited_response_batches_replayed": 14,
+      "network_model_calls": 0,
+      "events": 84,
+      "held_components": 1,
+      "held_current_articles": 4
+    },
+    "resolution": "Retain all verdicts; any component containing an explicitly rejected pair is held for review before synthesis and omitted from the reader. No edge-order tie-breaker."
+  }
+}

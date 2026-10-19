@@ -1,0 +1,8 @@
+{
+  "publishable_files": 155,
+  "gitleaks_exit": 0,
+  "credential_findings": 0,
+  "private_network_or_tailnet_hostname_files": [],
+  "runtime_or_env_tracked": false,
+  "limits": "Pattern scans are not exhaustive PII or metadata audits; pre-existing public email literals remain. Detailed reports, private data and connection settings stay ignored."
+}

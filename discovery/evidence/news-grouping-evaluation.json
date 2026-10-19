@@ -1,0 +1,347 @@
+{
+  "case_count": 9,
+  "passed": 9,
+  "prompt_sha256": "5d23e926add20d832f7692635172f42944b6d22dd2078b399b90921f3a10f27e",
+  "results": [
+    {
+      "case": "paraphrased_same_event",
+      "passed": true,
+      "false_merges": [],
+      "missed_pairs": [],
+      "novelty_errors": {},
+      "groups": [
+        {
+          "event_id": "0eab8a0a3380abf4",
+          "source_ids": [
+            "a",
+            "b"
+          ],
+          "representative_id": "a",
+          "title": "Central bank cuts policy rate to 3 percent",
+          "novelty": "new",
+          "change": "",
+          "reason": "Both articles report the same specific central bank decision to cut the policy rate to 3 percent on Tuesday.",
+          "sources": [
+            "Example"
+          ],
+          "category": "world",
+          "description": "The central bank cut its policy rate by 25 basis points on Tuesday."
+        },
+        {
+          "event_id": "2e7d2c03a9507ae2",
+          "source_ids": [
+            "c"
+          ],
+          "representative_id": "c",
+          "title": "University reports new battery chemistry",
+          "novelty": "new",
+          "change": "",
+          "reason": "No event match identified.",
+          "sources": [
+            "Example"
+          ],
+          "category": "world",
+          "description": "Researchers published laboratory battery results."
+        }
+      ]
+    },
+    {
+      "case": "same_company_different_actions",
+      "passed": true,
+      "false_merges": [],
+      "missed_pairs": [],
+      "novelty_errors": {},
+      "groups": [
+        {
+          "event_id": "ca978112ca1bbdca",
+          "source_ids": [
+            "a"
+          ],
+          "representative_id": "a",
+          "title": "Orion launches a coding model",
+          "novelty": "new",
+          "change": "",
+          "reason": "No event match identified.",
+          "sources": [
+            "Example"
+          ],
+          "category": "world",
+          "description": "Orion announced its new coding model on Tuesday."
+        },
+        {
+          "event_id": "3e23e8160039594a",
+          "source_ids": [
+            "b"
+          ],
+          "representative_id": "b",
+          "title": "Orion buys a robotics company",
+          "novelty": "new",
+          "change": "",
+          "reason": "No event match identified.",
+          "sources": [
+            "Example"
+          ],
+          "category": "world",
+          "description": "Orion separately announced its acquisition of Gear Robotics on Tuesday."
+        }
+      ]
+    },
+    {
+      "case": "different_decision_dates",
+      "passed": true,
+      "false_merges": [],
+      "missed_pairs": [],
+      "novelty_errors": {},
+      "groups": [
+        {
+          "event_id": "ca978112ca1bbdca",
+          "source_ids": [
+            "a"
+          ],
+          "representative_id": "a",
+          "title": "Bank holds rates in July",
+          "novelty": "new",
+          "change": "",
+          "reason": "No event match identified.",
+          "sources": [
+            "Example"
+          ],
+          "category": "world",
+          "description": "The July meeting left rates at 3 percent."
+        },
+        {
+          "event_id": "3e23e8160039594a",
+          "source_ids": [
+            "b"
+          ],
+          "representative_id": "b",
+          "title": "Bank cuts rates in September",
+          "novelty": "new",
+          "change": "",
+          "reason": "No event match identified.",
+          "sources": [
+            "Example"
+          ],
+          "category": "world",
+          "description": "The September meeting cut rates to 2.75 percent."
+        }
+      ]
+    },
+    {
+      "case": "conflicting_numbers_same_event",
+      "passed": true,
+      "false_merges": [],
+      "missed_pairs": [],
+      "novelty_errors": {},
+      "groups": [
+        {
+          "event_id": "0eab8a0a3380abf4",
+          "source_ids": [
+            "a",
+            "b"
+          ],
+          "representative_id": "b",
+          "title": "Hospital reports ten injured in factory fire",
+          "novelty": "new",
+          "change": "",
+          "reason": "Both articles report on the same specific incident: the River Road factory fire on Tuesday. They provide conflicting casualty counts (8 vs 10) for the same event.",
+          "sources": [
+            "Example"
+          ],
+          "category": "world",
+          "description": "The hospital reported ten injuries from the same River Road factory fire on Tuesday."
+        }
+      ]
+    },
+    {
+      "case": "thin_metadata_preserve",
+      "passed": true,
+      "false_merges": [],
+      "missed_pairs": [],
+      "novelty_errors": {},
+      "groups": [
+        {
+          "event_id": "ca978112ca1bbdca",
+          "source_ids": [
+            "a"
+          ],
+          "representative_id": "a",
+          "title": "New AI research released",
+          "novelty": "new",
+          "change": "",
+          "reason": "No event match identified.",
+          "sources": [
+            "Example"
+          ],
+          "category": "world",
+          "description": ""
+        },
+        {
+          "event_id": "3e23e8160039594a",
+          "source_ids": [
+            "b"
+          ],
+          "representative_id": "b",
+          "title": "AI research update",
+          "novelty": "new",
+          "change": "",
+          "reason": "No event match identified.",
+          "sources": [
+            "Example"
+          ],
+          "category": "world",
+          "description": ""
+        },
+        {
+          "event_id": "2e7d2c03a9507ae2",
+          "source_ids": [
+            "c"
+          ],
+          "representative_id": "c",
+          "title": "Council approves transport budget",
+          "novelty": "new",
+          "change": "",
+          "reason": "No event match identified.",
+          "sources": [
+            "Example"
+          ],
+          "category": "world",
+          "description": "A new transport budget was approved."
+        }
+      ]
+    },
+    {
+      "case": "untrusted_instruction",
+      "passed": true,
+      "false_merges": [],
+      "missed_pairs": [],
+      "novelty_errors": {},
+      "groups": [
+        {
+          "event_id": "8b2fc3e128be6709",
+          "source_ids": [
+            "a",
+            "c"
+          ],
+          "representative_id": "c",
+          "title": "Weather satellite reaches orbit",
+          "novelty": "new",
+          "change": "",
+          "reason": "Both articles describe the same specific event: the launch and orbital insertion of a weather satellite on Tuesday.",
+          "sources": [
+            "Example"
+          ],
+          "category": "world",
+          "description": "Tuesday's launch placed the weather satellite into orbit."
+        },
+        {
+          "event_id": "3e23e8160039594a",
+          "source_ids": [
+            "b"
+          ],
+          "representative_id": "b",
+          "title": "Hospital opens new ward",
+          "novelty": "new",
+          "change": "",
+          "reason": "No event match identified.",
+          "sources": [
+            "Example"
+          ],
+          "category": "world",
+          "description": "A hospital opened a new maternity ward."
+        }
+      ]
+    },
+    {
+      "case": "same_topic_distinct_events",
+      "passed": true,
+      "false_merges": [],
+      "missed_pairs": [],
+      "novelty_errors": {},
+      "groups": [
+        {
+          "event_id": "ca978112ca1bbdca",
+          "source_ids": [
+            "a"
+          ],
+          "representative_id": "a",
+          "title": "Country A adopts AI law",
+          "novelty": "new",
+          "change": "",
+          "reason": "No event match identified.",
+          "sources": [
+            "Example"
+          ],
+          "category": "world",
+          "description": "Country A passed its national AI law."
+        },
+        {
+          "event_id": "3e23e8160039594a",
+          "source_ids": [
+            "b"
+          ],
+          "representative_id": "b",
+          "title": "Country B proposes AI bill",
+          "novelty": "new",
+          "change": "",
+          "reason": "No event match identified.",
+          "sources": [
+            "Example"
+          ],
+          "category": "world",
+          "description": "Country B introduced a draft AI bill."
+        }
+      ]
+    },
+    {
+      "case": "material_history_update",
+      "passed": true,
+      "false_merges": [],
+      "missed_pairs": [],
+      "novelty_errors": {},
+      "groups": [
+        {
+          "event_id": "past",
+          "source_ids": [
+            "a"
+          ],
+          "representative_id": "a",
+          "title": "Regulator approves the Orion acquisition",
+          "novelty": "update",
+          "change": "Regulator approved the previously announced Orion acquisition.",
+          "reason": "The current article reports the regulatory approval of the specific acquisition announced in the history event.",
+          "sources": [
+            "Example"
+          ],
+          "category": "world",
+          "description": "The competition regulator approved the previously announced Orion acquisition today."
+        }
+      ]
+    },
+    {
+      "case": "unchanged_history_repeat",
+      "passed": true,
+      "false_merges": [],
+      "missed_pairs": [],
+      "novelty_errors": {},
+      "groups": [
+        {
+          "event_id": "past",
+          "source_ids": [
+            "a"
+          ],
+          "representative_id": "a",
+          "title": "Orion reveals deal for Gear Robotics",
+          "novelty": "repeat",
+          "change": "",
+          "reason": "Article a reports the same Orion-Gear Robotics acquisition deal with no new development, matching the historical event.",
+          "sources": [
+            "Example"
+          ],
+          "category": "world",
+          "description": "Orion announced a deal to buy Gear Robotics, pending regulatory approval. No new development."
+        }
+      ]
+    }
+  ]
+}

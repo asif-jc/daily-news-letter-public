@@ -6,6 +6,8 @@
 
 ---
 
+The news-only replacement is being developed as a local review workflow. See [its setup, stage artifacts, and limits](src/news/README.md). It does not publish or send email; the existing deployment path remains in place until review.
+
 ## 🚀 Version 2 Roadmap
 
 **Upcoming Features:**

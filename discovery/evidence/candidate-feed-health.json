@@ -1,0 +1,47 @@
+[
+  {
+    "source": "RNZ national",
+    "url": "https://www.rnz.co.nz/rss/national.xml",
+    "status": 200,
+    "entries": 48,
+    "recent_24h": 48,
+    "unknown_dates": 0,
+    "parse_warning": false
+  },
+  {
+    "source": "RNZ business",
+    "url": "https://www.rnz.co.nz/rss/business.xml",
+    "status": 200,
+    "entries": 18,
+    "recent_24h": 18,
+    "unknown_dates": 0,
+    "parse_warning": false
+  },
+  {
+    "source": "MIT research",
+    "url": "https://news.mit.edu/rss/research",
+    "status": 200,
+    "entries": 50,
+    "recent_24h": 4,
+    "unknown_dates": 0,
+    "parse_warning": false
+  },
+  {
+    "source": "NASA releases",
+    "url": "https://www.nasa.gov/news-release/feed/",
+    "status": 200,
+    "entries": 10,
+    "recent_24h": 10,
+    "unknown_dates": 0,
+    "parse_warning": false
+  },
+  {
+    "source": "NASA technology",
+    "url": "https://www.nasa.gov/technology/feed/",
+    "status": 200,
+    "entries": 10,
+    "recent_24h": 0,
+    "unknown_dates": 0,
+    "parse_warning": false
+  }
+]

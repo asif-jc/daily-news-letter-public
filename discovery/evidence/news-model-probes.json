@@ -1,0 +1,80 @@
+[
+  {
+    "probe": "synthetic_event_distinction",
+    "http_status": 200,
+    "seconds": 6.53,
+    "input_count": 6,
+    "output": {
+      "groups": [
+        {
+          "ids": [
+            "s1",
+            "s2"
+          ],
+          "reason": "Both report the same Tuesday central bank decision to cut/lower the policy rate to 3 percent."
+        },
+        {
+          "ids": [
+            "s4",
+            "s5"
+          ],
+          "reason": "Both report Acme's Thursday release/launch of its open-weight Atlas AI model."
+        }
+      ]
+    },
+    "finish_reason": "stop",
+    "all_ids_valid": true
+  },
+  {
+    "probe": "live_candidate_groups",
+    "error_type": "TypeError",
+    "seconds": 38.63
+  },
+  {
+    "probe": "live_candidate_groups_retry",
+    "http_status": 200,
+    "seconds": 7.53,
+    "input_count": 64,
+    "output": {
+      "groups": [
+        {
+          "ids": [
+            "a0",
+            "a1"
+          ],
+          "reason": "Both articles report on the specific school shooting incident in Bend, Oregon, where a 16-year-old suspect killed three children and a teacher."
+        },
+        {
+          "ids": [
+            "a7",
+            "a22"
+          ],
+          "reason": "Both articles report on the specific school roof collapse in Pakistan that killed at least 33 pupils and a teacher."
+        },
+        {
+          "ids": [
+            "a8",
+            "a53"
+          ],
+          "reason": "Both articles report on the specific event of Trump cancelling the Pentagon's plan to livestream the firing squad execution of Nidal Hasan."
+        },
+        {
+          "ids": [
+            "a13",
+            "a51"
+          ],
+          "reason": "Both articles report on the specific drone attack on a chemical tanker off Romania's coast, which marked the first time such attacks entered NATO territorial waters."
+        },
+        {
+          "ids": [
+            "a49",
+            "a59"
+          ],
+          "reason": "Both articles report on the specific unveiling of Porsche's new design identity and turnaround plan, featuring the Mission S concept car (referred to as a mid-engined supercar preview in a49)."
+        }
+      ]
+    },
+    "finish_reason": "stop",
+    "all_ids_valid": true
+  }
+]

@@ -15,8 +15,6 @@ load_dotenv("config.env")
 # Debug: Check if API key is loaded
 api_key = os.getenv('SENDGRID_API_KEY')
 print(f"DEBUG: SENDGRID_API_KEY loaded: {'Yes' if api_key else 'No'}")
-if api_key:
-    print(f"DEBUG: API key starts with: {api_key[:10]}...")
 
 class EmailNewsletterSender:
     def __init__(self):

@@ -1,0 +1,213 @@
+{
+  "date": "2026-10-19",
+  "baseline_comparison": {
+    "same_saved_feed_observations": true,
+    "historical_web_snapshot": false,
+    "old_24_hour": {
+      "observations": 100,
+      "unique_articles": 99,
+      "eligible": 19,
+      "events": 17,
+      "stories": 8,
+      "featured": 3
+    },
+    "rolling_experiment": {
+      "collected": 100,
+      "analysed": 99,
+      "pool_articles": 90,
+      "events": 90,
+      "relevant": 71,
+      "stories": 71,
+      "featured": 6,
+      "extraction": {
+        "article_text": 99
+      },
+      "analysis_states": {
+        "ready": 99
+      },
+      "topics": {
+        "Politics": 23,
+        "Conflict": 17,
+        "Technology": 26,
+        "Business": 33,
+        "AI": 14,
+        "Economy": 11,
+        "Environment": 2,
+        "Science": 6,
+        "Geography": 2
+      }
+    },
+    "limit": "Retrieved web pages later; this measures the same feed observations under a different workflow, not a perfectly controlled historical source-text comparison."
+  },
+  "fresh": {
+    "run_id": "b9056baa-46f9-4dde-bcc3-5769d382af31",
+    "generated_at": "2026-10-19T04:21:52.848134+00:00",
+    "counts": {
+      "events": 83,
+      "topics": {
+        "AI": 12,
+        "Economy": 9,
+        "Science": 8,
+        "Business": 24,
+        "Conflict": 13,
+        "Politics": 18,
+        "Geography": 1,
+        "Technology": 21,
+        "Environment": 1
+      },
+      "sources": {
+        "TechCrunch": {
+          "ready": 20,
+          "in_pool": 20,
+          "analysed": 20,
+          "observed": 20,
+          "reader_events": 12
+        },
+        "Ars Technica": {
+          "ready": 18,
+          "in_pool": 20,
+          "analysed": 20,
+          "observed": 20,
+          "reader_events": 13
+        },
+        "CNBC Finance": {
+          "ready": 30,
+          "in_pool": 21,
+          "analysed": 30,
+          "observed": 30,
+          "reader_events": 14
+        },
+        "BBC World News": {
+          "ready": 32,
+          "in_pool": 35,
+          "analysed": 35,
+          "observed": 28,
+          "reader_events": 18
+        }
+      },
+      "stories": 56,
+      "analysed": 105,
+      "featured": 6,
+      "relevant": 57,
+      "collected": 98,
+      "cache_hits": 104,
+      "extraction": {
+        "article_text": 105
+      },
+      "pool_articles": 96,
+      "grouping_holds": 1,
+      "analysis_states": {
+        "ready": 100,
+        "needs_review": 5
+      },
+      "article_repairs": 19,
+      "summary_failures": 1
+    }
+  },
+  "quality_evidence": "news-library-quality.json",
+  "verification_log": "news-library-tests.log",
+  "publication": "Review previews only. No merge or public-site deployment.",
+  "verification": {
+    "run_id": "b9056baa-46f9-4dde-bcc3-5769d382af31",
+    "model_calls_before_resume": 33,
+    "model_calls_after_resume": 33,
+    "resume_new_model_calls": 0,
+    "saved_edition_matches_replay_and_local_json": true,
+    "every_prepared_article_accounted_for": true,
+    "eligible_ready_articles_partitioned_once": true,
+    "every_event_has_decision": true,
+    "every_relevant_event_has_reader_summary_or_explicit_failure": true,
+    "published_database_editions": 0,
+    "model_calls_by_task": [
+      {
+        "task": "analyse_articles",
+        "n": 1
+      },
+      {
+        "task": "compare_event_pairs",
+        "n": 15
+      },
+      {
+        "task": "curate_events",
+        "n": 6
+      },
+      {
+        "task": "review_articles",
+        "n": 1
+      },
+      {
+        "task": "review_event",
+        "n": 5
+      },
+      {
+        "task": "synthesize",
+        "n": 5
+      }
+    ],
+    "reader_bytes": 107034,
+    "reader_sha256": "87cb69cb6532e789d881e99321d7237420136a3f8b35d5161adc8330fed54710",
+    "storage": {
+      "database_bytes": 144716259,
+      "tables_bytes": 15589376,
+      "rows": {
+        "sources": 4,
+        "articles": 105,
+        "observations": 497,
+        "runs": 5,
+        "stages": 1012,
+        "events": 361,
+        "event_articles": 377,
+        "decisions": 378,
+        "evidence": 422,
+        "model_calls": 204,
+        "editions": 5,
+        "article_analyses": 204
+      }
+    },
+    "eligible_ready_articles": 91,
+    "held_group_components": 1,
+    "held_groups_absent_from_reader": true
+  },
+  "browser": {
+    "run_id": "b9056baa-46f9-4dde-bcc3-5769d382af31",
+    "reader_reports": 56,
+    "ai_filter_reports": 12,
+    "ai_unread_after_marking_one": 11,
+    "read_state_persisted_after_reload": true,
+    "test_mark_undone": true,
+    "france_filter_reports": 1,
+    "mobile_viewport_width": 390,
+    "mobile_document_width": 390,
+    "desktop_viewport_width": 1470,
+    "desktop_document_width": 1470,
+    "original_design_retained": true,
+    "archive_navigation": "Actual earlier previews navigated in explicitly labeled preview-only UI lab; no published database editions exist."
+  },
+  "event_comparisons": {
+    "candidate_pairs": 170,
+    "current_ready_articles": 91,
+    "historical_baselines": 75,
+    "batches": 15,
+    "candidate_components": 83,
+    "novelty": {
+      "repeat": 55,
+      "new": 17,
+      "update": 11
+    },
+    "held_components": 1,
+    "limit": "Model update judgments can mistake added context for newly occurred developments. Contradictory components are held, not reader events."
+  },
+  "manual_editorial_audit": {
+    "excluded_components_reviewed": 26,
+    "finding": "Most exclusions match shopping, entertainment, service marketing or isolated incidents. Two boundary concerns remain: workplace research was rejected for lacking global consequence, and Australian political reporting was rejected as domestic. Relevance can still be conflated with prominence despite the broader profile.",
+    "action": "Review these boundaries before expanding feeds; no keyword override or ad hoc inclusion was applied."
+  },
+  "pre_guard_consistency_check": {
+    "actual_prior_run": "13864f8a-e78c-4669-a837-580ef7a04f22",
+    "exact_audited_response_batches_replayed": 14,
+    "network_model_calls": 0,
+    "events": 84,
+    "held_components": 1,
+    "held_current_articles": 4
+  }
+}

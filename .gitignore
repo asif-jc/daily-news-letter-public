@@ -17,6 +17,15 @@ build/
 
 # Env files
 config.env
+.env
+.env.*
+!.env.example
+config.env.*
+!config.env.example
+
+# Private runtime data and local agent state
+.local/
+.codex/
 
 # Sub Management
 sub_information.json
