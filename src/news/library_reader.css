@@ -1,0 +1,27 @@
+/* Extend the original single-column reader without changing its baseline. */
+[hidden] { display: none !important; }
+a { color: #285c88; }
+.content h2 { font-size: 1.35rem; margin: 1.5rem 0 1rem; font-weight: 600; }
+.edition-history { display: flex; flex-wrap: wrap; gap: .5rem 1rem; font-size: .85rem; padding-bottom: 1rem; border-bottom: 1px solid #ddd; }
+.library-controls { display: flex; flex-wrap: wrap; align-items: end; gap: .8rem; padding: 1rem 0; }
+.library-controls label { display: flex; flex-direction: column; font-size: .9rem; gap: .25rem; }
+.library-controls .unread-control { flex-direction: row; align-items: center; padding: .5rem 0; }
+select, button { font: inherit; color: inherit; border: 1px solid #87919b; background: white; border-radius: 4px; padding: .45rem .65rem; max-width: 100%; }
+button { cursor: pointer; }
+button:hover { background: #edf1f5; }
+:focus-visible { outline: 3px solid #285c88; outline-offset: 3px; }
+#storage-status, #result-count, .collection-intro, #week-overview > p { font-size: .85rem; color: #59636e; margin-bottom: 1rem; }
+#storage-status { flex-basis: 100%; margin: 0; }
+.library-story { overflow-wrap: anywhere; }
+.library-story .article-summary { white-space: pre-line; }
+.read-toggle { margin-top: .75rem; font-size: .85rem; }
+.read-label { margin-left: .65rem; font-size: .85rem; color: #59636e; }
+.is-read { border-left-color: #84919d !important; }
+#week-overview { border-top: 1px solid #ddd; margin-top: 1.5rem; padding-top: 1rem; }
+#week-overview summary { cursor: pointer; font-size: 1.15rem; font-weight: 600; margin-bottom: 1rem; }
+#no-results { padding: 1rem 0; }
+@media (max-width: 600px) {
+  .library-controls > label:not(.unread-control) { flex: 1 1 100%; }
+  select { width: 100%; }
+  .edition-history { flex-direction: column; }
+}
