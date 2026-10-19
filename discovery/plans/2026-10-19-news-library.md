@@ -57,4 +57,4 @@ Expand `dispatch_report.html` with a six-row task/result table, measured experim
 - [x] 3. New workflow, broader preferences, structured ranking, resume and history
 - [x] 4. Topic/read/history UI, desktop/mobile browser interaction
 - [x] 5. Baseline, fresh run and multi-day experiments reviewed
-- [ ] 6. Dispatch report, full tests, privacy scans, draft PR and milestone email
+- [x] 6. Dispatch report, full tests, privacy scans, draft PR and milestone email
