@@ -34,6 +34,7 @@ test_replay_input_survives_failure_before_collection_checkpoint (test_news_datab
 test_transaction_rollback_does_not_leave_a_completed_stage (test_news_database.WorkflowTests.test_transaction_rollback_does_not_leave_a_completed_stage) ... ok
 test_callback_can_validate_real_response_before_retaining_normalized_rows (test_news_grouping.BoundedGroupingTests.test_callback_can_validate_real_response_before_retaining_normalized_rows) ... ok
 test_callback_cannot_bypass_pair_validation (test_news_grouping.BoundedGroupingTests.test_callback_cannot_bypass_pair_validation) ... ok
+test_contradictory_triangle_is_held_instead_of_overriding_rejection (test_news_grouping.BoundedGroupingTests.test_contradictory_triangle_is_held_instead_of_overriding_rejection) ... ok
 test_current_current_update_metadata_is_projected_to_identity_only (test_news_grouping.BoundedGroupingTests.test_current_current_update_metadata_is_projected_to_identity_only) ... ok
 test_earliest_history_baseline_controls_novelty_and_keeps_other_history_ids (test_news_grouping.BoundedGroupingTests.test_earliest_history_baseline_controls_novelty_and_keeps_other_history_ids) ... ok
 test_empty_inputs_do_not_call_model (test_news_grouping.BoundedGroupingTests.test_empty_inputs_do_not_call_model) ... ok
@@ -90,6 +91,7 @@ test_story_markup_cannot_close_script_and_no_duplicate_payload (test_news_librar
 test_unsafe_source_schemes_and_credentials_are_removed (test_news_library_render.LibraryReaderTests.test_unsafe_source_schemes_and_credentials_are_removed) ... ok
 test_week_deduplicates_same_lineage_with_different_summary_wording (test_news_library_render.LibraryReaderTests.test_week_deduplicates_same_lineage_with_different_summary_wording) ... ok
 test_week_excludes_old_editions_but_keeps_date_navigation (test_news_library_render.LibraryReaderTests.test_week_excludes_old_editions_but_keeps_date_navigation) ... ok
+test_contradictory_group_is_retained_but_never_summarized_or_rendered (test_news_library_workflow.LibraryWorkflowTests.test_contradictory_group_is_retained_but_never_summarized_or_rendered) ... ok
 test_failure_resumes_analyses_and_update_since_publication_can_feature (test_news_library_workflow.LibraryWorkflowTests.test_failure_resumes_analyses_and_update_since_publication_can_feature) ... ok
 test_grouping_resume_reuses_validated_pair_batches (test_news_library_workflow.LibraryWorkflowTests.test_grouping_resume_reuses_validated_pair_batches) ... ok
 test_next_day_repeat_is_browsable_without_being_featured_again (test_news_library_workflow.LibraryWorkflowTests.test_next_day_repeat_is_browsable_without_being_featured_again) ... ok
@@ -120,6 +122,6 @@ test_unsupported_optional_significance_is_removed_and_facts_rechecked (test_news
 test_valid_batch_members_are_not_regenerated_for_an_invalid_neighbor (test_news_understand.UnderstandingTests.test_valid_batch_members_are_not_regenerated_for_an_invalid_neighbor) ... ok
 
 ----------------------------------------------------------------------
-Ran 120 tests in 5.765s
+Ran 122 tests in 6.927s
 
 OK

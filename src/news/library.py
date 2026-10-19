@@ -37,7 +37,7 @@ from .library_render import render_library
 from src.mvp_news_aggregator.sources import RSS_FEEDS
 
 WORKFLOW_VERSION = 2
-GROUPING_VERSION = 2
+GROUPING_VERSION = 3
 LIBRARY_RENDER_VERSION = 4
 BATCH_SIZE = 5
 CURATE_PROMPT = """Assess every event against the supplied reader profile using the analysed evidence. Return {"decisions":[{"id":"e1","relevant":true,"score":8,"importance":"major|notable|useful","reason":"brief concrete reason"}]}.
@@ -481,11 +481,11 @@ def run_library_workflow(
     now = run["started_at"]
     if (
         config["workflow_version"] != 2
-        or config.get("grouping_version", 1) not in (1, GROUPING_VERSION)
+        or config.get("grouping_version", 1) not in (1, 2, GROUPING_VERSION)
         or config["prompts"]
         != (
             PROMPTS
-            if config.get("grouping_version", 1) == GROUPING_VERSION
+            if config.get("grouping_version", 1) >= 2
             else LEGACY_LIBRARY_PROMPTS
         )
         or config["model"] != model.model
@@ -642,7 +642,7 @@ def run_library_workflow(
                     config["identity_history"],
                     compare_batch=compare_pairs,
                 )
-                if config.get("grouping_version", 1) == GROUPING_VERSION
+                if config.get("grouping_version", 1) >= 2
                 else group_library_events(candidates, model, config["identity_history"])
             ),
             lambda v: store.save_events(run_id, v),
@@ -662,6 +662,13 @@ def run_library_workflow(
             a = analyses[primary]
 
             def summary(event=event, decision=decision, a=a):
+                if event.get("grouping_conflicts"):
+                    return {
+                        "state": "needs_review",
+                        "event_id": event["event_id"],
+                        "reason": "Contradictory event comparisons; component withheld.",
+                        "grouping_conflicts": event["grouping_conflicts"],
+                    }
                 if len(event["source_ids"]) > 1:
                     return reviewed_event(
                         event, decision, articles, evidence, model
@@ -790,6 +797,7 @@ def run_library_workflow(
             "stories": len(stories),
             "featured": sum(s["featured"] for s in stories),
             "summary_failures": len(summary_failures),
+            "grouping_holds": sum(bool(e.get("grouping_conflicts")) for e in events),
             "extraction": dict(Counter(v["basis"] for v in evidence.values())),
             "analysis_states": dict(Counter(a["state"] for a in analyses.values())),
             "topics": dict(Counter(t for s in stories for t in s["topics"])),

@@ -96,6 +96,21 @@ class BoundedGroupingTests(unittest.TestCase):
         self.assertEqual(event["previous_event_ids"], [])
         self.assertEqual(len(model.calls), 1)
 
+    def test_contradictory_triangle_is_held_instead_of_overriding_rejection(self):
+        model = PairModel(
+            lambda pair: {
+                "same_event": {pair["left"]["id"], pair["right"]["id"]}
+                != {"n1", "n3"},
+                "novelty": "new",
+            }
+        )
+        groups = self.group([self.article(id) for id in ("a", "b", "c")], model)
+        self.assertEqual(len(groups), 1)
+        self.assertEqual(groups[0]["source_ids"], ["a", "b", "c"])
+        self.assertEqual(len(groups[0]["grouping_conflicts"]), 1)
+        self.assertEqual(groups[0]["grouping_conflicts"][0]["left"]["id"], "n1")
+        self.assertEqual(groups[0]["grouping_conflicts"][0]["right"]["id"], "n3")
+
     def test_rejected_history_cannot_inherit_its_deterministic_event_identity(self):
         import hashlib
 

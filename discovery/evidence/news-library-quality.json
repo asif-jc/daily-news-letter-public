@@ -149,5 +149,18 @@
       "Top-two lexical candidate recall can miss paraphrases; exact identity anchors only guarantee comparison, not a match.",
       "Grouping and historical update judgments remain model decisions."
     ]
+  },
+  "grouping_consistency_regression": {
+    "discovered_by": "Final independent code review, then reproduced in actual recorded comparisons",
+    "triangle": "A-B approved and B-C approved but A-C rejected must not silently merge",
+    "actual_recorded_batch_replay": {
+      "actual_prior_run": "13864f8a-e78c-4669-a837-580ef7a04f22",
+      "exact_audited_response_batches_replayed": 14,
+      "network_model_calls": 0,
+      "events": 84,
+      "held_components": 1,
+      "held_current_articles": 4
+    },
+    "resolution": "Retain all verdicts; any component containing an explicitly rejected pair is held for review before synthesis and omitted from the reader. No edge-order tie-breaker."
   }
 }

@@ -182,6 +182,38 @@ class LibraryWorkflowTests(unittest.TestCase):
                 ).exists()
             )
 
+    def test_contradictory_group_is_retained_but_never_summarized_or_rendered(self):
+        class ContradictoryPairs(Model):
+            def complete(self, task, data, instructions=None):
+                result = super().complete(task, data, instructions)
+                if task == "compare_event_pairs":
+                    for pair, verdict in zip(data["pairs"], result["pairs"]):
+                        verdict["same_event"] = {
+                            pair["left"]["id"], pair["right"]["id"]
+                        } != {"n1", "n3"}
+                return result
+
+        rows = [
+            {**self.article, "id": id, "url": "https://bbc.com/" + id}
+            for id in ("a", "b", "c")
+        ]
+        with tempfile.TemporaryDirectory() as out:
+            model = ContradictoryPairs()
+            edition = self.run_news(model, out, rows=rows, now=self.now)
+            self.assertEqual(edition["stories"], [])
+            self.assertEqual(edition["counts"]["grouping_holds"], 1)
+            self.assertEqual(edition["counts"]["summary_failures"], 1)
+            self.assertIn("Contradictory", edition["summary_failures"][0]["reason"])
+            self.assertEqual(edition["counts"]["analysed"], 3)
+            self.assertNotIn("synthesize", model.calls)
+            self.assertIn(
+                "Contradictory event comparisons",
+                (Path(out) / edition["run_id"] / "review.html").read_text(),
+            )
+            before = list(model.calls)
+            self.assertEqual(edition, self.run_news(model, out, run_id=edition["run_id"]))
+            self.assertEqual(before, model.calls)
+
     def test_grouping_resume_reuses_validated_pair_batches(self):
         class InterruptedPairs(Model):
             def __init__(self):

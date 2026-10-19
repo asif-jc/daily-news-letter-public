@@ -195,7 +195,7 @@ def group_events_bounded(articles, model, history, compare_batch=None):
             ),
         }
 
-    approved = []
+    approved, rejected = [], []
     for start in range(0, len(candidates), PAIR_BATCH_SIZE):
         batch = candidates[start : start + PAIR_BATCH_SIZE]
         inputs = [
@@ -230,6 +230,8 @@ def group_events_bounded(articles, model, history, compare_batch=None):
             if same:
                 parents[find(j)] = find(i)
                 approved.append((i, j, row))
+            else:
+                rejected.append((i, j, row))
     components = {}
     for index in range(len(nodes)):
         components.setdefault(find(index), []).append(index)
@@ -256,6 +258,15 @@ def group_events_bounded(articles, model, history, compare_batch=None):
         )
         primary = articles[representative]
         source_ids = [articles[i]["id"] for i in current]
+        conflicts = [
+            {
+                "left": reference(i),
+                "right": reference(j),
+                "reason": row["reason"],
+            }
+            for i, j, row in rejected
+            if i in members and j in members
+        ]
         reasons = list(
             dict.fromkeys(
                 row["reason"].strip() for i, j, row in approved if i in members
@@ -304,6 +315,8 @@ def group_events_bounded(articles, model, history, compare_batch=None):
                 "category": primary["category"],
                 "description": primary.get("description", ""),
                 "previous_event_ids": [nodes[i]["event_id"] for i in historical],
+                # Conflicting semantic verdicts require review, not an arbitrary winning edge.
+                "grouping_conflicts": conflicts,
             }
         )
     return result
