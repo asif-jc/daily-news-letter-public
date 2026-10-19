@@ -103,6 +103,48 @@ class RenderTests(unittest.TestCase):
         self.assertNotIn("javascript:", html)
         self.assertNotIn("PRIVATE", html)
 
+    def test_original_news_layout_with_new_stories_and_all_source_links(self):
+        from bs4 import BeautifulSoup
+        from src.news.render import render_edition
+
+        story = {
+            "title": "An actual event",
+            "summary": "The new pipeline summary.",
+            "why_matters": "An important consequence.",
+            "tier": "top",
+            "score": 9,
+            "topic": "AI Safety",
+            "sources": [
+                {
+                    "source": "Ars Technica",
+                    "url": "https://arstechnica.com/a",
+                    "published": "2026-10-18T16:25:00Z",
+                },
+                {"source": "BBC World News", "url": "https://bbc.com/b"},
+            ],
+        }
+        edition = {
+            "generated_at": "2026-10-19T00:00:00Z",
+            "stories": [story, dict(story, tier="quick")],
+        }
+        doc = BeautifulSoup(render_edition(edition), "html.parser")
+        self.assertEqual(doc.select_one(".header h1").text, "Daily News Feed")
+        self.assertEqual(len(doc.select(".content > .article.critical")), 1)
+        self.assertEqual(len(doc.select(".content > .article.monitoring")), 1)
+        self.assertEqual(
+            doc.select_one(".article.critical .article-summary").text, story["summary"]
+        )
+        self.assertEqual(
+            doc.select_one(".article.monitoring .article-reason").text, story["summary"]
+        )
+        self.assertIn("19 Oct 2026, 5:25 AM NZDT", doc.select_one(".article-meta").text)
+        self.assertEqual(len(doc.select(".why-matters")), 1)
+        self.assertIn("assets/dunder_park.jpg", doc.style.text)
+        self.assertIn("max-width: 800px", doc.style.text)
+        self.assertEqual(doc.select_one(".category-badge").text, "Technology")
+        self.assertIn("https://bbc.com/b", [a.get("href") for a in doc.select("a")])
+        self.assertFalse(doc.select(".market-box, .fx-box, .quiz-box"))
+
 
 class BudgetTests(unittest.TestCase):
     def test_evidence_selection_has_a_total_text_budget(self):

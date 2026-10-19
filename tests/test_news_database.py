@@ -188,6 +188,10 @@ class WorkflowTests(unittest.TestCase):
             from pathlib import Path
 
             self.assertTrue((Path(tmp) / run / "index.html").exists())
+            self.assertEqual(
+                (Path(tmp) / run / "assets" / "dunder_park.jpg").read_bytes(),
+                Path("assets/dunder_park.jpg").read_bytes(),
+            )
             self.assertTrue((Path(tmp) / run / "review.html").exists())
             with patch(
                 "pathlib.Path.write_text", side_effect=OSError("Disk interruption")

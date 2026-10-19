@@ -15,6 +15,7 @@ Work Log:
 # ========================================================================
 import hashlib
 import json
+import shutil
 import uuid
 from collections import Counter
 from datetime import datetime, timezone
@@ -285,6 +286,12 @@ def run_workflow(
         rendered = stage("render", render, item_key=str(RENDER_VERSION))
 
         def export():
+            assets = output_dir / "assets"
+            assets.mkdir(exist_ok=True)
+            shutil.copyfile(
+                Path(__file__).resolve().parents[2] / "assets" / "dunder_park.jpg",
+                assets / "dunder_park.jpg",
+            )
             for name, content in [
                 ("index.html", rendered["reader"]),
                 ("review.html", rendered["review"]),

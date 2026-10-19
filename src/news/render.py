@@ -16,10 +16,28 @@ Work Log:
 import html
 import json
 from datetime import datetime
+from pathlib import Path
 from urllib.parse import urlsplit
 from zoneinfo import ZoneInfo
 
-RENDER_VERSION = 3
+from src.mvp_news_aggregator.sources import RSS_FEEDS
+
+ORIGINAL_FOOTER = """
+        <div class="footer">
+            <div class="mission">
+                Inform on global events capturing key and interesting events that influence our lives and delivering that information in an easily consumable format.
+            </div>
+            <div class="feedback">
+                Appreciate feedback on source or content curation, new categories, or general queries. Send to:
+                <a href="mailto:asif.ajcanalytics@gmail.com">asif.ajcanalytics@gmail.com</a>
+            </div>
+            <div class="branding">
+                AJC Analytics Limited
+            </div>
+        </div>
+        """
+
+RENDER_VERSION = 7
 
 STYLE = """
 :root{color-scheme:light;--paper:#f7f5f0;--ink:#182a2c;--muted:#566969;--rule:#d9dfd8;--accent:#166c62}
@@ -65,44 +83,73 @@ def page(title, body):
 
 
 def render_edition(edition):
-    date = (
-        datetime.fromisoformat(edition["generated_at"].replace("Z", "+00:00"))
-        .astimezone(ZoneInfo("Pacific/Auckland"))
-        .strftime("%A, %d %B %Y")
-    )
-    body = f'<header><div class="eyebrow">News / Technology / Business / Science</div><h1>The Daily Brief</h1><div class="meta">{escape(date)} · New Zealand time</div><p class="intro">A concise selection of developments worth understanding, with the original reporting one click away.</p></header>'
-    for tier, label, cls in [
-        ("top", "The lead stories", "leads"),
-        ("quick", "Also worth knowing", "quick"),
-    ]:
-        stories = [s for s in edition["stories"] if s["tier"] == tier]
-        if not stories:
-            continue
-        body += f'<h2 class="section-label">{label}</h2><section class="{cls}">'
-        for story in stories:
+    generated = datetime.fromisoformat(
+        edition["generated_at"].replace("Z", "+00:00")
+    ).astimezone(ZoneInfo("Pacific/Auckland"))
+    date = generated.strftime("%B %d, %Y")
+    updated = generated.strftime("%d %b %Y, %-I:%M %p %Z")
+    body = f'<div class="header"><h1>Daily News Feed</h1><div class="date">{escape(date)}</div><div class="last-updated">Last Updated: {escape(updated)}</div></div><div class="content">'
+    for tier in ("top", "quick"):
+        for story in (s for s in edition["stories"] if s["tier"] == tier):
+            sources = story["sources"]
             links = []
             seen = set()
-            for source in story["sources"]:
+            for source in sources:
                 url = safe_link(source.get("url", ""))
                 if url and url not in seen:
                     links.append(
-                        f'<a href="{escape(url)}" rel="noopener noreferrer">{escape(source["source"])}</a>'
+                        f'<a href="{escape(url)}" target="_blank" rel="noopener noreferrer">{escape(source["source"])}</a>'
                     )
                     seen.add(url)
-            why = (
-                f'<p class="significance"><b>Why it matters</b>{escape(story["why_matters"])}</p>'
-                if story.get("why_matters")
+            primary = sources[0] if sources else {}
+            category = next(
+                (
+                    category
+                    for category, feeds in RSS_FEEDS.items()
+                    if any(feed["name"] == primary.get("source") for feed in feeds)
+                ),
+                "world",
+            )
+            category_label = {
+                "world": "Global News",
+                "tech": "Technology",
+                "finance": "Markets & Finance",
+                "nz": "New Zealand",
+            }.get(category, "News")
+            title = escape(story["title"])
+            url = safe_link(primary.get("url", ""))
+            if url:
+                title = f'<a href="{escape(url)}" target="_blank" rel="noopener noreferrer">{title}</a>'
+            published = "Recent"
+            if primary.get("published"):
+                published = (
+                    datetime.fromisoformat(primary["published"].replace("Z", "+00:00"))
+                    .astimezone(ZoneInfo("Pacific/Auckland"))
+                    .strftime("%d %b %Y, %-I:%M %p %Z")
+                )
+            priority = (
+                f' • Priority: {escape(story["score"])}/10'
+                if tier == "top" and story.get("score")
                 else ""
             )
-            fallback = any(
+            css_class = "critical" if tier == "top" else "monitoring"
+            summary_class = "article-summary" if tier == "top" else "article-reason"
+            body += f'<div class="article {css_class}"><div class="article-header"><span class="category-badge {category}">{escape(category_label)}</span><div class="article-title">{title}</div></div><div class="article-meta">{escape(primary.get("source", "Unknown"))} • {escape(published)}{priority}</div><div class="{summary_class}">{escape(story["summary"])}</div>'
+            if tier == "top" and story.get("why_matters"):
+                body += f'<div class="why-matters"><strong>Why this matters:</strong> {escape(story["why_matters"])}</div>'
+            # Keep every source accessible when one event combines several reports.
+            if len(links) > 1 or (links and not url):
+                body += f'<div class="article-meta">Sources: {" · ".join(links)}</div>'
+            if any(
                 s.get("used_in_summary") and s.get("evidence_basis") == "feed_summary"
-                for s in story["sources"]
-            )
-            note = "<span>Includes RSS-summary evidence.</span>" if fallback else ""
-            body += f'<article class="story"><div><div class="eyebrow">{escape(story.get("topic","News"))}</div><h2>{escape(story["title"])}</h2></div><div><p>{escape(story["summary"])}</p>{why}<div class="sources">{" ".join(links)} {note}</div></div></article>'
-        body += "</section>"
-    body += "<footer>Summaries are generated from source reporting with AI assistance. Follow the links for the original articles.</footer>"
-    return page("The Daily Brief | " + date, body)
+                for s in sources
+            ):
+                body += '<div class="article-meta">Includes RSS-summary evidence.</div>'
+            body += "</div>"
+    body += "</div>"
+    body += ORIGINAL_FOOTER
+    css = Path(__file__).with_name("reader.css").read_text()
+    return f'<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Daily News Feed - {escape(date)}</title><style>{css}</style></head><body><div class="container">{body}</div></body></html>'
 
 
 def render_review(
