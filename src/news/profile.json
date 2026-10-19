@@ -1,0 +1,18 @@
+{
+  "id": "asif-learning",
+  "version": 1,
+  "audience": "A curious New Zealand reader learning about technology, science, business, economics and consequential public policy.",
+  "include": [
+    "Material developments in AI, computing, engineering and other technologies: explain the capability, limitation or change.",
+    "Scientific discoveries with a concrete finding and useful context; distinguish preliminary research from established evidence.",
+    "Business, economic and market developments with a substantive change, mechanism or consequence.",
+    "Public policy and global events with stated implications for institutions, economies, technology, science or New Zealand."
+  ],
+  "exclude": [
+    "Celebrity, sports results, promotions, shopping guides and routine product announcements without a material development.",
+    "Crime, accidents and isolated tragedies where the supplied evidence contains no substantive policy, scientific, economic or institutional development.",
+    "Sensational or repetitive coverage whose only inclusion argument is prominence or emotional impact."
+  ],
+  "qualification": "Reject only clear mismatches. Retain uncertain events for article retrieval. Relevance is fit to this brief, not general newsworthiness.",
+  "ranking": "Prefer concrete new facts and explanatory learning value. Major consequences matter when supported. Diversify topics and sources among similarly useful events; no mandatory quotas."
+}

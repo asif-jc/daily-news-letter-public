@@ -1,0 +1,281 @@
+{
+  "date": "2026-10-19",
+  "database": "news",
+  "schema": "news",
+  "status": "ready_for_review",
+  "counts": {
+    "top": 3,
+    "quick": 5,
+    "events": 17,
+    "collected": 100,
+    "qualified": 11,
+    "candidates": 19
+  },
+  "source_observations": [
+    {
+      "source_name": "Ars Technica",
+      "eligibility": "eligible",
+      "count": 1
+    },
+    {
+      "source_name": "Ars Technica",
+      "eligibility": "outside_window",
+      "count": 19
+    },
+    {
+      "source_name": "BBC World News",
+      "eligibility": "duplicate_url",
+      "count": 1
+    },
+    {
+      "source_name": "BBC World News",
+      "eligibility": "eligible",
+      "count": 13
+    },
+    {
+      "source_name": "BBC World News",
+      "eligibility": "outside_window",
+      "count": 16
+    },
+    {
+      "source_name": "CNBC Finance",
+      "eligibility": "outside_window",
+      "count": 30
+    },
+    {
+      "source_name": "TechCrunch",
+      "eligibility": "eligible",
+      "count": 5
+    },
+    {
+      "source_name": "TechCrunch",
+      "eligibility": "outside_window",
+      "count": 15
+    }
+  ],
+  "qualification_tags": {
+    "uncertain": 6,
+    "irrelevant": 6,
+    "relevant": 5
+  },
+  "final_decision_bases": {
+    "selected": 8,
+    "off_brief": 9
+  },
+  "source_health": [
+    {
+      "source": "BBC World News",
+      "status": "ok",
+      "articles": 30,
+      "category": "world",
+      "parse_warning": false
+    },
+    {
+      "source": "TechCrunch",
+      "status": "ok",
+      "articles": 20,
+      "category": "tech",
+      "parse_warning": false
+    },
+    {
+      "source": "Ars Technica",
+      "status": "ok",
+      "articles": 20,
+      "category": "tech",
+      "parse_warning": false
+    },
+    {
+      "source": "CNBC Finance",
+      "status": "ok",
+      "articles": 30,
+      "category": "finance",
+      "parse_warning": false
+    }
+  ],
+  "stages": [
+    {
+      "name": "collect",
+      "status": "complete",
+      "attempts": 1,
+      "seconds": 0.989566
+    },
+    {
+      "name": "clean",
+      "status": "complete",
+      "attempts": 1,
+      "seconds": 0.08032
+    },
+    {
+      "name": "group",
+      "status": "complete",
+      "attempts": 1,
+      "seconds": 3.002948
+    },
+    {
+      "name": "qualify",
+      "status": "complete",
+      "attempts": 1,
+      "seconds": 18.400975
+    },
+    {
+      "name": "retrieve",
+      "status": "complete",
+      "attempts": 1,
+      "seconds": 12.814361
+    },
+    {
+      "name": "select",
+      "status": "complete",
+      "attempts": 1,
+      "seconds": 21.994873
+    },
+    {
+      "name": "synthesize",
+      "status": "complete",
+      "attempts": 1,
+      "seconds": 62.637199
+    },
+    {
+      "name": "edition",
+      "status": "complete",
+      "attempts": 1,
+      "seconds": 0.035418
+    },
+    {
+      "name": "render",
+      "status": "complete",
+      "attempts": 1,
+      "seconds": 0.056057
+    },
+    {
+      "name": "storage",
+      "status": "complete",
+      "attempts": 1,
+      "seconds": 0.203346
+    }
+  ],
+  "model_calls": 12,
+  "model_calls_by_task": {
+    "group_events": 1,
+    "qualify_events": 2,
+    "select_with_evidence": 1,
+    "synthesize": 8
+  },
+  "model_usage": {
+    "prompt_tokens": 31971,
+    "completion_tokens": 4245,
+    "total_tokens": 36216
+  },
+  "extracted_evidence_basis": {
+    "article_text": 13
+  },
+  "storage": {
+    "database_bytes": 42308067,
+    "tables_bytes": 1400832,
+    "rows": {
+      "sources": 4,
+      "articles": 99,
+      "observations": 100,
+      "runs": 1,
+      "stages": 36,
+      "events": 17,
+      "event_articles": 19,
+      "decisions": 34,
+      "evidence": 13,
+      "model_calls": 12,
+      "editions": 1
+    }
+  },
+  "prompt_sha256": {
+    "synthesize": "c9a851c95cfb6df599f12a8533c9184f51ba9e94aa69cf8b0afa2b01de1fc79b",
+    "group_events": "5d23e926add20d832f7692635172f42944b6d22dd2078b399b90921f3a10f27e",
+    "select_events": "6a5ecc8f6c80198141356ae7e10c52a8ba97eb36974132e5b304c62c02dce878",
+    "qualify_events": "501e75af7341fe4a454babad4f752532fd6d11a21de7ec5d57b969fc4b0c820b",
+    "select_with_evidence": "636b888198ca541b35a0545a2f05e89873293beb7149611d6f03248f8b20740c"
+  },
+  "grouping_evaluation": {
+    "baseline_passed": 5,
+    "final_passed": 9,
+    "cases": 9
+  },
+  "tests": {
+    "passed": 44,
+    "database": "remote PostgreSQL news; isolated test schemas",
+    "skipped": 0
+  },
+  "backup_restore": {
+    "archive_bytes": 213050,
+    "archive_sha256": "0938ccfc71eae10c839015808b5504baf37561da05b8dc5d326dcc9c0c712950",
+    "row_counts_match": true,
+    "edition_matches": true,
+    "restored_rows": {
+      "sources": 4,
+      "articles": 99,
+      "observations": 100,
+      "runs": 1,
+      "stages": 36,
+      "events": 17,
+      "event_articles": 19,
+      "decisions": 34,
+      "evidence": 13,
+      "model_calls": 12,
+      "editions": 1
+    },
+    "restore_target": "isolated local PostgreSQL cluster; no network listener",
+    "other_server_databases_modified": false
+  },
+  "browser_checks": {
+    "desktop_rendered": true,
+    "reader_stories": 8,
+    "mobile_width": 390,
+    "mobile_height": 844,
+    "mobile_horizontal_overflow": false,
+    "private_review_counts_verified": true
+  },
+  "publication": {
+    "main_merged": false,
+    "production_deployed": false
+  },
+  "runtime_role": {
+    "dedicated_runtime_role": true,
+    "superuser": false,
+    "create_database": false,
+    "create_role": false,
+    "replication": false,
+    "grants_target": "news database and schema only",
+    "existing_roles_altered": false
+  },
+  "resume_verification": {
+    "resume_exit": 0,
+    "model_calls_before": 12,
+    "model_calls_after": 12,
+    "additional_model_calls": 0,
+    "collect_attempts": 1
+  },
+  "model_capacity": {
+    "advertised_max_model_len": 524288,
+    "largest_observed_prompt_tokens": 9470
+  },
+  "known_limits": [
+    "Editorial relevance and summary entailment need human review; source-passage validity is not factual verification.",
+    "Four fixed RSS sources and 24-hour eligibility window; CNBC had no eligible articles in this snapshot.",
+    "First profile only. Persistent event snapshots are run-scoped; this is not yet a global cross-domain event catalog.",
+    "No automatic publication, scheduler, retention deletion or off-host backup schedule. Backup/restore was manually verified.",
+    "Private model transport and database errors are not printed; detailed validation/model audit remains in the database.",
+    "Article body extraction and evidence clipping are heuristic; final selection uses a 60,000-character total evidence budget."
+  ],
+  "source_sha256": {
+    "src/news/__init__.py": "21ec9cbbab3968ccd931d24e18860c1960cce431489049cc191a668520fcf695",
+    "src/news/__main__.py": "1c38a2b1b6500506a1799899c2b172663cba52f21e8ae4b076321e0f394d5224",
+    "src/news/editorial.py": "5bdd53dde348101a5563527df8e0f669f9838c148bdd308b34b90d7b454ece5b",
+    "src/news/evaluate.py": "56e405b75d5a1c9c6e7478750ef8fd62228af2e90ba1054d979a9cfe77c14cbc",
+    "src/news/events.py": "10948c53e508ec99402c0d0dcfd9a59c6f78312c9aabd0bc2e7590af53d1f517",
+    "src/news/llm.py": "0e38c9f76bdbe827a599f6d7303ddb924ebb0d98ca15c528360bcaa9d1fd1dad",
+    "src/news/migrations/001_news.sql": "6fa8c6ab6b62f07f9ce51b2e082e789179897d0c8f5885a90b0c0b53e15e2add",
+    "src/news/pipeline.py": "826da0f16361a4ce599853cb4c5fedecf034923212ee9ad096bf0506dd8d6d9b",
+    "src/news/profile.json": "63c9e543c6656a169aaedb88d4e19c2ed543894a7081063c7434fb995febd778",
+    "src/news/render.py": "b9d2450e8a415813ed44686740f5eec7369abbb467c790efe115bd10cb8e6c95",
+    "src/news/store.py": "af2af5dbc6a7ef638452d1a403f0c73f3d8b44bd58898c96683a9ee2a207a215",
+    "src/news/workflow.py": "82953a57a342c8d8abf20508531b14ca18778d668b46bb5d83149f21409e06dd"
+  }
+}

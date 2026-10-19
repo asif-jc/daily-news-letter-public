@@ -1,41 +1,121 @@
+"""
+=== __main__.py ===
+
+Purpose: Run, resume, initialize or inspect the retained news workflow.
+Extended Description:
+    Parses local settings and invokes workflow.py; never publishes or sends email.
+Usage:
+    python -m src.news --help
+Work Log:
+    19/10/2026 -> PostgreSQL-backed news-only MVP.
+"""
+
+# ========================================================================
+# IMPORTS & CONFIGURATION
+# ========================================================================
 import argparse
 import json
 import sys
-from datetime import datetime, timezone
 from pathlib import Path
 
 from dotenv import load_dotenv
 
 from .llm import JsonModel
-from .pipeline import build_edition, collect_articles
+from .store import NewsStore
+from .workflow import run_workflow
+
+# ========================================================================
+# PRIMARY EXECUTION
+# ========================================================================
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Build a local, news-only edition for review; never publishes.')
-    parser.add_argument('--env-file', default='.env')
-    parser.add_argument('--input', type=Path, help='Replay saved collected articles instead of fetching RSS')
-    parser.add_argument('--history', type=Path, help='Previously reviewed edition for repeat/update comparison')
-    parser.add_argument('--top-limit', type=int, default=5)
-    parser.add_argument('--quick-limit', type=int, default=10)
+    parser = argparse.ArgumentParser(
+        description="Build a retained news-only edition for local review; never publishes."
+    )
+    parser.add_argument("--env-file", default=".env")
+    parser.add_argument(
+        "--resume", help="Resume an existing run UUID using its frozen configuration"
+    )
+    parser.add_argument(
+        "--input", type=Path, help="Replay saved normalized RSS observations"
+    )
+    parser.add_argument(
+        "--history", type=Path, help="Explicit reviewed edition history"
+    )
+    parser.add_argument("--profile", type=Path, help="Versioned editorial profile JSON")
+    parser.add_argument(
+        "--output-root", type=Path, default=Path(".local/news-editions")
+    )
+    parser.add_argument("--top-limit", type=int, default=5)
+    parser.add_argument("--quick-limit", type=int, default=10)
+    parser.add_argument(
+        "--migrate",
+        action="store_true",
+        help="Initialize the isolated news schema only",
+    )
+    parser.add_argument(
+        "--stats",
+        action="store_true",
+        help="Report retained row counts and storage size",
+    )
     args = parser.parse_args()
-    if not 0 <= args.top_limit <= 10 or not 0 <= args.quick_limit <= 20 or not args.top_limit + args.quick_limit:
-        parser.error('Use 0–10 top and 0–20 quick stories, with at least one available slot')
+    if args.resume and (args.input or args.history or args.profile):
+        parser.error(
+            "Resume uses the original input, profile and history; start a new run to change them"
+        )
+    if (
+        Path(".local").resolve() not in args.output_root.resolve().parents
+        and args.output_root.resolve() != Path(".local").resolve()
+    ):
+        parser.error("Review output must remain under ignored .local storage")
     load_dotenv(args.env_file, override=False)
-    run_dir = Path('.local/news-runs') / datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')
-    run_dir.mkdir(parents=True, exist_ok=False)
+    store = None
     try:
-        model = JsonModel.from_env(audit_dir=run_dir / 'model')
-        rows, health = (json.loads(args.input.read_text()), []) if args.input else collect_articles()
-        history = json.loads(args.history.read_text()) if args.history else None
-        edition = build_edition(rows, model, run_dir, history=history, source_health=health,
-                                top_limit=args.top_limit, quick_limit=args.quick_limit)
-        print(json.dumps({'status': edition['status'], 'counts': edition['counts'],
-                          'run_directory': str(run_dir)}, indent=2))
+        store = NewsStore.from_env()
+        store.migrate()
+        if args.migrate:
+            print(json.dumps({"migration": "current", "schema_version": 1}))
+            return 0
+        if args.stats:
+            print(json.dumps(store.stats(), indent=2))
+            return 0
+        model = JsonModel.from_env()
+        edition = run_workflow(
+            store,
+            model,
+            args.output_root,
+            run_id=args.resume,
+            rows=json.loads(args.input.read_text()) if args.input else None,
+            history=json.loads(args.history.read_text()) if args.history else None,
+            profile=json.loads(args.profile.read_text()) if args.profile else None,
+            top_limit=args.top_limit,
+            quick_limit=args.quick_limit,
+        )
+        print(
+            json.dumps(
+                {
+                    "run_id": edition["run_id"],
+                    "status": edition["status"],
+                    "counts": edition["counts"],
+                    "reader": str(args.output_root / edition["run_id"] / "index.html"),
+                    "review": str(args.output_root / edition["run_id"] / "review.html"),
+                },
+                indent=2,
+            )
+        )
         return 0
-    except Exception as exc:
-        print(f'News review run failed ({type(exc).__name__}); inspect local run artifacts.', file=sys.stderr)
+    except Exception as error:
+        # Driver errors include host/user details; full connection settings must stay private.
+        print(
+            f"News workflow failed ({type(error).__name__}); inspect the database run/stage records.",
+            file=sys.stderr,
+        )
         return 1
+    finally:
+        if store:
+            store.close()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     raise SystemExit(main())
