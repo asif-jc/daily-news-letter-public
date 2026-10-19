@@ -106,7 +106,7 @@ def _text(value, field, allow_empty=False):
     return value.strip()
 
 
-def group_events(articles, model, history=None):
+def group_events(articles, model, history=None, instructions=None):
     if not articles:
         return []
     lookup = {a["id"]: a for a in articles}
@@ -123,7 +123,8 @@ def group_events(articles, model, history=None):
             {k: a.get(k) for k in ("event_id", "title", "summary")} for a in previous
         ],
     }
-    groups = model.complete("group_events", data).get("events")
+    options = {} if instructions is None else {"instructions": instructions}
+    groups = model.complete("group_events", data, **options).get("events")
     if not isinstance(groups, list):
         raise ValueError("Expected events list")
     result, seen = [], set()

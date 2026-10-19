@@ -23,6 +23,7 @@ from dotenv import load_dotenv
 from .llm import JsonModel
 from .store import NewsStore
 from .workflow import run_workflow
+from .library import run_library_workflow
 
 # ========================================================================
 # PRIMARY EXECUTION
@@ -47,8 +48,12 @@ def main():
     parser.add_argument(
         "--output-root", type=Path, default=Path(".local/news-editions")
     )
-    parser.add_argument("--top-limit", type=int, default=5)
-    parser.add_argument("--quick-limit", type=int, default=10)
+    parser.add_argument(
+        "--top-limit", type=int, default=5, help="Legacy workflow resume only"
+    )
+    parser.add_argument(
+        "--quick-limit", type=int, default=10, help="Legacy workflow resume only"
+    )
     parser.add_argument(
         "--migrate",
         action="store_true",
@@ -58,6 +63,13 @@ def main():
         "--stats",
         action="store_true",
         help="Report retained row counts and storage size",
+    )
+    parser.add_argument("--pool-days", type=int, default=7)
+    parser.add_argument("--featured-limit", type=int, default=6)
+    parser.add_argument(
+        "--include-review-previews",
+        action="store_true",
+        help="Include unapproved saved editions in the local review archive",
     )
     args = parser.parse_args()
     if args.resume and (args.input or args.history or args.profile):
@@ -75,13 +87,27 @@ def main():
         store = NewsStore.from_env()
         store.migrate()
         if args.migrate:
-            print(json.dumps({"migration": "current", "schema_version": 1}))
+            print(json.dumps({"migration": "current", "schema_version": 2}))
             return 0
         if args.stats:
             print(json.dumps(store.stats(), indent=2))
             return 0
         model = JsonModel.from_env()
-        edition = run_workflow(
+        legacy = bool(
+            args.resume
+            and store.get_run(args.resume)["config"]["workflow_version"] == 1
+        )
+        workflow = run_workflow if legacy else run_library_workflow
+        extra = (
+            {"top_limit": args.top_limit, "quick_limit": args.quick_limit}
+            if legacy
+            else {
+                "pool_days": args.pool_days,
+                "featured_limit": args.featured_limit,
+                "include_review_previews": args.include_review_previews,
+            }
+        )
+        edition = workflow(
             store,
             model,
             args.output_root,
@@ -89,8 +115,7 @@ def main():
             rows=json.loads(args.input.read_text()) if args.input else None,
             history=json.loads(args.history.read_text()) if args.history else None,
             profile=json.loads(args.profile.read_text()) if args.profile else None,
-            top_limit=args.top_limit,
-            quick_limit=args.quick_limit,
+            **extra,
         )
         print(
             json.dumps(

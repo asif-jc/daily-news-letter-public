@@ -254,12 +254,12 @@ class NewsStore:
         ]
 
     def rolling_articles(self, now, days=7):
-        """Return latest metadata as of run time, then apply the publisher-date window."""
+        """Use publisher dates for freshness, or last observation when both are unknown."""
         if days <= 0:
             raise ValueError("Rolling window days must be positive")
         cutoff = now - timedelta(days=days)
         rows = self.connection.execute(
-            """SELECT DISTINCT ON (o.article_id) o.metadata
+            """SELECT DISTINCT ON (o.article_id) o.metadata,r.started_at AS observed_at
             FROM observations o JOIN runs r ON r.id=o.run_id
             WHERE r.started_at <= %s
             ORDER BY o.article_id,r.started_at DESC,r.id DESC,o.ordinal DESC""",
@@ -277,7 +277,9 @@ class NewsStore:
                 dates.append(
                     value if value.tzinfo else value.replace(tzinfo=timezone.utc)
                 )
-            if not dates or any(cutoff <= date <= now for date in dates):
+            if (not dates and row["observed_at"] >= cutoff) or any(
+                cutoff <= date <= now for date in dates
+            ):
                 articles.append(article)
         return articles
 
@@ -409,24 +411,34 @@ class NewsStore:
         editions.sort(key=lambda item: item[0], reverse=True)
         return [edition for _, edition in editions[:limit]]
 
-    def published_history(self, profile_id, now=None):
+    def published_history(self, profile_id, now=None, days=7):
         rows = self.connection.execute(
             """SELECT e.payload,r.started_at FROM editions e JOIN runs r ON r.id=e.run_id
             WHERE e.profile_id=%s AND e.status='published'
-            AND (%s::timestamptz IS NULL OR (r.started_at <= %s AND e.published_at <= %s))
+            AND (%s::timestamptz IS NULL OR (r.started_at <= %s AND e.published_at <= %s AND e.published_at >= %s))
             ORDER BY e.published_at DESC LIMIT %s""",
-            (profile_id, now, now, now, 7 if now is None else None),
+            (
+                profile_id,
+                now,
+                now,
+                now,
+                now - timedelta(days=days) if now else None,
+                7 if now is None else None,
+            ),
         )
-        stories, editions = {}, 0
+        stories, featured_ids = {}, set()
         for row in rows:
             if now is not None and _edition_generated_at(row) > now:
                 continue
             for story in row["payload"]["stories"]:
+                if story.get("featured", True):
+                    featured_ids.add(story["event_id"])
                 stories.setdefault(story["event_id"], story)
-            editions += 1
-            if editions == 7:
-                break
-        return {"stories": list(stories.values())}
+        # Latest factual snapshots and past placement answer different questions.
+        return {
+            "stories": list(stories.values()),
+            "featured_event_ids": sorted(featured_ids),
+        }
 
     def finish_run(self, run_id):
         self.connection.execute(

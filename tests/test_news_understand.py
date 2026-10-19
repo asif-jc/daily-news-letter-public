@@ -26,7 +26,8 @@ class UnderstandingTests(unittest.TestCase):
                     "why_matters": why,
                     "topics": ["Politics", "Economy"],
                     "geography": ["NZ"],
-                    "support": [{"section": "summary", "passage_id": "p1"}],
+                    "support": [{"section": "summary", "passage_id": "p1"}]
+                    + ([{"section": "why_matters", "passage_id": "p1"}] if why else []),
                 }
             ]
         }
@@ -128,6 +129,115 @@ class UnderstandingTests(unittest.TestCase):
         )["a"]
         self.assertEqual(r["state"], "needs_review")
         self.assertEqual(r["summary"], "")
+
+    def test_unsupported_optional_significance_is_removed_and_facts_rechecked(self):
+        from src.news.understand import analyse_batch
+
+        bad = self.response(why="This guarantees economic prosperity.")
+        reject = {
+            "reviews": [
+                {
+                    "id": "a1",
+                    "verdict": "revise",
+                    "reason": "Significance unsupported.",
+                    "unsupported_sections": ["why_matters"],
+                }
+            ]
+        }
+        model = Mock()
+        model.complete.side_effect = [
+            bad,
+            reject,
+            bad,
+            reject,
+            {
+                "reviews": [
+                    {
+                        "id": "a1",
+                        "verdict": "approved",
+                        "reason": "Facts are supported.",
+                        "unsupported_sections": [],
+                    }
+                ]
+            },
+        ]
+        result = analyse_batch(
+            [self.article()],
+            {
+                "a": {
+                    "basis": "article_text",
+                    "text": "The minister said the policy would reduce costs.",
+                    "status": "ok",
+                }
+            },
+            model,
+        )["a"]
+        self.assertEqual(result["state"], "ready")
+        self.assertEqual(result["why_matters"], "")
+        self.assertTrue(result["significance_omitted"])
+        last_draft = model.complete.call_args_list[-1].args[1]["articles"][0]["draft"]
+        self.assertEqual(last_draft["why_matters"], "")
+        self.assertTrue(all(s["section"] == "summary" for s in result["support"]))
+
+    def test_dropping_significance_cannot_rescue_unsupported_facts(self):
+        from src.news.understand import analyse_batch
+
+        bad = self.response(why="This guarantees prosperity.")
+        reject = {
+            "reviews": [
+                {
+                    "id": "a1",
+                    "verdict": "revise",
+                    "reason": "Both sections unsupported.",
+                    "unsupported_sections": ["summary", "why_matters"],
+                }
+            ]
+        }
+        model = Mock()
+        model.complete.side_effect = [bad, reject, bad, reject]
+        result = analyse_batch(
+            [self.article()],
+            {
+                "a": {
+                    "basis": "article_text",
+                    "text": "Different evidence.",
+                    "status": "ok",
+                }
+            },
+            model,
+        )["a"]
+        self.assertEqual(result["state"], "needs_review")
+        self.assertEqual(model.complete.call_count, 4)
+
+    def test_geographic_breadth_is_not_an_arbitrary_five_place_cutoff(self):
+        from src.news.understand import analyse_batch
+
+        response = self.response()
+        response["articles"][0]["geography"] = [
+            "NZ",
+            "Australia",
+            "Japan",
+            "France",
+            "Germany",
+            "Canada",
+        ]
+        model = Mock()
+        model.complete.side_effect = [
+            response,
+            {"reviews": [{"id": "a1", "verdict": "approved", "reason": "Supported."}]},
+        ]
+        result = analyse_batch(
+            [self.article()],
+            {
+                "a": {
+                    "basis": "article_text",
+                    "status": "ok",
+                    "text": "The minister said the policy would reduce costs across NZ, Australia, Japan, France, Germany and Canada.",
+                }
+            },
+            model,
+        )
+        self.assertEqual(len(result["a"]["geography"]), 6)
 
     def test_empty_evidence_has_explicit_state_and_no_model_call(self):
         from src.news.understand import analyse_batch

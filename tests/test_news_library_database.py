@@ -75,6 +75,36 @@ class LibraryDatabaseTests(unittest.TestCase):
             {"updated", "unknown", "invalid", "boundary"},
         )
 
+    def test_unknown_dates_use_last_observation_window_without_deleting_history(self):
+        old = self.save(
+            self.now - timedelta(days=30),
+            [
+                self.article("stale", published=None),
+                self.article("refreshed", published=None),
+            ],
+        )
+        self.save(
+            self.now - timedelta(days=7),
+            [self.article("boundary", published=None)],
+        )
+        self.save(
+            self.now - timedelta(days=1),
+            [
+                self.article("recent", published=None),
+                self.article("refreshed", published=None),
+            ],
+        )
+        self.save(
+            self.now + timedelta(days=1),
+            [self.article("stale", published=None)],
+        )
+        self.assertEqual(
+            {a["id"] for a in self.store.rolling_articles(self.now)},
+            {"boundary", "recent", "refreshed"},
+        )
+        self.assertEqual(len(self.store.observations(old)), 2)
+        self.assertEqual(self.store.counts()["observations"], 6)
+
     def test_latest_metadata_cannot_resurrect_an_obsolete_observation(self):
         self.save(self.now - timedelta(days=1), [self.article()])
         self.save(
@@ -152,6 +182,40 @@ class LibraryDatabaseTests(unittest.TestCase):
         history = self.store.recent_editions("asif", now=self.now)
         self.assertEqual([e["stories"][0]["event_id"] for e in history], ["-1", "-2"])
         self.assertEqual(self.store.recent_editions("asif", limit=0), [])
+
+    def test_publication_history_uses_days_not_a_seven_edition_cap(self):
+        for n in range(9):
+            date = self.now - timedelta(hours=n)
+            run = self.store.create_run({}, date)
+            self.store.save_edition(
+                run,
+                {
+                    "generated_at": date.isoformat(),
+                    "stories": [{"event_id": str(n), "featured": True}],
+                },
+                {"id": "asif"},
+            )
+            self.store.connection.execute(
+                "UPDATE editions SET status='published',published_at=%s WHERE run_id=%s",
+                (date, run),
+            )
+        old = self.now - timedelta(days=8)
+        run = self.store.create_run({}, old)
+        self.store.save_edition(
+            run,
+            {
+                "generated_at": old.isoformat(),
+                "stories": [{"event_id": "expired", "featured": True}],
+            },
+            {"id": "asif"},
+        )
+        self.store.connection.execute(
+            "UPDATE editions SET status='published',published_at=%s WHERE run_id=%s",
+            (old, run),
+        )
+        history = self.store.published_history("asif", now=self.now)
+        self.assertEqual(len(history["stories"]), 9)
+        self.assertEqual(set(history["featured_event_ids"]), {str(n) for n in range(9)})
 
     def test_published_history_uses_run_generation_and_publication_cutoffs(self):
         cases = [

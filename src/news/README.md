@@ -1,104 +1,90 @@
-# News-only workflow
+# Retained news collection
 
-One Python workflow collects four RSS feeds, retains observations in PostgreSQL, groups events, applies a versioned editorial profile, retrieves evidence, selects an edition and produces reader/review HTML. It never sends email, merges, or deploys. The old production entry point remains in place pending review.
+The default CLI runs an evidence-first Python workflow backed by the isolated PostgreSQL `news` database. It retains every feed observation, understands new articles before personal filtering, groups related reports into events, and renders a concise featured selection above a broader topic collection. It never publishes, sends newsletters, merges or deploys.
 
-## Setup and run
-
-Use Python 3.10 or newer. Install only the news slice's dependencies:
+## Run and resume
 
 ```sh
 python -m pip install -r requirements-news.txt
 cp .env.example .env
-# Set private PostgreSQL and model settings in ignored .env.
+# Fill the ignored environment file with runtime database/model settings.
 python -m src.news --migrate
-python -m src.news
-```
-
-The PostgreSQL database must already exist and be named `news`. The workflow refuses any other database name and creates only its `news` schema and versioned tables. Runtime credentials need permission for that schema. Database administration and host access policy are outside the application; no command modifies other databases or PostgreSQL configuration.
-
-Use a dedicated runtime account scoped to `news`, rather than shared administrative credentials. The verified runtime role has no superuser, database-creation, role-creation or replication capability. It can create schemas within this database for isolated tests, use the application schema, read/insert/update its tables and use its sequences. Initial provisioning and future ownership-sensitive migrations remain operator tasks.
-
-The model must support OpenAI-style chat completions, JSON responses and `chat_template_kwargs.enable_thinking`. This is a direct client for the configured local service, not an agent framework or universal provider abstraction.
-
-```sh
+python -m src.news --pool-days 7 --featured-limit 6
 python -m src.news --resume RUN_UUID
-python -m src.news --input .local/saved-collected.json
-python -m src.news --profile src/news/profile.json --top-limit 5 --quick-limit 10
 python -m src.news --stats
 ```
 
-Each run freezes the profile, prompts, model identity, time window, input mode, edition limits and history. Resume reuses completed database stages and article/synthesis checkpoints. Changed workflow code version, prompts or model require a new run. Incomplete external calls may repeat; this is restartable execution, not exactly-once delivery. There is one PostgreSQL advisory lock per running edition, so multiple machines cannot execute that same run simultaneously. Different runs remain independent.
+PostgreSQL must already contain a database named `news`. The application checks both connection configuration and actual backend identity before schema operations. Migrations touch its application schema only. Schema version 2 adds retained article analyses without replacing version-1 records. On an existing database whose tables belong to an administrator, that administrator must apply migration 2 and grant runtime SELECT/INSERT/UPDATE on the new table plus identity-sequence access. Do not broaden the runtime role to superuser or modify other databases/access rules.
 
-Output is private under `.local/news-editions/RUN_UUID/`:
+The model endpoint must support OpenAI-style chat completions, JSON responses and `chat_template_kwargs.enable_thinking`. Private addresses, model names and credentials belong in ignored env files. No agent framework or orchestration service is required.
 
-- `index.html`: reader page with intended story fields and source links.
-- `review.html`: source counts, every event's qualification/selection, exact profile/task prompts and summary support passages.
-- `edition.json`: complete private editorial snapshot, including provenance.
-- `run.json`: short local run summary. The database is authoritative for stage state and retained data.
+New runs use workflow 2. Resume automatically selects the original workflow for version-1 runs, preserving their frozen prompts and inputs. New workflow/profile/prompt choices require a new run; renderer changes have separate checkpoints. `--top-limit` and `--quick-limit` belong to legacy resumes; new runs use `--featured-limit`, which does not limit the browsable collection.
 
-The static page can later be deployed without database access. Do not deploy the private review page or full edition JSON. No deployment path is enabled by these commands. The prototype's shared source configuration has been reduced on this branch; it would change upon an approved release.
+`--input FILE` replays normalized feed observations. `--history FILE` explicitly supplies reviewed edition history for repeat/update experiments; it does not mark database editions published. Runtime connection and model errors are reported without private transport details.
 
-## Workflow and editorial policy
+## Workflow
 
-1. **Collect:** first 50 entries from BBC World, TechCrunch, Ars Technica and CNBC Finance. Retain all returned observations, including later exclusions and missing dates.
-2. **Clean:** canonical URL identity, date/title/URL/sponsored-title checks and a publisher-balanced 100-candidate budget. Default freshness is 24 hours; missing dates are rejected. A feed's updated date is used only when published is absent, and that basis is retained.
-3. **Group:** the LLM groups specific events, preserving supporting articles. Generic topic overlap is insufficient. Ordinary singletons are preserved deterministically. Supplied published/reviewed history distinguishes repeats and material updates.
-4. **Qualify:** batches of at most 15 events get relevant / irrelevant / uncertain with a concrete reason. Only clear profile mismatches are removed; uncertainty survives to retrieval. Starting preferences are explicit in `profile.json`, not built into ingestion.
-5. **Retrieve:** extract up to three supporting articles per shortlisted event. Failed/insufficient extraction is labeled feed-summary fallback. Only approved publisher hosts and redirects are fetched.
-6. **Select:** rank the entire shortlist using bounded evidence. The total source-text budget is 60,000 characters, at most 6,000 per event, divided across its available sources. Truncation is explicit. Every event gets a selected or excluded decision; exclusion bases are off_brief, insufficient_evidence, already_covered or crowded_out. Defaults of five leads and ten quick reads are maxima, not quotas.
-7. **Synthesize:** concise summaries and supported significance cite numbered source passages. Code attaches exact bounded excerpts. Valid passages establish traceability, not semantic entailment or independent factual verification.
-8. **Render:** save the edition and private HTML snapshots; re-export the saved HTML on resume without model or article requests. A new renderer version creates a separate render checkpoint from the same saved edition.
+1. **Collect and retain.** BBC World, Ars Technica, TechCrunch and CNBC Finance, at most 50 entries per feed. Record published, updated and fetched timestamps separately. RSS remains discovery, not proof of comprehensive publisher coverage.
+2. **Build a rolling pool.** Use latest retained observations from runs no later than the edition time. Seven days is the default current-reading window, not a retention deletion policy. Every newly collected valid unique article is understood, including older background material. Unknown dates remain explicitly unknown; invalid URLs, empty titles and future dates are quarantined with reasons. Duplicate URLs are processed once.
+3. **Retrieve and understand.** Fetch publisher-approved article URLs with bounded extraction. When extraction fails, label RSS-only evidence; never imply full-text access. Analyse articles in small batches independently of personal preferences. Store factual summaries, optional supported significance, controlled topics, geography, passage references and review outcomes. Reuse exact metadata/model/prompt matches for 24 hours; publisher body changes without feed metadata changes may not be discovered until refresh.
+4. **Review and repair.** A separate model call checks attribution, actors, numbers, scientific uncertainty and unsupported significance against supplied evidence. One revision attempt is allowed. If only optional significance remains unsupported, remove it and review the factual summary again before admitting that summary. An article that still fails is retained as needs-review, without a reader-ready summary. No-evidence articles remain unavailable. This is model-assisted checking, not independent fact verification.
+5. **Group specific events.** Use grounded article summaries to group duplicate reports while preserving source membership. Shared topics or companies do not establish one event. Immediate response and aftermath can share one explicit incident; unrelated policy decisions and separate attacks remain distinct. Previous review editions help preserve identity; published history is the baseline for determining whether a development was already featured. History respects the edition's time boundary.
+6. **Curate and rank.** Preferences include politics, conflict/geopolitics, economies/markets, business, AI/technology, science/research, environment/geography and NZ/Pacific relevance. Every event gets a reasoned relevance/importance decision. Relevant lower-ranked events remain browsable; six featured slots are a presentation choice. Topic diversity breaks close ranking choices. Within the rolling publication-history window, previously featured events need a material update to feature again. Past featured membership is retained separately from the latest factual snapshot, so a subsequent unfeatured appearance cannot erase it. Both use the configured pool horizon (seven days by default), rather than an edition-count limit; this bounds processing and keeps suppression backed by the history available to grouping.
+7. **Summarise events.** A single-source event uses its reviewed article summary. Multi-source events synthesize all available supporting documents with actual source references and another review/repair pass. Failed event reviews remain private and count as processing failures. A significance paragraph is optional, never filled with speculation.
+8. **Render and inspect.** Preserve the original park banner, typography and single-column story cards. Add topic/geography filters, explicit local read/unread controls, dated editions and a seven-day overview. No article/link click silently marks a report read. Store read state in this browser only; it does not sync between devices or change publication state. Material-update revisions can be unread while the older report remains read.
 
-Published history is scoped to the editorial profile and loaded from published editions only. `--history` can explicitly supply a reviewed edition. Merely generating an edition does not mark it published. This MVP has no command that changes publication status; release integration remains review-gated.
+Importance, freshness, evidence quality, relevance and reader state are separate concepts. A major story is not necessarily urgent. New/updated/catch-up/previously-featured labels explain timing; topic tags describe subject matter independently of the publisher feed category.
 
-## Retained data
+## Private and reader-safe outputs
+
+Each run exports under ignored `.local/news-editions/RUN_UUID/`:
+
+- `index.html`: intended reader stories, links and browser controls.
+- `assets/dunder_park.jpg`: original banner.
+- `archive/RUN_UUID.html`: reader-safe snapshots of available previous editions; real previews are labeled previews, not published editions.
+- `review.html`: private article analyses, processing states, event decisions, preferences and exact prompts.
+- `edition.json`: full private retained edition, including supporting excerpts/review metadata.
+- `run.json`: private counts and status.
+
+**Never deploy the whole run directory.** Only an intentionally reviewed reader HTML/assets/archive subset belongs in a public release. Raw retrieved text, model audit, support passages, database connection information and the private review page stay private.
+
+There is no publication command in this slice. Generating or viewing a preview never marks it published. The original production entry point remains unchanged pending release review. Archive navigation covers actual available published editions by default; the system does not invent newsletters for missing days. `--include-review-previews` explicitly includes unapproved local drafts for comparisons, labeled as review previews. They are not publication history.
+
+## Retained records
 
 | Table | Purpose |
 |---|---|
-| `sources`, `articles` | Publisher catalog and canonical article identity |
-| `observations` | Every collected entry for a run, original metadata/date basis and eligibility |
-| `runs`, `stages` | Frozen configuration, execution status, attempts and completed output checkpoints |
-| `events`, `event_articles` | Per-run event snapshots and supporting article membership |
-| `decisions` | Qualification and selection, with profile ID/version and reasons |
-| `evidence` | Retrieved text, extraction status, timestamp and content fingerprint |
-| `model_calls` | Private model inputs/responses and prompt fingerprint |
-| `editions` | Immutable generated edition snapshot and separate publication state |
-| `storage_samples` | Database/table sizes and row counts over time |
+| `sources`, `articles`, `observations` | Source catalog, stable article identity and every run observation |
+| `runs`, `stages` | Frozen settings, transactional checkpoints, failures and attempts |
+| `article_analyses` | Append-only reusable evidence/summary/review cache, independent of reader profile |
+| `events`, `event_articles` | Per-run event identity and article membership |
+| `decisions` | Profile-versioned relevance, ranking and reasons |
+| `evidence`, `model_calls` | Private source snapshots and actual model requests/responses |
+| `editions` | Immutable review snapshots with separate publication state |
+| `storage_samples` | Application-table/database size and row counts |
 
-Article and event storage is independent of your profile: rejection never deletes collected data. Full article text is retained only for retrieved items. Event snapshots are run-scoped; this MVP does not claim a permanent global event taxonomy across every domain.
+Run locking prevents two workers from executing the same edition simultaneously. Completed checkpoints are immutable; an interrupted network request may repeat. Cache identity includes article metadata, model, prompts and extractor version. This is restartable execution, not exactly-once delivery. No retention deletion runs automatically. Size samples include the analysis cache; whole database size may also include isolated retained test schemas.
 
-Example queries, with database connection settings kept private:
-
-```sql
-SELECT source_name, eligibility, count(*)
-FROM news.observations
-WHERE run_id = 'RUN_UUID'
-GROUP BY source_name, eligibility;
-
-SELECT phase, tag, tier, basis, reason
-FROM news.decisions
-WHERE run_id = 'RUN_UUID'
-ORDER BY phase, event_id;
-
-SELECT name, item_key, status, attempts, finished_at - started_at AS duration
-FROM news.stages WHERE run_id = 'RUN_UUID'
-ORDER BY started_at;
-
-SELECT sampled_at, database_bytes, tables_bytes, row_counts
-FROM news.storage_samples ORDER BY sampled_at DESC LIMIT 10;
-```
-
-No retention deletion is automatic. A completed run records a size sample automatically; `--stats` records an additional on-demand sample. later retention policy should distinguish raw model audit, article evidence and edition history. PostgreSQL persistence alone is not a backup: use an operator-controlled `pg_dump` archive and test its restore in isolation. Keep backups private and off-host when operating the service.
-
-## Verification
+## Verify and inspect
 
 ```sh
 python -m unittest discover -s tests -v
 python -m src.news.evaluate --env-file .env
+# Add --legacy to evaluate original version-1 grouping.
 ```
 
-Database tests require `NEWS_TEST_DATABASE_URL`, pointing to a database named `news`. They create unique `test_...` schemas and leave them for inspection; they never truncate production tables or alter other databases. CI supplies an ephemeral PostgreSQL service. The real-model evaluation checks nine labeled cases; it is a regression set, not an exhaustive accuracy benchmark. Raw model evaluation audit stays ignored.
+Integration tests require `NEWS_TEST_DATABASE_URL` pointing to a database named `news`. Each creates its own `test_...` schema and leaves it for inspection. CI uses an ephemeral PostgreSQL service; no test truncates application tables or touches other databases.
 
-The first PostgreSQL implementation has one SQL migration and a checked schema version. Future schema changes require new migrations and matching checkpoint compatibility changes. This is deliberate, rather than silently modifying tables on every run.
+Useful private queries:
 
-Private endpoints, credentials, retrieved text, model output, database exports and the private review page stay outside Git and the deployed site. Follow `AGENTS.md` before public pushes. A passing run is ready for editorial review, not approved for publication.
+```sql
+SELECT name,status,count(*) FROM news.stages
+WHERE run_id='RUN_UUID' GROUP BY name,status;
+SELECT phase,tier,basis,reason FROM news.decisions WHERE run_id='RUN_UUID';
+SELECT id,article_id,created_at,payload->'analysis'->>'state' AS state
+FROM news.article_analyses ORDER BY id DESC LIMIT 20;
+SELECT status,published_at,payload->'counts' FROM news.editions WHERE run_id='RUN_UUID';
+SELECT sampled_at,database_bytes,tables_bytes FROM news.storage_samples ORDER BY sampled_at DESC LIMIT 10;
+```
+
+Passage references prove traceability, not entailment. Extraction is heuristic and bounded; grouping and ranking are model judgments. Model self-review does not independently establish a report's truth. More categories cannot supply missing NZ reporting from these four feeds. Read state is local and may be cleared by the browser. Backups and reviewed production publication remain operational responsibilities; restore-test database archives before relying on them.

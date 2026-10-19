@@ -14,6 +14,7 @@ Work Log:
 # IMPORTS & CONFIGURATION
 # ========================================================================
 import argparse
+import hashlib
 import json
 from datetime import datetime, timezone
 from itertools import combinations
@@ -22,6 +23,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 from .events import group_events
+from .library import GROUP_PROMPT, group_library_events
 from .llm import JsonModel, prompt_versions
 
 # ========================================================================
@@ -29,7 +31,7 @@ from .llm import JsonModel, prompt_versions
 # ========================================================================
 
 
-def evaluate_grouping(model, fixture_path):
+def evaluate_grouping(model, fixture_path, legacy=False):
     cases = json.loads(Path(fixture_path).read_text())
     results = []
     for case in cases:
@@ -50,7 +52,13 @@ def evaluate_grouping(model, fixture_path):
             for pair in combinations(group, 2)
         }
         try:
-            groups = group_events(articles, model, case.get("history"))
+            groups = (
+                group_events(articles, model, case.get("history"))
+                if legacy
+                else group_library_events(
+                    articles, model, case.get("history") or {"stories": []}
+                )
+            )
             actual = {
                 tuple(sorted(pair))
                 for group in groups
@@ -83,7 +91,11 @@ def evaluate_grouping(model, fixture_path):
     return {
         "case_count": len(cases),
         "passed": sum(r["passed"] for r in results),
-        "prompt_sha256": prompt_versions()["group_events"],
+        "prompt_sha256": (
+            prompt_versions()["group_events"]
+            if legacy
+            else hashlib.sha256(GROUP_PROMPT.encode()).hexdigest()
+        ),
         "results": results,
     }
 
@@ -100,10 +112,15 @@ def main():
     parser.add_argument("--env-file", default=".env")
     parser.add_argument("--fixtures", default="tests/fixtures/news_grouping.json")
     parser.add_argument("--output", default=".local/grouping-evaluation.json")
+    parser.add_argument(
+        "--legacy",
+        action="store_true",
+        help="Evaluate original version-1 grouping instead",
+    )
     args = parser.parse_args()
     load_dotenv(args.env_file)
     model = JsonModel.from_env(audit_dir=Path(".local/grouping-model-audit"))
-    result = evaluate_grouping(model, args.fixtures)
+    result = evaluate_grouping(model, args.fixtures, legacy=args.legacy)
     target = Path(args.output)
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(json.dumps(result, indent=2) + "\n")

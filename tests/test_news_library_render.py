@@ -1,4 +1,5 @@
 """Public reader contracts and publication boundaries, without network services."""
+
 import copy
 import json
 from pathlib import Path
@@ -10,7 +11,37 @@ from src.news.library_render import render_library, reader_snapshot
 
 
 def edition():
-    return {"schema_version": 3, "run_id": "run-1", "generated_at": "2026-10-19T01:00:00Z", "publication_status": "preview", "private_audit": "DO_NOT_PUBLISH", "stories": [{"event_id": "event-1", "title": "A <new> event", "summary": "Facts & context", "why_matters": "", "topics": ["Science"], "geography": ["NZ"], "importance": "notable", "freshness": "new", "featured": True, "support": "PRIVATE_SUPPORT", "sources": [{"source": "BBC", "url": "https://example.com/news", "published": "2026-10-18T23:00:00Z", "evidence_basis": "feed_summary", "used_in_summary": True, "raw_text": "PRIVATE_SOURCE"}]}]}
+    return {
+        "schema_version": 3,
+        "run_id": "run-1",
+        "generated_at": "2026-10-19T01:00:00Z",
+        "publication_status": "preview",
+        "private_audit": "DO_NOT_PUBLISH",
+        "stories": [
+            {
+                "event_id": "event-1",
+                "title": "A <new> event",
+                "summary": "Facts & context",
+                "why_matters": "",
+                "topics": ["Science"],
+                "geography": ["NZ"],
+                "importance": "notable",
+                "freshness": "new",
+                "featured": True,
+                "support": "PRIVATE_SUPPORT",
+                "sources": [
+                    {
+                        "source": "BBC",
+                        "url": "https://example.com/news",
+                        "published": "2026-10-18T23:00:00Z",
+                        "evidence_basis": "feed_summary",
+                        "used_in_summary": True,
+                        "raw_text": "PRIVATE_SOURCE",
+                    }
+                ],
+            }
+        ],
+    }
 
 
 class LibraryReaderTests(unittest.TestCase):
@@ -27,12 +58,32 @@ class LibraryReaderTests(unittest.TestCase):
         self.assertIn('id="unread-filter"', page)
         self.assertIn('id="reset-read"', page)
 
+    def test_geographic_aliases_share_one_filter(self):
+        item = edition()
+        item["stories"][0]["geography"] = [
+            "US",
+            "U.S.",
+            "USA",
+            "United States",
+            "New Zealand",
+        ]
+        self.assertEqual(
+            reader_snapshot(item)["stories"][0]["geography"], ["United States", "NZ"]
+        )
+
     def test_snapshot_whitelists_and_sanitizes_fields(self):
         item = edition()
-        item["stories"][0]["sources"].append({"source": "Unsafe", "url": "javascript:alert(1)"})
+        item["stories"][0]["sources"].append(
+            {"source": "Unsafe", "url": "javascript:alert(1)"}
+        )
         snapshot = reader_snapshot(item)
         serialized = json.dumps(snapshot)
-        for secret in ("DO_NOT_PUBLISH", "PRIVATE_SUPPORT", "PRIVATE_SOURCE", "javascript:"):
+        for secret in (
+            "DO_NOT_PUBLISH",
+            "PRIVATE_SUPPORT",
+            "PRIVATE_SOURCE",
+            "javascript:",
+        ):
             self.assertNotIn(secret, serialized)
         self.assertEqual(len(snapshot["stories"][0]["sources"]), 1)
 
@@ -43,7 +94,12 @@ class LibraryReaderTests(unittest.TestCase):
 
     def test_unsafe_source_schemes_and_credentials_are_removed(self):
         item = edition()
-        for url in ("data:text/html,bad", "//example.com/news", "https://user:secret@example.com/news", "https://[invalid"):
+        for url in (
+            "data:text/html,bad",
+            "//example.com/news",
+            "https://user:secret@example.com/news",
+            "https://[invalid",
+        ):
             item["stories"][0]["sources"] = [{"source": "Unsafe", "url": url}]
             self.assertEqual(reader_snapshot(item)["stories"][0]["sources"], [])
 
@@ -56,8 +112,10 @@ class LibraryReaderTests(unittest.TestCase):
         item = edition()
         item["stories"][0]["summary"] = '</script><img src=x onerror="alert(1)">'
         page = render_library(item, [])
-        self.assertNotIn('<img src=x', page)
-        self.assertIn('&lt;/script&gt;&lt;img src=x onerror=&quot;alert(1)&quot;&gt;', page)
+        self.assertNotIn("<img src=x", page)
+        self.assertIn(
+            "&lt;/script&gt;&lt;img src=x onerror=&quot;alert(1)&quot;&gt;", page
+        )
         self.assertNotIn('id="reader-data"', page)
         self.assertEqual(page.count("</script>"), 1)
 
@@ -75,10 +133,19 @@ class LibraryReaderTests(unittest.TestCase):
         snapshot = reader_snapshot(item)
         self.assertEqual(snapshot["stories"][0]["read_key"], "event-1:revision-1")
         self.assertEqual(reader_snapshot(snapshot), snapshot)
-        item["stories"][0].update(summary="Same facts, clearer wording", title="A clearer title", featured=False, freshness="catch_up")
-        self.assertEqual(reader_snapshot(item)["stories"][0]["read_key"], "event-1:revision-1")
+        item["stories"][0].update(
+            summary="Same facts, clearer wording",
+            title="A clearer title",
+            featured=False,
+            freshness="catch_up",
+        )
+        self.assertEqual(
+            reader_snapshot(item)["stories"][0]["read_key"], "event-1:revision-1"
+        )
         item["stories"][0]["revision_key"] = "revision-2"
-        self.assertEqual(reader_snapshot(item)["stories"][0]["read_key"], "event-1:revision-2")
+        self.assertEqual(
+            reader_snapshot(item)["stories"][0]["read_key"], "event-1:revision-2"
+        )
 
     def test_week_deduplicates_same_lineage_with_different_summary_wording(self):
         item = edition()
@@ -94,7 +161,11 @@ class LibraryReaderTests(unittest.TestCase):
 
     def test_archive_paths_are_bounded_and_week_deduplicates_updates(self):
         old = copy.deepcopy(edition())
-        old.update(run_id="run-0", generated_at="2026-10-18T01:00:00Z", publication_status="published")
+        old.update(
+            run_id="run-0",
+            generated_at="2026-10-18T01:00:00Z",
+            publication_status="published",
+        )
         bad = dict(old, run_id="../private")
         page = render_library(edition(), [old, bad])
         self.assertIn('href="archive/run-0.html"', page)
@@ -113,7 +184,9 @@ class LibraryReaderTests(unittest.TestCase):
         self.assertIn('href="archive/old.html"', page)
         self.assertNotIn("Outside the week", page)
 
-    @unittest.skipUnless(shutil.which("node"), "Node is needed to execute browser control logic")
+    @unittest.skipUnless(
+        shutil.which("node"), "Node is needed to execute browser control logic"
+    )
     def test_filter_toggles_preserve_featured_and_collection_order(self):
         harness = r"""
 const assert = require("node:assert/strict");
@@ -157,7 +230,9 @@ global.document = {querySelectorAll() { return cards; }, querySelector() { retur
 global.localStorage = {getItem() { return null; }, setItem() {}};
 global.window = {addEventListener() {}};
 """
-        source = Path(__file__).parents[1].joinpath("src/news/library_reader.js").read_text()
+        source = (
+            Path(__file__).parents[1].joinpath("src/news/library_reader.js").read_text()
+        )
         checks = r"""
 const keys = parent => parent.children.map(item => item.dataset.readKey);
 for (let i = 0; i < 3; i++) {
@@ -194,7 +269,9 @@ for (const item of [f2, l1, l2]) {
 }
 assert.equal(document.activeElement, elements["unread-filter"]);
 """
-        result = subprocess.run(["node", "-e", harness + source + checks], capture_output=True, text=True)
+        result = subprocess.run(
+            ["node", "-e", harness + source + checks], capture_output=True, text=True
+        )
         self.assertEqual(result.returncode, 0, result.stderr)
 
     def test_absent_sources_and_bad_dates_remain_readable(self):

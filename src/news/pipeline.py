@@ -55,6 +55,12 @@ def collect_articles(feeds=None):
                     parsed = entry.get("published_parsed") or entry.get(
                         "updated_parsed"
                     )
+                    updated_parts = entry.get("updated_parsed")
+                    updated = (
+                        datetime(*updated_parts[:6], tzinfo=timezone.utc).isoformat()
+                        if updated_parts
+                        else None
+                    )
                     published = (
                         datetime(*parsed[:6], tzinfo=timezone.utc).isoformat()
                         if parsed
@@ -80,6 +86,7 @@ def collect_articles(feeds=None):
                             "source": source["name"],
                             "category": category,
                             "published": published,
+                            "updated": updated,
                             "published_basis": (
                                 "published"
                                 if entry.get("published_parsed")
@@ -271,12 +278,12 @@ def build_edition(
         raise
 
 
-def synthesize_event(event, decision, article_lookup, evidence, model):
+def synthesize_event(event, decision, article_lookup, evidence, model, max_sources=3):
     ids = [event["representative_id"]] + [
         i for i in event["source_ids"] if i != event["representative_id"]
     ]
     inputs = []
-    for id in ids[:3]:
+    for id in (ids if max_sources is None else ids[:max_sources]):
         words = evidence[id]["text"].split()
         segments = [
             {"segment_id": f"{id}:{n // 25}", "text": " ".join(words[n : n + 25])}

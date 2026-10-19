@@ -1,3 +1,5 @@
+-- Purpose: Add a reusable news article-analysis cache.
+-- Boundary: Runs inside the isolated application schema selected by NewsStore.migrate.
 -- Retain analyses independently of runs so unchanged metadata can reuse reviewed evidence.
 CREATE TABLE article_analyses (
     id bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
