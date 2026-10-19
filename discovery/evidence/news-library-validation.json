@@ -40,17 +40,17 @@
     "limit": "Retrieved web pages later; this measures the same feed observations under a different workflow, not a perfectly controlled historical source-text comparison."
   },
   "fresh": {
-    "run_id": "13864f8a-e78c-4669-a837-580ef7a04f22",
-    "generated_at": "2026-10-19T03:59:28.009956+00:00",
+    "run_id": "b9056baa-46f9-4dde-bcc3-5769d382af31",
+    "generated_at": "2026-10-19T04:21:52.848134+00:00",
     "counts": {
-      "events": 84,
+      "events": 83,
       "topics": {
         "AI": 12,
         "Economy": 9,
         "Science": 8,
-        "Business": 26,
+        "Business": 24,
         "Conflict": 13,
-        "Politics": 20,
+        "Politics": 18,
         "Geography": 1,
         "Technology": 21,
         "Environment": 1
@@ -75,41 +75,42 @@
           "in_pool": 21,
           "analysed": 30,
           "observed": 30,
-          "reader_events": 16
+          "reader_events": 14
         },
         "BBC World News": {
-          "ready": 31,
-          "in_pool": 34,
-          "analysed": 34,
+          "ready": 32,
+          "in_pool": 35,
+          "analysed": 35,
           "observed": 28,
-          "reader_events": 20
+          "reader_events": 18
         }
       },
-      "stories": 60,
-      "analysed": 104,
+      "stories": 56,
+      "analysed": 105,
       "featured": 6,
-      "relevant": 60,
+      "relevant": 57,
       "collected": 98,
-      "cache_hits": 101,
+      "cache_hits": 104,
       "extraction": {
-        "article_text": 104
+        "article_text": 105
       },
-      "pool_articles": 95,
+      "pool_articles": 96,
+      "grouping_holds": 1,
       "analysis_states": {
-        "ready": 99,
+        "ready": 100,
         "needs_review": 5
       },
       "article_repairs": 19,
-      "summary_failures": 0
+      "summary_failures": 1
     }
   },
   "quality_evidence": "news-library-quality.json",
   "verification_log": "news-library-tests.log",
   "publication": "Review previews only. No merge or public-site deployment.",
   "verification": {
-    "run_id": "13864f8a-e78c-4669-a837-580ef7a04f22",
-    "model_calls_before_resume": 28,
-    "model_calls_after_resume": 28,
+    "run_id": "b9056baa-46f9-4dde-bcc3-5769d382af31",
+    "model_calls_before_resume": 33,
+    "model_calls_after_resume": 33,
     "resume_new_model_calls": 0,
     "saved_edition_matches_replay_and_local_json": true,
     "every_prepared_article_accounted_for": true,
@@ -124,7 +125,7 @@
       },
       {
         "task": "compare_event_pairs",
-        "n": 14
+        "n": 15
       },
       {
         "task": "curate_events",
@@ -136,55 +137,77 @@
       },
       {
         "task": "review_event",
-        "n": 3
+        "n": 5
       },
       {
         "task": "synthesize",
-        "n": 3
+        "n": 5
       }
     ],
-    "reader_bytes": 112494,
-    "reader_sha256": "4a4ec5423acd83a71b4c1aa9463e9aa1ff285b18e4e6b4bfbf6a6c96905ee8aa",
+    "reader_bytes": 107034,
+    "reader_sha256": "87cb69cb6532e789d881e99321d7237420136a3f8b35d5161adc8330fed54710",
     "storage": {
-      "database_bytes": 139162083,
-      "tables_bytes": 12910592,
+      "database_bytes": 144716259,
+      "tables_bytes": 15589376,
       "rows": {
         "sources": 4,
-        "articles": 104,
-        "observations": 399,
-        "runs": 4,
-        "stages": 823,
-        "events": 278,
-        "event_articles": 286,
-        "decisions": 295,
-        "evidence": 317,
-        "model_calls": 171,
-        "editions": 4,
-        "article_analyses": 203
+        "articles": 105,
+        "observations": 497,
+        "runs": 5,
+        "stages": 1012,
+        "events": 361,
+        "event_articles": 377,
+        "decisions": 378,
+        "evidence": 422,
+        "model_calls": 204,
+        "editions": 5,
+        "article_analyses": 204
       }
-    }
+    },
+    "eligible_ready_articles": 91,
+    "held_group_components": 1,
+    "held_groups_absent_from_reader": true
   },
   "browser": {
-    "final_reader_reports": 60,
+    "run_id": "b9056baa-46f9-4dde-bcc3-5769d382af31",
+    "reader_reports": 56,
     "ai_filter_reports": 12,
     "ai_unread_after_marking_one": 11,
     "read_state_persisted_after_reload": true,
+    "test_mark_undone": true,
     "france_filter_reports": 1,
     "mobile_viewport_width": 390,
     "mobile_document_width": 390,
+    "desktop_viewport_width": 1470,
+    "desktop_document_width": 1470,
     "original_design_retained": true,
-    "archive_navigation": "Actual older preview navigated in explicit preview-only UI lab; no published database editions exist."
+    "archive_navigation": "Actual earlier previews navigated in explicitly labeled preview-only UI lab; no published database editions exist."
   },
   "event_comparisons": {
-    "candidate_pairs": 168,
-    "current_ready_articles": 90,
+    "candidate_pairs": 170,
+    "current_ready_articles": 91,
     "historical_baselines": 75,
-    "batches": 14,
-    "interrupted_run_audited_batches_revalidated": 10,
+    "batches": 15,
+    "candidate_components": 83,
+    "novelty": {
+      "repeat": 55,
+      "new": 17,
+      "update": 11
+    },
+    "held_components": 1,
+    "limit": "Model update judgments can mistake added context for newly occurred developments. Contradictory components are held, not reader events."
+  },
+  "manual_editorial_audit": {
+    "excluded_components_reviewed": 26,
+    "finding": "Most exclusions match shopping, entertainment, service marketing or isolated incidents. Two boundary concerns remain: workplace research was rejected for lacking global consequence, and Australian political reporting was rejected as domestic. Relevance can still be conflated with prominence despite the broader profile.",
+    "action": "Review these boundaries before expanding feeds; no keyword override or ad hoc inclusion was applied."
+  },
+  "pre_guard_consistency_check": {
+    "actual_prior_run": "13864f8a-e78c-4669-a837-580ef7a04f22",
+    "exact_audited_response_batches_replayed": 14,
+    "network_model_calls": 0,
     "events": 84,
-    "repeat": 59,
-    "update": 8,
-    "new": 17,
-    "limit": "Model update judgments can mistake additional context for newly occurred developments."
+    "held_components": 1,
+    "held_current_articles": 4
   }
 }
