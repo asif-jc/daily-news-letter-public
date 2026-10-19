@@ -55,6 +55,6 @@ Expand `dispatch_report.html` with a six-row task/result table, measured experim
 - [x] 1. Rolling pool/cache/history migration and integration tests
 - [x] 2. Grounded article analyses, repair/review and labeled model evaluation
 - [x] 3. New workflow, broader preferences, structured ranking, resume and history
-- [ ] 4. Topic/read/history UI, desktop/mobile browser interaction
-- [ ] 5. Baseline, fresh run and multi-day experiments reviewed
+- [x] 4. Topic/read/history UI, desktop/mobile browser interaction
+- [x] 5. Baseline, fresh run and multi-day experiments reviewed
 - [ ] 6. Dispatch report, full tests, privacy scans, draft PR and milestone email

@@ -24,6 +24,20 @@ class EventModel(Model):
         self.feedback = []
 
     def complete(self, task, data, instructions=None):
+        if task == "compare_event_pairs":
+            self.calls.append(task)
+            return {
+                "pairs": [
+                    {
+                        "id": p["id"],
+                        "same_event": True,
+                        "novelty": "repeat" if p["historical"] else "new",
+                        "change": "",
+                        "reason": "Same council decision.",
+                    }
+                    for p in data["pairs"]
+                ]
+            }
         if task == "group_events":
             self.calls.append(task)
             return {
@@ -169,18 +183,64 @@ class EventReviewRegressionTests(unittest.TestCase):
     def test_removed_significance_does_not_keep_its_source_marked_as_cited(self):
         from src.news.library import reviewed_event
         from unittest.mock import Mock
+
         model = Mock()
+
         def reply(task, data, instructions=None):
             if task == "synthesize":
-                return {"summary": "The council approved the map.", "why_matters": "This guarantees prosperity.", "support": [{"section": "summary", "segment_id": "a:0"}, {"section": "why_matters", "segment_id": "b:0"}]}
+                return {
+                    "summary": "The council approved the map.",
+                    "why_matters": "This guarantees prosperity.",
+                    "support": [
+                        {"section": "summary", "segment_id": "a:0"},
+                        {"section": "why_matters", "segment_id": "b:0"},
+                    ],
+                }
             why = data["articles"][0]["draft"]["why_matters"]
-            return {"reviews": [{"id": "e1", "verdict": "revise" if why else "approved", "reason": "Facts supported.", "unsupported_sections": ["why_matters"] if why else []}]}
+            return {
+                "reviews": [
+                    {
+                        "id": "e1",
+                        "verdict": "revise" if why else "approved",
+                        "reason": "Facts supported.",
+                        "unsupported_sections": ["why_matters"] if why else [],
+                    }
+                ]
+            }
+
         model.complete.side_effect = reply
-        event = {"event_id": "event", "title": "Council", "novelty": "new", "change": "", "source_ids": ["a", "b"], "representative_id": "a"}
-        articles = {id: {"title": "Council", "source": "BBC World News", "url": "https://bbc.com/"+id, "published": "2026-10-19T00:00:00Z"} for id in ("a", "b")}
-        evidence = {id: {"basis": "article_text", "text": "The council approved the map.", "status": "ok"} for id in articles}
-        result = reviewed_event(event, {"tier": "quick", "score": 8}, articles, evidence, model)
-        self.assertEqual({s["id"]:s["used_in_summary"] for s in result["sources"]}, {"a":True,"b":False})
+        event = {
+            "event_id": "event",
+            "title": "Council",
+            "novelty": "new",
+            "change": "",
+            "source_ids": ["a", "b"],
+            "representative_id": "a",
+        }
+        articles = {
+            id: {
+                "title": "Council",
+                "source": "BBC World News",
+                "url": "https://bbc.com/" + id,
+                "published": "2026-10-19T00:00:00Z",
+            }
+            for id in ("a", "b")
+        }
+        evidence = {
+            id: {
+                "basis": "article_text",
+                "text": "The council approved the map.",
+                "status": "ok",
+            }
+            for id in articles
+        }
+        result = reviewed_event(
+            event, {"tier": "quick", "score": 8}, articles, evidence, model
+        )
+        self.assertEqual(
+            {s["id"]: s["used_in_summary"] for s in result["sources"]},
+            {"a": True, "b": False},
+        )
 
 
 @unittest.skipUnless(os.getenv("NEWS_TEST_DATABASE_URL"), "Set NEWS_TEST_DATABASE_URL")

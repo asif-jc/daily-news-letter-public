@@ -23,7 +23,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 from .events import group_events
-from .library import GROUP_PROMPT, group_library_events
+from .grouping import GROUP_PAIR_PROMPT, group_events_bounded
 from .llm import JsonModel, prompt_versions
 
 # ========================================================================
@@ -55,7 +55,7 @@ def evaluate_grouping(model, fixture_path, legacy=False):
             groups = (
                 group_events(articles, model, case.get("history"))
                 if legacy
-                else group_library_events(
+                else group_events_bounded(
                     articles, model, case.get("history") or {"stories": []}
                 )
             )
@@ -94,7 +94,7 @@ def evaluate_grouping(model, fixture_path, legacy=False):
         "prompt_sha256": (
             prompt_versions()["group_events"]
             if legacy
-            else hashlib.sha256(GROUP_PROMPT.encode()).hexdigest()
+            else hashlib.sha256(GROUP_PAIR_PROMPT.encode()).hexdigest()
         ),
         "results": results,
     }

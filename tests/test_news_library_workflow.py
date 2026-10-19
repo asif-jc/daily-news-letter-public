@@ -48,6 +48,27 @@ class Model:
                     for a in data["articles"]
                 ]
             }
+        if task == "compare_event_pairs":
+            return {
+                "pairs": [
+                    {
+                        "id": p["id"],
+                        "same_event": p["historical"],
+                        "novelty": (
+                            ("update" if "Updated" in p["left"]["title"] else "repeat")
+                            if p["historical"]
+                            else "new"
+                        ),
+                        "change": (
+                            "A new council decision."
+                            if p["historical"] and "Updated" in p["left"]["title"]
+                            else ""
+                        ),
+                        "reason": "Compared the council decision.",
+                    }
+                    for p in data["pairs"]
+                ]
+            }
         if task == "group_events":
             history = data["history"]
             if history and "Updated" in data["articles"][0]["title"]:
@@ -107,7 +128,9 @@ class LibraryWorkflowTests(unittest.TestCase):
     def tearDown(self):
         self.store.close()
 
-    def run_news(self, model, output, **kwargs):
+    def run_news(
+        self, model, output, evidence_text="The council approved a flood map.", **kwargs
+    ):
         from src.news.library import run_library_workflow
 
         with patch(
@@ -115,7 +138,7 @@ class LibraryWorkflowTests(unittest.TestCase):
             return_value={
                 "basis": "article_text",
                 "status": "ok",
-                "text": "The council approved a flood map.",
+                "text": evidence_text,
             },
         ):
             return run_library_workflow(
@@ -158,6 +181,69 @@ class LibraryWorkflowTests(unittest.TestCase):
                     / f'{second["run_id"]}.html'
                 ).exists()
             )
+
+    def test_grouping_resume_reuses_validated_pair_batches(self):
+        class InterruptedPairs(Model):
+            def __init__(self):
+                super().__init__()
+                self.pair_calls = 0
+
+            def complete(self, task, data, instructions=None):
+                if task == "compare_event_pairs":
+                    self.pair_calls += 1
+                    if self.pair_calls == 2:
+                        raise ValueError("Interrupted comparison")
+                return super().complete(task, data, instructions)
+
+        model = InterruptedPairs()
+        rows = [
+            {
+                **self.article,
+                "id": str(n),
+                "url": "https://bbc.com/" + str(n),
+                "title": "Council flood map decision " + str(n),
+            }
+            for n in range(13)
+        ]
+        with tempfile.TemporaryDirectory() as out:
+            with self.assertRaisesRegex(ValueError, "Interrupted comparison"):
+                self.run_news(model, out, rows=rows, now=self.now)
+            run = str(
+                self.store.connection.execute("SELECT id FROM runs").fetchone()["id"]
+            )
+            result = self.run_news(model, out, run_id=run)
+            self.assertEqual(len(result["stories"]), 13)
+            self.assertEqual(model.pair_calls, 3)
+            batches = self.store.connection.execute(
+                "SELECT status FROM stages WHERE run_id=%s AND name='compare_event_pairs'",
+                (run,),
+            ).fetchall()
+            self.assertEqual(len(batches), 2)
+            self.assertTrue(all(b["status"] == "complete" for b in batches))
+
+    def test_reconciled_history_keeps_any_prior_featured_identity(self):
+        history = {
+            "stories": [
+                {
+                    "event_id": id,
+                    "title": "Council decision",
+                    "summary": "Council approved the flood map.",
+                    "featured": featured,
+                    "sources": [{"id": "a", "url": self.article["url"]}],
+                }
+                for id, featured in [
+                    ("newer-unfeatured", False),
+                    ("older-featured", True),
+                ]
+            ]
+        }
+        with tempfile.TemporaryDirectory() as out:
+            edition = self.run_news(
+                Model(), out, rows=[self.article], now=self.now, history=history
+            )
+            self.assertEqual(edition["stories"][0]["event_id"], "newer-unfeatured")
+            self.assertFalse(edition["stories"][0]["featured"])
+            self.assertEqual(edition["stories"][0]["freshness"], "previously_featured")
 
     def test_next_day_repeat_is_browsable_without_being_featured_again(self):
         m = Model()
@@ -222,3 +308,23 @@ class LibraryWorkflowTests(unittest.TestCase):
             )
             self.assertTrue(preview["stories"][0]["featured"])
             self.assertEqual(preview["stories"][0]["freshness"], "updated")
+            self.store.connection.execute(
+                "UPDATE editions SET status='published',published_at=%s WHERE run_id=%s",
+                (self.now + timedelta(hours=2), new["run_id"]),
+            )
+            changed = {
+                **updated,
+                "title": "Updated council construction rules",
+                "description": "Council adopted new construction rules.",
+            }
+            later = self.run_news(
+                m,
+                out,
+                rows=[changed],
+                now=self.now + timedelta(hours=4),
+                evidence_text="The council adopted new construction rules.",
+            )
+            self.assertEqual(later["stories"][0]["freshness"], "updated")
+            self.assertNotEqual(
+                new["stories"][0]["revision_key"], later["stories"][0]["revision_key"]
+            )

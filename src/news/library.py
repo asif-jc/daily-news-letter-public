@@ -22,9 +22,10 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from .events import canonical_url, group_events
-from .llm import INSTRUCTIONS
+from .grouping import GROUP_PAIR_PROMPT, group_events_bounded
+from .llm import INSTRUCTIONS, model_messages, parse_response
 from .pipeline import collect_articles, extract_article, synthesize_event, write_json
-from .render import escape
+from .render import escape, safe_link
 from .understand import (
     ANALYSE_PROMPT,
     REVIEW_PROMPT,
@@ -36,7 +37,8 @@ from .library_render import render_library
 from src.mvp_news_aggregator.sources import RSS_FEEDS
 
 WORKFLOW_VERSION = 2
-LIBRARY_RENDER_VERSION = 2
+GROUPING_VERSION = 2
+LIBRARY_RENDER_VERSION = 4
 BATCH_SIZE = 5
 CURATE_PROMPT = """Assess every event against the supplied reader profile using the analysed evidence. Return {"decisions":[{"id":"e1","relevant":true,"score":8,"importance":"major|notable|useful","reason":"brief concrete reason"}]}.
 Return exactly one decision for every supplied event. Relevance is broad fit, not competition for a limited number of slots. Politics, war/conflict, geopolitics, economics, markets, AI, technology and scientific findings can be worth understanding without an explicit financial consequence. Explain a rejection specifically; do not dismiss political developments as isolated crime merely because they are not economic news.
@@ -59,12 +61,20 @@ has no previous_event_id. Different decisions, announcements or developments on 
 remain different events. Never invent IDs or facts. Titles/descriptions are limited evidence;
 do not infer a new development merely from a different headline.
 Different focal actions can still be reporting on one explicitly shared incident or episode: its initial occurrence, immediate official response, damage assessment and cleanup can belong in one reader story. For example, reporting on the same dated national protest episode can include the national response and damage/aftermath in named cities. Require evidence of the same specific episode and compatible dates, not merely the same country or ongoing political issue. Do not merge separate protest waves, different attacks in a long-running war, or unrelated company announcements. A new independent policy decision is distinct unless the sources explicitly describe it as a direct part of that same incident. Preserve all source IDs and disagreements when combining incident perspectives."""
-PROMPTS = {
+LEGACY_LIBRARY_PROMPTS = {
     "analyse_articles": ANALYSE_PROMPT,
     "review_articles": REVIEW_PROMPT,
     "curate_events": CURATE_PROMPT,
     "group_events": GROUP_PROMPT,
     "synthesize": INSTRUCTIONS["synthesize"],
+}
+PROMPTS = {
+    **{
+        key: value
+        for key, value in LEGACY_LIBRARY_PROMPTS.items()
+        if key != "group_events"
+    },
+    "compare_event_pairs": GROUP_PAIR_PROMPT,
 }
 
 
@@ -343,11 +353,22 @@ def reviewed_event(event, decision, articles, evidence, model):
     return {"state": "needs_review", "review": feedback, "event_id": event["event_id"]}
 
 
-def render_private_review(edition, config, prepared, analyses, decisions):
+def render_private_review(edition, config, prepared, analyses, decisions, events=None):
     body = f'<h1>News collection review</h1><p><a href="index.html">Read the edition</a></p><h2>Measured funnel</h2><pre>{escape(json.dumps(edition["counts"],indent=2))}</pre><h2>Preferences</h2><pre>{escape(json.dumps(config["profile"],indent=2))}</pre><h2>Every article analysis</h2>'
     for a in prepared["articles"]:
         v = analyses[a["id"]]
-        body += f'<details><summary>{escape(a["source"])}: {escape(a["title"])} ({escape(v["state"])})</summary><pre>{escape(json.dumps(v,indent=2))}</pre></details>'
+        url = safe_link(a.get("url", ""))
+        link = (
+            f'<p><a href="{escape(url)}" target="_blank" rel="noopener noreferrer">Open source</a></p>'
+            if url
+            else ""
+        )
+        body += f'<details><summary>{escape(a["source"])}: {escape(a["title"])} ({escape(v["state"])})</summary>{link}<pre>{escape(json.dumps(v,indent=2))}</pre></details>'
+    body += (
+        "<h2>Event groups and history matches</h2><pre>"
+        + escape(json.dumps(events or [], indent=2))
+        + "</pre>"
+    )
     body += (
         "<h2>Event summary failures</h2><pre>"
         + escape(json.dumps(edition.get("summary_failures", []), indent=2))
@@ -410,8 +431,13 @@ def run_library_workflow(
             if history is not None
             else store.published_history(profile["id"], now=now, days=pool_days)
         )
-        for story in published.get("stories", []):
-            identity[story["event_id"]] = story
+        published_identity = {
+            story["event_id"]: story for story in published.get("stories", [])
+        }
+        # When old previews split one incident, the published baseline wins any later reconciliation.
+        for event_id, story in identity.items():
+            published_identity.setdefault(event_id, story)
+        identity = published_identity
         archive_views = []
         for edition in archives:
             published_at = timestamp(edition.get("published_at"))
@@ -431,6 +457,7 @@ def run_library_workflow(
                 )
         config = {
             "workflow_version": 2,
+            "grouping_version": GROUPING_VERSION,
             "profile": profile,
             "prompts": PROMPTS,
             "model": model.model,
@@ -454,7 +481,13 @@ def run_library_workflow(
     now = run["started_at"]
     if (
         config["workflow_version"] != 2
-        or config["prompts"] != PROMPTS
+        or config.get("grouping_version", 1) not in (1, GROUPING_VERSION)
+        or config["prompts"]
+        != (
+            PROMPTS
+            if config.get("grouping_version", 1) == GROUPING_VERSION
+            else LEGACY_LIBRARY_PROMPTS
+        )
         or config["model"] != model.model
     ):
         raise ValueError("Workflow prompts or model changed; start a new run")
@@ -570,13 +603,48 @@ def run_library_workflow(
                 "description": analyses[id]["summary"]
                 + " "
                 + analyses[id].get("why_matters", ""),
+                "evidence_basis": evidence[id]["basis"],
             }
             for id, a in articles.items()
             if a["in_pool"] and analyses[id]["state"] == "ready"
         ]
+
+        def compare_pairs(inputs, validate):
+            data = {"pairs": inputs}
+            key = hashlib.sha256(json.dumps(data, sort_keys=True).encode()).hexdigest()
+
+            def execute():
+                retained = store.audited_response(
+                    run_id,
+                    "compare_event_pairs",
+                    model_messages("compare_event_pairs", data, GROUP_PAIR_PROMPT),
+                )
+                if retained is not None:
+                    try:
+                        return validate(parse_response(retained))
+                    except ValueError:
+                        # Raw audit is not an accepted checkpoint until the current contract validates it.
+                        pass
+                return validate(
+                    model.complete(
+                        "compare_event_pairs", data, instructions=GROUP_PAIR_PROMPT
+                    )
+                )
+
+            return stage("compare_event_pairs", execute, item_key=key)
+
         events = stage(
             "group",
-            lambda: group_library_events(candidates, model, config["identity_history"]),
+            lambda: (
+                group_events_bounded(
+                    candidates,
+                    model,
+                    config["identity_history"],
+                    compare_batch=compare_pairs,
+                )
+                if config.get("grouping_version", 1) == GROUPING_VERSION
+                else group_library_events(candidates, model, config["identity_history"])
+            ),
             lambda v: store.save_events(run_id, v),
         )
         decisions = stage(
@@ -646,16 +714,23 @@ def run_library_workflow(
                 ),
                 {},
             )
+            # Publishers can change facts without changing dates; lineage and retained text distinguish updates.
             revision = (
                 hashlib.sha256(
                     json.dumps(
                         [
-                            (
-                                i,
-                                articles[i].get("published"),
-                                articles[i].get("updated"),
-                            )
-                            for i in sorted(event["source_ids"])
+                            previous.get("revision_key", "initial"),
+                            [
+                                (
+                                    i,
+                                    articles[i].get("published"),
+                                    articles[i].get("updated"),
+                                    hashlib.sha256(
+                                        evidence[i]["text"].encode()
+                                    ).hexdigest(),
+                                )
+                                for i in sorted(event["source_ids"])
+                            ],
                         ]
                     ).encode()
                 ).hexdigest()[:24]
@@ -682,6 +757,9 @@ def run_library_workflow(
             for s in config["published_history"].get("stories", [])
             if s.get("featured", True)
         }
+        for event in events:
+            if published_ids.intersection(event.get("previous_event_ids", [])):
+                published_ids.add(event["event_id"])
         stories = place_stories(stories, published_ids, config["featured_limit"])
         source_counts = {}
         for source in {a["source"] for a in articles.values()}:
@@ -737,7 +815,7 @@ def run_library_workflow(
         def render():
             reader = render_library(edition, config["archives"])
             review = render_private_review(
-                edition, config, prepared, analyses, decisions
+                edition, config, prepared, analyses, decisions, events
             )
             return {"reader": reader, "review": review}
 
@@ -774,6 +852,7 @@ def run_library_workflow(
                 "reader_sha256": hashlib.sha256(rendered["reader"].encode()).hexdigest()
             }
 
+        # A retained database checkpoint cannot prove that local preview files still exist.
         stage("export", export, item_key=str(uuid.uuid4()))
         stage("storage", store.stats)
         store.finish_run(run_id)

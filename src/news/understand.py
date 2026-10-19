@@ -102,6 +102,7 @@ def validate_analysis(row, source):
         if (
             not isinstance(span, dict)
             or span.get("section") not in ("summary", "why_matters")
+            or not isinstance(span.get("passage_id"), str)
             or span.get("passage_id") not in lookup
         ):
             raise ValueError("Unknown article support passage")
@@ -173,10 +174,35 @@ def analyse_batch(articles, evidence, model):
         ).get("articles")
         partition(rows, {a["id"] for a in pending}, "Analyses")
         sources = {a["id"]: a for a in pending}
-        drafts = {r["id"]: validate_analysis(r, sources[r["id"]]) for r in rows}
-        reviews = review_batch(
-            [{**a, "draft": drafts[a["id"]]} for a in pending], model
-        )
+        drafts, invalid = {}, []
+        for row in rows:
+            try:
+                drafts[row["id"]] = validate_analysis(row, sources[row["id"]])
+            except ValueError as error:
+                # One malformed article must not discard other valid members of its batch.
+                drafts[row["id"]] = {
+                    "summary": "",
+                    "why_matters": "",
+                    "topics": [],
+                    "geography": [],
+                    "support": [],
+                }
+                invalid.append(
+                    {
+                        "id": row["id"],
+                        "verdict": "revise",
+                        "reason": "Output contract: " + str(error),
+                    }
+                )
+        invalid_ids = {review["id"] for review in invalid}
+        review_inputs = [
+            {**a, "draft": drafts[a["id"]]}
+            for a in pending
+            if a["id"] not in invalid_ids
+        ]
+        reviews = (
+            review_batch(review_inputs, model) if review_inputs else []
+        ) + invalid
         next_pending, feedback = [], []
         for review in reviews:
             ref = review["id"]

@@ -372,6 +372,13 @@ class NewsStore:
             (run_id, task, prompt_hash, Jsonb(messages), Jsonb(response)),
         )
 
+    def audited_response(self, run_id, task, messages):
+        row = self.connection.execute(
+            "SELECT response FROM model_calls WHERE run_id=%s AND task=%s AND request=%s ORDER BY id DESC LIMIT 1",
+            (run_id, task, Jsonb(messages)),
+        ).fetchone()
+        return row["response"] if row else None
+
     def save_edition(self, run_id, edition, profile):
         self.connection.execute(
             "INSERT INTO editions(run_id,profile_id,status,payload) VALUES(%s,%s,'ready_for_review',%s) ON CONFLICT DO NOTHING",

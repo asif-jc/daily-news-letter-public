@@ -251,24 +251,118 @@ class UnderstandingTests(unittest.TestCase):
         self.assertEqual(r["a"]["state"], "unavailable")
         model.complete.assert_not_called()
 
-    def test_unknown_topic_and_missing_article_are_rejected(self):
+    def test_invalid_topic_is_repaired_without_discarding_the_batch(self):
         from src.news.understand import analyse_batch
 
-        for response in [
-            {"articles": []},
-            {"articles": [{**self.response()["articles"][0], "topics": ["Whatever"]}]},
-        ]:
-            model = Mock()
-            model.complete.return_value = response
-            with self.assertRaises(ValueError):
-                analyse_batch(
-                    [self.article()],
-                    {
-                        "a": {
-                            "basis": "article_text",
-                            "text": "Evidence exists here.",
-                            "status": "ok",
-                        }
-                    },
-                    model,
-                )
+        bad = self.response()
+        bad["articles"][0]["topics"] = ["Privacy"]
+        model = Mock()
+        model.complete.side_effect = [
+            bad,
+            self.response(),
+            {"reviews": [{"id": "a1", "verdict": "approved", "reason": "Grounded."}]},
+        ]
+        result = analyse_batch(
+            [self.article()],
+            {
+                "a": {
+                    "basis": "article_text",
+                    "text": "The minister said the policy would reduce costs.",
+                    "status": "ok",
+                }
+            },
+            model,
+        )["a"]
+        self.assertEqual(result["state"], "ready")
+        self.assertEqual(result["attempts"], 2)
+        self.assertIn(
+            "topics", model.complete.call_args_list[1].args[1]["feedback"][0]["reason"]
+        )
+
+    def test_valid_batch_members_are_not_regenerated_for_an_invalid_neighbor(self):
+        from src.news.understand import analyse_batch
+
+        bad = self.response()["articles"][0]
+        bad["topics"] = ["Privacy"]
+        good = {**self.response()["articles"][0], "id": "a2"}
+
+        def approved(id):
+            return {
+                "reviews": [{"id": id, "verdict": "approved", "reason": "Grounded."}]
+            }
+
+        model = Mock()
+        model.complete.side_effect = [
+            {"articles": [bad, good]},
+            approved("a2"),
+            self.response(),
+            approved("a1"),
+        ]
+        evidence = {
+            id: {
+                "basis": "article_text",
+                "text": "The minister said the policy would reduce costs.",
+                "status": "ok",
+            }
+            for id in ["a", "b"]
+        }
+        result = analyse_batch(
+            [self.article(), {**self.article(), "id": "b"}], evidence, model
+        )
+        self.assertEqual(
+            {id: a["attempts"] for id, a in result.items()}, {"a": 2, "b": 1}
+        )
+        repair_ids = [
+            a["id"] for a in model.complete.call_args_list[2].args[1]["articles"]
+        ]
+        self.assertEqual(repair_ids, ["a1"])
+
+    def test_persistently_invalid_topic_is_retained_as_needs_review(self):
+        from src.news.understand import analyse_batch
+
+        bad = self.response()
+        bad["articles"][0]["topics"] = ["Privacy"]
+        model = Mock()
+        model.complete.return_value = bad
+        result = analyse_batch(
+            [self.article()],
+            {"a": {"basis": "article_text", "text": "Some evidence.", "status": "ok"}},
+            model,
+        )["a"]
+        self.assertEqual(result["state"], "needs_review")
+        self.assertEqual(result["summary"], "")
+        self.assertEqual(result["topics"], [])
+        self.assertEqual(model.complete.call_count, 2)
+
+    def test_malformed_support_id_uses_the_same_bounded_repair(self):
+        from src.news.understand import analyse_batch
+
+        bad = self.response()
+        bad["articles"][0]["support"][0]["passage_id"] = []
+        model = Mock()
+        model.complete.return_value = bad
+        result = analyse_batch(
+            [self.article()],
+            {"a": {"basis": "article_text", "text": "Some evidence.", "status": "ok"}},
+            model,
+        )["a"]
+        self.assertEqual(result["state"], "needs_review")
+        self.assertEqual(model.complete.call_count, 2)
+
+    def test_missing_article_is_rejected(self):
+        from src.news.understand import analyse_batch
+
+        model = Mock()
+        model.complete.return_value = {"articles": []}
+        with self.assertRaises(ValueError):
+            analyse_batch(
+                [self.article()],
+                {
+                    "a": {
+                        "basis": "article_text",
+                        "text": "Evidence exists.",
+                        "status": "ok",
+                    }
+                },
+                model,
+            )

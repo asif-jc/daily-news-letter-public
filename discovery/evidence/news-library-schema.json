@@ -1,0 +1,116 @@
+[
+  {
+    "table_name": "article_analyses",
+    "column_name": "id",
+    "data_type": "bigint",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "article_analyses",
+    "column_name": "article_id",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "article_analyses",
+    "column_name": "input_key",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "article_analyses",
+    "column_name": "created_at",
+    "data_type": "timestamp with time zone",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "article_analyses",
+    "column_name": "payload",
+    "data_type": "jsonb",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "editions",
+    "column_name": "run_id",
+    "data_type": "uuid",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "editions",
+    "column_name": "profile_id",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "editions",
+    "column_name": "status",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "editions",
+    "column_name": "published_at",
+    "data_type": "timestamp with time zone",
+    "is_nullable": "YES"
+  },
+  {
+    "table_name": "editions",
+    "column_name": "payload",
+    "data_type": "jsonb",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "stages",
+    "column_name": "run_id",
+    "data_type": "uuid",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "stages",
+    "column_name": "name",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "stages",
+    "column_name": "item_key",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "stages",
+    "column_name": "status",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "stages",
+    "column_name": "attempts",
+    "data_type": "integer",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "stages",
+    "column_name": "started_at",
+    "data_type": "timestamp with time zone",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "stages",
+    "column_name": "finished_at",
+    "data_type": "timestamp with time zone",
+    "is_nullable": "YES"
+  },
+  {
+    "table_name": "stages",
+    "column_name": "output",
+    "data_type": "jsonb",
+    "is_nullable": "YES"
+  },
+  {
+    "table_name": "stages",
+    "column_name": "error_type",
+    "data_type": "text",
+    "is_nullable": "YES"
+  }
+]

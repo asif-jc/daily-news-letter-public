@@ -217,6 +217,32 @@ class LibraryDatabaseTests(unittest.TestCase):
         self.assertEqual(len(history["stories"]), 9)
         self.assertEqual(set(history["featured_event_ids"]), {str(n) for n in range(9)})
 
+    def test_audited_response_requires_exact_run_task_and_request(self):
+        run = self.store.create_run({}, self.now)
+        other = self.store.create_run({}, self.now)
+        messages = [
+            {"role": "system", "content": "Frozen prompt"},
+            {"role": "user", "content": "Pair one"},
+        ]
+        response = {
+            "choices": [{"finish_reason": "stop", "message": {"content": "{}"}}]
+        }
+        self.store.audit_model(run, "compare_event_pairs", messages, response)
+        self.assertEqual(
+            self.store.audited_response(run, "compare_event_pairs", messages), response
+        )
+        self.assertIsNone(
+            self.store.audited_response(other, "compare_event_pairs", messages)
+        )
+        self.assertIsNone(self.store.audited_response(run, "other", messages))
+        self.assertIsNone(
+            self.store.audited_response(
+                run,
+                "compare_event_pairs",
+                [{"role": "user", "content": "Different pair"}],
+            )
+        )
+
     def test_published_history_uses_run_generation_and_publication_cutoffs(self):
         cases = [
             ("past", -2, -2, -1),
