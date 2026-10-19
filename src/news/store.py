@@ -18,6 +18,7 @@ import os
 import re
 import uuid
 from contextlib import contextmanager
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import psycopg
@@ -41,7 +42,17 @@ TABLES = (
     "evidence",
     "model_calls",
     "editions",
+    "article_analyses",
 )
+
+
+def _edition_generated_at(row):
+    # Legacy editions may lack a usable generation date; the owning run supplies its boundary.
+    try:
+        generated = datetime.fromisoformat(row["payload"].get("generated_at") or "")
+        return generated if generated.tzinfo else generated.replace(tzinfo=timezone.utc)
+    except (ValueError, TypeError):
+        return row["started_at"]
 
 
 # ========================================================================
@@ -109,8 +120,12 @@ class NewsStore:
             version = self.connection.execute(
                 "SELECT max(version) AS version FROM schema_versions"
             ).fetchone()["version"]
-            if version != 1:
+            if version not in (1, 2):
                 raise ValueError("Unsupported news schema version")
+            if version == 1:
+                self.connection.execute(
+                    (Path(__file__).parent / "migrations/002_library.sql").read_text()
+                )
 
     def create_run(self, config, now):
         id = str(uuid.uuid4())
@@ -238,6 +253,50 @@ class NewsStore:
             )
         ]
 
+    def rolling_articles(self, now, days=7):
+        """Return latest metadata as of run time, then apply the publisher-date window."""
+        if days <= 0:
+            raise ValueError("Rolling window days must be positive")
+        cutoff = now - timedelta(days=days)
+        rows = self.connection.execute(
+            """SELECT DISTINCT ON (o.article_id) o.metadata
+            FROM observations o JOIN runs r ON r.id=o.run_id
+            WHERE r.started_at <= %s
+            ORDER BY o.article_id,r.started_at DESC,r.id DESC,o.ordinal DESC""",
+            (now,),
+        )
+        articles = []
+        for row in rows:
+            article = row["metadata"]
+            dates = []
+            for field in ("published", "updated"):
+                try:
+                    value = datetime.fromisoformat(article.get(field) or "")
+                except (ValueError, TypeError):
+                    continue
+                dates.append(
+                    value if value.tzinfo else value.replace(tzinfo=timezone.utc)
+                )
+            if not dates or any(cutoff <= date <= now for date in dates):
+                articles.append(article)
+        return articles
+
+    def cached_analysis(self, article_id, input_key, since):
+        """Return the newest exact-key payload created at or after since."""
+        row = self.connection.execute(
+            """SELECT payload FROM article_analyses
+            WHERE article_id=%s AND input_key=%s AND created_at >= %s
+            ORDER BY created_at DESC,id DESC LIMIT 1""",
+            (article_id, input_key, since),
+        ).fetchone()
+        return row["payload"] if row else None
+
+    def save_analysis(self, article_id, input_key, payload):
+        self.connection.execute(
+            "INSERT INTO article_analyses(article_id,input_key,payload) VALUES(%s,%s,%s)",
+            (article_id, input_key, Jsonb(payload)),
+        )
+
     def save_filter(self, run_id, candidates, exclusions):
         with self.transaction():
             self.connection.execute(
@@ -317,15 +376,56 @@ class NewsStore:
             (run_id, profile["id"], Jsonb(edition)),
         )
 
-    def published_history(self, profile_id):
+    def recent_editions(self, profile_id, limit=7, now=None):
+        """Return snapshots with publication state; preview history never implies publication."""
+        if limit < 0:
+            raise ValueError("Edition limit must not be negative")
         rows = self.connection.execute(
-            "SELECT payload FROM editions WHERE profile_id=%s AND status='published' ORDER BY published_at DESC LIMIT 7",
-            (profile_id,),
+            """SELECT e.run_id,e.status,e.published_at,e.payload,r.started_at
+            FROM editions e JOIN runs r ON r.id=e.run_id
+            WHERE e.profile_id=%s AND (%s::timestamptz IS NULL OR r.started_at <= %s)
+            ORDER BY r.started_at DESC,e.run_id DESC""",
+            (profile_id, now, now),
         )
-        stories = {}
+        editions = []
         for row in rows:
+            generated = _edition_generated_at(row)
+            if now is None or generated <= now:
+                editions.append(
+                    (
+                        generated,
+                        {
+                            **row["payload"],
+                            "run_id": str(row["run_id"]),
+                            "publication_status": row["status"],
+                            "published_at": (
+                                row["published_at"].isoformat()
+                                if row["published_at"]
+                                else None
+                            ),
+                        },
+                    )
+                )
+        editions.sort(key=lambda item: item[0], reverse=True)
+        return [edition for _, edition in editions[:limit]]
+
+    def published_history(self, profile_id, now=None):
+        rows = self.connection.execute(
+            """SELECT e.payload,r.started_at FROM editions e JOIN runs r ON r.id=e.run_id
+            WHERE e.profile_id=%s AND e.status='published'
+            AND (%s::timestamptz IS NULL OR (r.started_at <= %s AND e.published_at <= %s))
+            ORDER BY e.published_at DESC LIMIT %s""",
+            (profile_id, now, now, now, 7 if now is None else None),
+        )
+        stories, editions = {}, 0
+        for row in rows:
+            if now is not None and _edition_generated_at(row) > now:
+                continue
             for story in row["payload"]["stories"]:
                 stories.setdefault(story["event_id"], story)
+            editions += 1
+            if editions == 7:
+                break
         return {"stories": list(stories.values())}
 
     def finish_run(self, run_id):
