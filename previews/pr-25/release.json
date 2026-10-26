@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "run_id": "2fc01fc2-1a26-4fcc-8d88-dd849aced8b8",
+  "generated_at": "2026-10-26T09:57:50.923858+00:00",
+  "stories": 81,
+  "files": {
+    "index.html": "aaf151992b9cd35b5a0cb1680edcf6cc436eb99972839007e4711e23e64e87cb",
+    "assets/editorial-curiosity.png": "5a1ebb88c27be27c3c66466ffa63c112b137c6d31db5d45720c175df571052af",
+    "assets/editorial-world.png": "0580e1a1cc809ffa982fa4d1958b61579c4e6a185e0aaf67b78e3a130ce98cd9",
+    "assets/editorial-technology.png": "d1e3b9c367fa81a65be6f1854321774719cc90dfce4fe7d84b7de7d870f86880"
+  }
+}
