@@ -71,6 +71,13 @@ class PublicationTests(unittest.TestCase):
     def export(self):
         return export_publication(self.store, self.run, self.root)
 
+    def test_manifest_cannot_carry_extra_private_payload(self):
+        manifest = self.export()
+        manifest["model_audit"] = "private response text"
+        (self.root / "release.json").write_text(json.dumps(manifest))
+        with self.assertRaises(ValueError):
+            verify_release_directory(self.root)
+
     def test_deploy_gate_rejects_hash_correct_private_artifact(self):
         manifest = self.export()
         private = self.root / "review.html"

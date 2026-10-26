@@ -32,6 +32,121 @@ class UnderstandingTests(unittest.TestCase):
             ]
         }
 
+    def test_large_review_is_split_without_losing_article_verdicts(self):
+        from news.analysis import review_batch
+
+        class LimitedResponseModel:
+            def __init__(self):
+                self.sizes = []
+
+            def complete(self, task, data, instructions=None):
+                articles = data["articles"]
+                self.sizes.append(len(articles))
+                if len(articles) > 2:
+                    raise ValueError("Model output did not finish normally")
+                return {
+                    "reviews": [
+                        {
+                            "id": a["id"],
+                            "verdict": "approved",
+                            "reason": "Grounded.",
+                            "unsupported_sections": [],
+                        }
+                        for a in articles
+                    ]
+                }
+
+        model = LimitedResponseModel()
+        articles = [{"id": str(i), "passages": [], "draft": {}} for i in range(5)]
+        reviews = review_batch(articles, model)
+        self.assertEqual({r["id"] for r in reviews}, {str(i) for i in range(5)})
+        self.assertTrue(all(size <= 2 for size in model.sizes))
+
+    def test_each_review_has_unambiguous_local_id_and_retains_caller_identity(self):
+        from news.analysis import review_batch
+
+        class OneVerdictModel:
+            def __init__(self):
+                self.requests = []
+
+            def complete(self, task, data, instructions=None):
+                self.requests.append(data["articles"])
+                return {
+                    "reviews": [
+                        {
+                            "id": "a1",
+                            "verdict": "approved",
+                            "reason": "Grounded.",
+                            "unsupported_sections": [],
+                        }
+                    ]
+                }
+
+        model = OneVerdictModel()
+        result = review_batch(
+            [{"id": "source-a", "draft": {}}, {"id": "source-b", "draft": {}}], model
+        )
+        self.assertEqual([r["id"] for r in result], ["source-a", "source-b"])
+        self.assertEqual([len(r) for r in model.requests], [1, 1])
+        self.assertTrue(all(r[0]["id"] == "a1" for r in model.requests))
+
+    def test_duplicate_review_is_repaired_without_accepting_ambiguous_result(self):
+        from news.analysis import review_batch
+
+        verdict = {"id": "a1", "verdict": "revise", "reason": "Unsupported actor."}
+        model = Mock()
+        model.complete.side_effect = [
+            {"reviews": [verdict, verdict]},
+            {"reviews": [verdict]},
+        ]
+        result = review_batch([{"id": "source-a", "draft": {}}], model)
+        self.assertEqual(result, [{**verdict, "id": "source-a"}])
+        repair = model.complete.call_args_list[1].args[1]
+        self.assertIn("feedback", repair)
+        self.assertEqual(repair["articles"][0]["id"], "a1")
+
+    def test_persistently_malformed_review_still_fails_closed(self):
+        from news.analysis import review_batch
+
+        model = Mock()
+        model.complete.return_value = {"reviews": []}
+        with self.assertRaises(ValueError):
+            review_batch([{"id": "source-a", "draft": {}}], model)
+        self.assertEqual(model.complete.call_count, 2)
+
+    def test_article_generation_is_independent_for_each_source(self):
+        from news.analysis import analyse_batch
+
+        outer = self
+
+        class SingleArticleModel:
+            def __init__(self):
+                self.generation_sizes = []
+
+            def complete(self, task, data, instructions=None):
+                if task == "analyse_articles":
+                    self.generation_sizes.append(len(data["articles"]))
+                    return outer.response()
+                return {
+                    "reviews": [
+                        {"id": "a1", "verdict": "approved", "reason": "Grounded."}
+                    ]
+                }
+
+        model = SingleArticleModel()
+        articles = [self.article(), {**self.article(), "id": "b"}]
+        evidence = {
+            id: {
+                "basis": "article_text",
+                "text": "The minister said the policy would reduce costs.",
+                "status": "ok",
+            }
+            for id in ("a", "b")
+        }
+        result = analyse_batch(articles, evidence, model)
+        self.assertEqual(set(result), {"a", "b"})
+        self.assertEqual(model.generation_sizes, [1, 1])
+
     def test_reviewed_summary_retains_actual_source_passage(self):
         from news.analysis import analyse_batch
 
@@ -292,12 +407,19 @@ class UnderstandingTests(unittest.TestCase):
             }
 
         model = Mock()
-        model.complete.side_effect = [
-            {"articles": [bad, good]},
-            approved("a2"),
-            self.response(),
-            approved("a1"),
-        ]
+        generation_ids = []
+
+        def reply(task, data, instructions=None):
+            if task == "analyse_articles":
+                source_id = data["articles"][0]["article_id"]
+                generation_ids.append(source_id)
+                row = (
+                    bad if source_id == "a" and generation_ids.count("a") == 1 else good
+                )
+                return {"articles": [{**row, "id": "a1"}]}
+            return approved(data["articles"][0]["id"])
+
+        model.complete.side_effect = reply
         evidence = {
             id: {
                 "basis": "article_text",
@@ -312,10 +434,7 @@ class UnderstandingTests(unittest.TestCase):
         self.assertEqual(
             {id: a["attempts"] for id, a in result.items()}, {"a": 2, "b": 1}
         )
-        repair_ids = [
-            a["id"] for a in model.complete.call_args_list[2].args[1]["articles"]
-        ]
-        self.assertEqual(repair_ids, ["a1"])
+        self.assertEqual(generation_ids, ["a", "a", "b"])
 
     def test_persistently_invalid_topic_is_retained_as_needs_review(self):
         from news.analysis import analyse_batch

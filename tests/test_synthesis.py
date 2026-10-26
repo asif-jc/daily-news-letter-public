@@ -53,7 +53,7 @@ class EventModel(Model):
             return {
                 "reviews": [
                     {
-                        "id": "e1",
+                        "id": data["articles"][0]["id"],
                         "verdict": "revise" if self.reject else "approved",
                         "reason": (
                             "Private reviewer: actor attribution unsupported."
@@ -93,7 +93,7 @@ class EventReviewRegressionTests(unittest.TestCase):
             for id in ids
         }
         model = EventModel()
-        story = reviewed_event(event, {"tier": "quick"}, articles, evidence, model)
+        story = reviewed_event(event, {"tier": "include"}, articles, evidence, model)
         self.assertEqual(model.synthesis_sources, [["d", "a", "b", "c"]])
         self.assertEqual(model.review_sources, model.synthesis_sources)
         self.assertEqual(
@@ -120,7 +120,7 @@ class EventReviewRegressionTests(unittest.TestCase):
             return {
                 "reviews": [
                     {
-                        "id": "e1",
+                        "id": data["articles"][0]["id"],
                         "verdict": "revise" if draft["why_matters"] else "approved",
                         "reason": "Only the facts are supported.",
                         "unsupported_sections": (
@@ -149,7 +149,7 @@ class EventReviewRegressionTests(unittest.TestCase):
         }
         result = reviewed_event(
             event,
-            {"tier": "quick", "score": 8},
+            {"tier": "include", "score": 8},
             article,
             {
                 "a": {
@@ -184,7 +184,7 @@ class EventReviewRegressionTests(unittest.TestCase):
             return {
                 "reviews": [
                     {
-                        "id": "e1",
+                        "id": data["articles"][0]["id"],
                         "verdict": "revise" if why else "approved",
                         "reason": "Facts supported.",
                         "unsupported_sections": ["why_matters"] if why else [],
@@ -219,7 +219,7 @@ class EventReviewRegressionTests(unittest.TestCase):
             for id in articles
         }
         result = reviewed_event(
-            event, {"tier": "quick", "score": 8}, articles, evidence, model
+            event, {"tier": "include", "score": 8}, articles, evidence, model
         )
         self.assertEqual(
             {s["id"]: s["used_in_summary"] for s in result["sources"]},
@@ -383,12 +383,18 @@ class MalformedSynthesisTests(unittest.TestCase):
                     return valid if repaired and len(calls) > 1 else invalid
                 return {
                     "reviews": [
-                        {"id": "e1", "verdict": "approved", "reason": "Supported."}
+                        {
+                            "id": data["articles"][0]["id"],
+                            "verdict": "approved",
+                            "reason": "Supported.",
+                        }
                     ]
                 }
 
             model.complete.side_effect = reply
-            result = reviewed_event(event, {"tier": "quick"}, articles, evidence, model)
+            result = reviewed_event(
+                event, {"tier": "include"}, articles, evidence, model
+            )
             self.assertEqual(sum(task == "synthesize" for task, _ in calls), 2)
             self.assertIn(
                 "Invalid event synthesis", calls[1][1]["event"]["reviewer_feedback"]
@@ -432,7 +438,7 @@ class MalformedSynthesisTests(unittest.TestCase):
             "source_ids": ["b"],
             "support": [{"section": "summary", "segment_id": "a:1"}],
         }
-        story = synthesize_event(event, {"tier": "quick"}, articles, evidence, model)
+        story = synthesize_event(event, {"tier": "include"}, articles, evidence, model)
         self.assertEqual(
             story["support"][0]["quote"],
             " ".join("word" + str(n) for n in range(25, 50)),

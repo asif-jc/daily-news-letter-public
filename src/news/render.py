@@ -166,6 +166,11 @@ def _card(story, generated_at, historic=False):
                 f"{label} {_date(source[key])}"
                 for key, label in (("published", "Published"), ("updated", "Updated"))
                 if source[key]
+                and (
+                    key != "updated"
+                    or not source["published"]
+                    or _timestamp(source[key]) != _timestamp(source["published"])
+                )
             )
             links.append(
                 f'<a href="{escape(source["url"])}" target="_blank" rel="noopener noreferrer">{escape(source["source"])}</a>'

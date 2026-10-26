@@ -113,7 +113,7 @@ def classify_events(events, analyses, model, profile):
             result.append(
                 {
                     "event_id": refs[row["id"]],
-                    "tier": "quick" if row["relevant"] else "exclude",
+                    "tier": "include" if row["relevant"] else "exclude",
                     "score": score if row["relevant"] else None,
                     "importance": row["importance"],
                     "reason": row["reason"],

@@ -45,6 +45,8 @@ def public_snapshot(edition):
 
 
 def artifact_path(path):
+    if not isinstance(path, str):
+        return False
     if path in ("index.html", "assets/dunder_park.jpg"):
         return True
     match = ARCHIVE_PATH.fullmatch(path)
@@ -59,6 +61,27 @@ def artifact_path(path):
 def validate_manifest(manifest, run_id=None):
     if not isinstance(manifest, dict) or manifest.get("schema_version") != 1:
         raise ValueError("Unsupported public release manifest")
+    if set(manifest) != {
+        "schema_version",
+        "run_id",
+        "generated_at",
+        "stories",
+        "files",
+    }:
+        raise ValueError("Unexpected fields in public release manifest")
+    try:
+        UUID(manifest["run_id"])
+        generated = datetime.fromisoformat(
+            manifest["generated_at"].replace("Z", "+00:00")
+        )
+        if (
+            generated.tzinfo is None
+            or type(manifest["stories"]) is not int
+            or manifest["stories"] < 1
+        ):
+            raise ValueError("Invalid public release metadata")
+    except (ValueError, TypeError, AttributeError):
+        raise ValueError("Invalid public release metadata") from None
     if run_id is not None and manifest.get("run_id") != run_id:
         raise ValueError("Release belongs to a different run")
     files = manifest.get("files")

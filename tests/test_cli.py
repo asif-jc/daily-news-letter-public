@@ -10,6 +10,12 @@ from news.cli import main
 
 
 class CliTests(unittest.TestCase):
+    def setUp(self):
+        # CLI behavior is under test, not the developer's ignored runtime settings.
+        loader = patch("news.cli.load_dotenv")
+        self.load_env = loader.start()
+        self.addCleanup(loader.stop)
+
     def test_export_does_not_initialize_the_model(self):
         store = Mock()
         with (

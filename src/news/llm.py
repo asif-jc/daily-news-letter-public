@@ -5,6 +5,9 @@ from pathlib import Path
 
 import requests
 
+DEFAULT_TIMEOUT_SECONDS = 300
+MAX_RESPONSE_TOKENS = 6000
+
 INSTRUCTIONS = {
     "synthesize": """Write from the provided evidence only, for the same curious reader.
 Return {"summary":"two concise natural sentences about what happened",
@@ -52,7 +55,13 @@ def parse_response(raw):
 
 class JsonModel:
     def __init__(
-        self, base_url, model, api_key=None, timeout=90, audit_dir=None, audit_hook=None
+        self,
+        base_url,
+        model,
+        api_key=None,
+        timeout=DEFAULT_TIMEOUT_SECONDS,
+        audit_dir=None,
+        audit_hook=None,
     ):
         self.base_url = base_url.rstrip("/")
         self.model = model
@@ -74,7 +83,7 @@ class JsonModel:
             base,
             model,
             os.getenv("NEWS_LLM_API_KEY"),
-            float(os.getenv("NEWS_LLM_TIMEOUT_SECONDS", "90")),
+            float(os.getenv("NEWS_LLM_TIMEOUT_SECONDS", str(DEFAULT_TIMEOUT_SECONDS))),
             audit_dir,
         )
 
@@ -90,7 +99,7 @@ class JsonModel:
                     "messages": messages,
                     "temperature": 0,
                     "response_format": {"type": "json_object"},
-                    "max_tokens": 10000 if task == "select_with_evidence" else 6000,
+                    "max_tokens": MAX_RESPONSE_TOKENS,
                     "chat_template_kwargs": {"enable_thinking": False},
                 },
                 timeout=(5, self.timeout),

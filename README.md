@@ -28,13 +28,13 @@ news stats
 news --env-file .local/news.env build
 ```
 
-Resume uses frozen inputs, prompts and settings and reuses validated checkpoints. Changed processing settings require a new run. Database migrations preserve retained records. Executable resumes from retired prototype workflow versions are intentionally unsupported; their saved editions and evidence remain in PostgreSQL.
+Resume uses frozen inputs, prompts and settings and reuses validated checkpoints. A failed group of up to five article checkpoints can repeat work inside that unfinished group; this is restartable processing, not exactly-once inference. Changed processing settings require a new run. Database migrations preserve retained records. Executable resumes from retired prototype workflow versions are intentionally unsupported; their saved editions and evidence remain in PostgreSQL.
 
 ## Processing and storage
 
 1. Collect and retain feed observations, preserving publication, update and collection times.
 2. Retrieve bounded evidence from approved public publishers and analyse every valid unique article before personal filtering. Exact cached analyses can be reused for 24 hours.
-3. Review factual summaries and optional significance. Allow one repair; keep persistent failures visible in the private review.
+3. Generate and review one article per model request so each response has an unambiguous source identity. Review factual summaries and optional significance. Allow one factual revision and one format-repair retry per review request; a persistently malformed review stops the run, and unsupported drafts stay withheld in the private review.
 4. Propose event comparisons using shared distinctive words and historical source identities. The model decides identity. Conflicting verdicts hold the affected component before synthesis.
 5. Apply the versioned [editorial profile](src/news/profile.json). Relevance, importance, topic, geography and freshness are separate; useful domestic reporting does not need global consequences.
 6. Review multi-source summaries, choose featured placement and retain other relevant stories. Keep a seven-day current pool without deleting older observations.
@@ -77,6 +77,6 @@ The package has one execution path: `news` and `python -m news` call the same CL
 
 ## Limits worth reviewing
 
-Model self-review is not independent fact checking. Source references establish traceability, not entailment. Lexical comparison proposals can miss paraphrases; model judgments can mistake added context for a new development. Six publishers do not provide exhaustive news coverage. Extraction is bounded and can fall back to clearly labeled feed evidence. Read state does not sync between devices. Storage is measured but no automatic retention deletion is installed.
+Model self-review is not independent fact checking. Source references establish traceability, not entailment. Lexical comparison proposals can miss paraphrases; model judgments can mistake added context for a new development. Six feeds from five publishers do not provide exhaustive news coverage. Extraction is bounded and can fall back to clearly labeled feed evidence. Read state does not sync between devices. Storage is measured but no automatic retention deletion is installed.
 
 [Dispatch report](dispatch_report.html) records the latest executed review, tests, run counts and delivery evidence. Historical prototype code and generated artifacts were retired; PostgreSQL records were preserved.
