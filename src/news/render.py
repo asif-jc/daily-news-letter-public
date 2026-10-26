@@ -1,35 +1,21 @@
-"""
-=== render.py ===
+"""Render reader-safe snapshots, cards and dated edition navigation."""
 
-Purpose: Produce separate reader and private editorial-review HTML.
-Extended Description:
-    Consumes saved data only; model calls and publishing belong elsewhere.
-Usage:
-    render_edition(edition); render_review(...).
-Work Log:
-    19/10/2026 -> PostgreSQL-backed news-only MVP.
-"""
-
-# ========================================================================
-# IMPORTS & CONFIGURATION
-# ========================================================================
-import html
+import hashlib
 import json
-from datetime import datetime
+import re
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from urllib.parse import urlsplit
 from zoneinfo import ZoneInfo
 
-from src.mvp_news_aggregator.sources import RSS_FEEDS
+import html
 
-ORIGINAL_FOOTER = """
+from .analysis import TOPICS
+from .urls import allowed_publisher_url
+
+FOOTER_HTML = """
         <div class="footer">
             <div class="mission">
                 Inform on global events capturing key and interesting events that influence our lives and delivering that information in an easily consumable format.
-            </div>
-            <div class="feedback">
-                Appreciate feedback on source or content curation, new categories, or general queries. Send to:
-                <a href="mailto:asif.ajcanalytics@gmail.com">asif.ajcanalytics@gmail.com</a>
             </div>
             <div class="branding">
                 AJC Analytics Limited
@@ -37,212 +23,236 @@ ORIGINAL_FOOTER = """
         </div>
         """
 
-RENDER_VERSION = 7
-
-STYLE = """
-:root{color-scheme:light;--paper:#f7f5f0;--ink:#182a2c;--muted:#566969;--rule:#d9dfd8;--accent:#166c62}
-*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 system-ui,sans-serif}
-main{max-width:1080px;margin:auto;padding:46px 28px 70px}header{border-top:5px solid var(--ink);border-bottom:1px solid var(--rule);padding:22px 0 26px;margin-bottom:35px}
-h1{font-family:Georgia,serif;font-size:clamp(38px,7vw,68px);line-height:1.05;margin:8px 0 16px;letter-spacing:-1.6px}
-h2{font-family:Georgia,serif;font-size:28px;line-height:1.25;margin:8px 0 16px}h3{font-size:20px;line-height:1.3}.eyebrow{font-size:12px;letter-spacing:1.8px;text-transform:uppercase;font-weight:700;color:var(--accent)}
-.meta,.sources{font-size:13px;color:var(--muted)}.intro{max-width:650px;color:var(--muted)}a{color:var(--accent);text-underline-offset:3px}
-.leads{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 36px}.story{padding:24px 0;border-top:1px solid var(--rule)}.leads .story:first-child{grid-column:1/-1}.leads .story:first-child h2{font-size:38px;max-width:840px}
-.story p{margin:12px 0}.significance{padding-left:14px;border-left:3px solid var(--accent)}.significance b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:1px}
-.section-label{margin-top:40px;font-size:13px;letter-spacing:2px;text-transform:uppercase}.quick .story{display:grid;grid-template-columns:1fr 1.7fr;gap:24px}.quick h2{font-size:23px}.sources a{display:inline-block;margin-right:12px}
-footer{border-top:1px solid var(--ink);margin-top:38px;padding-top:18px;font-size:12px;color:var(--muted)}table{border-collapse:collapse;width:100%;font-size:13px}td,th{border:1px solid var(--rule);padding:8px;text-align:left;vertical-align:top}.scroll{overflow-x:auto}pre{font-size:12px;white-space:pre-wrap;overflow-wrap:anywhere;background:#e9eee8;padding:16px}details{margin:12px 0;padding:12px;background:#fff}summary{cursor:pointer;font-weight:600}
-@media(max-width:650px){main{padding:24px 18px 45px}.leads{display:block}.quick .story{display:block}.leads .story:first-child h2{font-size:30px}h2{font-size:26px}}
-"""
-
-
-# ========================================================================
-# RENDERING HELPERS
-# ========================================================================
-
 
 def escape(value):
     return html.escape(str(value), quote=True)
 
 
 def safe_link(url):
+    return url if allowed_publisher_url(url) else None
+
+
+GEOGRAPHY_ALIASES = {
+    "US": "United States",
+    "U.S.": "United States",
+    "USA": "United States",
+    "U.S.A.": "United States",
+    "New Zealand": "NZ",
+    "UK": "United Kingdom",
+    "U.K.": "United Kingdom",
+}
+RUN_ID = re.compile(r"[A-Za-z0-9][A-Za-z0-9_-]{0,127}\Z")
+
+
+def _timestamp(value):
     try:
-        p = urlsplit(url)
-        return (
-            url
-            if p.scheme in ("http", "https")
-            and p.hostname
-            and not p.username
-            and not p.password
-            else None
-        )
+        timestamp = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+        return timestamp if timestamp.tzinfo else timestamp.replace(tzinfo=timezone.utc)
     except (ValueError, TypeError):
         return None
 
 
-def page(title, body):
-    return f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{escape(title)}</title><style>{STYLE}</style></head><body><main>{body}</main></body></html>'
-
-
-def render_edition(edition):
-    generated = datetime.fromisoformat(
-        edition["generated_at"].replace("Z", "+00:00")
-    ).astimezone(ZoneInfo("Pacific/Auckland"))
-    date = generated.strftime("%B %d, %Y")
-    updated = generated.strftime("%d %b %Y, %-I:%M %p %Z")
-    body = f'<div class="header"><h1>Daily News Feed</h1><div class="date">{escape(date)}</div><div class="last-updated">Last Updated: {escape(updated)}</div></div><div class="content">'
-    for tier in ("top", "quick"):
-        for story in (s for s in edition["stories"] if s["tier"] == tier):
-            sources = story["sources"]
-            links = []
-            seen = set()
-            for source in sources:
-                url = safe_link(source.get("url", ""))
-                if url and url not in seen:
-                    links.append(
-                        f'<a href="{escape(url)}" target="_blank" rel="noopener noreferrer">{escape(source["source"])}</a>'
-                    )
-                    seen.add(url)
-            primary = sources[0] if sources else {}
-            category = next(
-                (
-                    category
-                    for category, feeds in RSS_FEEDS.items()
-                    if any(feed["name"] == primary.get("source") for feed in feeds)
-                ),
-                "world",
-            )
-            category_label = {
-                "world": "Global News",
-                "tech": "Technology",
-                "finance": "Markets & Finance",
-                "nz": "New Zealand",
-            }.get(category, "News")
-            title = escape(story["title"])
-            url = safe_link(primary.get("url", ""))
-            if url:
-                title = f'<a href="{escape(url)}" target="_blank" rel="noopener noreferrer">{title}</a>'
-            published = "Recent"
-            if primary.get("published"):
-                published = (
-                    datetime.fromisoformat(primary["published"].replace("Z", "+00:00"))
-                    .astimezone(ZoneInfo("Pacific/Auckland"))
-                    .strftime("%d %b %Y, %-I:%M %p %Z")
-                )
-            priority = (
-                f' • Priority: {escape(story["score"])}/10'
-                if tier == "top" and story.get("score")
-                else ""
-            )
-            css_class = "critical" if tier == "top" else "monitoring"
-            summary_class = "article-summary" if tier == "top" else "article-reason"
-            body += f'<div class="article {css_class}"><div class="article-header"><span class="category-badge {category}">{escape(category_label)}</span><div class="article-title">{title}</div></div><div class="article-meta">{escape(primary.get("source", "Unknown"))} • {escape(published)}{priority}</div><div class="{summary_class}">{escape(story["summary"])}</div>'
-            if tier == "top" and story.get("why_matters"):
-                body += f'<div class="why-matters"><strong>Why this matters:</strong> {escape(story["why_matters"])}</div>'
-            # Keep every source accessible when one event combines several reports.
-            if len(links) > 1 or (links and not url):
-                body += f'<div class="article-meta">Sources: {" · ".join(links)}</div>'
-            if any(
-                s.get("used_in_summary") and s.get("evidence_basis") == "feed_summary"
-                for s in sources
-            ):
-                body += '<div class="article-meta">Includes RSS-summary evidence.</div>'
-            body += "</div>"
-    body += "</div>"
-    body += ORIGINAL_FOOTER
-    css = Path(__file__).with_name("reader.css").read_text()
-    return f'<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Daily News Feed - {escape(date)}</title><style>{css}</style></head><body><div class="container">{body}</div></body></html>'
-
-
-def render_review(
-    edition,
-    collected,
-    candidates,
-    events,
-    qualifications,
-    decisions,
-    profile,
-    prompts,
-    stages,
-):
-    body = '<header><div class="eyebrow">Private editorial review</div><h1>How this edition was made</h1><p><a href="index.html">Read the news edition</a></p></header>'
-    counts = {}
-    eligible = {a["observation_ordinal"] for a in candidates}
-    selected = {d["event_id"] for d in decisions if d["tier"] != "exclude"}
-    for ordinal, a in enumerate(collected):
-        row = counts.setdefault(
-            a["source"], {"collected": 0, "eligible": 0, "selected_events": 0}
+def _date(value):
+    timestamp = _timestamp(value)
+    return (
+        timestamp.astimezone(ZoneInfo("Pacific/Auckland")).strftime(
+            "%d %b %Y, %-I:%M %p %Z"
         )
-        row["collected"] += 1
-        row["eligible"] += ordinal in eligible
-    lookup = {a["id"]: a for a in candidates}
-    for e in events:
-        if e["event_id"] in selected:
-            counts[lookup[e["representative_id"]]["source"]]["selected_events"] += 1
-    body += '<h2>Sources and counts</h2><div class="scroll"><table><tr><th>Source</th><th>Collected</th><th>Eligible observations</th><th>Selected representative</th></tr>'
-    for name, values in counts.items():
-        body += (
-            f"<tr><td>{escape(name)}</td>"
-            + "".join(f"<td>{n}</td>" for n in values.values())
-            + "</tr>"
+        if timestamp
+        else "Date unavailable"
+    )
+
+
+def reader_snapshot(edition):
+    """Whitelist only intended reader fields, including source URLs and dates."""
+    stories = []
+    for story in edition.get("stories", []):
+        sources = []
+        for source in story.get("sources", []):
+            url = safe_link(source.get("url", ""))
+            if not url:
+                continue
+            sources.append(
+                {
+                    "source": str(source.get("source", "Source")),
+                    "url": url,
+                    "published": str(source.get("published") or ""),
+                    "updated": str(source.get("updated") or ""),
+                    "rss_only": bool(
+                        source.get("rss_only")
+                        or (
+                            source.get("used_in_summary")
+                            and source.get("evidence_basis") == "feed_summary"
+                        )
+                    ),
+                }
+            )
+        clean = {
+            key: str(story.get(key) or "")
+            for key in ("event_id", "title", "summary", "why_matters")
+        }
+        clean["sources"] = sources
+        clean["topics"] = [tag for tag in story.get("topics", []) if tag in TOPICS]
+        clean["geography"] = list(
+            dict.fromkeys(
+                GEOGRAPHY_ALIASES.get(tag, tag)
+                for tag in story.get("geography", [])
+                if isinstance(tag, str)
+            )
         )
-    body += "</table></div><h2>Workflow</h2><p>Collect → clean → group events → qualify broadly → retrieve evidence → select with evidence → synthesize → render.</p>"
-    body += '<div class="scroll"><table><tr><th>Stage</th><th>Status</th><th>Seconds</th><th>Attempts</th></tr>'
-    for stage in stages:
-        if stage.get("item_key"):
+        clean["importance"] = (
+            story.get("importance")
+            if story.get("importance") in ("major", "notable", "useful")
+            else "useful"
+        )
+        clean["freshness"] = (
+            story.get("freshness")
+            if story.get("freshness")
+            in ("new", "updated", "catch_up", "previously_featured")
+            else "new"
+        )
+        clean["featured"] = bool(story.get("featured"))
+        revision = story.get("revision_key")
+        clean["revision_key"] = revision if isinstance(revision, str) else ""
+        # Material-update lineage survives harmless summary rewrites. Older editions
+        # have no lineage key, so their factual content supplies a conservative fallback.
+        content = [
+            clean[key] for key in ("event_id", "title", "summary", "why_matters")
+        ]
+        signature = hashlib.sha256(
+            json.dumps(content, ensure_ascii=False).encode()
+        ).hexdigest()[:24]
+        identity = clean["event_id"] or signature
+        clean["read_key"] = identity + ":" + (clean["revision_key"] or signature)
+        stories.append(clean)
+    status = edition.get("publication_status")
+    return {
+        "run_id": str(edition.get("run_id", "")),
+        "generated_at": str(edition.get("generated_at", "")),
+        "publication_status": "published" if status == "published" else "preview",
+        "stories": stories,
+    }
+
+
+def _card(story, generated_at, historic=False):
+    title = escape(story["title"])
+    sources = story["sources"]
+    if sources:
+        title = f'<a href="{escape(sources[0]["url"])}" target="_blank" rel="noopener noreferrer">{title}</a>'
+    topics = " · ".join(story["topics"])
+    geography = " · ".join(story["geography"])
+    metadata = " · ".join(
+        filter(
+            None,
+            (
+                geography,
+                story["importance"].capitalize(),
+                story["freshness"].replace("_", " ").capitalize(),
+            ),
+        )
+    )
+    summary = (
+        escape(story["summary"])
+        if story["summary"]
+        else "Summary unavailable: this report has not completed evidence review."
+    )
+    body = f'<article class="article reader-story {"critical" if story["featured"] and not historic else "key"}" data-read-key="{escape(story["read_key"])}" data-topics="{escape(json.dumps(story["topics"]))}" data-geography="{escape(json.dumps(story["geography"]))}"><div class="article-header"><span class="category-badge world">{escape(topics or "News")}</span><h3 class="article-title">{title}</h3></div><p class="article-meta">{escape(metadata)}</p><p class="article-summary">{summary}</p>'
+    if story["why_matters"]:
+        body += f'<p class="why-matters"><strong>Why this matters:</strong> {escape(story["why_matters"])}</p>'
+    if sources:
+        links = []
+        for source in sources:
+            dates = " · ".join(
+                f"{label} {_date(source[key])}"
+                for key, label in (("published", "Published"), ("updated", "Updated"))
+                if source[key]
+            )
+            links.append(
+                f'<a href="{escape(source["url"])}" target="_blank" rel="noopener noreferrer">{escape(source["source"])}</a>'
+                + (f" <span>{escape(dates)}</span>" if dates else "")
+            )
+        body += f'<p class="article-meta">Sources: {"; ".join(links)}</p>'
+    if any(source["rss_only"] for source in sources):
+        body += '<p class="article-meta">Includes RSS-summary evidence.</p>'
+    if historic:
+        body += f'<p class="article-meta">Edition: {escape(_date(generated_at))}</p>'
+    return (
+        body
+        + '<button class="read-toggle" type="button" hidden>Mark read</button><span class="read-label" aria-live="polite"></span></article>'
+    )
+
+
+def render_edition(edition, archives=()):
+    """Return standalone HTML; archive exports use a root-relative base element."""
+    current = reader_snapshot(edition)
+    generated = _timestamp(current["generated_at"])
+    history = [
+        reader_snapshot(item)
+        for item in archives
+        if RUN_ID.fullmatch(str(item.get("run_id", "")))
+        and item.get("run_id") != current["run_id"]
+    ]
+    stories = current["stories"]
+    seen = {story["read_key"] for story in stories}
+    historic = []
+    for item in history:
+        timestamp = _timestamp(item["generated_at"])
+        if (
+            not generated
+            or not timestamp
+            or not generated - timedelta(days=7) <= timestamp <= generated
+        ):
             continue
-        start, end = stage.get("started_at"), stage.get("finished_at")
-        if isinstance(start, str):
-            start = datetime.fromisoformat(start)
-        if isinstance(end, str):
-            end = datetime.fromisoformat(end)
-        duration = round((end - start).total_seconds(), 2) if start and end else "-"
-        body += f'<tr><td>{escape(stage["name"])}</td><td>{escape(stage["status"])}</td><td>{duration}</td><td>{stage["attempts"]}</td></tr>'
-    body += (
-        "</table></div><details><summary>Per-article execution details</summary><pre>"
-        + escape(json.dumps(stages, indent=2, default=str))
-        + "</pre></details>"
+        for story in item["stories"]:
+            if story["read_key"] not in seen:
+                historic.append((story, item["generated_at"]))
+                seen.add(story["read_key"])
+    all_stories = stories + [story for story, _ in historic]
+    status = (
+        "Published edition"
+        if current["publication_status"] == "published"
+        else "Review preview - not published"
     )
-    body += (
-        "<details><summary>Feed health</summary><pre>"
-        + escape(json.dumps(edition.get("source_health", []), indent=2))
-        + "</pre></details>"
-    )
-    body += (
-        "<h2>Editorial preference</h2><p>"
-        + escape(profile.get("audience", ""))
-        + "</p><details><summary>Exact preference profile</summary><pre>"
-        + escape(json.dumps(profile, indent=2))
-        + "</pre></details>"
-    )
-    q = {r["event_id"]: r for r in qualifications}
-    d = {r["event_id"]: r for r in decisions}
-    body += "<h2>Every event and decision</h2>"
-    for e in events:
-        decision = d.get(e["event_id"], {})
-        qualification = q[e["event_id"]]
-        body += f'<details><summary>{escape(decision.get("tier",qualification["tag"]))}: {escape(e["title"])}</summary><p>Grouping: {escape(e["reason"])}</p><p>Qualification: {escape(qualification["tag"])}. {escape(qualification["reason"])}</p><p>Selection: {escape(decision.get("reason","Not retrieved after qualification."))}</p>'
-        for id in e["source_ids"]:
-            a = lookup[id]
-            url = safe_link(a["url"])
-            body += (
-                f'<p>{escape(a["source"])}: '
-                + (
-                    f'<a href="{escape(url)}">{escape(a["title"])}</a>'
-                    if url
-                    else escape(a["title"])
-                )
-                + "</p>"
-            )
-        body += "</details>"
-    body += "<h2>Summary provenance</h2>"
-    for story in edition["stories"]:
-        body += (
-            f'<details><summary>{escape(story["title"])}</summary><p>{escape(story["summary"])}</p><p>{escape(story.get("why_matters",""))}</p><pre>'
-            + escape(json.dumps(story["support"], indent=2))
-            + "</pre></details>"
+    body = f'<header class="header"><h1>Daily News Feed</h1><div class="date">{escape(_date(current["generated_at"]))}</div><div class="last-updated">{status}</div></header><main class="content"><nav class="edition-history" aria-label="Dated editions"><a href="index.html">Latest edition</a>'
+    for item in history:
+        label = (
+            "Published"
+            if item["publication_status"] == "published"
+            else "Review preview"
         )
-    body += "<h2>Exact LLM task prompts</h2>"
-    for task, prompt in prompts.items():
-        if task == "select_events":
-            continue
-        body += f"<details><summary>{escape(task)}</summary><pre>{escape(prompt)}</pre></details>"
-    return page("Private news workflow review", body)
+        body += f'<a href="archive/{escape(item["run_id"])}.html">{escape(_date(item["generated_at"]))} ({label})</a>'
+    body += '</nav><div class="reader-controls" hidden><label>Topic <select id="topic-filter"><option value="">All topics</option>'
+    for topic in TOPICS:
+        if any(topic in story["topics"] for story in all_stories):
+            body += f"<option>{escape(topic)}</option>"
+    body += '</select></label><label>Geography <select id="geography-filter"><option value="">All places</option>'
+    for geography in sorted(
+        {tag for story in all_stories for tag in story["geography"]}
+    ):
+        body += f"<option>{escape(geography)}</option>"
+    body += '</select></label><label class="unread-control"><input type="checkbox" id="unread-filter"> Unread only</label><button id="reset-read" type="button">Reset read state</button><p id="storage-status" role="status">Read state is stored in this browser only. Opening a source does not mark a story read.</p></div><noscript><p>All summaries and dated editions are available below. Topic filters and local read controls need JavaScript.</p></noscript><p id="result-count" role="status" hidden></p>'
+    body += '<section id="featured-section"><h2>Featured</h2>'
+    featured = [story for story in stories if story["featured"]]
+    body += (
+        "".join(_card(story, current["generated_at"]) for story in featured)
+        or "<p>No featured stories in this edition.</p>"
+    )
+    body += '</section><section id="collection-section"><h2>Topic collection</h2><p class="collection-intro">Additional stories appear below. Topic, geography and unread filters search the entire edition, including featured stories.</p><div id="collection-cards">'
+    body += "".join(
+        _card(story, current["generated_at"])
+        for story in stories
+        if not story["featured"]
+    )
+    body += '</div></section><details id="week-overview"><summary>Seven-day overview</summary><p>Distinct reports from this edition and all editions generated within the preceding seven days. Repeated unchanged reports appear once; earlier versions remain available below.</p>'
+    body += (
+        "".join(_card(story, date, True) for story, date in historic)
+        or "<p>No additional reports in the recent editions.</p>"
+    )
+    body += (
+        '</details><p id="no-results" hidden><span id="no-results-message">No stories match these filters.</span> <button id="show-history" type="button" hidden>Open seven-day overview</button></p></main>'
+        + FOOTER_HTML
+    )
+    directory = Path(__file__).parent
+    css = directory.joinpath("reader.css").read_text()
+    script = directory.joinpath("reader.js").read_text()
+    return f'<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Daily News Feed - {escape(_date(current["generated_at"]))}</title><style>{css}</style></head><body><div class="container">{body}</div><script>{script}</script></body></html>'

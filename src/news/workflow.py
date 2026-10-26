@@ -1,40 +1,40 @@
-"""
-=== workflow.py ===
+"""Restartable orchestration from public feed collection to a private review edition."""
 
-Purpose: Produce a retained news edition and private HTML review artifacts.
-Extended Description:
-    Coordinates stages; SQL belongs in store.py and publication remains outside this workflow.
-Usage:
-    python -m src.news --env-file .env
-Work Log:
-    19/10/2026 -> PostgreSQL-backed news-only MVP.
-"""
-
-# ========================================================================
-# IMPORTS & CONFIGURATION
-# ========================================================================
 import hashlib
 import json
 import shutil
 import uuid
 from collections import Counter
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from src.mvp_news_aggregator.sources import RSS_FEEDS
-from .editorial import qualify_events, select_with_evidence
-from .events import filter_candidates, group_events
-from .llm import INSTRUCTIONS, prompt_versions
-from .pipeline import collect_articles, extract_article, synthesize_event, write_json
-from .render import RENDER_VERSION, render_edition, render_review
+from .analysis import ANALYSE_PROMPT, REVIEW_PROMPT, analyse_batch, input_key
+from .editorial import (
+    CURATE_PROMPT,
+    timestamp,
+    prepare_articles,
+    classify_events,
+    place_stories,
+)
+from .grouping import GROUP_PAIR_PROMPT, group_events_bounded
+from .ingest import collect_articles, extract_article, write_json
+from .llm import INSTRUCTIONS, model_messages, parse_response
+from .render import render_edition
+from .review import render_private_review
+from .sources import RSS_FEEDS
+from .synthesis import reviewed_event, compose_story
 
-PROFILE_PATH = Path(__file__).with_name("profile.json")
-WORKFLOW_VERSION = 1
-
-
-# ========================================================================
-# PRIMARY EXECUTION
-# ========================================================================
+WORKFLOW_VERSION = 3
+GROUPING_VERSION = 3
+RENDER_VERSION = 5
+BATCH_SIZE = 5
+PROMPTS = {
+    "analyse_articles": ANALYSE_PROMPT,
+    "review_articles": REVIEW_PROMPT,
+    "curate_events": CURATE_PROMPT,
+    "synthesize": INSTRUCTIONS["synthesize"],
+    "compare_event_pairs": GROUP_PAIR_PROMPT,
+}
 
 
 def run_workflow(
@@ -46,69 +46,97 @@ def run_workflow(
     rows=None,
     source_health=None,
     profile=None,
-    top_limit=5,
-    quick_limit=10,
     history=None,
+    pool_days=7,
+    featured_limit=6,
+    include_review_previews=False,
 ):
-    if (
-        not 0 <= top_limit <= 10
-        or not 0 <= quick_limit <= 20
-        or not top_limit + quick_limit
-    ):
-        raise ValueError("Invalid edition limits")
+    if not 1 <= pool_days <= 30 or not 0 <= featured_limit <= 20:
+        raise ValueError("Invalid rolling window or featured limit")
     if run_id is None:
-        profile = profile or json.loads(PROFILE_PATH.read_text())
-        if not isinstance(profile.get("id"), str) or not isinstance(
-            profile.get("version"), int
-        ):
-            raise ValueError("Profile needs an ID and integer version")
+        now = now or datetime.now(timezone.utc)
+        profile = profile or json.loads(
+            Path(__file__).with_name("profile.json").read_text()
+        )
+        archives = store.editions_within(profile["id"], now=now, days=7)
+        # Preview identity can persist without falsely claiming an edition was published.
+        identity = {}
+        for edition in archives:
+            for story in edition["stories"]:
+                identity.setdefault(story["event_id"], story)
+        published = (
+            history
+            if history is not None
+            else store.published_history(profile["id"], now=now, days=pool_days)
+        )
+        published_identity = {
+            story["event_id"]: story for story in published.get("stories", [])
+        }
+        # When old previews split one incident, the published baseline wins any later reconciliation.
+        for event_id, story in identity.items():
+            published_identity.setdefault(event_id, story)
+        identity = published_identity
+        archive_views = []
+        for edition in archives:
+            published_at = timestamp(edition.get("published_at"))
+            is_published = (
+                edition.get("publication_status") == "published"
+                and published_at
+                and published_at <= now
+            )
+            if is_published or include_review_previews:
+                archive_views.append(
+                    {
+                        **edition,
+                        "publication_status": (
+                            "published" if is_published else "ready_for_review"
+                        ),
+                    }
+                )
         config = {
             "workflow_version": WORKFLOW_VERSION,
+            "grouping_version": GROUPING_VERSION,
             "profile": profile,
-            "prompts": dict(INSTRUCTIONS),
-            "prompt_versions": prompt_versions(),
+            "prompts": PROMPTS,
             "model": model.model,
-            "top_limit": top_limit,
-            "quick_limit": quick_limit,
-            "history": (
-                history
-                if history is not None
-                else store.published_history(profile["id"])
-            ),
+            "pool_days": pool_days,
+            "featured_limit": featured_limit,
             "sources": RSS_FEEDS,
-            "input_mode": "replay" if rows is not None else "feeds",
+            "archives": archive_views,
+            "include_review_previews": include_review_previews,
+            "identity_history": {"stories": list(identity.values())},
+            "published_history": published,
             "replay_input": (
                 {"articles": rows, "source_health": source_health or []}
                 if rows is not None
                 else None
             ),
         }
-        run_id = store.create_run(config, now or datetime.now(timezone.utc))
+        run_id = store.create_run(config, now)
     run_id = str(run_id)
     run = store.get_run(run_id)
     config = run["config"]
     now = run["started_at"]
     if (
         config["workflow_version"] != WORKFLOW_VERSION
-        or config["prompt_versions"] != prompt_versions()
+        or config.get("grouping_version") != GROUPING_VERSION
+        or config["prompts"] != PROMPTS
         or config["model"] != model.model
     ):
         raise ValueError(
-            "Workflow, prompts or model changed; start a new run instead of resuming"
+            "Unsupported workflow version, prompts or model; start a new run"
         )
     profile = config["profile"]
-    top_limit = config["top_limit"]
-    quick_limit = config["quick_limit"]
-    output_dir = Path(output_root) / run_id
-    output_dir.mkdir(parents=True, exist_ok=True)
     model.audit_hook = lambda task, messages, response: store.audit_model(
         run_id, task, messages, response
     )
+    output = Path(output_root) / run_id
+    output.mkdir(parents=True, exist_ok=True)
 
     def stage(name, execute, persist=None, item_key=""):
-        completed = store.stage_output(run_id, name, item_key)
-        if completed is not None:
-            return completed
+        cached = store.stage_output(run_id, name, item_key)
+        if cached is not None:
+            return cached
         store.start_stage(run_id, name, item_key)
         try:
             value = execute()
@@ -124,200 +152,294 @@ def run_workflow(
     with store.lock_run(run_id):
 
         def collect():
-            replay = config.get("replay_input")
-            collected, health = (
+            replay = config["replay_input"]
+            articles, health = (
                 (replay["articles"], replay["source_health"])
                 if replay is not None
-                else collect_articles(config.get("sources", RSS_FEEDS))
+                else collect_articles(config["sources"])
             )
-            if not collected:
+            if not articles:
                 raise ValueError("No articles collected")
-            return {"articles": collected, "source_health": health}
+            return {"articles": articles, "source_health": health}
 
         collection = stage(
             "collect", collect, lambda v: store.save_articles(run_id, v["articles"])
         )
 
-        def clean():
-            candidates, exclusions = filter_candidates(collection["articles"], now)
-            return {"candidates": candidates, "exclusions": exclusions}
-
-        filtered = stage(
-            "clean",
-            clean,
-            lambda v: store.save_filter(run_id, v["candidates"], v["exclusions"]),
-        )
-        candidates = filtered["candidates"]
-        if not candidates:
-            error = ValueError("No eligible candidates")
-            store.fail_stage(run_id, "clean", error)
-            raise error
-        events = stage(
-            "group",
-            lambda: group_events(candidates, model, config["history"]),
-            lambda v: store.save_events(run_id, v),
-        )
-        qualifications = stage(
-            "qualify",
-            lambda: qualify_events(events, model, profile),
-            lambda v: store.save_decisions(run_id, "qualify", v, profile),
-        )
-        tags = {q["event_id"]: q["tag"] for q in qualifications}
-        shortlist = [e for e in events if tags[e["event_id"]] != "irrelevant"]
-        article_lookup = {a["id"]: a for a in candidates}
-
-        def retrieve():
-            evidence = {}
-            for event in shortlist:
-                ids = [event["representative_id"]] + [
-                    i for i in event["source_ids"] if i != event["representative_id"]
-                ]
-                for id in ids[:3]:
-                    evidence[id] = stage(
-                        "retrieve_article",
-                        lambda id=id: extract_article(article_lookup[id]),
-                        lambda value, id=id: store.save_evidence(run_id, id, value),
-                        item_key=id,
-                    )
-            return evidence
-
-        evidence = stage("retrieve", retrieve)
-
-        def select():
-            rows = (
-                select_with_evidence(
-                    shortlist, evidence, model, profile, top_limit, quick_limit
-                )
-                if shortlist
-                else []
+        def pool():
+            # Analyse all newly collected valid documents, including older background material.
+            retained = store.rolling_articles(now, days=config["pool_days"])
+            accepted, excluded = prepare_articles(
+                collection["articles"] + retained, now, days=config["pool_days"]
             )
-            rows.extend(
-                {
-                    "event_id": q["event_id"],
-                    "tier": "exclude",
-                    "score": None,
-                    "topic": "Excluded",
-                    "reason": q["reason"],
-                    "decision_basis": (
-                        "already_covered"
-                        if q["decision_basis"] == "already_covered"
-                        else "off_brief"
-                    ),
-                }
-                for q in qualifications
-                if q["tag"] == "irrelevant"
-            )
-            return rows
+            return {"articles": accepted, "exclusions": excluded}
 
-        decisions = stage(
-            "select",
-            select,
-            lambda v: store.save_decisions(run_id, "select", v, profile),
-        )
-        selected = sorted(
-            (d for d in decisions if d["tier"] != "exclude"),
-            key=lambda d: (d["tier"] != "top", -d["score"]),
-        )
-        if not selected:
-            error = ValueError("No events met the editorial policy")
-            store.fail_stage(run_id, "select", error)
-            raise error
-        event_lookup = {e["event_id"]: e for e in events}
+        prepared = stage("pool", pool)
+        articles = {a["id"]: a for a in prepared["articles"]}
+        evidence, analyses = {}, {}
+        pending = []
+        cache_hits = 0
+        for article in articles.values():
+            id = article["id"]
+            key = input_key(article, model)
 
-        def synthesize():
-            return [
-                stage(
-                    "synthesize_event",
-                    lambda d=d: synthesize_event(
-                        event_lookup[d["event_id"]], d, article_lookup, evidence, model
-                    ),
-                    item_key=d["event_id"],
+            def obtain(article=article, key=key):
+                cached = store.cached_analysis(
+                    article["id"], key, now - timedelta(hours=24)
                 )
-                for d in selected
+                if cached is not None:
+                    return {**cached, "cache_hit": True}
+                ev = stage(
+                    "retrieve_article",
+                    lambda: extract_article(article),
+                    lambda v: store.save_evidence(run_id, article["id"], v),
+                    item_key=article["id"],
+                )
+                return {"evidence": ev, "cache_hit": False}
+
+            item = stage(
+                "article_input",
+                obtain,
+                lambda v, id=id: store.save_evidence(run_id, id, v["evidence"]),
+                item_key=id,
+            )
+            cache_hits += bool(item.get("cache_hit"))
+            evidence[id] = item["evidence"]
+            if "analysis" in item:
+                analyses[id] = item["analysis"]
+            else:
+                pending.append(article)
+        for offset in range(0, len(pending), BATCH_SIZE):
+            batch = pending[offset : offset + BATCH_SIZE]
+            key = hashlib.sha256("|".join(a["id"] for a in batch).encode()).hexdigest()[
+                :16
             ]
 
-        stories = stage("synthesize", synthesize)
-        edition = {
-            "schema_version": 2,
-            "run_id": run_id,
-            "generated_at": now.isoformat(),
-            "status": "ready_for_review",
-            "profile_id": profile["id"],
-            "profile_version": profile["version"],
-            "source_health": collection["source_health"],
-            "counts": {
-                "collected": len(collection["articles"]),
-                "candidates": len(candidates),
-                "events": len(events),
-                "qualified": len(shortlist),
-                "top": sum(s["tier"] == "top" for s in stories),
-                "quick": sum(s["tier"] == "quick" for s in stories),
-            },
-            "selected_topics": dict(Counter(s["topic"] for s in stories)),
-            "stories": stories,
+            def persist(value, batch=batch):
+                for a in batch:
+                    store.save_analysis(
+                        a["id"],
+                        input_key(a, model),
+                        {"analysis": value[a["id"]], "evidence": evidence[a["id"]]},
+                    )
+
+            analyses.update(
+                stage(
+                    "analyse_articles",
+                    lambda batch=batch: analyse_batch(batch, evidence, model),
+                    persist,
+                    item_key=key,
+                )
+            )
+        stage("analysis_index", lambda: analyses)
+        candidates = [
+            {
+                **a,
+                "description": analyses[id]["summary"]
+                + " "
+                + analyses[id].get("why_matters", ""),
+                "evidence_basis": evidence[id]["basis"],
+            }
+            for id, a in articles.items()
+            if a["in_pool"] and analyses[id]["state"] == "ready"
+        ]
+
+        def compare_pairs(inputs, validate):
+            data = {"pairs": inputs}
+            key = hashlib.sha256(json.dumps(data, sort_keys=True).encode()).hexdigest()
+
+            def execute():
+                retained = store.audited_response(
+                    run_id,
+                    "compare_event_pairs",
+                    model_messages("compare_event_pairs", data, GROUP_PAIR_PROMPT),
+                )
+                if retained is not None:
+                    try:
+                        return validate(parse_response(retained))
+                    except ValueError:
+                        # Raw audit is not an accepted checkpoint until the current contract validates it.
+                        pass
+                return validate(
+                    model.complete(
+                        "compare_event_pairs", data, instructions=GROUP_PAIR_PROMPT
+                    )
+                )
+
+            return stage("compare_event_pairs", execute, item_key=key)
+
+        events = stage(
+            "group",
+            lambda: group_events_bounded(
+                candidates,
+                model,
+                config["identity_history"],
+                compare_batch=compare_pairs,
+            ),
+            lambda v: store.save_events(run_id, v),
+        )
+        decisions = stage(
+            "curate",
+            lambda: classify_events(events, analyses, model, profile),
+            lambda v: store.save_decisions(run_id, "curate", v, profile),
+        )
+        lookup = {e["event_id"]: e for e in events}
+        relevant = [d for d in decisions if d["tier"] != "exclude"]
+        stories = []
+        summary_failures = []
+        for decision in relevant:
+            event = lookup[decision["event_id"]]
+            primary = event["representative_id"]
+            a = analyses[primary]
+
+            def summary(event=event, decision=decision, a=a):
+                if event.get("grouping_conflicts"):
+                    return {
+                        "state": "needs_review",
+                        "event_id": event["event_id"],
+                        "reason": "Contradictory event comparisons; component withheld.",
+                        "grouping_conflicts": event["grouping_conflicts"],
+                    }
+                if len(event["source_ids"]) > 1:
+                    return reviewed_event(
+                        event, decision, articles, evidence, model
+                    ) or {"state": "needs_review"}
+                return {
+                    "event_id": event["event_id"],
+                    "title": event["title"],
+                    "summary": a["summary"],
+                    "why_matters": a["why_matters"],
+                    "support": a["support"],
+                    "summary_review": a["review"],
+                }
+
+            story = stage("summarize_event", summary, item_key=event["event_id"])
+            if story.get("state") == "needs_review":
+                summary_failures.append(story)
+                continue
+            stories.append(
+                compose_story(
+                    event,
+                    decision,
+                    story,
+                    articles,
+                    analyses,
+                    evidence,
+                    config["identity_history"],
+                    now,
+                )
+            )
+        published_ids = set(
+            config["published_history"].get("featured_event_ids", [])
+        ) | {
+            s["event_id"]
+            for s in config["published_history"].get("stories", [])
+            if s.get("featured", True)
         }
+        for event in events:
+            if published_ids.intersection(event.get("previous_event_ids", [])):
+                published_ids.add(event["event_id"])
+        stories = place_stories(stories, published_ids, config["featured_limit"])
+        source_counts = {}
+        for source in {a["source"] for a in articles.values()}:
+            source_counts[source] = {
+                "observed": sum(a["source"] == source for a in collection["articles"]),
+                "analysed": sum(a["source"] == source for a in articles.values()),
+                "in_pool": sum(
+                    a["source"] == source and a["in_pool"] for a in articles.values()
+                ),
+                "ready": sum(
+                    articles[id]["source"] == source and a["state"] == "ready"
+                    for id, a in analyses.items()
+                ),
+                "reader_events": sum(
+                    any(s["source"] == source for s in story["sources"])
+                    for story in stories
+                ),
+            }
+        counts = {
+            "sources": source_counts,
+            "collected": len(collection["articles"]),
+            "analysed": len(analyses),
+            "cache_hits": cache_hits,
+            "article_repairs": sum(a.get("attempts", 0) > 1 for a in analyses.values()),
+            "pool_articles": sum(a["in_pool"] for a in articles.values()),
+            "events": len(events),
+            "relevant": len(relevant),
+            "stories": len(stories),
+            "featured": sum(s["featured"] for s in stories),
+            "summary_failures": len(summary_failures),
+            "grouping_holds": sum(bool(e.get("grouping_conflicts")) for e in events),
+            "extraction": dict(Counter(v["basis"] for v in evidence.values())),
+            "analysis_states": dict(Counter(a["state"] for a in analyses.values())),
+            "topics": dict(Counter(t for s in stories for t in s["topics"])),
+        }
+
+        def require_stories():
+            if not stories:
+                raise ValueError("No reviewed reader stories; edition withheld")
+            return {"stories": len(stories)}
+
+        stage("validate_edition", require_stories)
         edition = stage(
-            "edition", lambda: edition, lambda v: store.save_edition(run_id, v, profile)
+            "edition",
+            lambda: {
+                "schema_version": 3,
+                "run_id": run_id,
+                "status": "ready_for_review",
+                "publication_status": "ready_for_review",
+                "generated_at": now.isoformat(),
+                "profile_id": profile["id"],
+                "profile_version": profile["version"],
+                "counts": counts,
+                "source_health": collection["source_health"],
+                "stories": stories,
+                "summary_failures": summary_failures,
+            },
+            lambda v: store.save_edition(run_id, v, profile),
         )
 
         def render():
-            stages = list(
-                store.connection.execute(
-                    "SELECT name,item_key,status,attempts,started_at,finished_at,error_type FROM stages WHERE run_id=%s AND name!=%s ORDER BY started_at,name,item_key",
-                    (run_id, "render"),
-                )
+            reader = render_edition(edition, config["archives"])
+            review = render_private_review(
+                edition, config, prepared, analyses, decisions, events
             )
-            return {
-                "renderer_version": RENDER_VERSION,
-                "reader": render_edition(edition),
-                "review": render_review(
-                    edition,
-                    collection["articles"],
-                    candidates,
-                    events,
-                    qualifications,
-                    decisions,
-                    profile,
-                    config["prompts"],
-                    stages,
-                ),
-            }
+            return {"reader": reader, "review": review}
 
         rendered = stage("render", render, item_key=str(RENDER_VERSION))
 
         def export():
-            assets = output_dir / "assets"
-            assets.mkdir(exist_ok=True)
+            (output / "assets").mkdir(exist_ok=True)
             shutil.copyfile(
-                Path(__file__).resolve().parents[2] / "assets" / "dunder_park.jpg",
-                assets / "dunder_park.jpg",
+                Path(__file__).parent / "assets/dunder_park.jpg",
+                output / "assets/dunder_park.jpg",
             )
-            for name, content in [
+            archive_dir = output / "archive"
+            archive_dir.mkdir(exist_ok=True)
+            for old in config["archives"]:
+                old_html = render_edition(
+                    old, [a for a in config["archives"] if a["run_id"] != old["run_id"]]
+                )
+                (archive_dir / (old["run_id"] + ".html")).write_text(
+                    old_html.replace("<head>", '<head><base href="../">', 1)
+                )
+            for name, text in [
                 ("index.html", rendered["reader"]),
                 ("review.html", rendered["review"]),
             ]:
-                temporary = output_dir / (name + ".tmp")
-                temporary.write_text(content)
-                temporary.replace(output_dir / name)
-            write_json(output_dir / "edition.json", edition)
+                temp = output / (name + ".tmp")
+                temp.write_text(text)
+                temp.replace(output / name)
+            write_json(output / "edition.json", edition)
             write_json(
-                output_dir / "run.json",
-                {
-                    "run_id": run_id,
-                    "status": "ready_for_review",
-                    "counts": edition["counts"],
-                },
+                output / "run.json",
+                {"run_id": run_id, "counts": counts, "status": "ready_for_review"},
             )
             return {
-                "reader_sha256": hashlib.sha256(
-                    rendered["reader"].encode()
-                ).hexdigest(),
-                "review_sha256": hashlib.sha256(
-                    rendered["review"].encode()
-                ).hexdigest(),
+                "reader_sha256": hashlib.sha256(rendered["reader"].encode()).hexdigest()
             }
 
-        # Exports can be repeated onto another local disk; each attempt needs its own outcome.
+        # A retained database checkpoint cannot prove that local preview files still exist.
         stage("export", export, item_key=str(uuid.uuid4()))
         stage("storage", store.stats)
         store.finish_run(run_id)

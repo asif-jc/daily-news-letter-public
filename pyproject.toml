@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "daily-news-reader"
+version = "1.0.0"
+description = "An evidence-first news workflow with retained decisions and a static reader."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "beautifulsoup4==4.13.4",
+  "feedparser==6.0.11",
+  "python-dotenv==1.1.1",
+  "requests==2.32.5",
+  "psycopg[binary]==3.3.6",
+]
+
+[project.scripts]
+news = "news.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["news*"]
+
+[tool.setuptools.package-data]
+news = ["*.css", "*.js", "*.json", "migrations/*.sql", "assets/*.jpg"]

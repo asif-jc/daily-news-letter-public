@@ -1,238 +1,82 @@
-# 📰 Daily Newsletter Generator
+# Daily News Reader
 
-**Webletter URL** - https://asif-jc.github.io/daily-news-letter-public/
+A news workflow that retains its evidence and decisions, then publishes a static reading page.
 
-**Version 1.5** - Automated AI-curated newsletter system with GitHub Pages deployment
+[Read the latest edition](https://asif-jc.github.io/daily-news-letter-public/)
 
----
+The application collects BBC World, Ars Technica, TechCrunch, CNBC Finance, RNZ Politics and RNZ Business. It understands articles before applying reader preferences, groups reports about the same event, and shows six featured stories above a browsable topic collection. The reader keeps the original banner and cards, with topic/place filters and explicit read state.
 
-The news-only replacement is being developed as a local review workflow. See [its setup, stage artifacts, and limits](src/news/README.md). It does not publish or send email; the existing deployment path remains in place until review.
+## Run it
 
-## 🚀 Version 2 Roadmap
+Python 3.11+ and a reachable PostgreSQL database named `news` are required. The language model must expose an OpenAI-compatible chat-completions endpoint. Connection settings belong in an ignored environment file.
 
-**Upcoming Features:**
-- **Hourly Critical Coverage** - New priority section for breaking news
-- **Agentic Workflow** - Migration to LangChain or Google AI SDK for improved automation
-- **Email Subscription** - Email out daily and critical articles to a subset of users
-- **User Defines Preference** - User can define preference and refresh pipeline on this information (incurs uncertain LLM usage has cost complexity)
-- **Market and Index Data** - Commodity index prices
-- **Foreign Exchange (FX) Data** - NZD/USD, NZD/AUD, NZD/INR
----
-
-## 📋 Overview
-
-An intelligent newsletter system that automatically collects, curates, and publishes daily news from multiple RSS sources. Uses Google's Gemini AI to select and summarize the most important stories across Technology, Finance, World News, and New Zealand categories.
-
-**🌐 Live Newsletter:** [View Latest Edition](https://asif-jc.github.io/daily-news-letter-public/)
-
-## ✨ Features
-
-### 🔄 **Automated Pipeline**
-- Daily execution via GitHub Actions (8 PM UTC)
-- RSS feed aggregation from trusted news sources
-- AI-powered content curation and summarization
-- Automatic deployment to GitHub Pages
-
-### 🤖 **AI Content Curation**
-- **Google Gemini Integration** for intelligent article selection
-- **Top Stories** - 3 major developments with detailed summaries
-- **Quick Reads** - 5 secondary stories with brief explanations  
-- **Content Enhancement** - Web scraping for deeper article analysis
-
-### 📊 **Multi-Category Coverage**
-- **World News** - BBC World, CNN International
-- **Technology** - TechCrunch, Ars Technica  
-- **Finance** - Yahoo Finance, CNBC, Investing.com
-- **New Zealand** - Local news sources (configurable)
-
-### 🗂️ **Data Management**
-- JSON-based storage system (GitHub Actions compatible)
-- Automatic deduplication using content hashing
-- Timestamped backups and article archiving
-
----
-
-## 🏗️ Architecture
-
-```
-┌─────────────────┐    ┌──────────────┐    ┌─────────────────┐
-│   RSS Sources   │───▶│  Collector   │───▶│    Curator      │
-│                 │    │              │    │   (Gemini AI)   │
-└─────────────────┘    └──────────────┘    └─────────────────┘
-                                                    │
-┌─────────────────┐    ┌──────────────┐    ┌─────────────────┐
-│  GitHub Pages   │◀───│   Generator  │◀───│  JSON Storage   │
-│   (Website)     │    │    (HTML)    │    │                 │
-└─────────────────┘    └──────────────┘    └─────────────────┘
+```sh
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -e .
+cp .env.example .env
+# Fill in the private settings in .env.
+news migrate
+news build
 ```
 
-### Core Components
+The command prints the run UUID and paths to `index.html` and `review.html` under ignored `.local/news-editions/`. The private review contains source analyses, evidence references, grouping judgments, selection reasons, failures and exact prompts. Keep that entire directory private.
 
-**📥 Article Collector** (`collector.py`)
-- Fetches RSS feeds from configured sources
-- Generates unique content hashes for deduplication  
-- Handles multiple date formats and content cleaning
-
-**🎯 Content Curator** (`curator.py`)
-- Filters recent articles (configurable time window)
-- Uses Gemini AI to select most important stories
-- Scrapes full article content for top stories
-- Generates enhanced summaries and explanations
-
-**📰 Newsletter Generator** (`web_newsletter.py`)
-- Creates responsive HTML newsletter layout
-- Organizes content by category and importance
-- Includes publication metadata and styling
-
-**⚙️ Pipeline Orchestrator** (`main.py`)
-- Coordinates the entire workflow
-- Manages data flow between components
-- Handles both fresh generation and cached modes
-
----
-
-## 🛠️ Technical Setup
-
-### Prerequisites
-- Python 3.11+
-- Google Gemini API key
-- GitHub repository with Pages enabled
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/your-username/daily-news-letter-public.git
-   cd daily-news-letter-public
-   ```
-
-2. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Configure environment**
-   ```bash
-   cp config.env.example config.env
-   # Add your GEMINI_API_KEY
-   ```
-
-4. **Set up GitHub Secrets**
-   - Add `GEMINI_API_KEY` to repository secrets
-   - Enable GitHub Pages in repository settings
-
-### Local Development
-
-**Generate newsletter locally:**
-```bash
-python src/mvp_news_aggregator/main.py
+```sh
+news build --resume RUN_UUID
+news stats
+news --env-file .local/news.env build
 ```
 
-**View generated content:**
-- Newsletter: `newsletter.html`
-- Raw data: `data/loading/newsletter_curated.json`
+Resume uses frozen inputs, prompts and settings and reuses validated checkpoints. Changed processing settings require a new run. Database migrations preserve retained records. Executable resumes from retired prototype workflow versions are intentionally unsupported; their saved editions and evidence remain in PostgreSQL.
 
----
+## Processing and storage
 
-## 📁 Project Structure
+1. Collect and retain feed observations, preserving publication, update and collection times.
+2. Retrieve bounded evidence from approved public publishers and analyse every valid unique article before personal filtering. Exact cached analyses can be reused for 24 hours.
+3. Review factual summaries and optional significance. Allow one repair; keep persistent failures visible in the private review.
+4. Propose event comparisons using shared distinctive words and historical source identities. The model decides identity. Conflicting verdicts hold the affected component before synthesis.
+5. Apply the versioned [editorial profile](src/news/profile.json). Relevance, importance, topic, geography and freshness are separate; useful domestic reporting does not need global consequences.
+6. Review multi-source summaries, choose featured placement and retain other relevant stories. Keep a seven-day current pool without deleting older observations.
+7. Save the edition and render the private review and reader. Empty/unusable output fails rather than replacing a good edition.
 
-```
-├── src/mvp_news_aggregator/    # Core application code
-│   ├── collector.py            # RSS feed collection
-│   ├── curator.py              # AI content curation  
-│   ├── web_newsletter.py       # HTML generation
-│   ├── sources.py              # RSS feed configuration
-│   └── main.py                 # Pipeline orchestration
-├── .github/workflows/          # GitHub Actions automation
-├── data/loading/               # JSON data storage
-├── assets/                     # Stylesheet and images
-├── docs/                       # Generated site files
-└── requirements.txt            # Python dependencies
-```
+PostgreSQL retains source observations, article identities, versioned analyses, evidence, model audit, stage checkpoints, event membership, editorial decisions, edition snapshots, publication receipts and size samples. The application refuses writes outside the `news` database. Tests use disposable schemas on an explicitly selected loopback test database.
 
----
+Published history, preview history and read state are different. Previously featured events require a material update to lead again. Published editions support dated navigation and a seven-day overview without a seven-edition cap. Read state is explicit and browser-local; opening a source does not mark it read.
 
-## ⚙️ Configuration
+## Publish a reviewed edition
 
-### RSS Sources (`sources.py`)
-```python
-RSS_FEEDS = {
-    "tech": [
-        {"name": "TechCrunch", "url": "https://techcrunch.com/feed/"},
-        {"name": "Ars Technica", "url": "http://feeds.arstechnica.com/arstechnica/index"}
-    ],
-    # Add more categories and sources
-}
+Private processing runs on a machine that can reach the configured model and database. GitHub only deploys the exported static reader. No scheduler is installed by this repository; generation can be invoked by an on-prem scheduler using the same `news build` command.
+
+```sh
+news export --run RUN_UUID --output site
 ```
 
-### Content Curation Settings
-- **Article Age Filter**: 24 hours (configurable)
-- **Top Stories**: 3 per category
-- **Quick Reads**: 5 per category
-- **Content Enhancement**: Full text scraping for top stories
+Export writes only reader HTML, the banner, published archive pages and `release.json`. It rejects empty output, unsafe source URLs, private path/network strings and unexpected files. It does not record publication. Never copy a private run directory into the public site.
 
-### Deployment Schedule
-- **Automated**: Daily at 8 PM UTC
-- **Manual**: Trigger via GitHub Actions interface
+Run `news verify-release` to check the staged artifact boundary without loading private settings. Review the staged `site/` files, run the tests and the public-repository privacy checks in [AGENTS.md](AGENTS.md), then commit them through a PR. Merging into `main` triggers the deployment-only Pages workflow. After the delivered files are available:
 
----
+```sh
+news confirm-publication --run RUN_UUID \
+  --manifest site/release.json \
+  --site-url https://asif-jc.github.io/daily-news-letter-public/
+```
 
-## 🔍 Data Flow
+Confirmation rebuilds the intended release from the retained edition, checks the deployed manifest and every file hash, then records publication transactionally. Failed delivery leaves publication history unchanged. If deployment succeeds but database confirmation fails, rerun this command; do not regenerate or falsely mark a different run as delivered.
 
-1. **Collection Phase**
-   - Fetch RSS feeds from all configured sources
-   - Parse and normalize article metadata
-   - Generate unique IDs for deduplication
-   - Save raw articles with timestamps
+## Develop and verify
 
-2. **Curation Phase**  
-   - Filter articles by recency and quality
-   - Group articles by news category
-   - Use Gemini AI to select most important stories
-   - Scrape full content for detailed summaries
+```sh
+python -m pip install -e .
+python -m unittest discover -s tests -v
+```
 
-3. **Generation Phase**
-   - Create responsive HTML newsletter
-   - Organize content by importance level
-   - Apply consistent styling and branding
-   - Generate both current and dated versions
+Integration tests are skipped unless `NEWS_TEST_DATABASE_URL` is explicitly set. They require a `postgresql://...@localhost:PORT/news` URL, accept loopback addresses only, and remove their own isolated test schemas. They never load private environment files automatically. CI supplies an ephemeral PostgreSQL 17 service and runs the full suite.
 
-4. **Deployment Phase**
-   - Copy assets and HTML to docs/ directory
-   - Deploy via GitHub Actions to Pages
-   - Archive previous versions for history
+The package has one execution path: `news` and `python -m news` call the same CLI. Its modules separate ingestion, article analysis, event grouping, editorial policy, synthesis, persistence, rendering and publication. `pyproject.toml` is the dependency and packaging manifest.
 
----
+## Limits worth reviewing
 
-## 🤝 Contributing
+Model self-review is not independent fact checking. Source references establish traceability, not entailment. Lexical comparison proposals can miss paraphrases; model judgments can mistake added context for a new development. Six publishers do not provide exhaustive news coverage. Extraction is bounded and can fall back to clearly labeled feed evidence. Read state does not sync between devices. Storage is measured but no automatic retention deletion is installed.
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)  
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-### Development Guidelines
-- Follow existing code structure and naming conventions
-- Test changes with local newsletter generation
-- Update documentation for new features
-- Ensure GitHub Actions compatibility
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 🙏 Acknowledgments
-
-- **Google Gemini AI** for intelligent content curation
-- **RSS Sources** for providing structured news feeds  
-- **GitHub Pages** for free hosting and deployment
-- **BeautifulSoup & Feedparser** for robust content parsing
-
----
-
-*Built with ❤️ for staying informed in our fast-moving world*
+[Dispatch report](dispatch_report.html) records the latest executed review, tests, run counts and delivery evidence. Historical prototype code and generated artifacts were retired; PostgreSQL records were preserved.

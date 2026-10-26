@@ -1,13 +1,5 @@
-"""
-=== store.py ===
-
-Purpose: Retain queryable news data and transactional run checkpoints.
-Extended Description:
-    Database queries only; workflow orchestration belongs in workflow.py.
-Usage:
-    Use NewsStore.from_env(); call migrate() before operations.
-Work Log:
-    19/10/2026 -> PostgreSQL-backed news-only MVP.
+"""Retain queryable observations, evidence, decisions and transactional checkpoints.
+Collection and processing belong to ingest.py and workflow.py.
 """
 
 # ========================================================================
@@ -27,8 +19,8 @@ from psycopg.conninfo import conninfo_to_dict
 from psycopg.rows import dict_row
 from psycopg.types.json import Jsonb
 
-from src.mvp_news_aggregator.sources import RSS_FEEDS
-from .events import canonical_url
+from .sources import RSS_FEEDS
+from .urls import canonical_url
 
 TABLES = (
     "sources",
@@ -72,7 +64,7 @@ class NewsStore:
             autocommit=True,
             row_factory=dict_row,
             connect_timeout=8,
-            application_name="news-mvp",
+            application_name="news-reader",
         )
         if (
             self.connection.execute("SELECT current_database() AS name").fetchone()[
@@ -124,7 +116,9 @@ class NewsStore:
                 raise ValueError("Unsupported news schema version")
             if version == 1:
                 self.connection.execute(
-                    (Path(__file__).parent / "migrations/002_library.sql").read_text()
+                    (
+                        Path(__file__).parent / "migrations/002_article_analyses.sql"
+                    ).read_text()
                 )
 
     def create_run(self, config, now):
@@ -387,7 +381,7 @@ class NewsStore:
 
     def recent_editions(self, profile_id, limit=7, now=None):
         """Return snapshots with publication state; preview history never implies publication."""
-        if limit < 0:
+        if limit is not None and limit < 0:
             raise ValueError("Edition limit must not be negative")
         rows = self.connection.execute(
             """SELECT e.run_id,e.status,e.published_at,e.payload,r.started_at
@@ -417,6 +411,50 @@ class NewsStore:
                 )
         editions.sort(key=lambda item: item[0], reverse=True)
         return [edition for _, edition in editions[:limit]]
+
+    def editions_within(self, profile_id, now, days=7):
+        """Edition count must not truncate a calendar window with multiple daily runs."""
+        since = now - timedelta(days=days)
+        return [
+            edition
+            for edition in self.recent_editions(profile_id, limit=None, now=now)
+            if since <= _edition_generated_at({"payload": edition, "started_at": now})
+        ]
+
+    def get_edition(self, run_id):
+        row = self.connection.execute(
+            "SELECT payload,status,published_at FROM editions WHERE run_id=%s",
+            (run_id,),
+        ).fetchone()
+        if not row:
+            raise ValueError("No completed edition for this run")
+        return {**row["payload"], "publication_status": row["status"]}
+
+    def record_publication(self, run_id, receipt):
+        """Called only after delivery hashes match; build/export alone are not publication."""
+        with self.transaction():
+            row = self.connection.execute(
+                "SELECT status FROM editions WHERE run_id=%s FOR UPDATE", (run_id,)
+            ).fetchone()
+            if not row:
+                raise ValueError("No completed edition for this run")
+            prior = self.stage_output(run_id, "publication")
+            if prior is not None:
+                if prior["release_sha256"] != receipt["release_sha256"]:
+                    raise ValueError(
+                        "Published edition already has a different release"
+                    )
+                return prior
+            self.connection.execute(
+                "UPDATE editions SET status='published',published_at=COALESCE(published_at,now()) WHERE run_id=%s",
+                (run_id,),
+            )
+            self.connection.execute(
+                """INSERT INTO stages(run_id,name,status,finished_at,output)
+                VALUES(%s,'publication','complete',now(),%s)""",
+                (run_id, Jsonb(receipt)),
+            )
+            return receipt
 
     def published_history(self, profile_id, now=None, days=7):
         rows = self.connection.execute(

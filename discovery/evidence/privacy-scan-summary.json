@@ -1,8 +1,0 @@
-{
-  "history_gitleaks_findings": 0,
-  "publishable_file_gitleaks_exit": 0,
-  "publishable_file_gitleaks_findings": 0,
-  "private_network_or_tailnet_hostname_files": [],
-  "no_push_performed": true,
-  "limits": "Pattern scans are not exhaustive PII or binary metadata audits. Existing public email literals remain; credential-prefix debug logging was removed in this slice."
-}

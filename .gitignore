@@ -1,5 +1,5 @@
 # Virtual environments
-daily_news_letter_venv/
+*_venv/
 .venv/
 venv/
 

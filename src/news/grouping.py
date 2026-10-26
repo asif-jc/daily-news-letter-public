@@ -1,26 +1,12 @@
-"""
-=== grouping.py ===
+"""Group specific events with bounded evidence comparisons and retained history."""
 
-Purpose: Group retained news with bounded, evidence-grounded event comparisons.
-Extended Description:
-    Global lexical candidates and exact history anchors propose pairs; model verdicts
-    alone establish shared events. Components preserve all current source membership.
-Usage:
-    group_events_bounded(articles, model, history)
-Work Log:
-    19/10/2026 -> Global candidate pairs with bounded semantic review.
-"""
-
-# ========================================================================
-# IMPORTS & CONFIGURATION
-# ========================================================================
 import hashlib
 import json
 import math
 import re
 from collections import Counter
 
-from .events import canonical_url
+from .urls import canonical_url
 
 PAIR_BATCH_SIZE = 12
 GROUP_PAIR_PROMPT = """Compare each supplied pair independently using only its grounded descriptions/summaries.
@@ -36,11 +22,6 @@ STOP_WORDS = frozenset(
     "was were are been being not but also which when where what who how why can may "
     "one two out all some other his her our your you she him per amid".split()
 )
-
-
-# ========================================================================
-# GLOBAL CANDIDATE PROPOSALS
-# ========================================================================
 
 
 def _terms(item):
@@ -150,19 +131,14 @@ def _validate_pair_response(response, inputs):
     return validated
 
 
-# ========================================================================
-# BOUNDED COMPARISONS AND EVENT MEMBERSHIP
-# ========================================================================
-
-
 def group_events_bounded(articles, model, history, compare_batch=None):
-    """Return legacy events; compare_batch(inputs, validate_response) may checkpoint validated rows."""
+    """Return evidence-grounded event groups with validated pair checkpoints."""
     if not articles:
         return []
     ids = [a["id"] for a in articles]
     if any(not isinstance(id, str) for id in ids) or len(set(ids)) != len(ids):
         raise ValueError("Candidate IDs must be unique strings")
-    previous = (history or {}).get("stories", (history or {}).get("events", []))
+    previous = (history or {}).get("stories", [])
     nodes = articles + previous
     candidates = _candidate_pairs(articles, previous)
     parents = list(range(len(nodes)))
