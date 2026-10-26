@@ -2,7 +2,6 @@
 
 import hashlib
 import json
-import shutil
 import uuid
 from collections import Counter
 from datetime import datetime, timedelta, timezone
@@ -21,13 +20,14 @@ from .grouping import GROUP_PAIR_PROMPT, group_events_bounded
 from .ingest import collect_articles, extract_article, write_json
 from .llm import INSTRUCTIONS, model_messages, parse_response
 from .render import render_edition
+from .reader_assets import write_reader_assets
 from .review import render_private_review
 from .sources import RSS_FEEDS
 from .synthesis import reviewed_event, compose_story
 
 WORKFLOW_VERSION = 3
 GROUPING_VERSION = 3
-RENDER_VERSION = 7
+RENDER_VERSION = 8
 BATCH_SIZE = 5
 PROMPTS = {
     "analyse_articles": ANALYSE_PROMPT,
@@ -452,16 +452,13 @@ def run_workflow(
         rendered = stage("render", render, item_key=str(RENDER_VERSION))
 
         def export():
-            (output / "assets").mkdir(exist_ok=True)
-            shutil.copyfile(
-                Path(__file__).parent / "assets/dunder_park.jpg",
-                output / "assets/dunder_park.jpg",
-            )
+            write_reader_assets(output)
             archive_dir = output / "archive"
             archive_dir.mkdir(exist_ok=True)
             for old in config["archives"]:
                 old_html = render_edition(
-                    old, [a for a in config["archives"] if a["run_id"] != old["run_id"]]
+                    old, [a for a in config["archives"] if a["run_id"] != old["run_id"]],
+                    archive=True,
                 )
                 (archive_dir / (old["run_id"] + ".html")).write_text(
                     old_html.replace("<head>", '<head><base href="../">', 1)

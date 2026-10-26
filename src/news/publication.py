@@ -14,6 +14,7 @@ import requests
 
 from .ingest import write_json
 from .render import reader_snapshot, render_edition, safe_link
+from .reader_assets import READER_ASSET_NAMES, reader_assets
 
 MAX_PUBLIC_FILE_BYTES = 16 * 1024 * 1024
 PRIVATE_TEXT = re.compile(
@@ -47,7 +48,9 @@ def public_snapshot(edition):
 def artifact_path(path):
     if not isinstance(path, str):
         return False
-    if path in ("index.html", "assets/dunder_park.jpg"):
+    if path in {"index.html", "assets/dunder_park.jpg"} | {
+        "assets/" + name for name in READER_ASSET_NAMES
+    }:
         return True
     match = ARCHIVE_PATH.fullmatch(path)
     if match:
@@ -88,7 +91,10 @@ def validate_manifest(manifest, run_id=None):
     if (
         not isinstance(files, dict)
         or "index.html" not in files
-        or "assets/dunder_park.jpg" not in files
+        or {p for p in files if isinstance(p, str) and p.startswith("assets/")} not in (
+            {"assets/dunder_park.jpg"},
+            {"assets/" + name for name in READER_ASSET_NAMES},
+        )
         or any(
             not artifact_path(p)
             or not isinstance(d, str)
@@ -133,16 +139,14 @@ def release_files(store, run_id):
     ]
     files = {
         "index.html": render_edition(snapshot, archives).encode(),
-        "assets/dunder_park.jpg": (
-            Path(__file__).parent / "assets/dunder_park.jpg"
-        ).read_bytes(),
+        **reader_assets(),
     }
     for old in archives:
         path = "archive/" + old["run_id"] + ".html"
         if not artifact_path(path):
             raise ValueError("Invalid archive identity")
         html = render_edition(
-            old, [a for a in archives if a["run_id"] != old["run_id"]]
+            old, [a for a in archives if a["run_id"] != old["run_id"]], archive=True
         )
         files[path] = html.replace("<head>", '<head><base href="../">', 1).encode()
     return snapshot, files

@@ -136,7 +136,7 @@ class WorkflowTests(unittest.TestCase):
             self.assertEqual(edition, again)
             self.assertEqual(m.calls, before)
             self.assertTrue(
-                (Path(out) / edition["run_id"] / "assets/dunder_park.jpg").exists()
+                (Path(out) / edition["run_id"] / "assets/editorial-world.png").exists()
             )
             second = self.run_news(
                 m, out, rows=[self.article], now=self.now + timedelta(hours=1)

@@ -12,18 +12,6 @@ import html
 from .analysis import TOPICS
 from .urls import allowed_publisher_url
 
-FOOTER_HTML = """
-        <div class="footer">
-            <div class="mission">
-                Inform on global events capturing key and interesting events that influence our lives and delivering that information in an easily consumable format.
-            </div>
-            <div class="branding">
-                AJC Analytics Limited
-            </div>
-        </div>
-        """
-
-
 def escape(value):
     return html.escape(str(value), quote=True)
 
@@ -134,130 +122,142 @@ def reader_snapshot(edition):
     }
 
 
-def _card(story, generated_at, historic=False):
-    title = escape(story["title"])
-    sources = story["sources"]
-    if sources:
-        title = f'<a href="{escape(sources[0]["url"])}" target="_blank" rel="noopener noreferrer">{title}</a>'
-    topics = " · ".join(story["topics"])
-    geography = " · ".join(story["geography"])
-    metadata = " · ".join(
-        filter(
-            None,
-            (
-                geography,
-                story["importance"].capitalize(),
-                story["freshness"].replace("_", " ").capitalize(),
-            ),
+def story_id(story):
+    return "story-" + hashlib.sha256(story["read_key"].encode()).hexdigest()[:20]
+
+
+def _theme(story):
+    topics = set(story["topics"])
+    if topics & {"AI", "Technology"}:
+        return "technology", "lilac"
+    if topics & {"Science", "Environment", "Geography"}:
+        return "curiosity", "sage"
+    return "world", "peach"
+
+
+LOGO = '<svg class="reader-mark" viewBox="0 0 52 52" aria-hidden="true"><path fill="currentColor" d="M7 5h24l14 14v28H7z"/><path fill="none" stroke="white" stroke-width="3" stroke-linejoin="round" d="M31 5v14h14M16 35V22l12 13V22M16 41h20"/></svg>'
+
+
+def _pull_quote(story):
+    # Reuse reviewed prose rather than invent a quotation or introduce a new claim.
+    opening = re.split(r"(?<=[.!?])\s+", story["summary"].strip())[0]
+    return opening if opening and len(opening.split()) <= 40 else story["title"]
+
+
+def _sources(story):
+    links = []
+    for source in story["sources"]:
+        dates = " · ".join(
+            f"{label} {_date(source[key])}"
+            for key, label in (("published", "Published"), ("updated", "Updated"))
+            if source[key]
+            and (key != "updated" or _timestamp(source[key]) != _timestamp(source["published"]))
         )
-    )
-    summary = (
-        escape(story["summary"])
-        if story["summary"]
-        else "Summary unavailable: this report has not completed evidence review."
-    )
-    body = f'<article class="article reader-story {"critical" if story["featured"] and not historic else "key"}" data-read-key="{escape(story["read_key"])}" data-topics="{escape(json.dumps(story["topics"]))}" data-geography="{escape(json.dumps(story["geography"]))}"><div class="article-header"><span class="category-badge world">{escape(topics or "News")}</span><h3 class="article-title">{title}</h3></div><p class="article-meta">{escape(metadata)}</p><p class="article-summary">{summary}</p>'
-    if story["why_matters"]:
-        body += f'<p class="why-matters"><strong>Why this matters:</strong> {escape(story["why_matters"])}</p>'
-    if sources:
-        links = []
-        for source in sources:
-            dates = " · ".join(
-                f"{label} {_date(source[key])}"
-                for key, label in (("published", "Published"), ("updated", "Updated"))
-                if source[key]
-                and (
-                    key != "updated"
-                    or not source["published"]
-                    or _timestamp(source[key]) != _timestamp(source["published"])
-                )
-            )
-            links.append(
-                f'<a href="{escape(source["url"])}" target="_blank" rel="noopener noreferrer">{escape(source["source"])}</a>'
-                + (f" <span>{escape(dates)}</span>" if dates else "")
-            )
-        body += f'<p class="article-meta">Sources: {"; ".join(links)}</p>'
-    if any(source["rss_only"] for source in sources):
-        body += '<p class="article-meta">Includes RSS-summary evidence.</p>'
-    if historic:
-        body += f'<p class="article-meta">Edition: {escape(_date(generated_at))}</p>'
+        links.append(
+            '<li><a href="' + escape(source["url"])
+            + '" target="_blank" rel="noopener noreferrer">'
+            + escape(source["source"]) + ' <span aria-hidden="true">↗</span></a>'
+            + (f'<span class="source-date">{escape(dates)}</span>' if dates else "")
+            + '</li>'
+        )
+    evidence = '<p class="evidence-note">Includes RSS-summary evidence.</p>' if any(s["rss_only"] for s in story["sources"]) else ""
+    return '<section class="story-sources"><h2>Original reporting</h2><ul>' + ''.join(links) + '</ul>' + evidence + '</section>' if links else '<p class="evidence-note">Original source links are unavailable for this report.</p>'
+
+
+def _story(story, generated_at, historic=False):
+    artwork, tone = _theme(story)
+    identifier = story_id(story)
+    topics = " · ".join(story["topics"]) or "News"
+    tags = " · ".join(filter(None, [" · ".join(story["geography"]), story["importance"].capitalize(), story["freshness"].replace("_", " ").capitalize()]))
+    original = ""
+    if story["sources"]:
+        source = story["sources"][0]
+        original = (
+            f'<a class="story-original" href="{escape(source["url"])}" target="_blank" rel="noopener noreferrer" aria-label="Read original reporting from {escape(source["source"])}">'
+            '<span>Original</span> <span aria-hidden="true">↗</span></a>'
+        )
+    paragraphs = ''.join(f'<p>{escape(p.strip())}</p>' for p in story["summary"].split("\n\n") if p.strip())
+    if not paragraphs:
+        paragraphs = '<p>Summary unavailable: this report has not completed evidence review.</p>'
+    why = f'<section class="story-context"><h2>Why it matters</h2><p>{escape(story["why_matters"])}</p></section>' if story["why_matters"] else ""
     return (
-        body
-        + '<button class="read-toggle" type="button" hidden>Mark read</button><span class="read-label" aria-live="polite"></span></article>'
+        f'<article class="article reader-story tone-{tone}" id="{identifier}" tabindex="-1" data-read-key="{escape(story["read_key"])}" data-topics="{escape(json.dumps(story["topics"]))}" data-geography="{escape(json.dumps(story["geography"]))}" data-historic="{str(historic).lower()}">'
+        f'<div class="story-hero">{original}<div class="hero-inner"><div class="hero-quote"><span class="eyebrow">From this briefing</span><blockquote class="briefing-quote">{escape(_pull_quote(story))}</blockquote></div>'
+        f'<img class="editorial-art" src="assets/editorial-{artwork}.png" alt="Original editorial illustration about {artwork}" width="480" height="480" loading="lazy"></div></div>'
+        f'<div class="story-body"><div class="story-signature">{LOGO}<span>Daily News Reader</span></div>'
+        f'<p class="eyebrow story-topic">{escape(topics)}</p><h1 class="story-title">{escape(story["title"])}</h1><p class="story-metadata">{escape(tags)}</p>'
+        f'<p class="produced-date">Briefing produced {_date(generated_at)}</p><section class="story-summary" aria-label="Summary">{paragraphs}</section>{why}{_sources(story)}'
+        '<div class="story-reading"><button class="read-toggle" type="button" hidden>Mark read</button><span class="read-label" aria-live="polite"></span></div></div></article>'
     )
 
 
-def render_edition(edition, archives=()):
-    """Return standalone HTML; archive exports use a root-relative base element."""
+def _story_link(story, date, page_path, historic=False):
+    identifier = story_id(story)
+    _, tone = _theme(story)
+    return (
+        f'<a class="story-link tone-{tone}" href="{escape(page_path)}#{identifier}" data-story-id="{identifier}">'
+        f'<span class="story-link-meta">{escape(" · ".join(story["topics"]) or "News")}<span class="story-read-indicator" hidden>Read</span></span>'
+        f'<span class="story-link-title">{escape(story["title"])}</span>'
+        f'<span class="story-link-date">{escape(_date(date).split(",")[0])}{" · Earlier edition" if historic else ""}</span></a>'
+    )
+
+
+def render_edition(edition, archives=(), *, archive=False):
+    """Render a static archive reader; anchors remain usable without JavaScript."""
     current = reader_snapshot(edition)
     generated = _timestamp(current["generated_at"])
     history = [
-        reader_snapshot(item)
-        for item in archives
-        if RUN_ID.fullmatch(str(item.get("run_id", "")))
-        and item.get("run_id") != current["run_id"]
+        reader_snapshot(item) for item in archives
+        if RUN_ID.fullmatch(str(item.get("run_id", ""))) and item.get("run_id") != current["run_id"]
     ]
     stories = current["stories"]
     seen = {story["read_key"] for story in stories}
     historic = []
     for item in history:
         timestamp = _timestamp(item["generated_at"])
-        if (
-            not generated
-            or not timestamp
-            or not generated - timedelta(days=7) <= timestamp <= generated
-        ):
+        if not generated or not timestamp or not generated - timedelta(days=7) <= timestamp <= generated:
             continue
         for story in item["stories"]:
             if story["read_key"] not in seen:
                 historic.append((story, item["generated_at"]))
                 seen.add(story["read_key"])
     all_stories = stories + [story for story, _ in historic]
-    status = (
-        "Published edition"
-        if current["publication_status"] == "published"
-        else "Review preview - not published"
+    page_path = f'archive/{current["run_id"]}.html' if archive else "index.html"
+    status = "Published edition" if current["publication_status"] == "published" else "Review preview - not published"
+    topic_options = ''.join(f'<option>{escape(tag)}</option>' for tag in TOPICS if any(tag in s["topics"] for s in all_stories))
+    geography_options = ''.join(f'<option>{escape(tag)}</option>' for tag in sorted({tag for s in all_stories for tag in s["geography"]}))
+    edition_links = '<a href="index.html">Latest edition</a>' + ''.join(
+        f'<a href="archive/{escape(item["run_id"])}.html">{escape(_date(item["generated_at"]))} ({"Published" if item["publication_status"] == "published" else "Review preview"})</a>' for item in history
     )
-    body = f'<header class="header"><h1>Daily News Feed</h1><div class="date">{escape(_date(current["generated_at"]))}</div><div class="last-updated">{status}</div></header><main class="content"><nav class="edition-history" aria-label="Dated editions"><a href="index.html">Latest edition</a>'
-    for item in history:
-        label = (
-            "Published"
-            if item["publication_status"] == "published"
-            else "Review preview"
-        )
-        body += f'<a href="archive/{escape(item["run_id"])}.html">{escape(_date(item["generated_at"]))} ({label})</a>'
-    body += '</nav><div class="reader-controls" hidden><label>Topic <select id="topic-filter"><option value="">All topics</option>'
-    for topic in TOPICS:
-        if any(topic in story["topics"] for story in all_stories):
-            body += f"<option>{escape(topic)}</option>"
-    body += '</select></label><label>Geography <select id="geography-filter"><option value="">All places</option>'
-    for geography in sorted(
-        {tag for story in all_stories for tag in story["geography"]}
-    ):
-        body += f"<option>{escape(geography)}</option>"
-    body += '</select></label><label class="unread-control"><input type="checkbox" id="unread-filter"> Unread only</label><button id="reset-read" type="button">Reset read state</button><p id="storage-status" role="status">Read state is stored in this browser only. Opening a source does not mark a story read.</p></div><noscript><p>All summaries and dated editions are available below. Topic filters and local read controls need JavaScript.</p></noscript><p id="result-count" role="status" hidden></p>'
-    body += '<section id="featured-section"><h2>Featured</h2>'
-    featured = [story for story in stories if story["featured"]]
-    body += (
-        "".join(_card(story, current["generated_at"]) for story in featured)
-        or "<p>No featured stories in this edition.</p>"
-    )
-    body += '</section><section id="collection-section"><h2>Topic collection</h2><p class="collection-intro">Additional stories appear below. Topic, geography and unread filters search the entire edition, including featured stories.</p><div id="collection-cards">'
-    body += "".join(
-        _card(story, current["generated_at"])
-        for story in stories
-        if not story["featured"]
-    )
-    body += '</div></section><details id="week-overview"><summary>Seven-day overview</summary><p>Distinct reports from this edition and all editions generated within the preceding seven days. Repeated unchanged reports appear once; earlier versions remain available below.</p>'
-    body += (
-        "".join(_card(story, date, True) for story, date in historic)
-        or "<p>No additional reports in the recent editions.</p>"
-    )
-    body += (
-        '</details><p id="no-results" hidden><span id="no-results-message">No stories match these filters.</span> <button id="show-history" type="button" hidden>Open seven-day overview</button></p></main>'
-        + FOOTER_HTML
-    )
+    featured = [s for s in stories if s["featured"]]
+    remaining = [s for s in stories if not s["featured"]]
+    sidebar_stories = ''
+    for label, group in [("Featured", featured), ("More to explore", remaining)]:
+        if group:
+            sidebar_stories += f'<div class="story-group"><h2>{label}</h2>' + ''.join(_story_link(s, current["generated_at"], page_path) for s in group) + '</div>'
+    if historic:
+        sidebar_stories += '<div class="story-group history-group"><h2>Seven-day overview</h2>' + ''.join(_story_link(s, date, page_path, True) for s, date in historic) + '</div>'
+    body = f'''
+<a class="skip-link" href="{escape(page_path)}#reader-content">Skip to story</a>
+<header class="mobile-header">{LOGO}<span>Daily News Reader</span><button id="browse-stories" type="button" aria-controls="story-browser" aria-expanded="false">Browse stories</button></header>
+<aside id="story-browser" aria-label="Story browser">
+  <div class="browser-intro"><a class="reader-brand" href="index.html" aria-label="Daily News Reader, latest edition">{LOGO}<strong>Daily<br>News Reader</strong></a><button id="close-browser" type="button" aria-label="Close story browser">×</button>
+  <p>A little more context.<br>A lot less noise.</p><p class="edition-date">{escape(_date(current["generated_at"]))}</p><span class="edition-status">{status}</span></div>
+  <div class="reader-controls" hidden><label class="search-label" for="story-search">Find a story</label><input id="story-search" type="search" placeholder="Search stories…" autocomplete="off">
+    <div class="filter-row"><label>Topic<select id="topic-filter"><option value="">All topics</option>{topic_options}</select></label><label>Geography<select id="geography-filter"><option value="">All places</option>{geography_options}</select></label></div>
+    <div class="filter-checks"><label><input id="unread-filter" type="checkbox"> Unread only</label><label><input id="history-filter" type="checkbox"> Include past 7 days</label></div>
+  </div>
+  <div class="browser-list"><div class="browser-list-heading"><strong>Browse stories</strong><span id="result-count" role="status"></span></div><nav class="story-list" aria-label="Stories">{sidebar_stories}</nav><p id="browser-empty" hidden>No stories match. Try another topic or clear the search.</p></div>
+  <details class="browser-options"><summary>Editions &amp; reading options</summary><nav class="edition-history" aria-label="Dated editions">{edition_links}</nav><p id="storage-status" role="status">Read state stays in this browser. Opening a source does not mark a story read.</p><button id="reset-read" type="button" hidden>Reset read state</button><p class="publisher-credit">AJC Analytics Limited</p></details>
+</aside>
+<button class="browser-backdrop" id="browser-backdrop" type="button" aria-label="Close story browser" tabindex="-1" hidden></button>
+<button id="collapse-browser" type="button" aria-label="Collapse story browser" aria-controls="story-browser" aria-expanded="true" hidden><span aria-hidden="true">«</span></button>
+<main id="reader-content" tabindex="-1"><noscript><p class="no-script">Choose a title to jump to its story. All summaries are readable below. Filters and read marks need JavaScript.</p></noscript>
+{''.join(_story(s, current['generated_at']) for s in featured + remaining)}
+{''.join(_story(s, date, True) for s, date in historic)}
+<section id="reader-empty" hidden><span class="eyebrow">Nothing here yet</span><h1>No stories match these filters.</h1><p>Try a different topic or clear your search.</p><button id="clear-filters" type="button">Clear filters</button></section>
+</main>'''
     directory = Path(__file__).parent
     css = directory.joinpath("reader.css").read_text()
     script = directory.joinpath("reader.js").read_text()
-    return f'<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Daily News Feed - {escape(_date(current["generated_at"]))}</title><style>{css}</style></head><body><div class="container">{body}</div><script>{script}</script></body></html>'
+    return f'<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="light"><title>Daily News Reader - {escape(_date(current["generated_at"]))}</title><style>{css}</style></head><body>{body}<script>{script}</script></body></html>'
