@@ -1,84 +1,52 @@
-# Daily News Reader
+![Daily News Reader. A little more context. A lot less noise. Illustrated coastal hills and gathered news cards.](docs/assets/readme-banner.png)
 
-A news workflow that retains its evidence and decisions, then publishes a static reading page.
+<p align="center">
+  <a href="https://asif-jc.github.io/daily-news-letter-public/"><strong>Read the latest edition</strong></a> ·
+  <a href="#how-it-works">How it works</a>
+</p>
 
-[Read the latest edition](https://asif-jc.github.io/daily-news-letter-public/)
+A small public project for keeping up with the world and learning something along the way. Politics, technology, science and economics, with a place for New Zealand's own stories. Open one page, follow your curiosity, and leave with a little more context.
 
-The application collects BBC World, Ars Technica, TechCrunch, CNBC Finance, RNZ Politics and RNZ Business. It understands articles before applying reader preferences, groups reports about the same event, and shows up to six featured stories above a browsable topic collection. The reader keeps the original banner and cards, with topic/place filters and explicit read state.
+## What you get
 
-## Run it
+- **The story, with context.** Short summaries, supported significance where available, and links to the original reporting.
+- **A few leads, plenty to explore.** Up to six featured stories, followed by a browsable topic collection.
+- **Your corner of the world.** Filter by topic and place, including NZ politics and economic news.
+- **Room to catch up.** A seven-day pool distinguishes new reporting, updates and older stories worth a look.
+- **A place to leave off.** Mark stories read explicitly. Your reading state stays in your browser.
 
-Python 3.11+ and a reachable PostgreSQL database named `news` are required. The language model must expose an OpenAI-compatible chat-completions endpoint. Connection settings belong in an ignored environment file.
+## How it works
 
-```sh
-python -m venv .venv
-source .venv/bin/activate
-python -m pip install -e .
-cp .env.example .env
-# Fill in the private settings in .env.
-news migrate
-news build
+A small model-assisted workflow turns overlapping reports into a reading page. Sources and decisions are retained so we can inspect what made it through.
+
+```mermaid
+flowchart LR
+  feeds(["Public feeds"]) --> analysis["Read and review"]
+  analysis --> events["Group events"]
+  events --> editorial["Curate stories"]
+  editorial --> reader(["Publish reader"])
 ```
 
-The command prints the run UUID and paths to `index.html` and `review.html` under ignored `.local/news-editions/`. The private review contains source analyses, evidence references, grouping judgments, selection reasons, failures and exact prompts. Keep that entire directory private.
+| Node | What happens |
+|---|---|
+| `feeds` | Collect reporting from the starting source set below. |
+| `analysis` | Draft and check article summaries against retained evidence; withhold flagged material. |
+| `events` | Compare reports about the same event so their sources can travel together. |
+| `editorial` | Assess relevance and importance, then choose featured stories and keep other relevant stories browsable. |
+| `reader` | Review combined summaries, build the page and publish the intended reader fields. |
 
-```sh
-news build --resume RUN_UUID
-news stats
-news --env-file .local/news.env build
-```
+Model-assisted summaries can still be wrong. Source links and review are part of the project, and publication follows review.
 
-Source audits can withhold a confirmed bad article without overwriting its evidence or model analysis. For a new run, use `news build --article-holds .local/editorial-holds.json`, where the private JSON is a list of `{"article_id":"ARTICLE_ID","reason":"Concrete source-audit finding"}`. Unknown or duplicate IDs fail. Holds are frozen for that run and exclude the source before grouping, including affected preview history. A hold intersecting the run's published history stops for separate release review; it does not rewrite published archives. Hold reasons stay in the private review, and the measured funnel reports their count.
+## The starting reading list
 
-Resume uses frozen inputs, prompts and settings and reuses validated checkpoints. A failed group of up to five article checkpoints can repeat work inside that unfinished group; this is restartable processing, not exactly-once inference. Changed processing settings require a new run. Database migrations preserve retained records. Executable resumes from retired prototype workflow versions are intentionally unsupported; their saved editions and evidence remain in PostgreSQL.
+[BBC World](https://www.bbc.com/news/world) · [Ars Technica](https://arstechnica.com/) · [TechCrunch](https://techcrunch.com/) · [CNBC Finance](https://www.cnbc.com/finance/) · [RNZ Politics](https://www.rnz.co.nz/news/political) · [RNZ Business](https://www.rnz.co.nz/news/business)
 
-## Processing and storage
+Six feeds from five publishers give this first version its mix of world affairs, technology, science, business and NZ coverage. The aim is a useful reading habit, with enough breadth to find something you weren't already looking for.
 
-1. Collect and retain feed observations, preserving publication, update and collection times.
-2. Retrieve bounded evidence from approved public publishers and analyse every valid unique article before personal filtering. Exact cached analyses can be reused for 24 hours.
-3. Generate and review one article per model request so each response has an unambiguous source identity. Review factual summaries and optional significance. Allow one factual revision and one format-repair retry per review request; a persistently malformed review stops the run, and unsupported drafts stay withheld in the private review.
-4. Propose event comparisons using shared distinctive words and historical source identities. The model decides identity. Conflicting verdicts hold the affected component before synthesis.
-5. Apply the versioned [editorial profile](src/news/profile.json). Relevance, importance, topic, geography and freshness are separate; useful domestic reporting does not need global consequences.
-6. Review multi-source summaries, choose featured placement and retain other relevant stories. Keep a seven-day current pool without deleting older observations.
-7. Save the edition and render the private review and reader. Empty/unusable output fails rather than replacing a good edition.
+## Built in the open
 
-PostgreSQL retains source observations, article identities, versioned analyses, evidence, model audit, stage checkpoints, event membership, editorial decisions, edition snapshots, publication receipts and size samples. The application refuses writes outside the `news` database. Tests use disposable schemas on an explicitly selected loopback test database.
+Python, PostgreSQL and a language model behind a static HTML reader. The interesting work is deciding which reports belong together, what matters, and how to explain it clearly. The code and [editorial preferences](src/news/profile.json) are here to explore.
 
-Published history, preview history and read state are different. Previously featured events require a material update to lead again. Published editions support dated navigation and a seven-day overview without a seven-edition cap. Read state is explicit and browser-local; opening a source does not mark it read.
+Editions are currently generated and published manually. The project is focused on news.
 
-## Publish a reviewed edition
-
-Private processing runs on a machine that can reach the configured model and database. GitHub only deploys the exported static reader. No scheduler is installed by this repository; generation can be invoked by an on-prem scheduler using the same `news build` command.
-
-```sh
-news export --run RUN_UUID --output site
-```
-
-Export writes only reader HTML, the banner, published archive pages and `release.json`. It rejects empty output, unsafe source URLs, private path/network strings and unexpected files. It does not record publication. Never copy a private run directory into the public site.
-
-Run `news verify-release` to check the staged artifact boundary without loading private settings. Review the staged `site/` files, run the tests and the public-repository privacy checks in [AGENTS.md](AGENTS.md), then commit them through a PR. Merging into `main` triggers the deployment-only Pages workflow. After the delivered files are available:
-
-```sh
-news confirm-publication --run RUN_UUID \
-  --manifest site/release.json \
-  --site-url https://asif-jc.github.io/daily-news-letter-public/
-```
-
-Confirmation rebuilds the intended release from the retained edition, checks the deployed manifest and every file hash, then records publication transactionally. Failed delivery leaves publication history unchanged. If deployment succeeds but database confirmation fails, rerun this command; do not regenerate or falsely mark a different run as delivered.
-
-## Develop and verify
-
-```sh
-python -m pip install -e .
-python -m unittest discover -s tests -v
-```
-
-Integration tests are skipped unless `NEWS_TEST_DATABASE_URL` is explicitly set. They require a `postgresql://...@localhost:PORT/news` URL, accept loopback addresses only, and remove their own isolated test schemas. They never load private environment files automatically. CI supplies an ephemeral PostgreSQL 17 service and runs the full suite.
-
-The package has one execution path: `news` and `python -m news` call the same CLI. Its modules separate ingestion, article analysis, event grouping, editorial policy, synthesis, persistence, rendering and publication. `pyproject.toml` is the dependency and packaging manifest.
-
-## Limits worth reviewing
-
-Model self-review is not independent fact checking. Source references establish traceability, not entailment. Lexical comparison proposals can miss paraphrases; model judgments can mistake added context for a new development. Six feeds from five publishers do not provide exhaustive news coverage. Extraction is bounded and can fall back to clearly labeled feed evidence. Read state does not sync between devices. Storage is measured but no automatic retention deletion is installed.
-
-[Dispatch report](dispatch_report.html) records the latest executed review, tests, run counts and delivery evidence. Historical prototype code and generated artifacts were retired; PostgreSQL records were preserved.
+For the machinery: [running and development](docs/operations.md) · [source catalogue](src/news/sources.py) · [workflow](src/news/workflow.py).
