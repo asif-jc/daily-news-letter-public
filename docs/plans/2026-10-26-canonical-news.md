@@ -8,7 +8,7 @@ Keep the original visual design, retained database records, seven-day pool, sour
 
 ## Review gates
 
-- [x] Pin origin/main59b7920 and reviewed feature head3dc32ff.
+- [x] Pin origin/main `59b7920` and reviewed feature head `3dc32ff`.
 - [x] Astra full architecture/code review; independent Spec review. Findings cover deployment mismatch, absent NZ feeds, legacy duplication, malformed synthesis, empty output, URL safety, unsafe test settings and archive truncation.
 - [x] Re-review final changes with Astra, resolve important findings and document remaining limitations.
 
@@ -21,10 +21,10 @@ Keep the original visual design, retained database records, seven-day pool, sour
 
 ## 2. NZ coverage and correctness
 
-- [x] Add RNZ Politics and Business feeds and allow RNZ extraction. Primary feed probes returned HTTP200 and17/16entries on26October.
+- [x] Add RNZ Politics and Business feeds and allow RNZ extraction. Primary feed probes returned HTTP 200 and 17/16 entries on 26 October.
 - [x] Stream bounded downloads, validate publisher URLs at admission/projection, repair malformed event outputs once, and reject unusable empty editions.
 - [x] Bound archives by seven days rather than seven editions. Domestic NZ politics/economy and useful specific research do not require global consequences for relevance.
-- [ ] Inspect real NZ source text, analyses, event membership and selected summaries from today's run.
+- [x] Inspect real NZ source text, analyses, event membership and selected summaries from today's run. Final reviewed edition: 81 stories, 17 tagged NZ; 15 explicit source-audit holds.
 - [x] Add explicit per-run editorial holds from source audits; retain analyses/evidence unchanged, exclude held sources before grouping and remove affected preview baselines. Reject unknown IDs and changed resume policy.
 
 ## 3. Publication boundary
@@ -32,14 +32,20 @@ Keep the original visual design, retained database records, seven-day pool, sour
 - [x] `news build` writes private review output; `news export --run RUN --output site` writes only reader HTML, banner, published archive and a release hash manifest.
 - [x] Reject empty editions, unexpected files, unsafe links and private infrastructure/path strings at export. Raw evidence, responses, review pages, connection settings and full edition JSON never enter `site`.
 - [x] Replace the scheduled Gemini workflow with deployment of `site` on main. CI installs the canonical package and runs on PRs/main.
-- [ ] `news confirm-publication --run RUN --site-url URL --manifest site/release.json` verifies the deployed manifest and every file hash before recording PostgreSQL publication state. Failed delivery must not affect history.
+- [x] Implement and test `news confirm-publication --run RUN --site-url URL --manifest site/release.json`: verify the deployed manifest and every file hash before recording PostgreSQL publication state. Failed delivery leaves history unchanged.
 - [x] Test private-field omission, stale/unexpected-file rejection, failed delivery, hash mismatch and successful publication.
 
 ## 4. End-to-end release and handoff
 
-- [ ] Generate today’s edition using the configured private model/database. Save actual logs and counters privately; verify completed-run resume adds zero model calls and preserves output.
-- [ ] Review actual HTML/summary/exclusion quality; operate desktop/mobile filters and read state in the browser.
-- [ ] Replace stale README/roadmap with the one current operating path. Update `dispatch_report.html` with both review axes, architecture/debt, actual tests/schema/output/NZ coverage and publication evidence.
-- [ ] Inspect exact outgoing files/commits; Gitleaks full-redacted file/history scans plus private-network, hostname, personal-data and private-path checks. Keep detailed results private.
-- [ ] Push/update existing PR23, pass CI, merge as authorized, verify Pages delivery, confirm publication, and open today's public news page in the user's browser.
-- [ ] Email meaningful milestones using the existing private recipient configuration. Final response links to actual reader, report and merged PR, with material limitations.
+- [x] Generate today’s edition using the configured private model/database. Save actual logs and counters privately; verify completed-run resume adds zero model calls and preserves output.
+- [x] Review actual HTML/summary/exclusion quality; operate desktop/mobile filters and read state in the browser.
+- [x] Replace stale README/roadmap with the one current operating path. Update `dispatch_report.html` with both review axes, architecture/debt, actual tests/schema/output/NZ coverage and publication evidence.
+
+## Release procedure
+
+1. Inspect the exact outgoing files and commits. Run fully redacted credential scans plus private-network, hostname, personal-data, private-path and banner-metadata checks; keep details ignored.
+2. Push the corrected reader and report through PR23. Require final CI, including the staged-site verifier. Merge by squash as explicitly authorized for this checkpoint.
+3. Verify Pages delivery and run `news confirm-publication`. The PostgreSQL publication receipt and GitHub merge/deployment records own the actual release status; a checked plan is not delivery proof.
+4. Open today's public reader in the user's browser, inspect the rendered date/counts/NZ content and retain the screenshot privately. Email the verified milestone using the existing private recipient configuration.
+
+Generation remains an explicit private command. This work does not install a recurring scheduler.

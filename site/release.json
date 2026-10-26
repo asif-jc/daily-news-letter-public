@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "run_id": "2fc01fc2-1a26-4fcc-8d88-dd849aced8b8",
+  "generated_at": "2026-10-26T09:57:50.923858+00:00",
+  "stories": 81,
+  "files": {
+    "index.html": "51ab91541727315270e137f4748c6cad9471e6ec7c649171dd5acb49ee6a773d",
+    "assets/dunder_park.jpg": "280d2bb52b5bb4c8937894579e7036a77fe443fe25e58e055dd1b9adfe182940"
+  }
+}

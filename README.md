@@ -4,7 +4,7 @@ A news workflow that retains its evidence and decisions, then publishes a static
 
 [Read the latest edition](https://asif-jc.github.io/daily-news-letter-public/)
 
-The application collects BBC World, Ars Technica, TechCrunch, CNBC Finance, RNZ Politics and RNZ Business. It understands articles before applying reader preferences, groups reports about the same event, and shows six featured stories above a browsable topic collection. The reader keeps the original banner and cards, with topic/place filters and explicit read state.
+The application collects BBC World, Ars Technica, TechCrunch, CNBC Finance, RNZ Politics and RNZ Business. It understands articles before applying reader preferences, groups reports about the same event, and shows up to six featured stories above a browsable topic collection. The reader keeps the original banner and cards, with topic/place filters and explicit read state.
 
 ## Run it
 
