@@ -15,6 +15,7 @@ from .editorial import (
     prepare_articles,
     classify_events,
     place_stories,
+    validate_article_holds,
 )
 from .grouping import GROUP_PAIR_PROMPT, group_events_bounded
 from .ingest import collect_articles, extract_article, write_json
@@ -26,7 +27,7 @@ from .synthesis import reviewed_event, compose_story
 
 WORKFLOW_VERSION = 3
 GROUPING_VERSION = 3
-RENDER_VERSION = 6
+RENDER_VERSION = 7
 BATCH_SIZE = 5
 PROMPTS = {
     "analyse_articles": ANALYSE_PROMPT,
@@ -50,10 +51,17 @@ def run_workflow(
     pool_days=7,
     featured_limit=6,
     include_review_previews=False,
+    article_holds=None,
 ):
     if not 1 <= pool_days <= 30 or not 0 <= featured_limit <= 20:
         raise ValueError("Invalid rolling window or featured limit")
+    if run_id is not None and article_holds is not None:
+        raise ValueError("Resume uses frozen editorial holds; start a new run")
     if run_id is None:
+        article_holds = validate_article_holds(
+            article_holds if article_holds is not None else []
+        )
+        held_ids = {h["article_id"] for h in article_holds}
         now = now or datetime.now(timezone.utc)
         profile = profile or json.loads(
             Path(__file__).with_name("profile.json").read_text()
@@ -69,6 +77,24 @@ def run_workflow(
             if history is not None
             else store.published_history(profile["id"], now=now, days=pool_days)
         )
+
+        def contains_held_source(story):
+            return any(s["id"] in held_ids for s in story.get("sources", []))
+
+        if any(contains_held_source(s) for s in published.get("stories", [])) or any(
+            e.get("publication_status") == "published"
+            and any(contains_held_source(s) for s in e["stories"])
+            for e in archives
+        ):
+            raise ValueError(
+                "Held article appears in published history; review that release separately"
+            )
+        # A rejected preview cannot supply the next edition's event comparison baseline.
+        identity = {
+            key: story
+            for key, story in identity.items()
+            if not contains_held_source(story)
+        }
         published_identity = {
             story["event_id"]: story for story in published.get("stories", [])
         }
@@ -84,7 +110,10 @@ def run_workflow(
                 and published_at
                 and published_at <= now
             )
-            if is_published or include_review_previews:
+            if is_published or (
+                include_review_previews
+                and not any(contains_held_source(story) for story in edition["stories"])
+            ):
                 archive_views.append(
                     {
                         **edition,
@@ -102,6 +131,7 @@ def run_workflow(
             "pool_days": pool_days,
             "featured_limit": featured_limit,
             "sources": RSS_FEEDS,
+            "article_holds": article_holds,
             "archives": archive_views,
             "include_review_previews": include_review_previews,
             "identity_history": {"stories": list(identity.values())},
@@ -176,6 +206,15 @@ def run_workflow(
 
         prepared = stage("pool", pool)
         articles = {a["id"]: a for a in prepared["articles"]}
+
+        def check_holds():
+            holds = validate_article_holds(config.get("article_holds", []))
+            if {h["article_id"] for h in holds} - set(articles):
+                raise ValueError("Unknown held article in this run")
+            return holds
+
+        holds = stage("editorial_holds", check_holds)
+        held_ids = {h["article_id"] for h in holds}
         evidence, analyses = {}, {}
         pending = []
         cache_hits = 0
@@ -241,7 +280,7 @@ def run_workflow(
                 "evidence_basis": evidence[id]["basis"],
             }
             for id, a in articles.items()
-            if a["in_pool"] and analyses[id]["state"] == "ready"
+            if a["in_pool"] and analyses[id]["state"] == "ready" and id not in held_ids
         ]
 
         def compare_pairs(inputs, validate):
@@ -352,6 +391,9 @@ def run_workflow(
                     articles[id]["source"] == source and a["state"] == "ready"
                     for id, a in analyses.items()
                 ),
+                "editorial_holds": sum(
+                    articles[id]["source"] == source for id in held_ids
+                ),
                 "reader_events": sum(
                     any(s["source"] == source for s in story["sources"])
                     for story in stories
@@ -362,6 +404,7 @@ def run_workflow(
             "collected": len(collection["articles"]),
             "analysed": len(analyses),
             "cache_hits": cache_hits,
+            "editorial_holds": len(held_ids),
             "article_repairs": sum(a.get("attempts", 0) > 1 for a in analyses.values()),
             "pool_articles": sum(a["in_pool"] for a in articles.values()),
             "events": len(events),

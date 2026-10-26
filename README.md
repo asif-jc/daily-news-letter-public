@@ -28,6 +28,8 @@ news stats
 news --env-file .local/news.env build
 ```
 
+Source audits can withhold a confirmed bad article without overwriting its evidence or model analysis. For a new run, use `news build --article-holds .local/editorial-holds.json`, where the private JSON is a list of `{"article_id":"ARTICLE_ID","reason":"Concrete source-audit finding"}`. Unknown or duplicate IDs fail. Holds are frozen for that run and exclude the source before grouping, including affected preview history. A hold intersecting the run's published history stops for separate release review; it does not rewrite published archives. Hold reasons stay in the private review, and the measured funnel reports their count.
+
 Resume uses frozen inputs, prompts and settings and reuses validated checkpoints. A failed group of up to five article checkpoints can repeat work inside that unfinished group; this is restartable processing, not exactly-once inference. Changed processing settings require a new run. Database migrations preserve retained records. Executable resumes from retired prototype workflow versions are intentionally unsupported; their saved editions and evidence remain in PostgreSQL.
 
 ## Processing and storage

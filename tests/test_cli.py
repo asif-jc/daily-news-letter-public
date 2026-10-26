@@ -39,6 +39,10 @@ class CliTests(unittest.TestCase):
         with self.assertRaises(SystemExit), contextlib.redirect_stderr(io.StringIO()):
             main(["build", "--resume", "run", "--featured-limit", "2"])
 
+    def test_resume_cannot_replace_frozen_editorial_holds(self):
+        with self.assertRaises(SystemExit), contextlib.redirect_stderr(io.StringIO()):
+            main(["build", "--resume", "run", "--article-holds", ".local/holds.json"])
+
     def test_release_gate_requires_no_private_database_or_model(self):
         with (
             patch("news.cli.NewsStore.from_env") as database,

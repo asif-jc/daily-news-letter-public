@@ -6,7 +6,12 @@ from .render import escape, safe_link
 
 
 def render_private_review(edition, config, prepared, analyses, decisions, events=None):
-    body = f'<h1>News collection review</h1><p><a href="index.html">Read the edition</a></p><h2>Measured funnel</h2><pre>{escape(json.dumps(edition["counts"],indent=2))}</pre><h2>Preferences</h2><pre>{escape(json.dumps(config["profile"],indent=2))}</pre><h2>Every article analysis</h2>'
+    body = f'<h1>News collection review</h1><p><a href="index.html">Read the edition</a></p><h2>Measured funnel</h2><pre>{escape(json.dumps(edition["counts"],indent=2))}</pre><h2>Preferences</h2><pre>{escape(json.dumps(config["profile"],indent=2))}</pre>'
+    body += (
+        "<h2>Editorial holds from source audit</h2><pre>"
+        + escape(json.dumps(config.get("article_holds", []), indent=2))
+        + "</pre><h2>Every article analysis</h2>"
+    )
     for a in prepared["articles"]:
         v = analyses[a["id"]]
         url = safe_link(a.get("url", ""))

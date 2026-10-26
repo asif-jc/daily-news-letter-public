@@ -196,6 +196,88 @@ class WorkflowTests(unittest.TestCase):
             self.assertNotIn("synthesize", model.calls)
             self.assertFalse((Path(out) / run / "index.html").exists())
 
+    def test_editorial_hold_preserves_analysis_but_excludes_source_and_preview_identity(
+        self,
+    ):
+        rows = [self.article, {**self.article, "id": "b", "url": "https://bbc.com/b"}]
+        holds = [
+            {"article_id": "a", "reason": "The draft invents an unsupported unit."}
+        ]
+        with tempfile.TemporaryDirectory() as out:
+            first = self.run_news(Model(), out, rows=rows, now=self.now)
+            edition = self.run_news(
+                Model(),
+                out,
+                rows=rows,
+                now=self.now + timedelta(minutes=1),
+                article_holds=holds,
+                include_review_previews=True,
+            )
+            run = edition["run_id"]
+            self.assertEqual(edition["counts"]["analysed"], 2)
+            self.assertEqual(edition["counts"]["editorial_holds"], 1)
+            self.assertEqual(
+                self.store.stage_output(run, "analysis_index")["a"]["state"], "ready"
+            )
+            self.assertEqual(self.store.stage_output(run, "editorial_holds"), holds)
+            self.assertEqual(
+                {
+                    i
+                    for e in self.store.stage_output(run, "group")
+                    for i in e["source_ids"]
+                },
+                {"b"},
+            )
+            self.assertTrue(
+                all(s["id"] != "a" for e in edition["stories"] for s in e["sources"])
+            )
+            config = self.store.get_run(run)["config"]
+            self.assertEqual(config["archives"], [])
+            self.assertFalse(
+                (Path(out) / run / "archive" / (first["run_id"] + ".html")).exists()
+            )
+            self.assertTrue(
+                all(
+                    s["id"] != "a"
+                    for e in config["identity_history"]["stories"]
+                    for s in e["sources"]
+                )
+            )
+            self.assertIn(
+                holds[0]["reason"], (Path(out) / run / "review.html").read_text()
+            )
+            with self.assertRaisesRegex(ValueError, "frozen"):
+                self.run_news(Model(), out, run_id=run, article_holds=[])
+
+    def test_unknown_editorial_hold_fails_instead_of_being_silently_ignored(self):
+        with (
+            tempfile.TemporaryDirectory() as out,
+            self.assertRaisesRegex(ValueError, "Unknown held article"),
+        ):
+            self.run_news(
+                Model(),
+                out,
+                rows=[self.article],
+                now=self.now,
+                article_holds=[{"article_id": "missing", "reason": "Bad source."}],
+            )
+
+    def test_hold_on_published_article_requires_separate_history_review(self):
+        with tempfile.TemporaryDirectory() as out:
+            first = self.run_news(Model(), out, rows=[self.article], now=self.now)
+            self.store.connection.execute(
+                "UPDATE editions SET status='published', published_at=%s WHERE run_id=%s",
+                (self.now, first["run_id"]),
+            )
+            with self.assertRaisesRegex(ValueError, "published history"):
+                self.run_news(
+                    Model(),
+                    out,
+                    rows=[self.article],
+                    now=self.now + timedelta(minutes=1),
+                    article_holds=[{"article_id": "a", "reason": "Unsupported unit."}],
+                )
+
     def test_all_failed_article_analysis_never_creates_ready_edition(self):
         with tempfile.TemporaryDirectory() as out:
             with self.assertRaisesRegex(ValueError, "No reviewed reader stories"):

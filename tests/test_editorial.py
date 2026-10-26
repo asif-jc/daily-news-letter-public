@@ -6,6 +6,22 @@ from unittest.mock import Mock
 
 
 class EditorialPolicyTests(unittest.TestCase):
+    def test_editorial_holds_reject_malformed_or_duplicate_inputs(self):
+        from news.editorial import validate_article_holds
+
+        valid = {"article_id": "a", "reason": "Unsupported unit."}
+        self.assertEqual(validate_article_holds([valid]), [valid])
+        for invalid in (
+            None,
+            {},
+            [valid, valid],
+            [{"article_id": "a", "reason": ""}],
+            [{**valid, "override": "Invented replacement."}],
+            [{"article_id": [], "reason": "Bad identity."}],
+        ):
+            with self.subTest(invalid=invalid), self.assertRaises(ValueError):
+                validate_article_holds(invalid)
+
     def article(self, id="a", **kw):
         return {
             "id": id,

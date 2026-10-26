@@ -25,6 +25,7 @@ Keep the original visual design, retained database records, seven-day pool, sour
 - [x] Stream bounded downloads, validate publisher URLs at admission/projection, repair malformed event outputs once, and reject unusable empty editions.
 - [x] Bound archives by seven days rather than seven editions. Domestic NZ politics/economy and useful specific research do not require global consequences for relevance.
 - [ ] Inspect real NZ source text, analyses, event membership and selected summaries from today's run.
+- [x] Add explicit per-run editorial holds from source audits; retain analyses/evidence unchanged, exclude held sources before grouping and remove affected preview baselines. Reject unknown IDs and changed resume policy.
 
 ## 3. Publication boundary
 

@@ -38,6 +38,11 @@ def command_parser():
     )
     build.add_argument("--resume", help="Run UUID; uses frozen inputs and prompts")
     build.add_argument("--profile", type=Path)
+    build.add_argument(
+        "--article-holds",
+        type=Path,
+        help="Private JSON article IDs and reasons to withhold in a new run",
+    )
     build.add_argument("--pool-days", type=int)
     build.add_argument("--featured-limit", type=int)
     build.add_argument("--output-root", type=Path, default=Path(".local/news-editions"))
@@ -79,7 +84,13 @@ def main(argv=None):
                 "Private review output must remain under ignored .local storage"
             )
         if args.resume and any(
-            v is not None for v in (args.profile, args.pool_days, args.featured_limit)
+            v is not None
+            for v in (
+                args.profile,
+                args.pool_days,
+                args.featured_limit,
+                args.article_holds,
+            )
         ):
             parser.error("Resume uses frozen settings; start a new run to change them")
     store = None
@@ -98,6 +109,11 @@ def main(argv=None):
                 args.output_root,
                 run_id=args.resume,
                 profile=json.loads(args.profile.read_text()) if args.profile else None,
+                article_holds=(
+                    json.loads(args.article_holds.read_text())
+                    if args.article_holds
+                    else None
+                ),
                 pool_days=args.pool_days if args.pool_days is not None else 7,
                 featured_limit=(
                     args.featured_limit if args.featured_limit is not None else 6
