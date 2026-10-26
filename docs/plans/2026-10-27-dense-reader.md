@@ -46,9 +46,9 @@ Files: `src/news/publication.py`, `src/news/workflow.py`, `pyproject.toml`, publ
 Files: concise design notes, `dispatch_report.html`, PR metadata; preview-only generated artifacts.
 
 - [x] Astra reviews the implementation against the email requirements. Fix findings and request a second pass.
-- [ ] Scan and push the feature branch; create the PR; review the actual PR for correctness and unnecessary complexity.
-- [ ] Publish only the verified reader artifact under an isolated preview path on Pages. Do not overwrite the root edition, its manifest, or its assets. Record before/after root hashes.
-- [ ] Verify the delivered preview bytes and mobile/desktop behaviour. Leave the PR open for Asif's review and email a concise completion link.
+- [x] Scan and push the feature branch; create the PR; review the actual PR for correctness and unnecessary complexity.
+- [x] Publish only the verified reader artifact under an isolated preview path on Pages. Do not overwrite the root edition, its manifest, or its assets. Record before/after root hashes.
+- [x] Verify the delivered preview bytes and mobile/desktop behaviour. Leave the PR open for Asif's review and email a concise completion link.
 
 ## Reference and limits
 
