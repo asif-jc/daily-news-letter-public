@@ -18,9 +18,9 @@ A small public project for keeping up with the world and learning something alon
 
 ## See it in action
 
-[![A short tour of the real reader: the edition, NZ Politics filtering and marking a story read.](docs/assets/reader-tour.gif)](docs/assets/reader-tour.mp4)
+[![A short tour of the real reader: the edition, NZ Politics filtering and marking a story read.](docs/assets/reader-tour.gif)](docs/assets/reader-tour.mp4?raw=true)
 
-[Watch the 20-second video with sound](docs/assets/reader-tour.mp4). Made with [Brag](https://github.com/latent-spaces/brag), using the 26 October 2026 edition. Headlines and counts change between editions. [Media credits](docs/assets/README.md).
+[Download the 20-second video with sound](docs/assets/reader-tour.mp4?raw=true). Made with [Brag](https://github.com/latent-spaces/brag), using the 26 October 2026 edition. Headlines and counts change between editions. [Media credits](docs/assets/README.md).
 
 ## How it works
 
