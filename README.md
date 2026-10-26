@@ -2,6 +2,7 @@
 
 <p align="center">
   <a href="https://asif-jc.github.io/daily-news-letter-public/"><strong>Read the latest edition</strong></a> ·
+  <a href="#see-it-in-action">Watch the tour</a> ·
   <a href="#how-it-works">How it works</a>
 </p>
 
@@ -14,6 +15,12 @@ A small public project for keeping up with the world and learning something alon
 - **Your corner of the world.** Filter by topic and place, including NZ politics and economic news.
 - **Room to catch up.** A seven-day pool distinguishes new reporting, updates and older stories worth a look.
 - **A place to leave off.** Mark stories read explicitly. Your reading state stays in your browser.
+
+## See it in action
+
+[![A short tour of the real reader: the edition, NZ Politics filtering and marking a story read.](docs/assets/reader-tour.gif)](docs/assets/reader-tour.mp4)
+
+[Watch the 20-second video with sound](docs/assets/reader-tour.mp4). Made with [Brag](https://github.com/latent-spaces/brag), using the 26 October 2026 edition. Headlines and counts change between editions. [Media credits](docs/assets/README.md).
 
 ## How it works
 
