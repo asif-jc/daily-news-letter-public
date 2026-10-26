@@ -1,0 +1,19 @@
+{
+  "id": "asif-learning",
+  "version": 2,
+  "audience": "A curious New Zealand reader who wants to understand important global developments and learn across politics, conflict, economics, markets, AI, technology, science and geography.",
+  "include": [
+    "Politics, government, public policy, elections, international relations, war and conflict: substantive events and explanatory reporting are relevant without needing an explicit economic consequence.",
+    "Economies, markets, monetary policy, trade, business and corporate strategy: concrete developments, mechanisms and well-supported analysis.",
+    "AI and technology: capabilities, limitations, research, engineering, security, adoption and governance; include cutting-edge work with appropriate uncertainty.",
+    "Science, new research, space, environment and geography: specific findings, discoveries and useful explanations; preserve preliminary-study limitations.",
+    "New Zealand and Pacific politics, economies, institutions and regional developments when available in the evidence."
+  ],
+  "exclude": [
+    "Promotions, shopping guides, routine entertainment/celebrity coverage and sports results without substantive relevance to an included area.",
+    "Isolated crime, accidents or personal tragedy without broader explanatory value; do not misclassify war, diplomatic incidents or political unrest as isolated crime.",
+    "Repetitive accounts without new facts; retain their source links with the existing event instead of manufacturing another story."
+  ],
+  "qualification": "Analyse source articles before personal filtering. Retain worthwhile explanatory reporting, narrower developments and uncertainty; relevance does not imply a front-page slot.",
+  "ranking": "Rank by supported consequence, explanatory learning value and novelty. Importance, freshness and evidence quality are separate. Prefer topic diversity among similarly useful events. Keep relevant lower-ranked stories browsable."
+}

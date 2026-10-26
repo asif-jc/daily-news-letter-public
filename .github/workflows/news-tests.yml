@@ -1,0 +1,38 @@
+name: News checks
+on:
+  pull_request:
+    paths: ['src/**', 'tests/**', 'pyproject.toml', 'site/**', '.github/workflows/**']
+  push:
+    branches: ['main', 'feat/news-source-filtering']
+    paths: ['src/**', 'tests/**', 'pyproject.toml', 'site/**', '.github/workflows/**']
+permissions:
+  contents: read
+jobs:
+  news-tests:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_DB: news
+          POSTGRES_USER: news
+          POSTGRES_PASSWORD: news-ci-only
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U news -d news"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      NEWS_TEST_DATABASE_URL: 'postgresql://news:news-ci-only@localhost:5432/news'
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.1.0
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - run: python -m pip install .
+      - run: news --help
+      - name: Validate the staged reader when present
+        if: hashFiles('site/release.json') != ''
+        run: news verify-release --manifest site/release.json
+      - run: python -m unittest discover -s tests -v
