@@ -1,5 +1,5 @@
 """Operate private news processing and explicit reader-only publication steps.
-Deployment belongs to GitHub Pages; only confirm-publication changes delivery history.
+Deployment belongs to GitHub Pages; explicit confirmation commands record verified delivery history.
 """
 
 import argparse
@@ -15,6 +15,7 @@ from .llm import JsonModel
 from .publication import (
     export_publication,
     confirm_publication,
+    confirm_presentation,
     verify_release_directory,
 )
 from .store import NewsStore
@@ -54,13 +55,14 @@ def command_parser():
     )
     export.add_argument("--run", required=True)
     export.add_argument("--output", type=Path, default=Path("site"))
-    confirm = commands.add_parser(
-        "confirm-publication",
-        help="Verify deployed file hashes, then record publication",
-    )
-    confirm.add_argument("--run", required=True)
-    confirm.add_argument("--manifest", type=Path, default=Path("site/release.json"))
-    confirm.add_argument("--site-url", required=True)
+    for name, description in (
+        ("confirm-publication", "Verify delivery and record first publication"),
+        ("confirm-presentation", "Verify a new design or URL for published news"),
+    ):
+        confirm = commands.add_parser(name, help=description)
+        confirm.add_argument("--run", required=True)
+        confirm.add_argument("--manifest", type=Path, default=Path("site/release.json"))
+        confirm.add_argument("--site-url", required=True)
     verify = commands.add_parser(
         "verify-release", help="Check staged public artifacts without private settings"
     )
@@ -130,6 +132,8 @@ def main(argv=None):
             result = export_publication(store, args.run, args.output)
         elif args.command == "confirm-publication":
             result = confirm_publication(store, args.run, args.manifest, args.site_url)
+        elif args.command == "confirm-presentation":
+            result = confirm_presentation(store, args.run, args.manifest, args.site_url)
         elif args.command == "stats":
             result = store.stats()
         else:

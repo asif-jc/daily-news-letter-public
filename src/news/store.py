@@ -6,6 +6,7 @@ Collection and processing belong to ingest.py and workflow.py.
 # IMPORTS & CONFIGURATION
 # ========================================================================
 import hashlib
+import json
 import os
 import re
 import uuid
@@ -429,6 +430,29 @@ class NewsStore:
         if not row:
             raise ValueError("No completed edition for this run")
         return {**row["payload"], "publication_status": row["status"]}
+
+    def record_presentation(self, run_id, receipt):
+        """Retain each verified design/URL release without making old news newly published."""
+        key = hashlib.sha256(
+            json.dumps([receipt["release_sha256"], receipt["public_url"]]).encode()
+        ).hexdigest()
+        with self.transaction():
+            row = self.connection.execute(
+                "SELECT status FROM editions WHERE run_id=%s FOR UPDATE", (run_id,)
+            ).fetchone()
+            original = self.stage_output(run_id, "publication")
+            if not row or row["status"] != "published" or original is None:
+                raise ValueError("A presentation refresh requires a published edition")
+            prior = self.stage_output(run_id, "presentation", key)
+            if prior is not None:
+                return prior
+            saved = {**receipt, "publication_sha256": original["release_sha256"]}
+            self.connection.execute(
+                """INSERT INTO stages(run_id,name,item_key,status,finished_at,output)
+                VALUES(%s,'presentation',%s,'complete',now(),%s)""",
+                (run_id, key, Jsonb(saved)),
+            )
+            return saved
 
     def record_publication(self, run_id, receipt):
         """Called only after delivery hashes match; build/export alone are not publication."""

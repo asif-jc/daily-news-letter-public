@@ -7,7 +7,7 @@ import json
 import re
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit, urlunsplit
 from uuid import UUID
 
 import requests
@@ -222,7 +222,7 @@ def fetch_public_file(url):
         response.close()
 
 
-def confirm_publication(store, run_id, manifest_path, site_url):
+def verify_delivery(store, run_id, manifest_path, site_url):
     parsed = urlsplit(site_url)
     if (
         parsed.scheme != "https"
@@ -242,9 +242,13 @@ def confirm_publication(store, run_id, manifest_path, site_url):
     manifest = verify_release_directory(manifest_path.parent, run_id)
     snapshot, files = release_files(store, run_id)
     expected = {path: hashlib.sha256(data).hexdigest() for path, data in files.items()}
-    if manifest["files"] != expected or manifest["stories"] != len(snapshot["stories"]):
+    if (
+        manifest["files"] != expected
+        or manifest["stories"] != len(snapshot["stories"])
+        or manifest["generated_at"] != snapshot["generated_at"]
+    ):
         raise ValueError("Release content does not match the retained edition")
-    site_url = site_url.rstrip("/") + "/"
+    site_url = urlunsplit(("https", parsed.hostname.lower(), parsed.path.rstrip("/") + "/", "", ""))
     if json.loads(fetch_public_file(site_url + "release.json")) != manifest:
         raise ValueError("Deployed release manifest does not match the candidate")
     for path, expected in manifest["files"].items():
@@ -262,4 +266,16 @@ def confirm_publication(store, run_id, manifest_path, site_url):
         "verified_at": datetime.now(timezone.utc).isoformat(),
         "files_verified": len(manifest["files"]),
     }
-    return store.record_publication(run_id, receipt)
+    return receipt
+
+
+def confirm_publication(store, run_id, manifest_path, site_url):
+    return store.record_publication(
+        run_id, verify_delivery(store, run_id, manifest_path, site_url)
+    )
+
+
+def confirm_presentation(store, run_id, manifest_path, site_url):
+    return store.record_presentation(
+        run_id, verify_delivery(store, run_id, manifest_path, site_url)
+    )
