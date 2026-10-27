@@ -24,4 +24,4 @@ where = ["src"]
 include = ["news*"]
 
 [tool.setuptools.package-data]
-news = ["*.css", "*.js", "*.json", "migrations/*.sql", "assets/*.jpg"]
+news = ["*.css", "*.js", "*.json", "migrations/*.sql", "assets/*.jpg", "assets/*.png"]

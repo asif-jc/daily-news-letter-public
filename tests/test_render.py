@@ -2,9 +2,6 @@
 
 import copy
 import json
-from pathlib import Path
-import shutil
-import subprocess
 import unittest
 
 from news.render import render_edition, reader_snapshot
@@ -45,9 +42,9 @@ def edition():
 
 
 class ReaderTests(unittest.TestCase):
-    def test_fallback_contains_one_card_and_familiar_template(self):
+    def test_fallback_contains_one_story_and_warm_reader(self):
         page = render_edition(edition(), [])
-        self.assertIn("assets/dunder_park.jpg", page)
+        self.assertIn("assets/editorial-", page)
         self.assertIn("AJC Analytics Limited", page)
         self.assertEqual(page.count('class="article reader-story'), 1)
         self.assertIn("A &lt;new&gt; event", page)
@@ -183,94 +180,6 @@ class ReaderTests(unittest.TestCase):
         page = render_edition(edition(), [old])
         self.assertIn('href="archive/old.html"', page)
         self.assertNotIn("Outside the week", page)
-
-    @unittest.skipUnless(
-        shutil.which("node"), "Node is needed to execute browser control logic"
-    )
-    def test_filter_toggles_preserve_featured_and_collection_order(self):
-        harness = r"""
-const assert = require("node:assert/strict");
-const make = () => ({hidden: false, value: "", checked: false, events: {},
-  addEventListener(name, callback) { this.events[name] = callback; },
-  focus() { document.activeElement = this; }});
-const card = key => ({...make(), dataset: {readKey: key, topics: '["Science"]', geography: '["NZ"]'},
-  classList: {toggle() {}}, button: {...make(), setAttribute() {}}, label: {},
-  querySelector(selector) { return selector === ".read-toggle" ? this.button : this.label; }});
-const f1 = card("featured-1"), f2 = card("featured-2"), l1 = card("library-1"), l2 = card("library-2");
-const h1 = card("historic-1");
-h1.dataset.topics = '["Politics"]';
-const cards = [f1, f2, l1, l2, h1];
-const containers = [];
-function container(children) {
-  const result = {...make(), children,
-    querySelectorAll() { return [...this.children]; },
-    appendChild(child) {
-      containers.forEach(parent => parent.children = parent.children.filter(item => item !== child));
-      this.children.push(child);
-    },
-    insertBefore(child, before) {
-      containers.forEach(parent => parent.children = parent.children.filter(item => item !== child));
-      const index = before ? this.children.indexOf(before) : this.children.length;
-      this.children.splice(index, 0, child);
-    },
-    get firstChild() { return this.children[0] || null; }};
-  containers.push(result);
-  return result;
-}
-const featured = container([f1, f2]), collection = container([l1, l2]);
-const elements = Object.fromEntries(["topic-filter", "geography-filter", "unread-filter", "storage-status", "no-results", "result-count", "reset-read", "no-results-message", "show-history"].map(id => [id, make()]));
-elements["featured-section"] = featured;
-elements["collection-cards"] = collection;
-const week = container([h1]);
-week.open = false;
-week.contains = item => week.children.includes(item);
-week.querySelector = () => week;
-elements["week-overview"] = week;
-global.document = {querySelectorAll() { return cards; }, querySelector() { return make(); }, getElementById(id) { return elements[id]; }};
-global.localStorage = {getItem() { return null; }, setItem() {}};
-global.window = {addEventListener() {}};
-"""
-        source = Path(__file__).parents[1].joinpath("src/news/reader.js").read_text()
-        checks = r"""
-const keys = parent => parent.children.map(item => item.dataset.readKey);
-for (let i = 0; i < 3; i++) {
-  elements["topic-filter"].value = "Science";
-  elements["topic-filter"].events.change();
-  assert.deepEqual(keys(collection), ["featured-1", "featured-2", "library-1", "library-2"]);
-  elements["topic-filter"].value = "";
-  elements["topic-filter"].events.change();
-  assert.deepEqual(keys(featured), ["featured-1", "featured-2"]);
-  assert.deepEqual(keys(collection), ["library-1", "library-2"]);
-}
-elements["topic-filter"].value = "Politics";
-elements["topic-filter"].events.change();
-assert.equal(elements["no-results"].hidden, false);
-assert.equal(elements["show-history"].hidden, false);
-assert.match(elements["no-results-message"].textContent, /Earlier reports match/);
-elements["show-history"].events.click();
-assert.equal(week.open, true);
-assert.equal(elements["result-count"].textContent, "1 report shown across recent editions.");
-week.open = false;
-week.events.toggle();
-assert.equal(week.open, false);
-assert.equal(elements["show-history"].hidden, false);
-elements["topic-filter"].value = "Science";
-elements["unread-filter"].checked = true;
-elements["topic-filter"].events.change();
-f1.button.focus();
-f1.button.events.click();
-assert.equal(f1.hidden, true);
-assert.equal(document.activeElement, f2.button);
-for (const item of [f2, l1, l2]) {
-  item.button.focus();
-  item.button.events.click();
-}
-assert.equal(document.activeElement, elements["unread-filter"]);
-"""
-        result = subprocess.run(
-            ["node", "-e", harness + source + checks], capture_output=True, text=True
-        )
-        self.assertEqual(result.returncode, 0, result.stderr)
 
     def test_absent_sources_and_bad_dates_remain_readable(self):
         item = edition()

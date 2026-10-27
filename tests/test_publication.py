@@ -7,10 +7,12 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
+from news.reader_assets import READER_ASSET_NAMES
 from news.publication import (
     export_publication,
     confirm_publication,
     verify_release_directory,
+    validate_manifest,
 )
 
 
@@ -71,6 +73,20 @@ class PublicationTests(unittest.TestCase):
     def export(self):
         return export_publication(self.store, self.run, self.root)
 
+    def test_legacy_manifest_remains_valid_but_partial_new_assets_fail(self):
+        manifest = self.export()
+        legacy = dict(manifest, files={
+            "index.html": manifest["files"]["index.html"],
+            "assets/dunder_park.jpg": "a" * 64,
+        })
+        self.assertEqual(validate_manifest(legacy), legacy)
+        manifest["files"].pop("assets/editorial-world.png")
+        with self.assertRaises(ValueError):
+            validate_manifest(manifest)
+        legacy["files"]["assets/editorial-world.png"] = "b" * 64
+        with self.assertRaises(ValueError):
+            validate_manifest(legacy)
+
     def test_manifest_cannot_carry_extra_private_payload(self):
         manifest = self.export()
         manifest["model_audit"] = "private response text"
@@ -108,7 +124,7 @@ class PublicationTests(unittest.TestCase):
             str(p.relative_to(self.root)) for p in self.root.rglob("*") if p.is_file()
         }
         self.assertEqual(
-            paths, {"index.html", "assets/dunder_park.jpg", "release.json"}
+            paths, {"index.html", "release.json"} | {"assets/" + name for name in READER_ASSET_NAMES}
         )
         self.assertNotIn("MUST_NOT_PUBLISH", (self.root / "index.html").read_text())
         self.assertEqual(manifest["run_id"], self.run)
