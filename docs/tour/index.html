@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A little more context | Daily News</title>
+<style>
+*{box-sizing:border-box}body{margin:0;color:#30302f;background:#f1f1ef;font:16px/1.6 Arial,Helvetica,sans-serif}a{color:inherit;text-underline-offset:.2em}button{font:inherit;cursor:pointer}a:focus-visible,button:focus-visible,video:focus-visible{outline:3px solid #3a5b98;outline-offset:4px}.wrap{max-width:1120px;margin:auto;padding:30px 28px 55px}header{display:flex;justify-content:space-between;align-items:center;gap:20px}.brand{font-size:24px;font-weight:700;letter-spacing:-.04em;text-decoration:none}.open{border:2px solid #30302f;border-radius:9px;padding:8px 14px;text-decoration:none;font-weight:700;background:#e2e6cf}.intro{margin:54px 0 26px;max-width:760px}h1{font-size:clamp(36px,6vw,66px);line-height:1.05;letter-spacing:-.055em;margin:0 0 20px}.intro p{color:#5d5d58;font-size:18px;margin:0}.film{padding:12px;border:2px solid #30302f;border-radius:12px;background:#f6d6c9}video{display:block;width:100%;aspect-ratio:16/9;background:#30302f;border-radius:5px}.chapters{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0}.chapters button{border:1px solid #909087;border-radius:9px;background:transparent;text-align:left;padding:12px;min-height:64px;line-height:1.35}.chapters button:hover,.chapters button[aria-current="true"]{background:#e2e6cf;border-color:#30302f}.chapters button:disabled{opacity:.6;cursor:wait}.chapters small{display:block;color:#67675f;margin-bottom:4px}.links{display:flex;gap:20px;flex-wrap:wrap;margin:24px 0}.recorded,.credits{font-size:13px;color:#67675f}.credits{border-top:1px solid #c6c6be;padding-top:18px;margin-top:32px}.transcript{max-width:760px;margin-top:30px}.transcript summary{cursor:pointer;font-weight:700}.transcript li{margin:12px 0}#status:empty{display:none}@media(max-width:640px){.wrap{padding:20px 17px 36px}.brand{font-size:22px}.open{font-size:13px;padding:8px 10px}.intro{margin-top:35px}.intro p{font-size:16px}.film{padding:5px}.chapters{grid-template-columns:1fr 1fr}.chapters button{font-size:14px;padding:11px;min-height:62px}.links{gap:14px}}
+</style>
+</head>
+<body><div class="wrap">
+<header><a class="brand" href="../">Daily News</a><a class="open" href="../">Open the reader ↗</a></header>
+<main><div class="intro"><h1>A little more context.<br>A lot less noise.</h1><p>A 24-second story about finding your way through the news.</p></div>
+<div class="film"><video id="tour" controls playsinline preload="metadata" poster="reader-tour-poster.jpg" aria-label="Daily News product tour"><source src="reader-tour.mp4" type="video/mp4"><track kind="captions" src="reader-tour.vtt" srclang="en" label="English on-screen story">Your browser cannot play this video. <a href="reader-tour.mp4">Download the MP4</a>.</video></div>
+<nav class="chapters" aria-label="Video chapters" hidden>
+<button type="button" data-time="0" disabled><small>00:00</small>From noise to context</button>
+<button type="button" data-time="3" disabled><small>00:03</small>Pick a story</button>
+<button type="button" data-time="8" disabled><small>00:08</small>Your world, in focus</button>
+<button type="button" data-time="14" disabled><small>00:14</small>Go to the source</button>
+</nav>
+<p id="status" role="status"></p>
+<div class="links"><a class="open" href="../">Try Daily News ↗</a><a href="reader-tour.mp4" download>Download the video</a></div>
+<p class="recorded">Recorded from the 26 October 2026 edition. The film is a recording; open the reader to browse and interact with the actual stories. Music is included; no narration.</p>
+<details class="transcript"><summary>Read the tour transcript</summary><ol><li><strong>00:00:</strong> The world won’t slow down. Your reading can.</li><li><strong>00:03:</strong> Pick a story. Keep the context. The desktop reader shows a title index, a selected story and its briefing.</li><li><strong>00:08:</strong> Your world. In focus. The mobile browser filters to NZ politics, then opens a story.</li><li><strong>00:14:</strong> Read the brief. Go to the source. The summary, context and original reporting links stay together.</li><li><strong>00:20:</strong> Daily News. A little more context. A lot less noise. Open the reader.</li></ol></details>
+<p class="credits">Made with <a href="https://github.com/latent-spaces/brag">Brag</a> and <a href="https://github.com/heygen-com/hyperframes">Hyperframes</a>. Original editorial illustrations. Music: “Happy Beats / Business Moves Vol. 11” by <a href="https://ende.app/en">Sascha Ende</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, trimmed, mixed and faded. Interface sounds: <a href="https://kenney.nl/assets/interface-sounds">Kenney</a>, CC0.</p>
+</main></div>
+<script>
+const video=document.getElementById('tour');
+const chapters=[...document.querySelectorAll('[data-time]')];
+const status=document.getElementById('status');
+document.querySelector('.chapters').hidden=false;
+function ready(){chapters.forEach(button=>button.disabled=false)}
+video.addEventListener('loadedmetadata',ready);
+if(video.readyState>=1)ready();
+chapters.forEach(button=>button.addEventListener('click',()=>{
+  video.currentTime=Math.min(Number(button.dataset.time),Math.max(0,video.duration-.1));
+  video.scrollIntoView({block:'center',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
+  video.play().catch(()=>{status.textContent='Use the video’s play control to continue.'});
+}));
+video.addEventListener('timeupdate',()=>{
+  const current=chapters.filter(button=>Number(button.dataset.time)<=video.currentTime).at(-1);
+  chapters.forEach(button=>button.setAttribute('aria-current',String(button===current)));
+});
+video.addEventListener('error',()=>{status.textContent='The video could not load. Try the download link or open the reader.'});
+</script></body></html>
