@@ -54,6 +54,13 @@ class StoryNavigationTests(unittest.TestCase):
     def test_search_and_mobile_browser_have_explicit_labels(self):
         page = self.page()
         self.assertEqual(page.select_one("#story-search")["type"], "search")
+        self.assertEqual(page.select_one(".reader-brand").get_text(strip=True), "Daily News")
+        self.assertNotIn("Daily News Reader", page.get_text())
+        refreshed = page.select_one(".edition-date")
+        self.assertEqual(refreshed["datetime"], "2026-10-19T01:00:00+00:00")
+        self.assertEqual(refreshed.select_one(".refresh-date").get_text(), "19 Oct 2026")
+        self.assertIn("2:00 PM NZDT", refreshed.get_text())
+        self.assertIn("Last refreshed", page.get_text())
         self.assertEqual(page.select_one("#browse-stories")["aria-controls"], "story-browser")
         self.assertIsNotNone(page.select_one("#close-browser"))
         self.assertIsNotNone(page.select_one("#reader-empty"))

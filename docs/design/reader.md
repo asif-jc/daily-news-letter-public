@@ -40,3 +40,9 @@ The test starts a temporary local fixture server and owned headless browser prof
 ## Preview boundary
 
 The review preview uses the retained 26 October source-audited edition, not a newly generated news run. It is a presentation checkpoint. The feature PR leaves `site/`, main and the production publication receipt unchanged. An isolated `previews/pr-N/` directory on the existing Pages branch serves the preview. A later production publish can remove this temporary preview because the production workflow owns the Pages root.
+
+## Sidebar refinement
+
+The product name is **Daily News**. The sidebar highlights the edition's generation date and Auckland time as Last refreshed; rebuilding or deploying HTML does not change that timestamp. The mobile header repeats the edition date so it remains visible with the drawer closed.
+
+Search and native topic/place selectors share dark outlines, white surfaces and larger touch targets. A left border reinforces the selected story. At 360px and below, selectors stack to keep longer place names readable. The sidebar retains its overall scroll path for short screens and expanded reading options.

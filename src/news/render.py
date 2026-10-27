@@ -184,7 +184,7 @@ def _story(story, generated_at, historic=False):
         f'<article class="article reader-story tone-{tone}" id="{identifier}" tabindex="-1" data-read-key="{escape(story["read_key"])}" data-topics="{escape(json.dumps(story["topics"]))}" data-geography="{escape(json.dumps(story["geography"]))}" data-historic="{str(historic).lower()}">'
         f'<div class="story-hero">{original}<div class="hero-inner"><div class="hero-quote"><span class="eyebrow">From this briefing</span><blockquote class="briefing-quote">{escape(_pull_quote(story))}</blockquote></div>'
         f'<img class="editorial-art" src="assets/editorial-{artwork}.png" alt="Original editorial illustration about {artwork}" width="480" height="480" loading="lazy"></div></div>'
-        f'<div class="story-body"><div class="story-signature">{LOGO}<span>Daily News Reader</span></div>'
+        f'<div class="story-body"><div class="story-signature">{LOGO}<span>Daily News</span></div>'
         f'<p class="eyebrow story-topic">{escape(topics)}</p><h1 class="story-title">{escape(story["title"])}</h1><p class="story-metadata">{escape(tags)}</p>'
         f'<p class="produced-date">Briefing produced {_date(generated_at)}</p><section class="story-summary" aria-label="Summary">{paragraphs}</section>{why}{_sources(story)}'
         '<div class="story-reading"><button class="read-toggle" type="button" hidden>Mark read</button><span class="read-label" aria-live="polite"></span></div></div></article>'
@@ -237,13 +237,15 @@ def render_edition(edition, archives=(), *, archive=False):
             sidebar_stories += f'<div class="story-group"><h2>{label}</h2>' + ''.join(_story_link(s, current["generated_at"], page_path) for s in group) + '</div>'
     if historic:
         sidebar_stories += '<div class="story-group history-group"><h2>Seven-day overview</h2>' + ''.join(_story_link(s, date, page_path, True) for s, date in historic) + '</div>'
+    refresh_date, _, refresh_time = _date(current["generated_at"]).partition(", ")
+    refresh_datetime = f' datetime="{escape(generated.isoformat())}"' if generated else ""
     body = f'''
 <a class="skip-link" href="{escape(page_path)}#reader-content">Skip to story</a>
-<header class="mobile-header">{LOGO}<span>Daily News Reader</span><button id="browse-stories" type="button" aria-controls="story-browser" aria-expanded="false">Browse stories</button></header>
+<header class="mobile-header">{LOGO}<span class="mobile-brand"><strong>Daily News</strong><time{refresh_datetime}>{escape(refresh_date)}</time></span><button id="browse-stories" type="button" aria-controls="story-browser" aria-expanded="false">Browse stories</button></header>
 <aside id="story-browser" aria-label="Story browser">
-  <div class="browser-intro"><a class="reader-brand" href="index.html" aria-label="Daily News Reader, latest edition">{LOGO}<strong>Daily<br>News Reader</strong></a><button id="close-browser" type="button" aria-label="Close story browser">×</button>
-  <p>A little more context.<br>A lot less noise.</p><p class="edition-date">{escape(_date(current["generated_at"]))}</p><span class="edition-status">{status}</span></div>
-  <div class="reader-controls" hidden><label class="search-label" for="story-search">Find a story</label><input id="story-search" type="search" placeholder="Search stories…" autocomplete="off">
+  <div class="browser-intro"><a class="reader-brand" href="index.html" aria-label="Daily News, latest edition">{LOGO}<strong>Daily News</strong></a><button id="close-browser" type="button" aria-label="Close story browser">×</button>
+  <div class="edition-refresh"><span class="eyebrow">Last refreshed</span><time class="edition-date"{refresh_datetime}><span class="refresh-date">{escape(refresh_date)}</span> <span class="refresh-time">{escape(refresh_time)}</span></time></div><span class="edition-status">{status}</span></div>
+  <div class="reader-controls" hidden><label class="search-label" for="story-search">Search stories</label><div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 6 6"/></svg><input id="story-search" type="search" placeholder="Find something to read…" autocomplete="off"></div>
     <div class="filter-row"><label>Topic<select id="topic-filter"><option value="">All topics</option>{topic_options}</select></label><label>Geography<select id="geography-filter"><option value="">All places</option>{geography_options}</select></label></div>
     <div class="filter-checks"><label><input id="unread-filter" type="checkbox"> Unread only</label><label><input id="history-filter" type="checkbox"> Include past 7 days</label></div>
   </div>
@@ -260,4 +262,4 @@ def render_edition(edition, archives=(), *, archive=False):
     directory = Path(__file__).parent
     css = directory.joinpath("reader.css").read_text()
     script = directory.joinpath("reader.js").read_text()
-    return f'<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="light"><title>Daily News Reader - {escape(_date(current["generated_at"]))}</title><style>{css}</style></head><body>{body}<script>{script}</script></body></html>'
+    return f'<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="light"><title>Daily News - {escape(_date(current["generated_at"]))}</title><style>{css}</style></head><body>{body}<script>{script}</script></body></html>'

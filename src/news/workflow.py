@@ -27,7 +27,7 @@ from .synthesis import reviewed_event, compose_story
 
 WORKFLOW_VERSION = 3
 GROUPING_VERSION = 3
-RENDER_VERSION = 8
+RENDER_VERSION = 9
 BATCH_SIZE = 5
 PROMPTS = {
     "analyse_articles": ANALYSE_PROMPT,
