@@ -65,3 +65,34 @@ class PublicationStoreTests(unittest.TestCase):
             self.edition(self.now - timedelta(hours=index))
         self.edition(self.now - timedelta(days=8))
         self.assertEqual(len(self.store.editions_within("reader", self.now, 7)), 10)
+
+    def test_presentation_receipts_preserve_content_and_first_publication(self):
+        run = self.edition(self.now)
+        first = {
+            "public_url": "https://example.github.io/old/",
+            "release_sha256": "a" * 64,
+            "verified_at": self.now.isoformat(),
+            "files_verified": 2,
+        }
+        with self.assertRaises(ValueError):
+            self.store.record_presentation(run, first)
+        self.store.record_publication(run, first)
+        before_edition = self.store.connection.execute(
+            'SELECT * FROM editions WHERE run_id=%s', (run,)
+        ).fetchone()
+        before_run = self.store.get_run(run)
+        new = {**first, 'public_url': 'https://example.github.io/news/', 'release_sha256': 'b' * 64}
+        receipt = self.store.record_presentation(run, new)
+        self.assertEqual(receipt['publication_sha256'], first['release_sha256'])
+        self.assertEqual(self.store.record_presentation(run, {**new, 'verified_at':'later'}), receipt)
+        self.store.record_presentation(run, {**new, 'public_url':'https://example.github.io/new-url/'})
+        self.store.record_presentation(run, {**new, 'release_sha256':'c' * 64})
+        rows = self.store.connection.execute(
+            "SELECT output FROM stages WHERE run_id=%s AND name='presentation'", (run,)
+        ).fetchall()
+        self.assertEqual(len(rows), 3)
+        self.assertEqual(self.store.stage_output(run, 'publication'), first)
+        self.assertEqual(self.store.get_run(run), before_run)
+        self.assertEqual(self.store.connection.execute(
+            'SELECT * FROM editions WHERE run_id=%s', (run,)
+        ).fetchone(), before_edition)

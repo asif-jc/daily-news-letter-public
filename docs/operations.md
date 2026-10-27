@@ -57,7 +57,7 @@ Run `news verify-release` to check the staged artifact boundary without loading 
 ```sh
 news confirm-publication --run RUN_UUID \
   --manifest site/release.json \
-  --site-url https://asif-jc.github.io/daily-news-letter-public/
+  --site-url https://asif-jc.github.io/daily-news/
 ```
 
 Confirmation rebuilds the intended release from the retained edition, checks the deployed manifest and every file hash, then records publication transactionally. Failed delivery leaves publication history unchanged. If deployment succeeds but database confirmation fails, rerun this command; do not regenerate or falsely mark a different run as delivered.
@@ -78,3 +78,18 @@ The package has one execution path: `news` and `python -m news` call the same CL
 Model self-review is not independent fact checking. Source references establish traceability, not entailment. Lexical comparison proposals can miss paraphrases; model judgments can mistake added context for a new development. Six feeds from five publishers do not provide exhaustive news coverage. Extraction is bounded and can fall back to clearly labeled feed evidence. Read state does not sync between devices. Storage is measured but no automatic retention deletion is installed.
 
 [Dispatch report](../dispatch_report.html) records the latest executed review, tests, run counts and delivery evidence. Historical prototype code and generated artifacts were retired; PostgreSQL records were preserved.
+
+
+### Refresh a design or public URL without republishing news
+
+After an already-published edition is re-exported and deployed with a new reader design or Pages URL, use:
+
+```sh
+news confirm-presentation --run RUN_UUID \
+  --manifest site/release.json \
+  --site-url https://asif-jc.github.io/daily-news/
+```
+
+This verifies the local release against the retained edition and every delivered reader file, then records an immutable `presentation` receipt keyed by manifest digest and normalized URL. The original publication receipt, story payload, generation date, publication date and run state remain unchanged. Repeating the same confirmation returns its existing receipt. First publication still uses `confirm-publication`; it still rejects a different release for an already-published edition.
+
+The Pages workflow verifies the reader-only `site/` directory, then stages that exact reader plus four explicitly named tour files under `tour/`. Authoring projects, raw captures and private runtime files are not deployed. The tour's MP4 is served by Pages as video media, rather than through a GitHub raw-file download link. Verify its actual playback, chapters, byte ranges and download after delivery.
