@@ -44,7 +44,7 @@ Published history, preview history and read state are different. Previously feat
 
 ## Publish a reviewed edition
 
-Private processing runs on a machine that can reach the configured model and database. GitHub only deploys the exported static reader. No scheduler is installed by this repository; generation can be invoked by an on-prem scheduler using the same `news build` command.
+Private processing runs on a machine that can reach the configured model and database. Production generation uses the separate Dagster runtime described below. GitHub deploys only the exported static reader. The commands in this section also support deliberate manual releases.
 
 ```sh
 news export --run RUN_UUID --output site
@@ -52,7 +52,7 @@ news export --run RUN_UUID --output site
 
 Export writes only reader HTML, the banner, published archive pages and `release.json`. It rejects empty output, unsafe source URLs, private path/network strings and unexpected files. It does not record publication. Never copy a private run directory into the public site.
 
-Run `news verify-release` to check the staged artifact boundary without loading private settings. Review the staged `site/` files, run the tests and the public-repository privacy checks in [AGENTS.md](../AGENTS.md), then commit them through a PR. Merging into `main` triggers the deployment-only Pages workflow. After the delivered files are available:
+Run `news verify-release` to check the staged artifact boundary without loading private settings. For a manual release, review the staged `site/` files, run the tests and the public-repository privacy checks in [AGENTS.md](../AGENTS.md), then commit them through a PR. Approved recurring editions use the restricted automatic publisher described below. Merging into `main` triggers the deployment-only Pages workflow. After the delivered files are available:
 
 ```sh
 news confirm-publication --run RUN_UUID \

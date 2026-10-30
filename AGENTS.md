@@ -1,6 +1,8 @@
 # Public repository boundaries
 
-Development and public branch pushes are authorized. Merge into main and production deployment require Asif's explicit review and approval at each release checkpoint.
+Development and public branch pushes are authorized. Code, design, feed-configuration and editorial-profile releases require Asif's explicit review and approval at each release checkpoint.
+
+The approved recurring publisher may commit validated generated `site/` editions to `main` and deploy them automatically. Keep its commits limited to the managed reader export, apply the privacy checks below, and record publication only after verifying the delivered files. This standing approval does not cover code, design, feed-configuration or editorial-profile changes.
 
 Keep credentials, home-server addresses, internal hostnames, private feed locations, and private subscriber data in ignored environment files or `.local/`. Read runtime settings from the environment. Committed example files contain placeholders only. Do not put private infrastructure details in source, generated pages, reports, logs, screenshots, fixtures, PR descriptions, or command output intended for publication.
 
