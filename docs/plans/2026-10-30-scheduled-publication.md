@@ -11,7 +11,7 @@
 - [x] Add a public freshness check independent of the home machine, using GitHub Actions and a deduplicated issue for stale/failed publication. Preserve the previous good edition on generation failure. Keep main code changes reviewed and restrict automation commits to `site/`.
 - [x] Run the full suite using a disposable PostgreSQL database and Chromium, inspect diffs, scan outgoing commits and public artifacts, then merge the implementation PR under the user's explicit release approval.
 - [ ] Install the isolated SSD runtime, private environment and repository-specific deploy key; register the new code location additively in the shared Dagster workspace. Verify existing jobs and schedules remain available. Start and inspect the news schedule.
-- [ ] Execute a real full refresh on slavepi, observe build, public commit, successful Actions deployment and database publication receipt. Inspect the deployed reader on desktop/mobile. Exercise checkpoint resume and scheduled execution without publishing an older edition over a newer one.
+- [ ] Execute a real full refresh on the local runner, observe build, public commit, successful Actions deployment and database publication receipt. Inspect the deployed reader on desktop/mobile. Exercise checkpoint resume and scheduled execution without publishing an older edition over a newer one.
 - [ ] Reconcile and retire merged branches only after inspecting unique changes and dirty worktrees. Preserve private authoring artifacts. Keep main and gh-pages. Record executed evidence, limitations and recovery commands in dispatch_report.html and operations documentation; send milestone and completion emails.
 
 ## Operational choices
