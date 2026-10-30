@@ -142,7 +142,7 @@ class ReaderBrowserTests(unittest.TestCase):
                         path.write_text(json.dumps(scenario))
                         result = subprocess.run(["rea", "capture-browser-scenario", str(path), "--json"],
                                                 capture_output=True, text=True, timeout=120)
-                        self.assertEqual(result.returncode, 0, result.stderr[-2000:])
+                        self.assertEqual(result.returncode, 0, (result.stdout + result.stderr)[-4000:])
                         evidence = json.loads(result.stdout)["normalized_result"]
                         failures = [(s["step_id"], s.get("error")) for s in evidence["steps"] if s["status"] != "completed"]
                         self.assertFalse(failures, failures)

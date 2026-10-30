@@ -93,3 +93,25 @@ news confirm-presentation --run RUN_UUID \
 This verifies the local release against the retained edition and every delivered reader file, then records an immutable `presentation` receipt keyed by manifest digest and normalized URL. The original publication receipt, story payload, generation date, publication date and run state remain unchanged. Repeating the same confirmation returns its existing receipt. First publication still uses `confirm-publication`; it still rejects a different release for an already-published edition.
 
 The Pages workflow verifies the reader-only `site/` directory, then stages that exact reader plus four explicitly named tour files under `tour/`. Authoring projects, raw captures and private runtime files are not deployed. The tour's MP4 is served by Pages as video media, rather than through a GitHub raw-file download link. Verify its actual playback, chapters, byte ranges and download after delivery.
+
+## Automatic twice-daily publication
+
+The `news_twice_daily` Dagster schedule starts at **03:00 and 15:00 Pacific/Auckland**. This follows local daylight saving time; the interval spanning a clock change can differ from twelve elapsed hours. A separate `daily-news` code location and Python environment keep news dependencies out of other pipelines. Install `.[orchestration]` for the code server. The service template and additive workspace entry are under `deploy/`; substitute the private installation root outside Git.
+
+`news_refresh_job` owns one complete publication attempt, with two retries five minutes apart and a three-hour subprocess limit per attempt. Its root Dagster run UUID identifies `.local/automation/UUID.json`; retries and re-executions reuse that state. The pipeline run UUID is saved immediately after creation, before collection can fail. Existing database checkpoints resume processing. A PostgreSQL session advisory lock covers the entire build-to-confirmation path, including competing launches from another machine.
+
+The runtime code is installed from a reviewed revision. A separate publisher repository creates a detached worktree for each attempt. It fast-forwards disjoint reviewed remote changes before publication; an abandoned attempt cannot block the next scheduled run. Its SSH deploy key belongs only to this repository. GitHub cannot restrict a deploy key to one path, so the publisher refuses non-reader changes and unrelated local commits, stages explicit managed file paths, scans the export and outgoing commits with fully redacted Gitleaks, and pushes without force. A failed or divergent push retains its commit for recovery; it never resets someone else's work. Scanner reports and all attempt state stay private.
+
+A successful push triggers `Publish news reader`. The private publisher waits up to twenty minutes for Pages and uses `confirm-publication` to verify the retained edition, manifest and every delivered file. A retry after a deployment or database interruption uses the same edition and commit. A stale retry cannot overwrite a newer edition. Generation failure leaves the last good public edition available.
+
+Recovery for a failed attempt, from the isolated runtime directory with its private environment loaded:
+
+```sh
+news refresh --attempt ROOT_DAGSTER_RUN_UUID
+```
+
+Inspect the matching private state and Dagster run before retrying. Do not delete state, force-push, or create a new edition to disguise a failed confirmation. Deliberate runtime code updates are separate from routine generated-site commits.
+
+`Check news freshness` runs hourly on GitHub, independently of the home host. It checks the public manifest and raises one assigned issue if the edition is unavailable, invalid, future dated, or more than sixteen hours old. A healthy later check closes that issue. GitHub schedules can be delayed, and issue/email delivery depends on account notifications; this is detection rather than an availability guarantee. Public reader file hashes are verified by the private publisher on every delivery.
+
+Dependabot checks Python dependencies and GitHub Actions weekly on Monday at 09:00 Pacific/Auckland. Minor/patch Python updates are grouped; major Python updates remain separate. Update PRs require review and passing checks. There is no dependency auto-merge policy.

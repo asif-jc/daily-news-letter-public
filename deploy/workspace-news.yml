@@ -1,0 +1,6 @@
+# Append this code location to the existing shared workspace; preserve other entries.
+load_from:
+  - grpc_server:
+      host: 127.0.0.1
+      port: 2472
+      location_name: daily-news

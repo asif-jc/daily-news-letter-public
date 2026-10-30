@@ -1,0 +1,25 @@
+name: Check news freshness
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+concurrency:
+  group: news-freshness
+  cancel-in-progress: false
+jobs:
+  freshness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.1.0
+        with:
+          python-version: '3.12'
+      - run: python -m pip install .
+      - name: Check the delivered edition and maintain one actionable alert
+        run: python -m news.monitoring --site-url https://asif-jc.github.io/daily-news/
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

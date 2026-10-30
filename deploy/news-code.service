@@ -1,0 +1,17 @@
+[Unit]
+Description=Daily News Dagster code location
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/srv/daily-news/code
+EnvironmentFile=/srv/daily-news/config/news.env
+ExecStart=/srv/daily-news/venv/bin/dagster code-server start --host 127.0.0.1 --port 2472 --module-name news.dagster_defs --location-name daily-news --use-python-environment-entry-point
+Restart=on-failure
+RestartSec=10
+TimeoutStopSec=30
+UMask=0077
+
+[Install]
+WantedBy=default.target

@@ -34,6 +34,8 @@ def command_parser():
         "--env-file", default=".env", help="Ignored private runtime settings"
     )
     commands = parser.add_subparsers(dest="command", required=True)
+    refresh = commands.add_parser("refresh", help="Build, publish and verify one automatic edition")
+    refresh.add_argument("--attempt", required=True, help="Stable UUID reused for retries")
     build = commands.add_parser(
         "build", help="Build or resume a private review edition"
     )
@@ -102,6 +104,11 @@ def main(argv=None):
             print(json.dumps(result, indent=2))
             return 0
         load_dotenv(args.env_file, override=False)
+        if args.command == "refresh":
+            from .automation import refresh
+            result = refresh(args.attempt)
+            print(json.dumps(result, indent=2))
+            return 0
         store = NewsStore.from_env()
         store.migrate()
         if args.command == "build":
