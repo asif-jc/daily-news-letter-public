@@ -6,12 +6,12 @@
 
 ## Implementation and verification
 
-- [ ] Build a restartable `news refresh` command with a whole-attempt lock, atomic private attempt state, bounded deployment polling, explicit Git paths and secret scanning. Save the pipeline run ID before processing so retries resume rather than recollect. Test failure between build, push and confirmation, overlapping execution, stale editions, divergent main, and retry after an ambiguous push.
-- [ ] Add the optional pinned Dagster dependency, separate code location, 03:00/15:00 timezone-aware schedule, bounded step retries and sanitized logs. Keep detailed evidence in the existing private database and output directory. Test the actual schedule ticks and job execution contract.
-- [ ] Add a public freshness check independent of the home machine, using GitHub Actions and a deduplicated issue for stale/failed publication. Preserve the previous good edition on generation failure. Keep main code changes reviewed and restrict automation commits to `site/`.
-- [ ] Run the full suite using a disposable PostgreSQL database and Chromium, inspect diffs, scan outgoing commits and public artifacts, then merge the implementation PR under the user's explicit release approval.
+- [x] Build a restartable `news refresh` command with a whole-attempt lock, atomic private attempt state, bounded deployment polling, explicit Git paths and secret scanning. Save the pipeline run ID before processing so retries resume rather than recollect. Test failure between build, push and confirmation, overlapping execution, stale editions, divergent main, and retry after an ambiguous push.
+- [x] Add the optional pinned Dagster dependency, separate code location, 03:00/15:00 timezone-aware schedule, bounded step retries and sanitized logs. Keep detailed evidence in the existing private database and output directory. Test the actual schedule ticks and job execution contract.
+- [x] Add a public freshness check independent of the home machine, using GitHub Actions and a deduplicated issue for stale/failed publication. Preserve the previous good edition on generation failure. Keep main code changes reviewed and restrict automation commits to `site/`.
+- [x] Run the full suite using a disposable PostgreSQL database and Chromium, inspect diffs, scan outgoing commits and public artifacts, then merge the implementation PR under the user's explicit release approval.
 - [ ] Install the isolated SSD runtime, private environment and repository-specific deploy key; register the new code location additively in the shared Dagster workspace. Verify existing jobs and schedules remain available. Start and inspect the news schedule.
-- [ ] Execute a real full refresh on slavepi, observe build, public commit, successful Actions deployment and database publication receipt. Inspect the deployed reader on desktop/mobile. Exercise checkpoint resume and scheduled execution without publishing an older edition over a newer one.
+- [ ] Execute a real full refresh on the local runner, observe build, public commit, successful Actions deployment and database publication receipt. Inspect the deployed reader on desktop/mobile. Exercise checkpoint resume and scheduled execution without publishing an older edition over a newer one.
 - [ ] Reconcile and retire merged branches only after inspecting unique changes and dirty worktrees. Preserve private authoring artifacts. Keep main and gh-pages. Record executed evidence, limitations and recovery commands in dispatch_report.html and operations documentation; send milestone and completion emails.
 
 ## Operational choices
@@ -25,4 +25,10 @@
 
 ## Added requirement: Dependabot
 
-- [ ] Configure weekly Monday 09:00 Pacific/Auckland checks for pip/pyproject.toml and GitHub Actions. Keep update PRs reviewed, with no automatic merging. Verify the committed configuration, GitHub's update-job execution and resulting status or PRs; local YAML parsing alone is insufficient.
+- [x] Configure weekly Monday 09:00 Pacific/Auckland checks for pip/pyproject.toml and GitHub Actions. Keep update PRs reviewed, with no automatic merging. Verify the committed configuration, GitHub's update-job execution and resulting status or PRs; local YAML parsing alone is insufficient.
+
+## Runtime findings incorporated
+
+- The existing global run limit was one. Two total slots plus one per code location preserve the original workload's one-run limit while allowing news to proceed independently.
+- Explicit control-group shutdown and news-only startup recovery prevent an interrupted worker record from permanently occupying its schedule slot. Queued runs and other locations are excluded.
+- Independent review found and resolved two publisher-checkout wedges: abandoned commits now belong to detached per-attempt worktrees, and disjoint reviewed code updates can fast-forward while preserving an export. Real Git regressions cover both, lost push responses, and refusal to replace a newer edition.

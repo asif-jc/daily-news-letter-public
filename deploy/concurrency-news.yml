@@ -1,0 +1,10 @@
+# Merge into the shared Dagster instance config after checking existing run limits.
+# Two locations can progress independently while each retains one active run.
+concurrency:
+  runs:
+    max_concurrent_runs: 2
+    tag_concurrency_limits:
+      - key: dagster/code_location
+        value:
+          applyLimitPerUniqueValue: true
+        limit: 1
