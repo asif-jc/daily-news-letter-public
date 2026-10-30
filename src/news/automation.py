@@ -68,9 +68,20 @@ def changed_paths(repository):
     return paths
 
 
+def publication_checkout(base, attempt_id):
+    base = Path(base).resolve()
+    checkout = base / '.local/publications' / str(UUID(attempt_id))
+    if not checkout.exists():
+        git(base, 'fetch', 'origin', 'main')
+        checkout.parent.mkdir(parents=True, exist_ok=True)
+        # An abandoned push owns only this detached worktree, never the next scheduled run.
+        git(base, 'worktree', 'add', '--detach', str(checkout), 'origin/main')
+    return checkout
+
+
 def prepare_checkout(repository, state):
-    if git(repository, 'branch', '--show-current') != 'main':
-        raise ValueError('Publisher checkout must be on main')
+    if git(repository, 'branch', '--show-current') not in ('main', ''):
+        raise ValueError('Publisher checkout must follow main or a detached publication attempt')
     git(repository, 'fetch', 'origin', 'main')
     head, remote = git(repository, 'rev-parse', 'HEAD'), git(repository, 'rev-parse', 'origin/main')
     paths = changed_paths(repository)
@@ -80,8 +91,6 @@ def prepare_checkout(repository, state):
         return
     # Only remote-reviewed code may be the parent of an automatic site commit.
     if head != remote:
-        if paths:
-            raise ValueError('Cannot update a dirty publisher checkout')
         ahead = git(repository, 'rev-list', '--count', 'origin/main..HEAD')
         if ahead != '0':
             raise ValueError('Publisher has unreviewed local commits')
@@ -143,7 +152,7 @@ def publish_export(repository, state_path, state):
 
 def refresh(attempt_id, *, store=None, model=None, notify=print):
     attempt_id = str(UUID(attempt_id))
-    repository = Path(os.environ['NEWS_PUBLISH_CHECKOUT']).resolve()
+    base = Path(os.environ['NEWS_PUBLISH_CHECKOUT']).resolve()
     state_root = Path('.local/automation')
     state_path = state_root / (attempt_id + '.json')
     state = json.loads(state_path.read_text()) if state_path.exists() else {'attempt_id': attempt_id}
@@ -154,6 +163,7 @@ def refresh(attempt_id, *, store=None, model=None, notify=print):
         with store.lock_run('automatic-publication'):
             if state.get('confirmed'):
                 return state
+            repository = publication_checkout(base, attempt_id)
             prepare_checkout(repository, state)
             if not state.get('commit'):
                 def remember_run(run_id):

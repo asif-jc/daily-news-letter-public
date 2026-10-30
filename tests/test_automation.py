@@ -9,7 +9,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from unittest.mock import patch
 
-from news.automation import prepare_checkout, publish_export, publication_age, refresh
+from news.automation import prepare_checkout, publish_export, publication_age, publication_checkout, refresh
 
 
 def git(root, *args):
@@ -90,6 +90,28 @@ class AutomaticPublicationTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             prepare_checkout(self.repo, {})
 
+    def test_new_attempt_is_not_blocked_by_failed_previous_commit(self):
+        first = publication_checkout(self.repo, str(uuid.uuid4()))
+        (first / 'README.md').write_text('A pending commit')
+        git(first, 'add', 'README.md')
+        git(first, 'commit', '-qm', 'Pending publication')
+        second = publication_checkout(self.repo, str(uuid.uuid4()))
+        prepare_checkout(second, {})
+        self.assertEqual(git(second, 'rev-parse', 'HEAD'), git(self.remote, 'rev-parse', 'main'))
+        self.assertNotEqual(git(first, 'rev-parse', 'HEAD'), git(second, 'rev-parse', 'HEAD'))
+
+    def test_reviewed_code_merge_during_generation_preserves_site_export(self):
+        self.export()
+        reviewer = self.root / 'reviewer'
+        subprocess.run(['git', 'clone', '-q', '--branch', 'main', str(self.remote), str(reviewer)], check=True)
+        (reviewer / 'README.md').write_text('Reviewed update')
+        git(reviewer, 'add', 'README.md')
+        git(reviewer, 'commit', '-qm', 'Reviewed code')
+        git(reviewer, 'push', '-q', 'origin', 'main')
+        prepare_checkout(self.repo, self.state)
+        self.assertEqual((self.repo / 'README.md').read_text(), 'Reviewed update')
+        self.assertEqual(json.loads((self.repo / 'site/release.json').read_text())['run_id'], self.run)
+
     def test_future_or_stale_edition_fails_freshness(self):
         now = datetime.now(timezone.utc)
         for delta in (timedelta(hours=-17), timedelta(hours=1)):
@@ -121,11 +143,11 @@ class RefreshRecoveryTests(unittest.TestCase):
         def fail(*args, **kwargs):
             kwargs['on_run_created'](self.run)
             raise RuntimeError('Collection interrupted')
-        with patch('news.automation.prepare_checkout'), patch('news.automation.run_workflow', side_effect=fail):
+        with patch('news.automation.publication_checkout', return_value=Path('publisher')), patch('news.automation.prepare_checkout'), patch('news.automation.run_workflow', side_effect=fail):
             with self.assertRaises(RuntimeError):
                 refresh(self.attempt, store=self.store, model=object(), notify=lambda _: None)
         self.assertEqual(json.loads(self.path.read_text())['run_id'], self.run)
-        with patch('news.automation.prepare_checkout'), patch('news.automation.run_workflow', return_value={'run_id': self.run}) as build, patch('news.automation.export_publication'), patch('news.automation.publish_export'), patch('news.automation.confirm_publication', return_value={'files_verified': 4}):
+        with patch('news.automation.publication_checkout', return_value=Path('publisher')), patch('news.automation.prepare_checkout'), patch('news.automation.run_workflow', return_value={'run_id': self.run}) as build, patch('news.automation.export_publication'), patch('news.automation.publish_export'), patch('news.automation.confirm_publication', return_value={'files_verified': 4}):
             result = refresh(self.attempt, store=self.store, model=object(), notify=lambda _: None)
         self.assertEqual(build.call_args.kwargs['run_id'], self.run)
         self.assertEqual(result['confirmed']['files_verified'], 4)
@@ -134,7 +156,7 @@ class RefreshRecoveryTests(unittest.TestCase):
     def test_delivery_failure_retries_without_building_or_exporting_again(self):
         from news.automation import save_attempt
         save_attempt(self.path, {'attempt_id': self.attempt, 'run_id': self.run, 'commit': 'a' * 40})
-        with patch('news.automation.prepare_checkout'), patch('news.automation.run_workflow') as build, patch('news.automation.export_publication') as export, patch('news.automation.publish_export'), patch('news.automation.confirm_publication', side_effect=ValueError('Not yet delivered')), patch.dict('os.environ', {'NEWS_DEPLOY_TIMEOUT_SECONDS':'0'}):
+        with patch('news.automation.publication_checkout', return_value=Path('publisher')), patch('news.automation.prepare_checkout'), patch('news.automation.run_workflow') as build, patch('news.automation.export_publication') as export, patch('news.automation.publish_export'), patch('news.automation.confirm_publication', side_effect=ValueError('Not yet delivered')), patch.dict('os.environ', {'NEWS_DEPLOY_TIMEOUT_SECONDS':'0'}):
             with self.assertRaises(TimeoutError):
                 refresh(self.attempt, store=self.store, model=object(), notify=lambda _: None)
         build.assert_not_called()
@@ -143,7 +165,7 @@ class RefreshRecoveryTests(unittest.TestCase):
 
     def test_competing_launch_does_no_work(self):
         self.store.lock_run.return_value.__enter__.side_effect = RuntimeError('Already running')
-        with patch('news.automation.prepare_checkout') as prepare:
+        with patch('news.automation.publication_checkout', return_value=Path('publisher')), patch('news.automation.prepare_checkout') as prepare:
             with self.assertRaises(RuntimeError):
                 refresh(self.attempt, store=self.store, model=object(), notify=lambda _: None)
         prepare.assert_not_called()
