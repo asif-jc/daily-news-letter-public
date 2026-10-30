@@ -125,6 +125,15 @@ class WorkflowTests(unittest.TestCase):
                 self.store, model, output, profile=self.profile, **kwargs
             )
 
+    def test_run_identity_is_retained_before_collection_can_fail(self):
+        from news.workflow import run_workflow
+        retained = []
+        with tempfile.TemporaryDirectory() as output, patch('news.workflow.collect_articles', side_effect=RuntimeError('offline')):
+            with self.assertRaises(RuntimeError):
+                run_workflow(self.store, Model(), Path(output), profile=self.profile, on_run_created=retained.append)
+        self.assertEqual(len(retained), 1)
+        self.assertEqual(self.store.get_run(retained[0])['status'], 'failed')
+
     def test_old_article_is_understood_shown_and_replayed_without_calls(self):
         m = Model()
         with tempfile.TemporaryDirectory() as out:

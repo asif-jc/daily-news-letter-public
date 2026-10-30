@@ -52,6 +52,7 @@ def run_workflow(
     featured_limit=6,
     include_review_previews=False,
     article_holds=None,
+    on_run_created=None,
 ):
     if not 1 <= pool_days <= 30 or not 0 <= featured_limit <= 20:
         raise ValueError("Invalid rolling window or featured limit")
@@ -143,6 +144,8 @@ def run_workflow(
             ),
         }
         run_id = store.create_run(config, now)
+        if on_run_created:
+            on_run_created(str(run_id))
     run_id = str(run_id)
     run = store.get_run(run_id)
     config = run["config"]

@@ -16,6 +16,9 @@ dependencies = [
   "psycopg[binary]==3.3.6",
 ]
 
+[project.optional-dependencies]
+orchestration = ["dagster==1.13.17"]
+
 [project.scripts]
 news = "news.cli:main"
 
