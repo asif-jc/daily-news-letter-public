@@ -1,18 +1,803 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Daily News release report</title><style>body{font:16px/1.6 Arial,sans-serif;max-width:1040px;margin:32px auto;padding:24px;color:#30302f;background:#f1f1ef}main{padding:32px;background:white}h1,h2{line-height:1.2}table{border-collapse:collapse;width:100%}td,th{text-align:left;vertical-align:top;border-bottom:1px solid #ccc;padding:10px}pre{white-space:pre-wrap;background:#e2e6cf;padding:16px;overflow-wrap:anywhere}.notice{background:#f6d6c9;padding:16px}a{color:inherit}</style></head><body><main>
-<h1>Daily News: reader, tour and release</h1><p>27 October 2026. <a href="https://github.com/asif-jc/daily-news">Repository</a> · <a href="https://asif-jc.github.io/daily-news/">Reader</a> · <a href="https://asif-jc.github.io/daily-news/tour/">Playable tour</a> · <a href="docs/plans/2026-10-27-daily-news-release.md">Release plan</a>.</p>
-<p class="notice">This report records the executed release candidate and its design decisions. Production delivery is confirmed after merge through GitHub Actions, byte-for-byte HTTP checks and a PostgreSQL presentation receipt. The release PR records that final delivery result. The news remains the retained 26 October edition; a new visual design does not make it fresh news.</p>
-<h2>Tasks and architecture</h2><p>PR #25 was independently reviewed again and merged as <code>d512beb</code>. It contains the warm story reader, Daily News branding, prominent edition date and styled sidebar controls. The follow-up release changes the GitHub name to <code>daily-news</code>, updates maintained entry points, exports that reader to the production artifact, and replaces the old video with a new story-style film and a usable player.</p><p>The reader stays Python-generated static HTML with its existing safe-field and source-URL boundary. The tour is a small static HTML page with native video controls, chapter jumps, captions, a transcript, download and a separate live-reader action. No frontend framework, subscriber backend, extra news feed or agent platform was added.</p><p>The Pages workflow first verifies the strict reader-only <code>site/</code> export, then copies it and exactly four files from <code>docs/tour/</code> to its deployment directory. The MP4, poster, captions and player have one canonical source directory. Raw captures, authoring projects, private settings and diagnostics stay ignored.</p>
-<h2>The playback bug</h2><p>The old README pointed to a GitHub raw MP4 response with <code>application/octet-stream</code>. Its H.264/AAC encoding was compatible, but this was a download route rather than a dependable interactive player. The new entry point is an HTML page with a relative <code>video/mp4</code> source. Native playback, seeking and chapter controls are verified separately from merely producing a file.</p><p>Local testing also exposed a server dependency: a basic Python file server reset a seek to the beginning. A range-aware server returned <code>206 Partial Content</code>, <code>Content-Type: video/mp4</code> and the expected byte range. Real browser chapter actions then reached 8.06s and 14.12s, played without media error, and paused with the native keyboard control. Production MIME/range/playback checks are release gates, not inferred from local tests.</p>
-<h2>The film</h2><table><tr><th>Time</th><th>Story beat</th><th>Evidence on screen</th></tr><tr><td>0-3s</td><td>The world won’t slow down. Your reading can.</td><td>Original editorial globe artwork and the product palette.</td></tr><tr><td>3-8s</td><td>Pick a story. Keep the context.</td><td>Actual redesigned desktop reader, revealed through a paper transition.</td></tr><tr><td>8-14s</td><td>Your world. In focus.</td><td>Actual mobile NZ politics drawer and selected story.</td></tr><tr><td>14-20s</td><td>Read the brief. Go to the source.</td><td>Actual briefing, context and original reporting links.</td></tr><tr><td>20-24s</td><td>A little more context. A lot less noise.</td><td>Daily News identity and the new public URL.</td></tr></table><p>Brag and Hyperframes supplied the authoring workflow. The film uses music and sparse interface sounds, without narration. All scene midpoint frames were inspected, then the final MP4 was played in a browser. The chosen settled product frame is the poster and frame zero. The README GIF and banner are regenerated from this film. <a href="docs/assets/README.md">Media provenance and licences</a>.</p>
-<h2>Preserve publication provenance</h2><p>The first publication receipt is immutable. It cannot be replaced just because HTML, artwork or a repository URL changes. The new <code>confirm-presentation</code> command shares the same retained-edition and delivered-file verification as first publication, then records an immutable receipt in the existing stages table. Its key includes manifest digest and normalized URL; its output links to the original publication digest.</p><p>The edition payload, generation date, publication date, run state and original receipt remain untouched. Exact retries return the saved receipt. An unpublished edition, metadata mismatch or delivery mismatch cannot gain a presentation receipt. No database schema migration or fabricated new news run is needed. <code>confirm-publication</code> still rejects a changed first-publication release.</p><pre>Existing stages columns inspected:
-run_id: uuid
-name: text
-item_key: text
-status: text
-finished_at: timestamp with time zone
-output: jsonb</pre>
-<h2>Executed checks</h2><table><tr><th>Check</th><th>Observed result</th></tr><tr><td>Application and PostgreSQL tests</td><td>129 tests passed, no skips, including browser regression and the new immutable-presentation cases. The database was an isolated disposable loopback cluster.</td></tr><tr><td>Hyperframes validation</td><td>Zero errors; all 15 contrast checks passed. Four decorative warnings concern paper scraps intentionally leaving the canvas; the inspected reveal finishes correctly.</td></tr><tr><td>Encoded media</td><td>24.000 seconds, 1920×1080,30fps,720frames,H.264/yuv420p,AAC. Fast-start moov atom precedes media data. Audio mean -30.4dB, peak -9.5dB; no clipping. No private-path/network metadata patterns found.</td></tr><tr><td>Browser interaction</td><td>Desktop and mobile REA scenarios each completed all nine steps, including chapter seeks and navigation to the actual reader; owned browsers were cleaned up. Manual checks confirmed play, pause, seek and 390px document width without horizontal overflow.</td></tr><tr><td>Reader candidate</td><td>The real store exported the retained 81-story edition through the public whitelist and strict manifest. Its news timestamps are unchanged.</td></tr></table><pre>Ran 129 tests in 10.429s
-
-OK</pre>
-<h2>Review, privacy and final delivery owners</h2><p>Public pushes are gated on exact outgoing files/commits, full-redaction Gitleaks, separate path/network/personal-data review and inspection of media content/metadata. Runtime configuration and detailed scanner/authoring logs remain private. Scanning alone is not a complete privacy proof.</p><p>Asif explicitly authorized the merges. Independent standards and requirements reviews provide the technical review record; the authenticated author account cannot submit a formal self-approval under GitHub’s rules. The release PR and <a href="https://github.com/asif-jc/daily-news/actions/workflows/publish.yml">publish workflow</a> own the final merge/deployment result, and the verified presentation receipt owns delivered-reader provenance.</p>
-<h2>Limits</h2><p>The tour is a recording, not the live app; its separate reader action opens the interactive product. Stories and dates are a retained edition, not a newly collected news run. Safari, screen readers and forced-colour modes were not tested. Repository renaming changes the Pages project URL; maintained entry points use the new address. The old preview directory is temporary and may be replaced by the production publish.</p></main></body></html>
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   Daily News - scheduled publication report
+  </title>
+  <style>
+   body{max-width:1000px;margin:40px auto;padding:0 24px 64px;background:#faf9f5;color:#222;font:16px/1.6 system-ui,sans-serif}h1,h2{line-height:1.2}h1{font-size:36px}h2{margin-top:36px}a{color:#174e42}table{width:100%;border-collapse:collapse;background:white;font-size:14px}th,td{text-align:left;border-bottom:1px solid #ddd;padding:10px;vertical-align:top}th{background:#e8eddf}pre{white-space:pre-wrap;overflow-wrap:anywhere;padding:16px;background:#eeeee8;font:13px/1.5 monospace}code{overflow-wrap:anywhere}.lead{font-size:20px}.note{font-size:14px;color:#555}.table-wrap{overflow:auto}@media(max-width:600px){body{margin-top:24px;padding:0 16px 40px}h1{font-size:28px}table{min-width:560px}}
+  </style>
+ </head>
+ <body>
+  <h1>
+   Daily News: scheduled publication
+  </h1>
+  <p class="lead">
+   The real scheduled validation published 154 stories, including 6 featured stories, and verified the delivered reader against PostgreSQL.
+  </p>
+  <p>
+   <a href="https://asif-jc.github.io/daily-news/">
+    Open the live reader
+   </a>
+   ·
+   <a href="https://github.com/asif-jc/daily-news/pull/27">
+    Implementation PR #27
+   </a>
+   ·
+   <a href="https://github.com/asif-jc/daily-news/pull/32">
+    Runtime recovery PR #32
+   </a>
+  </p>
+  <p>
+   Snapshot cutoff:
+   <strong>
+    30 Oct 2026, 09:21 PM NZDT
+   </strong>
+   . Delivery confirmed:
+   <strong>
+    30 Oct 2026, 11:53 PM NZDT
+   </strong>
+   . Complete cold run:
+   <strong>
+    152.1 minutes
+   </strong>
+   , with zero analysis-cache hits.
+  </p>
+  <h2>
+   Architecture and ownership
+  </h2>
+  <pre>Dagster schedule: 03:00 / 15:00 Pacific/Auckland
+  → isolated local news runtime
+  → public feeds → evidence → article analysis/review
+  → event comparisons → editorial selection → summary review
+  → validated reader-only export → privacy scans → site-only main commit
+  → GitHub Actions → GitHub Pages
+  → delivered hashes verified → immutable PostgreSQL publication receipt</pre>
+  <p>
+   The existing Dagster instance owns scheduling, launch history and retries. The model service and
+   <code>
+    news
+   </code>
+   PostgreSQL database remain private. One Dagster operation wraps the retained Python workflow; PostgreSQL owns its detailed processing checkpoints. This avoids maintaining two competing stage-retry systems.
+  </p>
+  <p>
+   The news code location has its own Python environment, settings and worker service. Two global run slots with one per code location preserve the original location’s one-run limit while allowing news to progress independently. The original property code-server PID was unchanged during validation.
+  </p>
+  <h2>
+   Measured article flow
+  </h2>
+  <div class="table-wrap">
+   <table>
+    <thead>
+     <tr>
+      <th>
+       Measure
+      </th>
+      <th>
+       Actual result
+      </th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td>
+       Feed observations collected
+      </td>
+      <td>
+       136
+      </td>
+     </tr>
+     <tr>
+      <td>
+       Unique articles analysed, including retained inputs
+      </td>
+      <td>
+       232
+      </td>
+     </tr>
+     <tr>
+      <td>
+       Articles within the seven-day pool
+      </td>
+      <td>
+       230
+      </td>
+     </tr>
+     <tr>
+      <td>
+       Ready article analyses
+      </td>
+      <td>
+       208
+      </td>
+     </tr>
+     <tr>
+      <td>
+       Article analyses retained for review and withheld
+      </td>
+      <td>
+       24
+      </td>
+     </tr>
+     <tr>
+      <td>
+       Event groups
+      </td>
+      <td>
+       185
+      </td>
+     </tr>
+     <tr>
+      <td>
+       Relevant events selected
+      </td>
+      <td>
+       157
+      </td>
+     </tr>
+     <tr>
+      <td>
+       Grouping holds
+      </td>
+      <td>
+       3
+      </td>
+     </tr>
+     <tr>
+      <td>
+       Event summaries withheld
+      </td>
+      <td>
+       3
+      </td>
+     </tr>
+     <tr>
+      <td>
+       Published stories
+      </td>
+      <td>
+       154
+      </td>
+     </tr>
+     <tr>
+      <td>
+       Featured stories
+      </td>
+      <td>
+       6
+      </td>
+     </tr>
+     <tr>
+      <td>
+       Article repair cases
+      </td>
+      <td>
+       75
+      </td>
+     </tr>
+     <tr>
+      <td>
+       Audited model calls
+      </td>
+      <td>
+       675
+      </td>
+     </tr>
+    </tbody>
+   </table>
+  </div>
+  <p>
+   The 136 observations are this collection, while the 232 analyses also include retained articles. The extractor recorded article-text evidence for all 232 inputs. Two analysed inputs fall outside the current seven-day pool. Review outcomes and excluded material remain private and queryable; they are not silently deleted.
+  </p>
+  <div class="table-wrap">
+   <table>
+    <thead>
+     <tr>
+      <th>
+       Feed
+      </th>
+      <th>
+       Collected
+      </th>
+      <th>
+       Analysed
+      </th>
+      <th>
+       Ready
+      </th>
+      <th>
+       Reader events
+      </th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td>
+       Ars Technica
+      </td>
+      <td>
+       20
+      </td>
+      <td>
+       36
+      </td>
+      <td>
+       30
+      </td>
+      <td>
+       26
+      </td>
+     </tr>
+     <tr>
+      <td>
+       BBC World News
+      </td>
+      <td>
+       34
+      </td>
+      <td>
+       71
+      </td>
+      <td>
+       65
+      </td>
+      <td>
+       37
+      </td>
+     </tr>
+     <tr>
+      <td>
+       CNBC Finance
+      </td>
+      <td>
+       30
+      </td>
+      <td>
+       30
+      </td>
+      <td>
+       29
+      </td>
+      <td>
+       26
+      </td>
+     </tr>
+     <tr>
+      <td>
+       RNZ Business
+      </td>
+      <td>
+       14
+      </td>
+      <td>
+       20
+      </td>
+      <td>
+       20
+      </td>
+      <td>
+       20
+      </td>
+     </tr>
+     <tr>
+      <td>
+       RNZ Politics
+      </td>
+      <td>
+       18
+      </td>
+      <td>
+       35
+      </td>
+      <td>
+       27
+      </td>
+      <td>
+       21
+      </td>
+     </tr>
+     <tr>
+      <td>
+       TechCrunch
+      </td>
+      <td>
+       20
+      </td>
+      <td>
+       40
+      </td>
+      <td>
+       37
+      </td>
+      <td>
+       28
+      </td>
+     </tr>
+    </tbody>
+   </table>
+  </div>
+  <p class="note">
+   Six feeds from five publishers. Reader-event counts overlap when an event cites multiple sources.
+  </p>
+  <h2>
+   Model steps and editorial preference
+  </h2>
+  <div class="table-wrap">
+   <table>
+    <thead>
+     <tr>
+      <th>
+       Audited task
+      </th>
+      <th>
+       Calls
+      </th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td>
+       analyse_articles
+      </td>
+      <td>
+       307
+      </td>
+     </tr>
+     <tr>
+      <td>
+       compare_event_pairs
+      </td>
+      <td>
+       29
+      </td>
+     </tr>
+     <tr>
+      <td>
+       curate_events
+      </td>
+      <td>
+       13
+      </td>
+     </tr>
+     <tr>
+      <td>
+       review_articles
+      </td>
+      <td>
+       296
+      </td>
+     </tr>
+     <tr>
+      <td>
+       review_event
+      </td>
+      <td>
+       15
+      </td>
+     </tr>
+     <tr>
+      <td>
+       synthesize
+      </td>
+      <td>
+       15
+      </td>
+     </tr>
+    </tbody>
+   </table>
+  </div>
+  <p>
+   Prompts and validation live in
+   <a href="https://github.com/asif-jc/daily-news/blob/main/src/news/analysis.py">
+    article analysis and factual review
+   </a>
+   ,
+   <a href="https://github.com/asif-jc/daily-news/blob/main/src/news/grouping.py">
+    event comparison
+   </a>
+   ,
+   <a href="https://github.com/asif-jc/daily-news/blob/main/src/news/editorial.py">
+    editorial selection
+   </a>
+   and
+   <a href="https://github.com/asif-jc/daily-news/blob/main/src/news/synthesis.py">
+    event synthesis
+   </a>
+   . The
+   <a href="https://github.com/asif-jc/daily-news/blob/main/src/news/profile.json">
+    versioned reader preference
+   </a>
+   covers global affairs, economics, AI, technology, science and New Zealand/Pacific reporting. The
+   <a href="https://github.com/asif-jc/daily-news/blob/main/src/news/sources.py">
+    feed catalogue
+   </a>
+   is the source of truth for retrieval.
+  </p>
+  <h2>
+   Executed verification
+  </h2>
+  <ul>
+   <li>
+    147 local tests passed with no skips, using disposable PostgreSQL and real desktop/mobile Chromium. The implementation and startup-recovery changes also passed both independent review axes.
+   </li>
+   <li>
+    A temporary schedule fired the real job through the existing daemon. Its run was 538fb62b-d5d2-4587-826d-432454f08f34. The probe was stopped and retired after validation; the permanent 03:00/15:00 schedule remains running.
+   </li>
+   <li>
+    A controlled news-service restart marked an explicitly synthetic orphan record as failed, preserving queued/other jobs and the successful real run. This exercised the actual ExecStartPre recovery owner, not a physical reboot.
+   </li>
+   <li>
+    A real Dagster re-execution of the confirmed attempt succeeded without a new pipeline run, model call or publication. Its run was 76f39f8f-aa11-495b-803d-f2210db6a15d.
+   </li>
+   <li>
+    All 10 deployed reader, manifest and tour files matched their intended hashes. The application receipt separately verifies all five reader files.
+   </li>
+   <li>
+    Live desktop and 390×844 mobile checks covered the refresh date, all 154 stories, drawer controls, NZ/economy filtering and search. The viewport was restored after testing.
+   </li>
+   <li>
+    The independent GitHub freshness check detected the stale edition, opened assigned issue #29, and closed it automatically after a healthy check. Both stale and healthy executions were exercised explicitly; the hourly trigger is configured and active.
+   </li>
+  </ul>
+  <p>
+   <a href="https://github.com/asif-jc/daily-news/actions/runs/41043844153">
+    Successful reader deployment
+   </a>
+   ·
+   <a href="https://github.com/asif-jc/daily-news/actions/runs/41043887783">
+    Successful Pages build
+   </a>
+   ·
+   <a href="https://github.com/asif-jc/daily-news/actions/runs/41043844346">
+    News checks on the automatic edition commit
+   </a>
+   ·
+   <a href="https://github.com/asif-jc/daily-news/actions/runs/41044821777">
+    Healthy freshness check
+   </a>
+   ·
+   <a href="https://github.com/asif-jc/daily-news/issues/29">
+    Resolved freshness alert
+   </a>
+  </p>
+  <h2>
+   Actual publication record and schema
+  </h2>
+  <pre>{
+  "news_run_id": "df7ecc03-735a-406b-abec-13be48d20e17",
+  "edition_status": "published",
+  "published_at": "2026-10-30 10:53:04.634849+00:00",
+  "reader_files_verified": 5,
+  "release_sha256": "f28db380b75c097e9307de3471ebf41a3c1f4967743911ee896969dd634b2a6f"
+}</pre>
+  <div class="table-wrap">
+   <table>
+    <thead>
+     <tr>
+      <th>
+       Retained table
+      </th>
+      <th>
+       Column
+      </th>
+      <th>
+       PostgreSQL type
+      </th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td>
+       editions
+      </td>
+      <td>
+       run_id
+      </td>
+      <td>
+       uuid
+      </td>
+     </tr>
+     <tr>
+      <td>
+       editions
+      </td>
+      <td>
+       status
+      </td>
+      <td>
+       text
+      </td>
+     </tr>
+     <tr>
+      <td>
+       editions
+      </td>
+      <td>
+       published_at
+      </td>
+      <td>
+       timestamp with time zone
+      </td>
+     </tr>
+     <tr>
+      <td>
+       editions
+      </td>
+      <td>
+       payload
+      </td>
+      <td>
+       jsonb
+      </td>
+     </tr>
+     <tr>
+      <td>
+       runs
+      </td>
+      <td>
+       id
+      </td>
+      <td>
+       uuid
+      </td>
+     </tr>
+     <tr>
+      <td>
+       runs
+      </td>
+      <td>
+       started_at
+      </td>
+      <td>
+       timestamp with time zone
+      </td>
+     </tr>
+     <tr>
+      <td>
+       runs
+      </td>
+      <td>
+       status
+      </td>
+      <td>
+       text
+      </td>
+     </tr>
+     <tr>
+      <td>
+       stages
+      </td>
+      <td>
+       run_id
+      </td>
+      <td>
+       uuid
+      </td>
+     </tr>
+     <tr>
+      <td>
+       stages
+      </td>
+      <td>
+       name
+      </td>
+      <td>
+       text
+      </td>
+     </tr>
+     <tr>
+      <td>
+       stages
+      </td>
+      <td>
+       item_key
+      </td>
+      <td>
+       text
+      </td>
+     </tr>
+     <tr>
+      <td>
+       stages
+      </td>
+      <td>
+       status
+      </td>
+      <td>
+       text
+      </td>
+     </tr>
+     <tr>
+      <td>
+       stages
+      </td>
+      <td>
+       started_at
+      </td>
+      <td>
+       timestamp with time zone
+      </td>
+     </tr>
+     <tr>
+      <td>
+       stages
+      </td>
+      <td>
+       output
+      </td>
+      <td>
+       jsonb
+      </td>
+     </tr>
+    </tbody>
+   </table>
+  </div>
+  <p>
+   The deployed source matched all 30 reviewed package files at code revision
+   <code>
+    e0ce687e41c0e42ac671f0dcca0acda42d278821
+   </code>
+   . Runtime versions: Python 3.12.13, Dagster 1.13.17, PostgreSQL 16.4 and Gitleaks 8.30.1.
+  </p>
+  <h2>
+   Timing and recovery choices
+  </h2>
+  <div class="table-wrap">
+   <table>
+    <thead>
+     <tr>
+      <th>
+       Recorded stage window
+      </th>
+      <th>
+       Checkpoints
+      </th>
+      <th>
+       Elapsed span
+      </th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td>
+       collect
+      </td>
+      <td>
+       1
+      </td>
+      <td>
+       0.0 min
+      </td>
+     </tr>
+     <tr>
+      <td>
+       article_input
+      </td>
+      <td>
+       232
+      </td>
+      <td>
+       31.4 min
+      </td>
+     </tr>
+     <tr>
+      <td>
+       analyse_articles
+      </td>
+      <td>
+       47
+      </td>
+      <td>
+       84.7 min
+      </td>
+     </tr>
+     <tr>
+      <td>
+       compare_event_pairs
+      </td>
+      <td>
+       29
+      </td>
+      <td>
+       13.5 min
+      </td>
+     </tr>
+     <tr>
+      <td>
+       curate
+      </td>
+      <td>
+       1
+      </td>
+      <td>
+       6.1 min
+      </td>
+     </tr>
+     <tr>
+      <td>
+       summarize_event
+      </td>
+      <td>
+       157
+      </td>
+      <td>
+       11.6 min
+      </td>
+     </tr>
+     <tr>
+      <td>
+       render
+      </td>
+      <td>
+       1
+      </td>
+      <td>
+       0.0 min
+      </td>
+     </tr>
+     <tr>
+      <td>
+       export
+      </td>
+      <td>
+       1
+      </td>
+      <td>
+       0.0 min
+      </td>
+     </tr>
+    </tbody>
+   </table>
+  </div>
+  <p>
+   These are retained stage timestamp windows, not additive CPU measurements. The complete 152.1-minute run includes processing, export, deployment and confirmation. This is one cold benchmark at 232 articles; expanding the feed catalogue requires another capacity measurement.
+  </p>
+  <p>
+   Attempts retain a stable run UUID and commit. Detached publishing worktrees keep an abandoned push from blocking later runs. Disjoint reviewed code updates can fast-forward while preserving an export; this path was also exercised by the actual build spanning a reviewed main update. The job has a three-hour subprocess limit, two retries five minutes apart, a whole-publication database lock and a twenty-minute delivery-verification window. Generation failure leaves the last good edition available.
+  </p>
+  <p>
+   Runtime code is pinned to a reviewed revision. Code/design changes require a deliberate local rollout alongside their release; routine generation updates only
+   <code>
+    site/
+   </code>
+   . A space-free service alias avoids service-path parsing problems while runtime storage stays on the local SSD. Recovery commands and ownership are in
+   <a href="https://github.com/asif-jc/daily-news/blob/main/docs/operations.md">
+    operations documentation
+   </a>
+   .
+  </p>
+  <h2>
+   Repository and privacy boundary
+  </h2>
+  <p>
+   Seven verified merged remote feature branches were retired. Their private authoring worktrees were preserved. The remaining update branches belong to active Dependabot PRs, not unfinished feature work. Dependabot’s first Python and GitHub Actions checks succeeded; security alerts and security-update PRs are enabled, with reviewed updates and no auto-merge.
+  </p>
+  <p>
+   <a href="https://github.com/asif-jc/daily-news/pull/28">
+    Grouped Python updates #28
+   </a>
+   ·
+   <a href="https://github.com/asif-jc/daily-news/pull/30">
+    Requests security update #30
+   </a>
+   ·
+   <a href="https://github.com/asif-jc/daily-news/pull/31">
+    Environment-loader security update #31
+   </a>
+  </p>
+  <p>
+   Automatic publication uses a repository-specific SSH deploy key. Export paths are explicitly restricted, files and outgoing commits pass fully redacted Gitleaks, and reader fields reject private network/filesystem information. The developer release also received a manual infrastructure-label, address, hostname, path and personal-information inspection. Detailed diagnostics, settings, retrieved text, model responses and screenshots remain private. Credential scanning alone does not establish complete publication safety.
+  </p>
+  <h2>
+   Practical limits
+  </h2>
+  <p>
+   Model self-review is not independent fact checking. The delivered stories include direct source links and dates, and ambiguous outcomes are withheld. No physical power-loss test or multi-day uptime study was performed. GitHub cron timing is best effort; periodic dispatch itself was not observed during this validation, although stale/healthy watchdog execution and issue recovery were verified. The local schedule was tested through a real due tick. Browser checks used Chromium; Safari and screen-reader behavior were not tested in this release.
+  </p>
+  <p class="note">
+   This report contains measured results and public release identifiers. It intentionally omits private infrastructure details and raw processing logs.
+  </p>
+ </body>
+</html>

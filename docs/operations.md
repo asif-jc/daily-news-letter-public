@@ -44,7 +44,7 @@ Published history, preview history and read state are different. Previously feat
 
 ## Publish a reviewed edition
 
-Private processing runs on a machine that can reach the configured model and database. GitHub only deploys the exported static reader. No scheduler is installed by this repository; generation can be invoked by an on-prem scheduler using the same `news build` command.
+Private processing runs on a machine that can reach the configured model and database. Production generation uses the separate Dagster runtime described below. GitHub deploys only the exported static reader. The commands in this section also support deliberate manual releases.
 
 ```sh
 news export --run RUN_UUID --output site
@@ -52,7 +52,7 @@ news export --run RUN_UUID --output site
 
 Export writes only reader HTML, the banner, published archive pages and `release.json`. It rejects empty output, unsafe source URLs, private path/network strings and unexpected files. It does not record publication. Never copy a private run directory into the public site.
 
-Run `news verify-release` to check the staged artifact boundary without loading private settings. Review the staged `site/` files, run the tests and the public-repository privacy checks in [AGENTS.md](../AGENTS.md), then commit them through a PR. Merging into `main` triggers the deployment-only Pages workflow. After the delivered files are available:
+Run `news verify-release` to check the staged artifact boundary without loading private settings. For a manual release, review the staged `site/` files, run the tests and the public-repository privacy checks in [AGENTS.md](../AGENTS.md), then commit them through a PR. Approved recurring editions use the restricted automatic publisher described below. Merging into `main` triggers the deployment-only Pages workflow. After the delivered files are available:
 
 ```sh
 news confirm-publication --run RUN_UUID \
@@ -114,4 +114,8 @@ Inspect the matching private state and Dagster run before retrying. Do not delet
 
 `Check news freshness` runs hourly on GitHub, independently of the home host. It checks the public manifest and raises one assigned issue if the edition is unavailable, invalid, future dated, or more than sixteen hours old. A healthy later check closes that issue. GitHub schedules can be delayed, and issue/email delivery depends on account notifications; this is detection rather than an availability guarantee. Public reader file hashes are verified by the private publisher on every delivery.
 
-Dependabot checks Python dependencies and GitHub Actions weekly on Monday at 09:00 Pacific/Auckland. Minor/patch Python updates are grouped; major Python updates remain separate. Update PRs require review and passing checks. There is no dependency auto-merge policy.
+Dependabot checks Python dependencies and GitHub Actions weekly on Monday at 09:00 Pacific/Auckland. Scheduled minor/patch Python version updates are grouped; major version updates remain separate. Dependabot security alerts and security-update PRs are enabled; security fixes can appear as individual PRs. Update PRs require review and passing checks. There is no dependency auto-merge policy.
+
+The shared instance also needs run capacity for both code locations. The existing single global run slot was replaced with two total slots and a one-run limit per `dagster/code_location`, preserving the original location's one-run limit while allowing news to progress independently. `deploy/concurrency-news.yml` shows this additive configuration. Inspect existing limits before applying it to another installation; preserve any additional limits there. For release validation, use a temporary one-off schedule and remove that probe after its run completes. Keep the permanent schedule at 03:00/15:00 only.
+
+The isolated code service explicitly uses `KillMode=control-group`. Its `ExecStartPre` recovery command runs only after the prior worker group is stopped, marks interrupted `news_refresh_job` runs in the `daily-news` location as failed, and leaves queued runs, other locations and retained pipeline checkpoints untouched. This releases the news concurrency slot after a reboot or code-server restart. Do not run this command against a live news worker group. A failed first edition remains private; the next scheduled attempt can proceed, and an operator can deliberately resume retained attempt state.

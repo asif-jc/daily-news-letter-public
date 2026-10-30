@@ -112,6 +112,34 @@ class AutomaticPublicationTests(unittest.TestCase):
         self.assertEqual((self.repo / 'README.md').read_text(), 'Reviewed update')
         self.assertEqual(json.loads((self.repo / 'site/release.json').read_text())['run_id'], self.run)
 
+    def test_older_attempt_cannot_replace_newer_public_edition(self):
+        self.export()
+        git(self.repo, 'add', 'site/index.html', 'site/release.json')
+        git(self.repo, 'commit', '-qm', 'Newer public edition')
+        git(self.repo, 'push', '-q', 'origin', 'main')
+        before = git(self.remote, 'rev-parse', 'refs/heads/main')
+        self.export(datetime.now(timezone.utc) - timedelta(hours=1))
+        with patch('news.automation.verify_release_directory', side_effect=lambda path, *_: json.loads((path / 'release.json').read_text())), patch('news.automation.scan_export'):
+            with self.assertRaisesRegex(ValueError, 'newer public edition'):
+                publish_export(self.repo, self.state_path, self.state)
+        self.assertEqual(git(self.remote, 'rev-parse', 'refs/heads/main'), before)
+
+    def test_accepted_push_with_lost_response_can_be_confirmed_on_retry(self):
+        self.export()
+        original = subprocess.run
+        def lose_response(args, **kwargs):
+            result = original(args, **kwargs)
+            if 'push' in args:
+                raise subprocess.CalledProcessError(1, args)
+            return result
+        with patch('news.automation.verify_release_directory', side_effect=lambda path, *_: json.loads((path / 'release.json').read_text())), patch('news.automation.scan_export'):
+            with patch('news.automation.subprocess.run', side_effect=lose_response):
+                with self.assertRaises(subprocess.CalledProcessError):
+                    publish_export(self.repo, self.state_path, self.state)
+            state = json.loads(self.state_path.read_text())
+            self.assertEqual(state['commit'], git(self.remote, 'rev-parse', 'refs/heads/main'))
+            self.assertEqual(publish_export(self.repo, self.state_path, state), state['commit'])
+
     def test_future_or_stale_edition_fails_freshness(self):
         now = datetime.now(timezone.utc)
         for delta in (timedelta(hours=-17), timedelta(hours=1)):

@@ -6,7 +6,10 @@ Wants=network-online.target
 [Service]
 Type=simple
 WorkingDirectory=/srv/daily-news/code
+Environment=PYTHONUNBUFFERED=1
 EnvironmentFile=/srv/daily-news/config/news.env
+ExecStartPre=/srv/daily-news/venv/bin/python -m news.runtime_recovery
+KillMode=control-group
 ExecStart=/srv/daily-news/venv/bin/dagster code-server start --host 127.0.0.1 --port 2472 --module-name news.dagster_defs --location-name daily-news --use-python-environment-entry-point
 Restart=on-failure
 RestartSec=10
