@@ -10,6 +10,7 @@ updates:
     open-pull-requests-limit: 5
     groups:
       python-dependencies:
+        exclude-patterns: [dagster]
         update-types: [minor, patch]
   - package-ecosystem: github-actions
     directory: /

@@ -9,14 +9,15 @@ description = "An evidence-first news workflow with retained decisions and a sta
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-  "beautifulsoup4==4.13.4",
-  "feedparser==6.0.11",
-  "python-dotenv==1.1.1",
-  "requests==2.32.5",
+  "beautifulsoup4==4.15.0",
+  "feedparser==6.0.14",
+  "python-dotenv==1.2.4",
+  "requests==2.34.2",
   "psycopg[binary]==3.3.6",
 ]
 
 [project.optional-dependencies]
+# Keep this aligned with the shared daemon; upgrade the deployment together.
 orchestration = ["dagster==1.13.17"]
 
 [project.scripts]
