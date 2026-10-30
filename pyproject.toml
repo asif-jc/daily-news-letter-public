@@ -17,7 +17,8 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-orchestration = ["dagster==1.13.27"]
+# Keep this aligned with the shared daemon; upgrade the deployment together.
+orchestration = ["dagster==1.13.17"]
 
 [project.scripts]
 news = "news.cli:main"
