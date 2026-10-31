@@ -799,5 +799,23 @@
   <p class="note">
    This report contains measured results and public release identifiers. It intentionally omits private infrastructure details and raw processing logs.
   </p>
+  <h2>Dagster patch rollout: 31 October 2026</h2>
+  <p>The news code location, shared daemon and webserver were upgraded together to 1.13.27. A separate orchestration environment preserves the unrelated code location's existing 1.13.17 environment. The running UI reports 1.13.27 and loads both repositories; the unrelated code-server PID remained unchanged. Instance configuration, service overrides and 345 SQLite files were backed up privately before the rollout.</p>
+  <p>The first attempt began before downloads completed and was deliberately aborted. The original services were restored; no workers were active. The successful retry checked all packages before stopping services and installed the news update offline. Rollback configuration remains private.</p>
+  <p>Executed validation: <code>python -m pytest tests -q</code> passed 147 tests and 12 subtests. A real Dagster re-execution of a confirmed edition succeeded with no additional model calls. The news schedule remained running and every daemon heartbeat reported zero errors. The earlier sections remain historical evidence for the original release.</p>
+  <pre>{
+  &quot;version&quot;: &quot;1.13.27&quot;,
+  &quot;code_locations_loaded&quot;: 2,
+  &quot;sqlite_backups&quot;: 345,
+  &quot;reexecution_run&quot;: &quot;f2ae9dac-7b1e-4ab5-a122-189da6bcd476&quot;,
+  &quot;status&quot;: &quot;SUCCESS&quot;,
+  &quot;model_calls_before&quot;: 1618,
+  &quot;model_calls_after&quot;: 1618,
+  &quot;schedule&quot;: &quot;RUNNING&quot;,
+  &quot;scheduler_errors&quot;: 0,
+  &quot;tests_passed&quot;: 147,
+  &quot;subtests_passed&quot;: 12
+}</pre>
+  <p>Limits: this patch release does not claim a physical reboot or multi-day uptime test. The unrelated code environment was loaded through the upgraded services, not upgraded itself. Dependency and documentation review: <a href="https://github.com/asif-jc/daily-news/pull/34">PR #34</a>.</p>
  </body>
 </html>
